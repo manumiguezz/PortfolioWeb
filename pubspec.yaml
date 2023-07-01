@@ -17,3 +17,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+fonts:
+  - family: madetommy
+    fonts:
+      - asset: fonts/Made-Tommy.otf
+      
+  - family: madetommybold
+    fonts:
+      - asset: fonts/Made-Tommy-Bold.otf
