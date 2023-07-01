@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Manuel Miguez Lauría',
           style: TextStyle(
             fontSize: 40,
-            fontFamily: 'madetommybold'
+            fontFamily: 'madetommy'
           ),
         ),
       ),
