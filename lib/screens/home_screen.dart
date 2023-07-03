@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/widgets.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -6,18 +7,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black87,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        centerTitle: true,
-        title: const Text('Manuel Miguez Lauría',
-          style: TextStyle(
-            fontSize: 40,
-            fontFamily: 'madetommy'
-          ),
-        ),
-      ),
+      body: HomeScrollView(),
     );
   }
 }
+
