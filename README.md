@@ -1,3 +1,3 @@
-# personal_web
+# Portfolio Web Page
 
-A new Flutter project.
+A project using Flutter to develop a portfolio webpage
