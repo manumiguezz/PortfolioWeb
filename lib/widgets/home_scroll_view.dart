@@ -12,47 +12,47 @@ class HomeScrollView extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       slivers: [
 
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: CustomSliverAppBarDelegate(
-            minHeight: 50, 
-            maxHeight: 400, 
-            child: const FlexibleSpaceBar(
-              centerTitle: true,
-              title: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('Manuel Miguez Lauría',
-                  style: TextStyle(fontFamily: 'madetommy', fontSize: 50),),
-                ],
-              ),
-            )
-          )
-        ),
-        
-        // const SliverAppBar(
-        //   toolbarHeight: 80,
-        //   backgroundColor: Colors.black,
+        // SliverPersistentHeader(
         //   pinned: true,
-        //   elevation: 5,
-        //   expandedHeight: 760,
-        //   flexibleSpace: FlexibleSpaceBar(
-        //     centerTitle: true,
-        //     title: Column(
-        //       mainAxisAlignment: MainAxisAlignment.end,
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: [
-
-        //         Text('Manuel Miguez Lauría',
-        //         style: TextStyle(fontFamily: 'madetommy', fontSize: 50),
-        //         ),
-
-        //         Icon(Icons.gite_outlined, color: Colors.white,)
-        //       ],
-        //     ),
-        //   ),
+        //   delegate: CustomSliverAppBarDelegate(
+        //     minHeight: 50, 
+        //     maxHeight: 400, 
+        //     child: const FlexibleSpaceBar(
+        //       centerTitle: true,
+        //       title: Column(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         crossAxisAlignment: CrossAxisAlignment.center,
+        //         children: [
+        //           Text('Manuel Miguez Lauría',
+        //           style: TextStyle(fontFamily: 'madetommy', fontSize: 50),),
+        //         ],
+        //       ),
+        //     )
+        //   )
         // ),
+        
+        const SliverAppBar(
+          toolbarHeight: 80,
+          backgroundColor: Colors.black,
+          pinned: true,
+          elevation: 5,
+          expandedHeight: 760,
+          flexibleSpace: FlexibleSpaceBar(
+            centerTitle: true,
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Text('Manuel Miguez Lauría',
+                style: TextStyle(fontFamily: 'madetommy', fontSize: 50),
+                ),
+
+                Icon(Icons.gite_outlined, color: Colors.white,)
+              ],
+            ),
+          ),
+        ),
 
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
