@@ -87,7 +87,7 @@ class ParallaxWidget extends StatelessWidget {
       child: Container(
         height: 550,
         width: 900,
-        child: Image.asset("assets/$asset.png",
+        child: Image.asset("assets/parallax/$asset.png",
         fit: BoxFit.cover,
         ),
       )
