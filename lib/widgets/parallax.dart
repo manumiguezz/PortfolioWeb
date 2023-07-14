@@ -8,12 +8,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  double topOne = 0;
+  double topTwo = 100;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: NotificationListener(
         onNotification: (v) {
           if(v is ScrollUpdateNotification){
+            setState(() {
+              topOne = topOne - v.scrollDelta! / 3;
+              topTwo = topTwo - v.scrollDelta! / 1;
+            });
           }
           return false;
         },
@@ -21,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             
             Positioned(
-              top: 100,
+              top: topOne,
               left: 0,
               child: Container(
                 height: 100,
@@ -31,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             Positioned(
-              top: 100,
+              top: topTwo,
               left: 150,
               child: Container(
                 height: 100,
@@ -39,6 +47,15 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.green,
               )
             ),
+
+            ListView(
+              children: <Widget>[
+                Container(
+                  height: 600,
+                  color: Colors.transparent,
+                )
+              ],
+            )
 
           ],
         ),
