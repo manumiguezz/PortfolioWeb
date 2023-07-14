@@ -9,8 +9,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   
-  double topOne = 0;
-  double topTwo = 100;
+  double rateOne = 0;
+  double rateTwo = 0;
+  double rateThree = 0;
+  double rateFour = 0;
+  double rateFive = 0;
+  double rateSix = 0;
+  double rateSeven = 0;
+
+
+
+  late String asset;
+  late double top;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +29,13 @@ class _HomePageState extends State<HomePage> {
         onNotification: (v) {
           if(v is ScrollUpdateNotification){
             setState(() {
-              topOne = topOne - v.scrollDelta! / 3;
-              topTwo = topTwo - v.scrollDelta! / 1;
+              rateSeven -= v.scrollDelta! / 1;
+              rateSix -= v.scrollDelta! / 1.5;
+              rateFive -= v.scrollDelta! / 2;
+              rateFour -= v.scrollDelta! / 2.5;
+              rateThree -= v.scrollDelta! / 3;
+              rateTwo -= v.scrollDelta! / 3.5;
+              rateOne -= v.scrollDelta! / 4;
             });
           }
           return false;
@@ -28,17 +43,15 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: <Widget>[
             
-            Positioned(
-              left: -45,
-              top: 0,
-              child: Container(
-                height: 550,
-                width: 900,
-                child: Image.asset("assets/parallax/7.png",
-                fit: BoxFit.cover,
-                ),
-              )
-            ),
+            ParallaxWidget(top: rateOne, asset: "1"),
+            ParallaxWidget(top: rateTwo, asset: "2"),
+            ParallaxWidget(top: rateThree, asset: "3"),
+            ParallaxWidget(top: rateFour, asset: "4"),
+            ParallaxWidget(top: rateFive, asset: "5"),
+            ParallaxWidget(top: rateSix, asset: "6"),
+            ParallaxWidget(top: rateSeven, asset: "7"),
+
+
 
             ListView(
               children: <Widget>[
@@ -52,6 +65,32 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ParallaxWidget extends StatelessWidget {
+  const ParallaxWidget({
+    super.key,
+    required this.top,
+    required this.asset,
+  });
+
+  final double top;
+  final String asset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: -45,
+      top: top,
+      child: Container(
+        height: 550,
+        width: 900,
+        child: Image.asset("assets/$asset.png",
+        fit: BoxFit.cover,
+        ),
+      )
     );
   }
 }
