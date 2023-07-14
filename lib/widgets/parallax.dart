@@ -43,21 +43,34 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: <Widget>[
             
-            ParallaxWidget(top: rateOne, asset: "1"),
-            ParallaxWidget(top: rateTwo, asset: "2"),
-            ParallaxWidget(top: rateThree, asset: "3"),
-            ParallaxWidget(top: rateFour, asset: "4"),
-            ParallaxWidget(top: rateFive, asset: "5"),
-            ParallaxWidget(top: rateSix, asset: "6"),
             ParallaxWidget(top: rateSeven, asset: "7"),
+            ParallaxWidget(top: rateSix, asset: "6"),
+            ParallaxWidget(top: rateFive, asset: "5"),
+            ParallaxWidget(top: rateFour, asset: "4"),
+            ParallaxWidget(top: rateThree, asset: "3"),
+            ParallaxWidget(top: rateTwo, asset: "2"),
+            ParallaxWidget(top: rateOne, asset: "1"),
 
 
 
             ListView(
               children: <Widget>[
+
                 Container(
                   height: 600,
                   color: Colors.transparent,
+                ),
+
+                Container(
+                  color: Color(0x484c4e),
+                  width: double.infinity,
+                  padding: EdgeInsets.only(top: 80),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('data')
+                    ],
+                  ),
                 )
               ],
             )
@@ -86,9 +99,9 @@ class ParallaxWidget extends StatelessWidget {
       top: top,
       child: Container(
         height: 550,
-        width: 900,
+        width: 1700,
         child: Image.asset("assets/parallax/$asset.png",
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
         ),
       )
     );
