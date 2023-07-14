@@ -29,22 +29,14 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             
             Positioned(
-              top: topOne,
-              left: 0,
+              left: -45,
+              top: 0,
               child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.red,
-              )
-            ),
-
-            Positioned(
-              top: topTwo,
-              left: 150,
-              child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.green,
+                height: 550,
+                width: 900,
+                child: Image.asset("assets/parallax/7.png",
+                fit: BoxFit.cover,
+                ),
               )
             ),
 
