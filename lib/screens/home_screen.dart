@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.black87,
-      body: HomeScrollView(),
+      body: HomePage(),
     );
   }
 }

@@ -11,25 +11,6 @@ class HomeScrollView extends StatelessWidget {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-
-        // SliverPersistentHeader(
-        //   pinned: true,
-        //   delegate: CustomSliverAppBarDelegate(
-        //     minHeight: 50, 
-        //     maxHeight: 400, 
-        //     child: const FlexibleSpaceBar(
-        //       centerTitle: true,
-        //       title: Column(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         crossAxisAlignment: CrossAxisAlignment.center,
-        //         children: [
-        //           Text('Manuel Miguez Lauría',
-        //           style: TextStyle(fontFamily: 'madetommy', fontSize: 50),),
-        //         ],
-        //       ),
-        //     )
-        //   )
-        // ),
         
         const SliverAppBar(
           toolbarHeight: 80,
@@ -58,10 +39,7 @@ class HomeScrollView extends StatelessWidget {
           delegate: SliverChildBuilderDelegate((context, index) {
             return const Column(
               children: [
-                TypeWriterText(
-                  text: Text('maunel es un crack'), 
-                  duration: Duration(seconds: 9)
-                )
+                
               ],
             );
           })
