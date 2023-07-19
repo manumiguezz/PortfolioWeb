@@ -65,10 +65,18 @@ class _HomePageState extends State<HomePage> {
                   color: Color(0x484c4e),
                   width: double.infinity,
                   padding: EdgeInsets.only(top: 80),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('data')
+                      ListView(
+                        children: [
+                          Row(
+                            children: [
+                              Text('data')
+                            ],
+                          )
+                        ],
+                      )
                     ],
                   ),
                 )
