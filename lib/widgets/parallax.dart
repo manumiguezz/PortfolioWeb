@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_web/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -61,24 +62,10 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Container(
-                  color: Color.fromARGB(255, 72, 76, 78),
+                  color: const Color.fromARGB(255, 72, 76, 78),
                   width: double.infinity,
                   padding: const EdgeInsets.only(top: 80),
-                  child: const SingleChildScrollView(
-                    child: Column(
-                      children: [
-                    
-                        Text('Noteshop App',
-                        style: TextStyle(fontFamily: 'madetommybold', fontSize: 50),
-                        ),
-                        
-                        Text('Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
-                        style: TextStyle(fontFamily: 'madetommy', fontSize: 15),
-                    
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: const CustomSingleChildScrollView(),
                 )
               ],
             )
