@@ -52,12 +52,12 @@ class _HomePageState extends State<HomePage> {
             ParallaxWidget(top: rateOne, asset: "1"),
 
 
-
+// Have to add rows with info!
             ListView(
               children: <Widget>[
 
                 Container(
-                  height: 600,
+                  height: 650,
                   color: Colors.transparent,
                 ),
 
