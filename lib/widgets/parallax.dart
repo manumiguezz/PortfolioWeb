@@ -52,32 +52,32 @@ class _HomePageState extends State<HomePage> {
             ParallaxWidget(top: rateOne, asset: "1"),
 
 
-// Have to add rows with info!
             ListView(
               children: <Widget>[
 
                 Container(
-                  height: 650,
+                  height: 550,
                   color: Colors.transparent,
                 ),
 
                 Container(
-                  color: Color(0x484c4e),
+                  color: Color.fromARGB(255, 72, 76, 78),
                   width: double.infinity,
-                  padding: EdgeInsets.only(top: 80),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ListView(
-                        children: [
-                          Row(
-                            children: [
-                              Text('data')
-                            ],
-                          )
-                        ],
-                      )
-                    ],
+                  padding: const EdgeInsets.only(top: 80),
+                  child: const SingleChildScrollView(
+                    child: Column(
+                      children: [
+                    
+                        Text('Noteshop App',
+                        style: TextStyle(fontFamily: 'madetommybold', fontSize: 50),
+                        ),
+                        
+                        Text('Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
+                        style: TextStyle(fontFamily: 'madetommy', fontSize: 15),
+                    
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
