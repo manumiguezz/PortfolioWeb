@@ -11,12 +11,13 @@ class CustomSingleChildScrollView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               
               Expanded(
@@ -24,6 +25,7 @@ class CustomSingleChildScrollView extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 100, left: 290),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
                       Text('IOS & ANDROID',
@@ -32,7 +34,7 @@ class CustomSingleChildScrollView extends StatelessWidget {
                           height: 1.3,
                           fontSize: 20, 
                           color: Colors.white),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.left,
                         ),
                       
                       Text('NOTESHOP APP',
@@ -41,7 +43,7 @@ class CustomSingleChildScrollView extends StatelessWidget {
                           height: 1.3,
                           fontSize: 50, 
                           color: Colors.white),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.left,
                         ),
 
                       const SizedBox(height: 8),
@@ -59,7 +61,7 @@ class CustomSingleChildScrollView extends StatelessWidget {
 
                       ElevatedButton(
                         onPressed: () {}, 
-                        child: const Text('EXPLORE MORE', style: TextStyle(fontWeight: FontWeight.bold),),
+                        child: Text('EXPLORE MORE', style: TextStyle(fontWeight: FontWeight.bold),),
                         style: ButtonStyle(
                           fixedSize: MaterialStatePropertyAll(Size(180, 50))
                         ),
