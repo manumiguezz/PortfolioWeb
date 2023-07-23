@@ -65,7 +65,12 @@ class _HomePageState extends State<HomePage> {
                   color: const Color.fromARGB(255, 72, 76, 78),
                   width: double.infinity,
                   padding: const EdgeInsets.only(top: 80),
-                  child: const CustomSingleChildScrollView(),
+                  child: const CustomSingleChildScrollView(
+                    description: 'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
+                    technologies: 'IOS & ANDROID',
+                    title: 'NOTESHOP APP',
+                    // assetImage: ,
+                  ),
                 )
               ],
             )
