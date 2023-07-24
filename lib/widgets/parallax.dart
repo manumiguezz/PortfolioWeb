@@ -24,35 +24,33 @@ class _ParallaxState extends State<Parallax> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: NotificationListener(
-        onNotification: (v) {
-          if(v is ScrollUpdateNotification){
-            setState(() {
-              rateSeven -= v.scrollDelta! / 1;
-              rateSix -= v.scrollDelta! / 1.5;
-              rateFive -= v.scrollDelta! / 2;
-              rateFour -= v.scrollDelta! / 2.5;
-              rateThree -= v.scrollDelta! / 3;
-              rateTwo -= v.scrollDelta! / 3.5;
-              rateOne -= v.scrollDelta! / 4;
-            });
-          }
-          return false;
-        },
-        child: Stack(
-          children: <Widget>[
-            
-            ParallaxWidget(top: rateSeven, asset: "7"),
-            ParallaxWidget(top: rateSix, asset: "6"),
-            ParallaxWidget(top: rateFive, asset: "5"),
-            ParallaxWidget(top: rateFour, asset: "4"),
-            ParallaxWidget(top: rateThree, asset: "3"),
-            ParallaxWidget(top: rateTwo, asset: "2"),
-            ParallaxWidget(top: rateOne, asset: "1"),
-
-          ],
-        ),
+    return NotificationListener(
+      onNotification: (v) {
+        if(v is ScrollUpdateNotification){
+          setState(() {
+            rateSeven -= v.scrollDelta! / 1;
+            rateSix -= v.scrollDelta! / 1.5;
+            rateFive -= v.scrollDelta! / 2;
+            rateFour -= v.scrollDelta! / 2.5;
+            rateThree -= v.scrollDelta! / 3;
+            rateTwo -= v.scrollDelta! / 3.5;
+            rateOne -= v.scrollDelta! / 4;
+          });
+        }
+        return false;
+      },
+      child: Stack(
+        children: <Widget>[
+          
+          ParallaxWidget(top: rateSeven, asset: "7"),
+          ParallaxWidget(top: rateSix, asset: "6"),
+          ParallaxWidget(top: rateFive, asset: "5"),
+          ParallaxWidget(top: rateFour, asset: "4"),
+          ParallaxWidget(top: rateThree, asset: "3"),
+          ParallaxWidget(top: rateTwo, asset: "2"),
+          ParallaxWidget(top: rateOne, asset: "1"),
+        
+        ],
       ),
     );
   }
@@ -73,7 +71,7 @@ class ParallaxWidget extends StatelessWidget {
     return Positioned(
       left: -45,
       top: top,
-      child: Container(
+      child: SizedBox(
         height: 550,
         width: 1700,
         child: Image.asset("assets/parallax/$asset.png",
