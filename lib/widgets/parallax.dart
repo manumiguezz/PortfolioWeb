@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/widgets/widgets.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class Parallax extends StatefulWidget {
+  const Parallax({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Parallax> createState() => _ParallaxState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ParallaxState extends State<Parallax> {
   
   double rateOne = 0;
   double rateTwo = 0;
@@ -51,30 +50,6 @@ class _HomePageState extends State<HomePage> {
             ParallaxWidget(top: rateThree, asset: "3"),
             ParallaxWidget(top: rateTwo, asset: "2"),
             ParallaxWidget(top: rateOne, asset: "1"),
-
-
-            ListView(
-              children: <Widget>[
-
-                Container(
-                  height: 550,
-                  color: Colors.transparent,
-                ),
-
-                Container(
-                  color: const Color.fromARGB(255, 72, 76, 78),
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(top: 80),
-                  child: const CustomSingleChildScrollView(
-                    description: 'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
-                    technologies: 'IOS & ANDROID',
-                    title: 'NOTESHOP APP',
-                    textOnRight: true,
-                    // assetImage: ,
-                  ),
-                )
-              ],
-            )
 
           ],
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/screens/home_screen.dart';
+import 'package:personal_web/screens/home.dart';
 
 void main() {
   runApp(const MainApp());

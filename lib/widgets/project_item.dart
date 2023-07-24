@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-class CustomSingleChildScrollView extends StatelessWidget {
+class ProjectItem extends StatelessWidget {
 
   final String technologies;
   final String title;
@@ -10,7 +10,7 @@ class CustomSingleChildScrollView extends StatelessWidget {
   final String? assetImage; 
   final bool textOnRight;
 
-  const CustomSingleChildScrollView({
+  const ProjectItem({
     super.key, 
     this.assetImage,
     required this.technologies, 
