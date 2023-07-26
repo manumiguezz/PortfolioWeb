@@ -17,8 +17,6 @@ class _ParallaxState extends State<Parallax> {
   double rateSix = 0;
   double rateSeven = 0;
 
-
-
   late String asset;
   late double top;
 

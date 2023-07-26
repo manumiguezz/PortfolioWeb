@@ -6,21 +6,27 @@ class PageListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        
-        const SliverToBoxAdapter(
-          child: Parallax(),
-        ),
+    return Stack(
+      children: [
 
-        SliverList(
-          delegate: SliverChildListDelegate([
-            Container(
-              height: 9000,
-              color: Colors.black,
-            )
-          ])
-        )
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              
+              Container(
+                color: Colors.white,
+                height: 550,
+              ),
+
+              Container(
+                color: Colors.black,
+                height: 900,
+              ),
+            ],
+          )
+        ),
+        
+        const Parallax(),
       ],
     );
   }
