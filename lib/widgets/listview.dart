@@ -12,16 +12,7 @@ class PageListView extends StatelessWidget {
         SingleChildScrollView(
           child: Column(
             children: [
-              
-              Container(
-                color: Colors.white,
-                height: 550,
-              ),
-              
-              Container(
-                color: Colors.black,
-                height: 900,
-              ),
+              Container()
             ],
           )
         ),

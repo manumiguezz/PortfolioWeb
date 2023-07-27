@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 class Parallax extends StatefulWidget {
   const Parallax({super.key});
 
   @override
   State<Parallax> createState() => _ParallaxState();
+
 }
 
 class _ParallaxState extends State<Parallax> {
-  
+
+  late ScrollController scrollController;
+
+  @override
+  void initState() {
+    scrollController = ScrollController();
+    super.initState();
+  }
+
   double rateOne = 0;
   double rateTwo = 0;
   double rateThree = 0;
@@ -40,6 +50,30 @@ class _ParallaxState extends State<Parallax> {
       child: Stack(
         children: <Widget>[
           
+
+          Scaffold(
+            body: WebSmoothScroll(
+              controller: scrollController, 
+              child: SingleChildScrollView(
+                controller: scrollController,
+                physics: const NeverScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Container(
+                      color: Colors.black,
+                      height: 600,
+                    ),
+                    Container(
+                      color: Colors.red,
+                      height: 600,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          
           ParallaxWidget(top: rateSeven, asset: "7"),
           ParallaxWidget(top: rateSix, asset: "6"),
           ParallaxWidget(top: rateFive, asset: "5"),
@@ -47,6 +81,8 @@ class _ParallaxState extends State<Parallax> {
           ParallaxWidget(top: rateThree, asset: "3"),
           ParallaxWidget(top: rateTwo, asset: "2"),
           ParallaxWidget(top: rateOne, asset: "1"),
+
+
         
         ],
       ),
