@@ -17,6 +17,8 @@ class TopPage extends StatelessWidget {
           height: 753, 
         ),
 
+        
+
         Padding(
           padding: const EdgeInsets.only(top: 200, left: 50),
           child: Column(
@@ -25,27 +27,25 @@ class TopPage extends StatelessWidget {
             children: [
         
               Text(
-                'Manuel Miguez Lauría',
+                "Hi!\nI'm Manuel Miguez,", 
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w700,
                   fontSize: 80,
                   color: Colors.white
                 ),
               ),
-        
+              
               Row(
                 children: [
-        
-                  const SizedBox(width: 2,),
-        
-                  Image.asset(
-                    'assets/icons/arrow.png',
-                    scale: 35,
-                  ),
-        
-                  const SizedBox(width: 10,),
-        
-                  const AnimatedText()
+                  Text(
+                    'a', 
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 80,
+                      color: Colors.white
+                    ),
+                  ),  
+                  const AnimatedText(speed: 70000,),
                 ],
               )
              
