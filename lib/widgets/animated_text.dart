@@ -29,11 +29,9 @@ class AnimatedText extends StatelessWidget {
           animatedTexts: [
             TyperAnimatedText(' Java Developer.', speed: Duration(microseconds: speed)),
             TyperAnimatedText(' Student.', speed: Duration(microseconds: speed)),
-            TyperAnimatedText('n Enthusiast.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(' Backend Engineer.', speed: Duration(microseconds: speed)),
           ],
-          onTap: () {
-            print("Tap Event");
-          },
+          onTap: () {},
         ),
       ),
     );
