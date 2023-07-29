@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_web/widgets/animated_text.dart';
+import 'package:personal_web/widgets/particle/flutter_particle_background.dart';
 
 
 class TopPage extends StatelessWidget {
@@ -12,12 +13,20 @@ class TopPage extends StatelessWidget {
       children: [
 
 
-        Container(
-          color: const Color.fromARGB(66, 114, 114, 114),
-          height: 753, 
+        SizedBox(
+          height: 800,
+          width: 1700,
+          child: ParticleBackground(
+            backgroundColor: Colors.transparent,
+            blur: true,
+            highestSpeed: 0.4,
+            multiColor: false,
+            numberOfParticles: 500,
+            blurIntensity: 3,
+            allFilled: true,
+            particleColor: const Color.fromARGB(66, 114, 114, 114),
+          ),
         ),
-
-        
 
         Padding(
           padding: const EdgeInsets.only(top: 200, left: 50),
