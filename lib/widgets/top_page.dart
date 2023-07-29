@@ -17,7 +17,7 @@ class TopPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: ParticleBackground(
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            backgroundColor: Colors.transparent,
             particleColor: Color.fromARGB(66, 59, 59, 59),
             blur: true,
             highestSpeed: 0.4,
@@ -29,10 +29,33 @@ class TopPage extends StatelessWidget {
           ),
         ),
 
-        GradientBorderWidget(
-          gradientColors: [Colors.black, Colors.transparent], 
-          borderWidth: MediaQuery.of(context).size.width
+        Positioned(
+          left: 0,
+          child: Container(
+            width: 35,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.black, Colors.transparent] 
+              )
+            ),
+          ),
         ),
+
+        Positioned(
+          right: 0,
+          child: Container(
+            alignment: Alignment.centerRight,
+            width: 35,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [ Colors.transparent, Colors.black,] 
+              )
+            ),
+          ),
+        ),
+        
 
         Padding(
           padding: const EdgeInsets.only(top: 200, left: 50),
@@ -67,9 +90,7 @@ class TopPage extends StatelessWidget {
             ],
         
           ),
-        )
-
-
+        ),
 
       ],
     );
