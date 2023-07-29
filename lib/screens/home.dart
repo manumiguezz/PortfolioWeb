@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const TopPage(),
 
               Container(
-                color: Colors.red,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 height: 100,
               )
             ],

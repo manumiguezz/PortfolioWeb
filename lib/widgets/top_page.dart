@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_web/widgets/animated_text.dart';
 import 'package:personal_web/widgets/particle/flutter_particle_background.dart';
+import 'package:personal_web/widgets/side_gradient.dart';
 
 
 class TopPage extends StatelessWidget {
@@ -12,20 +13,25 @@ class TopPage extends StatelessWidget {
     return Stack(
       children: [
 
-
         SizedBox(
-          height: 800,
-          width: 1700,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: ParticleBackground(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            particleColor: Color.fromARGB(66, 59, 59, 59),
             blur: true,
             highestSpeed: 0.4,
             multiColor: false,
-            numberOfParticles: 500,
-            blurIntensity: 3,
+            numberOfParticles: 90,
+            blurIntensity: 15,
             allFilled: true,
-            particleColor: const Color.fromARGB(66, 114, 114, 114),
+            smallestSize: 80,
           ),
+        ),
+
+        GradientBorderWidget(
+          gradientColors: [Colors.black, Colors.transparent], 
+          borderWidth: MediaQuery.of(context).size.width
         ),
 
         Padding(
