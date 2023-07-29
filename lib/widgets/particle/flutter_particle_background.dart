@@ -3,8 +3,7 @@ library flutter_particle_background;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_particle_background/configuration.dart';
-import 'package:flutter_particle_background/scene.dart';
+import 'package:personal_web/widgets/particle/exports.dart';
 
 // ignore: must_be_immutable
 class ParticleBackground extends StatelessWidget {
@@ -21,7 +20,7 @@ class ParticleBackground extends StatelessWidget {
   bool allFilled;
   int blurIntensity;
 
-  ParticleBackground({
+  ParticleBackground({super.key, 
     this.multiColor = true,
     this.particleColor = Colors.blue,
     this.backgroundColor = Colors.white,
@@ -57,19 +56,19 @@ class MyHomePage extends StatefulWidget {
   final Configuration configuration;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 
-  MyHomePage(this.configuration);
+  const MyHomePage(this.configuration, {super.key});
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   Animation? _animation;
   AnimationController? _animationController;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 60));
+    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 60));
     _animation =
         Tween<double>(begin: 0, end: 255).chain(CurveTween(curve: Curves.elasticOut)).animate(_animationController!)
           ..addListener(() {

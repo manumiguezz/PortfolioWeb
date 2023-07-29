@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_web/widgets/top_page.dart';
-import '../widgets/widgets.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: scrollController,
           child: Column(
             children: [
-              TopPage(),
+              const TopPage(),
 
               Container(
                 color: Colors.red,

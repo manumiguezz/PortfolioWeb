@@ -1,10 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_particle_background/configuration.dart';
-import 'package:flutter_particle_background/palette_colors.dart';
-import 'package:flutter_particle_background/particle.dart';
-
-import 'rnd.dart';
+import 'package:personal_web/widgets/particle/exports.dart';
 
 class ParticleHandler with ChangeNotifier {
   final List<Particle> particles;
@@ -17,7 +13,7 @@ class ParticleHandler with ChangeNotifier {
   }) : particles = List.generate(
           configuration.numberOfParticles,
           (_) {
-            var color;
+            Color color;
             if (configuration.multiColor) {
               color = PaletteColors.getRandomColor();
             } else {

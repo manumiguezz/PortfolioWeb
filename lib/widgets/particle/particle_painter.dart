@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_particle_background/particle_handler.dart';
+import 'package:personal_web/widgets/particle/exports.dart';
 
 class ParticlePainter extends CustomPainter {
   ParticleHandler particleHandler;
@@ -10,6 +10,7 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // ignore: avoid_function_literals_in_foreach_calls
     particleHandler.particles.forEach((p) {
       var pos = Offset(p.x, p.y);
 

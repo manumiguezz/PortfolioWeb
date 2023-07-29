@@ -13,7 +13,7 @@ class TopPage extends StatelessWidget {
 
 
         Container(
-          color: Color.fromARGB(66, 114, 114, 114),
+          color: const Color.fromARGB(66, 114, 114, 114),
           height: 753, 
         ),
 

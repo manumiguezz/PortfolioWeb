@@ -1,10 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_particle_background/configuration.dart';
-import 'package:flutter_particle_background/particle.dart';
-import 'package:flutter_particle_background/particle_handler.dart';
-import 'rnd.dart';
+import 'package:personal_web/widgets/particle/exports.dart';
 
 class ParticleBackgroundHandler extends ParticleHandler {
   ParticleBackgroundHandler(Size size, Configuration configuration) : super(size: size, configuration: configuration);
