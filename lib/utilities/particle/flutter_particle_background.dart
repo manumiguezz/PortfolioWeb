@@ -1,26 +1,22 @@
-library flutter_particle_background;
-
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:personal_web/widgets/particle/exports.dart';
+import 'package:personal_web/utilities/particle/exports.dart';
 
-// ignore: must_be_immutable
 class ParticleBackground extends StatelessWidget {
-  bool multiColor;
-  Color particleColor;
-  Color backgroundColor;
 
-  int numberOfParticles;
-  bool blur;
-  double highestSpeed;
-  double slowestSpeed;
-  int biggestSize;
-  int smallestSize;
-  bool allFilled;
-  int blurIntensity;
+  final bool multiColor;
+  final Color particleColor;
+  final Color backgroundColor;
+  final int numberOfParticles;
+  final bool blur;
+  final double highestSpeed;
+  final double slowestSpeed;
+  final int biggestSize;
+  final int smallestSize;
+  final bool allFilled;
+  final int blurIntensity;
 
-  ParticleBackground({super.key, 
+  const ParticleBackground({super.key, 
     this.multiColor = true,
     this.particleColor = Colors.blue,
     this.backgroundColor = Colors.white,
@@ -37,17 +33,17 @@ class ParticleBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Configuration configuration = Configuration(
-        multiColor: multiColor,
-        particleColor: particleColor,
-        backgroundColor: backgroundColor,
-        numberOfParticles: numberOfParticles,
-        blur: blur,
-        slowestSpeed: slowestSpeed,
-        highestSpeed: highestSpeed,
-        biggestSize: biggestSize,
-        smallestSize: smallestSize,
-        blurIntensity: blurIntensity,
-        allFilled: allFilled);
+      multiColor: multiColor,
+      particleColor: particleColor,
+      backgroundColor: backgroundColor,
+      numberOfParticles: numberOfParticles,
+      blur: blur,
+      slowestSpeed: slowestSpeed,
+      highestSpeed: highestSpeed,
+      biggestSize: biggestSize,
+      smallestSize: smallestSize,
+      blurIntensity: blurIntensity,
+      allFilled: allFilled);
     return MyHomePage(configuration);
   }
 }
