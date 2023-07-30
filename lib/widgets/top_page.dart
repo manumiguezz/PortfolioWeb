@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_web/widgets/animated_text.dart';
 import 'package:personal_web/widgets/custom_particle_background.dart';
+import 'package:personal_web/widgets/url_launcher.dart';
 import 'package:personal_web/widgets/widgets.dart';
 
 
@@ -62,22 +63,12 @@ class TopPage extends StatelessWidget {
 
               const SizedBox(height: 50,),
 
-              Row(
-                children: [
-                  
-                  Image.asset(
-                    'assets/icons/socialmedia/github_white_free.png',
-                    scale: 8,
-                  ),
+              OutlinedButton(
+                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'), 
+                child: const Text('Contact me'),
+                
+              )
 
-                  const SizedBox(width: 20,),
-
-                  Image.asset(
-                    'assets/icons/socialmedia/linkedin_white_free.png',
-                    scale: 8,
-                  )
-                ],
-              ),
              
             ],
         
