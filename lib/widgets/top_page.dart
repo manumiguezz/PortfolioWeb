@@ -24,13 +24,26 @@ class TopPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
         
-              Text(
-                "Hi!\nI'm Manuel Miguez,", 
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 80,
-                  color: Colors.white
-                ),
+              Row(
+                children: [
+                  Text(
+                    "Hi, I'm ", 
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 80,
+                      color: Colors.white
+                    ),
+                  ),
+
+                  Text(
+                    "Manuel Miguez,", 
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 80,
+                      color: Colors.white
+                    ),
+                  ),
+                ],
               ),
               
               Row(
@@ -38,7 +51,7 @@ class TopPage extends StatelessWidget {
                   Text(
                     'a', 
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w300,
                       fontSize: 80,
                       color: Colors.white
                     ),
@@ -53,14 +66,14 @@ class TopPage extends StatelessWidget {
                 children: [
                   
                   Image.asset(
-                    'assets/icons/github_white.png',
+                    'assets/icons/socialmedia/github_white_free.png',
                     scale: 8,
                   ),
 
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
 
                   Image.asset(
-                    'assets/icons/linkedin_white.png',
+                    'assets/icons/socialmedia/linkedin_white_free.png',
                     scale: 8,
                   )
                 ],
