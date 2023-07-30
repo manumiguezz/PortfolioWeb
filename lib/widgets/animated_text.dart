@@ -13,7 +13,7 @@ class AnimatedText extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return SizedBox(
-      width: 1000.0,
+      width: 1300.0,
       child: DefaultTextStyle(
         style: GoogleFonts.poppins(
           fontSize: 80,
@@ -24,12 +24,13 @@ class AnimatedText extends StatelessWidget {
         child: AnimatedTextKit(
           isRepeatingAnimation: true,
           repeatForever: true,
-          pause: const Duration(milliseconds: 1500),
+          pause: const Duration(milliseconds: 1800),
+          displayFullTextOnTap: true,
           
           animatedTexts: [
-            TyperAnimatedText(' Java Developer.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(' Java Backend Developer.', speed: Duration(microseconds: speed)),
             TyperAnimatedText(' Student.', speed: Duration(microseconds: speed)),
-            TyperAnimatedText(' Backend Engineer.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(' Flutter Developer.', speed: Duration(microseconds: speed)),
           ],
           onTap: () {},
         ),

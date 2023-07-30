@@ -33,14 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           controller: scrollController,
-          child: Column(
+          child: const Column(
             children: [
-              const TopPage(),
+              
+              TopPage(),
 
-              Container(
-                color: const Color.fromARGB(255, 0, 0, 0),
-                height: 100,
-              )
             ],
           ),
         ),

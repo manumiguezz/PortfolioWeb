@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_web/widgets/animated_text.dart';
-import 'package:personal_web/widgets/particle/flutter_particle_background.dart';
-import 'package:personal_web/widgets/side_gradient.dart';
+import 'package:personal_web/widgets/custom_particle_background.dart';
+import 'package:personal_web/widgets/widgets.dart';
 
 
 class TopPage extends StatelessWidget {
@@ -13,49 +13,9 @@ class TopPage extends StatelessWidget {
     return Stack(
       children: [
 
-        SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: ParticleBackground(
-            backgroundColor: Colors.transparent,
-            particleColor: Color.fromARGB(66, 59, 59, 59),
-            blur: true,
-            highestSpeed: 0.4,
-            multiColor: false,
-            numberOfParticles: 90,
-            blurIntensity: 15,
-            allFilled: true,
-            smallestSize: 80,
-          ),
-        ),
+        const CustomParticleBackground(),
 
-        Positioned(
-          left: 0,
-          child: Container(
-            width: 35,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black, Colors.transparent] 
-              )
-            ),
-          ),
-        ),
-
-        Positioned(
-          right: 0,
-          child: Container(
-            alignment: Alignment.centerRight,
-            width: 35,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [ Colors.transparent, Colors.black,] 
-              )
-            ),
-          ),
-        ),
-        
+        // const SideVignette(),
 
         Padding(
           padding: const EdgeInsets.only(top: 200, left: 50),
@@ -85,7 +45,24 @@ class TopPage extends StatelessWidget {
                   ),  
                   const AnimatedText(speed: 70000,),
                 ],
-              )
+              ),
+
+              const SizedBox(height: 50,),
+
+              Row(
+                children: [
+                  
+                  Image.asset(
+                    'assets/icon/github_white.png',
+                    scale: 1,
+                  ),
+
+                  Image.asset(
+                    'assets/icon/linkedin_white.png',
+                    scale: 1,
+                  )
+                ],
+              ),
              
             ],
         
@@ -96,3 +73,6 @@ class TopPage extends StatelessWidget {
     );
   }
 }
+
+
+
