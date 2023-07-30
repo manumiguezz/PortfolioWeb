@@ -61,15 +61,29 @@ class TopPage extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 50,),
+              const SizedBox(height: 30,),
 
-              OutlinedButton(
-                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'), 
-                child: const Text('Contact me'),
-                
-              )
-
-             
+              ElevatedButton(
+                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  side: const BorderSide(color: Colors.white, width: 3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'CONTACT ME',
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 30,
+                        color: Colors.white
+                      )
+                  ),
+                ),
+              ),      
             ],
         
           ),
