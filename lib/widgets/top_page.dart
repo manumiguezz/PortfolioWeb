@@ -53,13 +53,15 @@ class TopPage extends StatelessWidget {
                 children: [
                   
                   Image.asset(
-                    'assets/icon/github_white.png',
-                    scale: 1,
+                    'assets/icons/github_white.png',
+                    scale: 8,
                   ),
 
+                  SizedBox(width: 20,),
+
                   Image.asset(
-                    'assets/icon/linkedin_white.png',
-                    scale: 1,
+                    'assets/icons/linkedin_white.png',
+                    scale: 8,
                   )
                 ],
               ),
