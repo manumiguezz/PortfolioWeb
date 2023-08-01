@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:personal_web/widgets/top_page.dart';
+import 'package:personal_web/widgets/widgets.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
+
+import '../widgets/custom_particle_background.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-    late ScrollController scrollController;
+  late ScrollController scrollController;
 
   @override
   void initState() {
@@ -24,10 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
 
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      // ),
-
       body: WebSmoothScroll(
         controller: scrollController, 
         child: SingleChildScrollView(
@@ -36,13 +35,29 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
 
-              TopPage(),
+              // TopPage(),
 
               Stack(
                 children: [
-                  Image.asset('assets/images/white_stroke.png')
+                
+                  CustomParticleBackground(),
+
+                  SideVignette(),
+
+                  Presentation(),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 600),
+                    child: Stack(
+                      children: [
+                        Image.asset('assets/images/white_stroke_two.png')
+                      ],
+                    ),
+                  )
+
                 ],
-              )
+              ),
+
 
             ],
           ),
