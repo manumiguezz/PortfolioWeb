@@ -16,7 +16,7 @@ class TopPage extends StatelessWidget {
 
         const CustomParticleBackground(),
 
-        // const SideVignette(),
+        const SideVignette(),
 
         Padding(
           padding: const EdgeInsets.only(top: 200, left: 50),
@@ -73,14 +73,23 @@ class TopPage extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'CONTACT ME',
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 30,
-                        color: Colors.white
-                      )
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'CONTACT ME',
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 30,
+                            color: Colors.white,
+                          )
+                      ),
+
+                      const SizedBox(width: 40,),
+
+                      const Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
+                    ],
                   ),
                 ),
               ),      

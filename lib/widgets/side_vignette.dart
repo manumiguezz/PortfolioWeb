@@ -7,35 +7,41 @@ class SideVignette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          left: 0,
-          child: Container(
-            width: 35,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black, Colors.transparent] 
-              )
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        
+    
+        children: [
+          Positioned(
+            left: 0,
+            child: Container(
+              width: 35,
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black, Colors.transparent] 
+                )
+              ),
             ),
           ),
-        ),
-
-        Positioned(
-          right: 0,
-          child: Container(
-            alignment: Alignment.centerRight,
-            width: 35,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [ Colors.transparent, Colors.black,] 
-              )
+    
+          Positioned(
+            right: 0,
+            child: Container(
+              alignment: Alignment.centerRight,
+              width: 35,
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [ Colors.transparent, Colors.black,] 
+                )
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
