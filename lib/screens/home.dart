@@ -32,11 +32,17 @@ class _HomeScreenState extends State<HomeScreen> {
         controller: scrollController, 
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
-          controller: scrollController,
-          child: const Column(
+          controller: scrollController, 
+          child: Column(
             children: [
-              
+
               TopPage(),
+
+              Stack(
+                children: [
+                  Image.asset('assets/images/white_stroke.png')
+                ],
+              )
 
             ],
           ),
