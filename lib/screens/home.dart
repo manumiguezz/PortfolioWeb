@@ -35,19 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
 
-              // TopPage(),
-
               Stack(
                 children: [
                 
-                  CustomParticleBackground(),
+                  const CustomParticleBackground(),
 
-                  SideVignette(),
+                  // ParticleBackground(
+                  //   backgroundColor: Colors.transparent,
+                  //   blur: true,
+                  //   blurIntensity: 1,
+                  //   particleColor: Colors.white30,
+                  //   biggestSize: 3,
+                  //   numberOfParticles: 40,
+                  //   highestSpeed: 4,
+                  // ),
 
-                  Presentation(),
+                  const SideVignette(),
+
+                  const Presentation(),
 
                   Padding(
-                    padding: const EdgeInsets.only(top: 600),
+                    padding: const EdgeInsets.only(top: 500),
                     child: Stack(
                       children: [
                         Image.asset('assets/images/white_stroke_two.png')
@@ -57,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 ],
               ),
-
 
             ],
           ),
