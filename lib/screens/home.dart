@@ -40,19 +40,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 
                   const CustomParticleBackground(),
 
-                  // ParticleBackground(
-                  //   backgroundColor: Colors.transparent,
-                  //   blur: true,
-                  //   blurIntensity: 1,
-                  //   particleColor: Colors.white30,
-                  //   biggestSize: 3,
-                  //   numberOfParticles: 40,
-                  //   highestSpeed: 4,
-                  // ),
+                  const CustomParticleBackground(
+                    backgroundColor: Colors.transparent,
+                    blur: true,
+                    blurIntensity: 7,
+                    particleColor: Colors.white10,
+                    biggestSize: 1,
+                    numberOfParticles: 40,
+                    highestSpeed: 2,
+                    allFilled: true,
+                    smallestSize: 70,
+                  ),
 
                   const SideVignette(),
 
                   const Presentation(),
+
+                  const CustomParticleBackground(
+                    backgroundColor: Colors.transparent,
+                    blur: true,
+                    blurIntensity: 0,
+                    particleColor: Color.fromARGB(26, 42, 42, 42),
+                    biggestSize: 1,
+                    numberOfParticles: 10,
+                    highestSpeed: 2,
+                    allFilled: true,
+                    smallestSize: 70,
+                  ),
+
+                  const CustomParticleBackground(
+                    backgroundColor: Colors.transparent,
+                    blur: true,
+                    blurIntensity: 0,
+                    particleColor: Color.fromARGB(96, 112, 112, 112),
+                    biggestSize: 1,
+                    numberOfParticles: 14,
+                    highestSpeed: 0.7,
+                    allFilled: true,
+                    smallestSize: 30,
+                  ),
 
                   Padding(
                     padding: const EdgeInsets.only(top: 500),
