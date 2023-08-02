@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/widgets/top_page.dart';
 import 'package:personal_web/widgets/widgets.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 

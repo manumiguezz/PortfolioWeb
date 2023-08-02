@@ -40,16 +40,40 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <style>
+    body {
+      background-color: black;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      transition: opacity .4s ease-out;
+    }
+
+    .main-content {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
   <script>
+    function delay(time) {
+      return new Promise(resolve => setTimeout(resolve, time))
+    }
+
     window.addEventListener('load', function(ev) {
+      var loaderContent = document.querySelector('#loader-content');
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
+          engineInitializer.initializeEngine().then(async function(appRunner) {
+            loaderContent.style.opacity = "0";
+            await delay(400);
+            await appRunner.runApp();
           });
         }
       });
@@ -58,5 +82,8 @@
   <script type="text/javascript">
     window.flutterWebRenderer = "html";
   </script>
+  <div class="main-content" id="loader-content">
+    <img src="main-logopreview.png" alt="logo preview">
+  </div>
 </body>
 </html>
