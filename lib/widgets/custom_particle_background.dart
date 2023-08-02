@@ -44,18 +44,18 @@ class CustomParticleBackground extends StatelessWidget {
       width: width ?? pageWidth,
 
       child: ParticleBackground(
-
+        
         backgroundColor: backgroundColor ?? Colors.transparent,
         particleColor: particleColor ?? const Color.fromARGB(66, 59, 59, 59),
-        blur: blur ?? true,
-        highestSpeed: highestSpeed ?? 0.4,
         multiColor: multiColor ?? false,
         numberOfParticles: numberOfParticles ?? 90,
-        blurIntensity: blurIntensity ?? 15,
         allFilled: allFilled ?? true,
-        smallestSize: smallestSize ?? 80,
+        blurIntensity: blurIntensity ?? 15,
+        blur: blur ?? true,
+        highestSpeed: highestSpeed ?? 0.4,
+        slowestSpeed: slowestSpeed ?? 0.01,
         biggestSize: biggestSize ?? 10,
-        slowestSpeed: 0.01,
+        smallestSize: smallestSize ?? 80,
       ),
     );
   }

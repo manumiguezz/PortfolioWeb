@@ -12,9 +12,10 @@ class AnimatedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return SizedBox(
-      width: 1300.0,
+    return Expanded(
       child: DefaultTextStyle(
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
         style: GoogleFonts.poppins(
           fontSize: 80,
           fontWeight: FontWeight.w700,

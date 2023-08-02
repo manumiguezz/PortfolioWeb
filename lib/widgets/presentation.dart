@@ -17,24 +17,30 @@ class Presentation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-    
           Row(
             children: [
               Text(
                 "Hi, I'm ", 
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w300,
                   fontSize: 80,
                   color: Colors.white
                 ),
               ),
-
-              Text(
-                "Manuel Miguez,", 
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 80,
-                  color: Colors.white
+              
+              Expanded(
+                child: Text(
+                  "Manuel Miguez,", 
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  softWrap: true,
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 80,
+                    color: Colors.white
+                  ),
                 ),
               ),
             ],
@@ -44,6 +50,8 @@ class Presentation extends StatelessWidget {
             children: [
               Text(
                 'a', 
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w300,
                   fontSize: 80,
@@ -53,9 +61,9 @@ class Presentation extends StatelessWidget {
               const AnimatedText(speed: 70000,),
             ],
           ),
-
+      
           const SizedBox(height: 30,),
-
+      
           ElevatedButton(
             onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
             style: ElevatedButton.styleFrom(
@@ -72,22 +80,23 @@ class Presentation extends StatelessWidget {
                 children: [
                   Text(
                     'CONTACT ME',
+                    overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w400,
                         fontSize: 30,
                         color: Colors.white,
                       )
                   ),
-
+      
                   const SizedBox(width: 40,),
-
+      
                   const Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
                 ],
               ),
             ),
           ),      
         ],
-    
+        
       ),
     );
   }
