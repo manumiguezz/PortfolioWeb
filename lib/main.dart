@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:personal_web/screens/home.dart';
 import 'package:personal_web/widgets/widgets.dart';
 
@@ -14,6 +15,6 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen()
-    );
+    ).animate().fadeIn();
   }
 }
