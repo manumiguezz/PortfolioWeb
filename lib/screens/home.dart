@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_web/utilities/utilities.dart';
 import 'package:personal_web/widgets/widgets.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
@@ -23,13 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final double pageHeight = MediaQuery.of(context).size.height; 
+    final double pageWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.black,
 
       body: Scrollbar(
         child: WebSmoothScroll(
-          animationDuration: 500,
-          scrollOffset: 10,
           controller: scrollController, 
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
@@ -49,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       particleColor: Colors.white10,
                       biggestSize: 1,
                       numberOfParticles: 40,
-                      highestSpeed: 2,
+                      highestSpeed: 1.5,
                       allFilled: true,
                       smallestSize: 70,
                     ),
@@ -83,13 +86,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
       
                     Padding(
-                      padding: const EdgeInsets.only(top: 500),
-                      child: Stack(
-                        children: [
-                          Image.asset('assets/images/white_stroke_two.png')
-                        ],
+                      padding: const EdgeInsets.only(top: 200, left: 200),
+                      child: Container(
+                        height: 500,
+                        width: 500,
+                        color: Colors.white,
+                        child: CustomPaint(
+                          painter: WhiterStrokePainter(),
+                        ),
+                      )
                       ),
-                    )
       
                   ],
                 ),
