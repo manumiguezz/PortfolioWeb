@@ -16,36 +16,44 @@ class WhiterStrokePainter extends CustomPainter {
 
       path.moveTo(0, size.height * 0.14);
       path.quadraticBezierTo(
-        size.width * 0.08,
-        size.height * 0.18,
+        size.width * 0.24,
+        size.height * 0.28,
 
-        size.width * 0.3,
-        size.height * 0.18,
-      );
-      path.quadraticBezierTo(
-        size.width * 0.45,
-        size.height * 0.15,
-
-        size.width * 0.6,
+        size.width * 0.65,
         size.height * 0.1,
       );
-      // path.quadraticBezierTo(
-      //   size.width * 0.6,
-      //   size.height * 0.1,
 
-      //   size.width * 0.80,
-      //   size.height * 0.01,
-      // );
+      
       path.quadraticBezierTo(
-        size.width * 0.88,
-        size.height * 0.01,
-        
+        size.width * 0.87,
+        size.height * 0,
+
         size.width,
         size.height * 0.07,
       );
-      path.lineTo(size.width, size.height);
-      path.lineTo(0, size.height);
-      path.lineTo(0, size.height * 0.8);
+      
+
+      path.lineTo(size.width, size.height * 0.90);
+
+      path.quadraticBezierTo(
+        size.width * 0.76,
+        size.height * 0.72,
+
+        size.width * 0.35,
+        size.height * 0.9,
+      );
+
+      
+      path.quadraticBezierTo(
+        size.width * 0.15,
+        size.height * 0.99,
+
+        size.width * 0,
+        size.height * 0.90,
+      );
+
+      path.lineTo(0, size.height * 0.14);
+      // path.lineTo(0, size.height * 0.8);
 
   canvas.drawPath(path, paint);
 }
