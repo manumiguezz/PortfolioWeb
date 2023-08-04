@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       smallestSize: 70,
                     ),
       
-                    const SideVignette(),
+                    // const SideVignette(),
       
                     const Presentation(),
       
