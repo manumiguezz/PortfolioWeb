@@ -86,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
       
                     Padding(
-                      padding: const EdgeInsets.only(top: 200,),
+                      padding: const EdgeInsets.only(top: 50,),
                       child: Container(
-                        height: 900,
+                        height: 700,
                         width: pageWidth,
-                        color: Colors.black,
+                        color: Colors.red,
                         child: CustomPaint(
                           painter: WhiterStrokePainter(),
                         ),

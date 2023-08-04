@@ -6,13 +6,13 @@ class WhiterStrokePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
 
-    final paint = new Paint()
+    final paint = Paint()
       ..color = Colors.white
       ..strokeWidth = 5
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
-    final path = new Path();
+    final path = Path();
 
       path.moveTo(0, size.height * 0.14);
       path.quadraticBezierTo(
@@ -33,27 +33,23 @@ class WhiterStrokePainter extends CustomPainter {
       );
       
 
-      path.lineTo(size.width, size.height * 0.90);
+      path.lineTo(size.width, size.height * 0.86);
 
       path.quadraticBezierTo(
         size.width * 0.76,
-        size.height * 0.72,
-
-        size.width * 0.35,
-        size.height * 0.9,
+        size.height * 0.75, 
+        size.width * 0.45,
+        size.height * 0.9, 
       );
 
-      
       path.quadraticBezierTo(
-        size.width * 0.15,
-        size.height * 0.99,
-
+        size.width * 0.13,
+        size.height * 1.04, 
         size.width * 0,
-        size.height * 0.90,
+        size.height * 0.9, 
       );
 
       path.lineTo(0, size.height * 0.14);
-      // path.lineTo(0, size.height * 0.8);
 
   canvas.drawPath(path, paint);
 }
