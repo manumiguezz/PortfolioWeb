@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_web/widgets/url_launcher.dart';
 
 import 'animated_text.dart';
@@ -17,14 +16,14 @@ class Presentation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             children: [
               Text(
                 "Hi, I'm ", 
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w300,
+                style: TextStyle(
+                  fontFamily: 'poppinslight',
                   fontSize: 80,
                   color: Colors.white
                 ),
@@ -36,8 +35,8 @@ class Presentation extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   softWrap: true,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w700,
+                  style: TextStyle(
+                    fontFamily: 'poppinsbold',
                     fontSize: 80,
                     color: Colors.white
                   ),
@@ -46,19 +45,19 @@ class Presentation extends StatelessWidget {
             ],
           ),
           
-          Row(
+          const Row(
             children: [
               Text(
                 'a', 
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w300,
+                style: TextStyle(
+                  fontFamily: 'poppinslight',
                   fontSize: 80,
                   color: Colors.white
                 ),
               ),  
-              const AnimatedText(speed: 70000,),
+              AnimatedText(speed: 70000,),
             ],
           ),
       
@@ -73,24 +72,24 @@ class Presentation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(2.0),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'CONTACT ME',
                     overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w400,
+                    style: TextStyle(
+                        fontFamily: 'poppinslight',
                         fontSize: 30,
                         color: Colors.white,
                       )
                   ),
       
-                  const SizedBox(width: 40,),
+                  SizedBox(width: 40,),
       
-                  const Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
+                  Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
                 ],
               ),
             ),

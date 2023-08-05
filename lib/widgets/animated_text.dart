@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AnimatedText extends StatelessWidget {
   final int speed; 
@@ -16,9 +15,9 @@ class AnimatedText extends StatelessWidget {
       child: DefaultTextStyle(
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
-        style: GoogleFonts.poppins(
+        style: const TextStyle(
+          fontFamily: 'poppinsbold',
           fontSize: 80,
-          fontWeight: FontWeight.w700,
           color: Colors.white
         ),
 
