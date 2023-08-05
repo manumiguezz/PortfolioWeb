@@ -8,14 +8,14 @@ class TopPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return const Stack(
       children: [
 
-        const CustomParticleBackground(),
+        CustomParticleBackground(),
 
-        const SideVignette(),
+        SideVignette(),
 
-        const Presentation(),
+        Presentation(),
 
       ],
     );
