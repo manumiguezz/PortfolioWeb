@@ -87,12 +87,16 @@ class _HomeScreenState extends State<HomeScreen> {
       
                     Padding(
                       padding: const EdgeInsets.only(top: 450,),
-                      child: Container(
-                        height: 1300,
-                        width: pageWidth,
-                        child: CustomPaint(
-                          painter: WhiterStrokePainter(),
-                        ),
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            height: 1300,
+                            width: pageWidth,
+                            child: CustomPaint(
+                              painter: WhiterStrokePainter(),
+                            ),
+                          ),
+                        ],
                       )
                       ),
       
