@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final double pageHeight = MediaQuery.of(context).size.height; 
+    // final double pageHeight = MediaQuery.of(context).size.height; 
     final double pageWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -56,10 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       allFilled: true,
                       smallestSize: 70,
                     ),
-      
-                    // const SideVignette(),
-      
-                    const Presentation(),
       
                     const CustomParticleBackground(
                       backgroundColor: Colors.transparent,
@@ -99,6 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       )
                       ),
+
+                    const Presentation(),
       
                   ],
                 ),
