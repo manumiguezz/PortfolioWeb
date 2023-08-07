@@ -12,6 +12,8 @@ class Background extends StatelessWidget {
 
         ParticleGroup(),
 
+        SizedBox(height: 450,),
+
         WhiteFlagSection(),
 
       ],
