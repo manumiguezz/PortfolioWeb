@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class WhiterStrokePainter extends CustomPainter {
+class WhiteStrokePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -56,8 +56,8 @@ class WhiterStrokePainter extends CustomPainter {
 
 
   @override
-  bool shouldRepaint(WhiterStrokePainter oldDelegate) => true;
+  bool shouldRepaint(WhiteStrokePainter oldDelegate) => true;
 
   @override
-  bool shouldRebuildSemantics(WhiterStrokePainter oldDelegate) => false;
+  bool shouldRebuildSemantics(WhiteStrokePainter oldDelegate) => false;
 }
