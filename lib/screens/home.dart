@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/utilities/utilities.dart';
-import 'package:personal_web/widgets/widgets.dart';
+import 'package:personal_web/screens/background.dart';
+import 'package:personal_web/screens/foreground.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
-import '../widgets/custom_particle_background.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     // final double pageHeight = MediaQuery.of(context).size.height; 
-    final double pageWidth = MediaQuery.of(context).size.width;
+    // final double pageWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -37,23 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             controller: scrollController, 
-            child: Column(
+            child: const Stack(
               children: [
-      
-                Stack(
-                  children: [
-                  
-                    const ParticleGroup(),
-      
-                    AboutMe(pageWidth: pageWidth),
-
-                    const Presentation(),
-      
-                  ],
-                ),
-      
+                Background(),
+                Foreground(),
               ],
-            ),
+            )
           ),
         ),
       ),
@@ -61,113 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ParticleGroup extends StatelessWidget {
-  const ParticleGroup({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return const Stack(
-      children: [
-        CustomParticleBackground(),
-    
-        CustomParticleBackground(
-          backgroundColor: Colors.transparent,
-          blur: true,
-          blurIntensity: 7,
-          particleColor: Colors.white10,
-          biggestSize: 1,
-          numberOfParticles: 40,
-          highestSpeed: 1.5,
-          allFilled: true,
-          smallestSize: 70,
-        ),
-          
-        CustomParticleBackground(
-          backgroundColor: Colors.transparent,
-          blur: true,
-          blurIntensity: 0,
-          particleColor: Color.fromARGB(26, 42, 42, 42),
-          biggestSize: 1,
-          numberOfParticles: 10,
-          highestSpeed: 2,
-          allFilled: true,
-          smallestSize: 70,
-        ),
-          
-        CustomParticleBackground(
-          backgroundColor: Colors.transparent,
-          blur: true,
-          blurIntensity: 0,
-          particleColor: Color.fromARGB(96, 112, 112, 112),
-          biggestSize: 1,
-          numberOfParticles: 14,
-          highestSpeed: 0.7,
-          allFilled: true,
-          smallestSize: 30,
-        ),
-      ],
-    );
-  }
-}
 
-class AboutMe extends StatelessWidget {
-  const AboutMe({
-    super.key,
-    required this.pageWidth,
-  });
-
-  final double pageWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 450,),
-      child: Stack(
-        children: [
-
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'About me',
-                    style: TextStyle(
-                      fontFamily: 'poppinsbold',
-                      fontSize: 50,
-                      color: Colors.black
-                    ),
-                  ),
-
-                  Text(
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
-                    "As an aspiring backend software developer, I have a strong foundation in Java development, with expertise in Java 11 and 17. I'm proficient in object-oriented programming and can work effectively with other languages like Dart, C, C++, as well as web technologies such as HTML and CSS. I also have extensive knowledge of frameworks like Spring Boot, Flutter, Hibernate, and JavaFX, enabling me to work on diverse projects. I've developed RESTful APIs with CRUD operations and established database connections. Additionally, I'm skilled in using dependency managers like Maven and Gradle for efficient project management and organization.",
-                    style: TextStyle(
-                      fontFamily: 'poppinsregular',
-                      fontSize: 50,
-                      color: Colors.black
-                    ),
-                  ),
-
-                ],
-              )
-            ],
-          ),
-          
-          SizedBox(
-            height: 1300,
-            width: pageWidth,
-            child: CustomPaint(
-              painter: WhiteStrokePainter(),
-            ),
-          ),
-        ],
-      )
-      );
-  }
-}
 
