@@ -48,6 +48,9 @@ flutter:
     - family: poppinslight
       fonts:
         - asset: assets/fonts/poppins/poppins_light.ttf
+    - family: poppinsthin
+      fonts:
+        - asset: assets/fonts/poppins/poppins_thin.ttf
 
   assets:
     - assets/images/
