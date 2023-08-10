@@ -30,8 +30,8 @@ class AboutMe extends StatelessWidget {
               SizedBox(height: 10,),
           
               SizedBox(
-                height: 400,
-                width: 670,
+                height: 450,
+                width: 660,
                 child: Text(
                   textAlign: TextAlign.justify,
                   softWrap: true,

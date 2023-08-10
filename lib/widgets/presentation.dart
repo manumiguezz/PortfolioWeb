@@ -63,37 +63,97 @@ class Presentation extends StatelessWidget {
       
           const SizedBox(height: 30,),
       
-          ElevatedButton(
-            onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              side: const BorderSide(color: Colors.white, width: 3),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(2.0),
-              ),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'CONTACT ME',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontFamily: 'poppinslight',
-                        fontSize: 30,
-                        color: Colors.white,
-                      )
+          Row(
+            children: [
+
+              ElevatedButton(
+                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  side: const BorderSide(color: Colors.white, width: 3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.0),
                   ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'CONTACT ME',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontFamily: 'poppinslight',
+                            fontSize: 30,
+                            color: Colors.white,
+                          )
+                      ),
       
-                  SizedBox(width: 40,),
+                      SizedBox(width: 40,),
       
-                  Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
-                ],
+                      Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
+                    ],
+                  ),
+                ),
               ),
-            ),
+
+              // const SizedBox(width: 10,),
+
+              // ElevatedButton(
+              //   onPressed: () => launchUrl('https://github.com/manumiguezz'),
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.transparent,
+              //     side: const BorderSide(color: Colors.white, width: 3),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(2.0),
+              //     ),
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(vertical: 15),
+              //     child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 11.1,)
+              //     ),
+              //   ),
+
+              // const SizedBox(width: 10,),
+              
+              
+              // ElevatedButton(
+              //   onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.transparent,
+              //     side: const BorderSide(color: Colors.white, width: 3),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(2.0),
+              //     ),
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(vertical: 15),
+              //     child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 11.1,)
+              //     ),
+              //   ),
+
+              // const SizedBox(width: 10,),
+
+              // ElevatedButton(
+              //   onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.transparent,
+              //     side: const BorderSide(color: Colors.white, width: 3),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(2.0),
+              //     ),
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(vertical: 15),
+              //     child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 11.1,)
+              //     ),
+              //   ),
+
+            ],
           ),      
+
+          
         ],
         
       ),
