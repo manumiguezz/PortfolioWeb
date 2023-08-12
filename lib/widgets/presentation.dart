@@ -122,7 +122,7 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.white, width: 3),
+                  side: const BorderSide(color: Colors.transparent, width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
                   ),
@@ -139,7 +139,7 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.white, width: 3),
+                  side: const BorderSide(color: Colors.transparent, width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
                   ),
