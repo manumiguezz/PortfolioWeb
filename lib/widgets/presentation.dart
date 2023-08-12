@@ -98,57 +98,57 @@ class Presentation extends StatelessWidget {
                 ),
               ),
 
-              // const SizedBox(width: 10,),
+              const SizedBox(width: 10,),
 
-              // ElevatedButton(
-              //   onPressed: () => launchUrl('https://github.com/manumiguezz'),
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.transparent,
-              //     side: const BorderSide(color: Colors.white, width: 3),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(2.0),
-              //     ),
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(vertical: 15),
-              //     child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 11.1,)
-              //     ),
-              //   ),
+              ElevatedButton(
+                onPressed: () => launchUrl('https://github.com/manumiguezz'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  side: const BorderSide(color: Colors.transparent, width: 3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 11.1,)
+                  ),
+                ),
 
-              // const SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               
               
-              // ElevatedButton(
-              //   onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.transparent,
-              //     side: const BorderSide(color: Colors.white, width: 3),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(2.0),
-              //     ),
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(vertical: 15),
-              //     child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 11.1,)
-              //     ),
-              //   ),
+              ElevatedButton(
+                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  side: const BorderSide(color: Colors.white, width: 3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 11.1,)
+                  ),
+                ),
 
-              // const SizedBox(width: 10,),
+              const SizedBox(width: 10,),
 
-              // ElevatedButton(
-              //   onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.transparent,
-              //     side: const BorderSide(color: Colors.white, width: 3),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(2.0),
-              //     ),
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(vertical: 15),
-              //     child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 11.1,)
-              //     ),
-              //   ),
+              ElevatedButton(
+                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  side: const BorderSide(color: Colors.white, width: 3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 11.1,)
+                  ),
+                ),
 
             ],
           ),      
