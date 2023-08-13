@@ -136,7 +136,7 @@ class Presentation extends StatelessWidget {
               const SizedBox(width: 10,),
 
               ElevatedButton(
-                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                onPressed: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   side: const BorderSide(color: Colors.transparent, width: 3),
