@@ -98,7 +98,7 @@ class Presentation extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 10,),
+              const SizedBox(width: 17,),
 
               ElevatedButton(
                 onPressed: () => launchUrl('https://github.com/manumiguezz'),
