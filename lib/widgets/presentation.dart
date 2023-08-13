@@ -81,7 +81,7 @@ class Presentation extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'CONTACT ME',
+                        'ABOUT ME',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontFamily: 'poppinslight',
@@ -90,7 +90,7 @@ class Presentation extends StatelessWidget {
                           )
                       ),
       
-                      SizedBox(width: 40,),
+                      SizedBox(width: 10,),
       
                       Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
                     ],

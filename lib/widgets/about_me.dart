@@ -7,12 +7,18 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 90),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          Image.asset(
+            'assets/images/profile.png',
+            scale: 7.5,
     
-          // const SizedBox(width: 50,),
+          ),
+    
+          const SizedBox(width: 50,),
     
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,11 +55,7 @@ class AboutMe extends StatelessWidget {
     
           // const SizedBox(width: 40),
     
-          Image.asset(
-            'assets/images/profile.png',
-            scale: 1.88,
-    
-          )
+          
     
         ],
       ),
