@@ -7,7 +7,7 @@ class Skillset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Text(
           'Skillset',
@@ -22,11 +22,41 @@ class Skillset extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+            
 
           ],
         ),
@@ -35,11 +65,41 @@ class Skillset extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+            
 
           ],
         ),
@@ -48,14 +108,46 @@ class Skillset extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
-            Icon(Icons.abc, color: Colors.white, size: 200,),
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+
+            Column(
+              children: [
+                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+              ],
+            ),
+            
 
           ],
-        )
+        ),
+
+        
       ],
     );
   }
