@@ -16,6 +16,60 @@ class Foreground extends StatelessWidget {
 
         AboutMe(),
 
+        SizedBox(height: 300,),
+
+        Column(
+          children: [
+            Text(
+              'Skillset',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'poppinsbold',
+                fontSize: 70
+              ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+                Icon(Icons.abc, color: Colors.white, size: 200,),
+
+              ],
+            )
+          ],
+        )
+
       ],
     );
   }
