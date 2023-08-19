@@ -70,6 +70,7 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
                   side: const BorderSide(color: Colors.white, width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
@@ -104,6 +105,7 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('https://github.com/manumiguezz'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
                   side: const BorderSide(color: Colors.transparent, width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
@@ -122,6 +124,7 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
                   side: const BorderSide(color: Colors.transparent, width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
@@ -139,7 +142,8 @@ class Presentation extends StatelessWidget {
                 onPressed: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.transparent, width: 3),
+                  shadowColor: Colors.transparent,
+                  side: const BorderSide(color: Color.fromARGB(0, 255, 0, 0), width: 3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(2.0),
                   ),
