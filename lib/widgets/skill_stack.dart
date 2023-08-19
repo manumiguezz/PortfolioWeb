@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_web/widgets/widgets.dart';
 
 class MyStack extends StatelessWidget {
   const MyStack({
@@ -7,7 +8,7 @@ class MyStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Text(
           'My Stack',
@@ -22,46 +23,12 @@ class MyStack extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(17)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Image.asset(
-                      'assets/icons/techstack/json.png',
-                      scale: 6,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 115),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(13),
-                      border: Border.all(color: Colors.black, width: 4)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                      child: const Text(
-                        'JSON', 
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20, 
-                          color: Colors.black,
-                          fontFamily: 'poppinsbold',                        
-                        )),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            
+            TechContainer(asset: 'json.png', techName: 'JSON'),
+            TechContainer(asset: 'json.png', techName: 'JSON'),
+            TechContainer(asset: 'json.png', techName: 'JSON'),
+            TechContainer(asset: 'json.png', techName: 'JSON'),
+            TechContainer(asset: 'json.png', techName: 'JSON'),
+            TechContainer(asset: 'json.png', techName: 'JSON'),
 
           ],
         ),
@@ -71,3 +38,4 @@ class MyStack extends StatelessWidget {
     );
   }
 }
+

@@ -1,5 +1,7 @@
 
 
+export 'package:personal_web/widgets/tech_container.dart';
+
 export 'package:personal_web/widgets/skill_stack.dart';
 export 'package:personal_web/widgets/white_flag_section.dart';
 export 'package:personal_web/widgets/about_me.dart';
