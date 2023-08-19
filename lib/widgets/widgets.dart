@@ -1,6 +1,6 @@
 
 
-export 'package:personal_web/widgets/skillset.dart';
+export 'package:personal_web/widgets/skill_stack.dart';
 export 'package:personal_web/widgets/white_flag_section.dart';
 export 'package:personal_web/widgets/about_me.dart';
 export 'package:personal_web/widgets/particle_group.dart';
