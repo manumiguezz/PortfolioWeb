@@ -7,7 +7,7 @@ class MyStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         Text(
           'My Stack',
@@ -26,7 +26,13 @@ class MyStack extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white)
+                Container(
+                  width: 75,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(13)
+                  ),
+                  child: const Text('data', style: TextStyle(fontSize: 20, color: Colors.black)),
                 )
               ],
             ),
@@ -41,7 +47,7 @@ class MyStack extends StatelessWidget {
             Column(
               children: [
                 Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
+                
               ],
             ),
 
