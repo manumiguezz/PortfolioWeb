@@ -25,50 +25,28 @@ class MyStack extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
+                Container(
+                  child: Image.asset(
+                    'assets/icons/techstack/json.png',
+                    scale: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                ),
                 Container(
                   width: 75,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(13)
+                    borderRadius: BorderRadius.circular(13),
+                    border: Border.all(color: Colors.black, width: 4)
                   ),
-                  child: const Text('data', style: TextStyle(fontSize: 20, color: Colors.black)),
+                  child: const Text(
+                    'data', 
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, color: Colors.black)),
                 )
-              ],
-            ),
-
-            Column(
-              children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
-              ],
-            ),
-
-            Column(
-              children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                
-              ],
-            ),
-
-            Column(
-              children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
-              ],
-            ),
-
-            Column(
-              children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
-              ],
-            ),
-            
-            Column(
-              children: [
-                Icon(Icons.adobe_rounded, color: Colors.white, size: 120,),
-                Text('data', style: TextStyle(fontSize: 20, color: Colors.white),)
               ],
             ),
             
