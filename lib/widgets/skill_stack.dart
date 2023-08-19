@@ -26,26 +26,32 @@ class MyStack extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 Container(
-                  child: Image.asset(
-                    'assets/icons/techstack/json.png',
-                    scale: 6,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'assets/icons/techstack/json.png',
+                      scale: 6,
+                    ),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(12)
+                    borderRadius: BorderRadius.circular(17)
                   ),
                 ),
-                Container(
-                  width: 75,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(13),
-                    border: Border.all(color: Colors.black, width: 4)
+                Padding(
+                  padding: const EdgeInsets.only(top: 115),
+                  child: Container(
+                    width: 75,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(13),
+                      border: Border.all(color: Colors.black, width: 4)
+                    ),
+                    child: const Text(
+                      'data', 
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  child: const Text(
-                    'data', 
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, color: Colors.black)),
                 )
               ],
             ),
