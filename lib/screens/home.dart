@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // final double pageWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 18, 18, 18),
 
       body: Scrollbar(
         child: WebSmoothScroll(

@@ -24,19 +24,23 @@ class TechContainer extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Image.asset(
-              'assets/icons/techstack/$asset',
-              scale: 6,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 23),
+              child: Image.asset(
+                'assets/icons/techstack/$asset',
+                scale: 8,
+              ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 115),
           child: Container(
+            width: 130,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(13),
-              border: Border.all(color: Colors.black, width: 4, strokeAlign: BorderSide.strokeAlignOutside)
+              border: Border.all(color: const Color.fromARGB(255, 18, 18, 18), width: 4, strokeAlign: BorderSide.strokeAlignOutside)
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -46,7 +50,7 @@ class TechContainer extends StatelessWidget {
                   techName, 
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 20, 
+                    fontSize: 15, 
                     color: Colors.black,
                     fontFamily: 'poppinsbold',                        
                   )),
