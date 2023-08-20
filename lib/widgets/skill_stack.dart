@@ -33,12 +33,12 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
               
-                    TechContainer(asset: 'java.png', techName: 'JAVA'),
+                    TechContainer(asset: 'java.png', techName: 'Java'),
                     TechContainer(asset: 'c.png', techName: 'C'),
-                    TechContainer(asset: 'dart.png', techName: 'DART'),
+                    TechContainer(asset: 'dart.png', techName: 'Dart'),
                     TechContainer(asset: 'html.png', techName: 'HTML'),
                     TechContainer(asset: 'css.png', techName: 'CSS'),
-                    TechContainer(asset: 'mysql.png', techName: 'MYSQL'),
+                    TechContainer(asset: 'mysql.png', techName: 'MySQL'),
               
                   ],
                 ),
@@ -50,12 +50,12 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   
-                    TechContainer(asset: 'spring.png', techName: 'SPRING'),
-                    TechContainer(asset: 'javafx.png', techName: 'JAVAFX'),
-                    TechContainer(asset: 'hibernate.png', techName: 'HIBERNATE'),
-                    TechContainer(asset: 'springboot.png', techName: 'SPRING BOOT'),
-                    TechContainer(asset: 'flutter.png', techName: 'FLUTTER'),
-                    TechContainer(asset: 'git.png', techName: 'GIT'),
+                    TechContainer(asset: 'spring.png', techName: 'Spring'),
+                    TechContainer(asset: 'javafx.png', techName: 'JavaFX'),
+                    TechContainer(asset: 'hibernate.png', techName: 'Hibernate'),
+                    TechContainer(asset: 'springboot.png', techName: 'Spring Boot'),
+                    TechContainer(asset: 'flutter.png', techName: 'Flutter'),
+                    TechContainer(asset: 'git.png', techName: 'Git'),
 
                   ],
                 ),
@@ -67,11 +67,11 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   
-                    TechContainer(asset: 'postman.png', techName: 'POSTMAN'),
-                    TechContainer(asset: 'maven.png', techName: 'MAVEN'),
-                    TechContainer(asset: 'thymeleaf.png', techName: 'THYMELEAF'),
-                    TechContainer(asset: 'docker.png', techName: 'DOCKER'),
-                    TechContainer(asset: 'firebase.png', techName: 'FIREBASE'),
+                    TechContainer(asset: 'postman.png', techName: 'Postman'),
+                    TechContainer(asset: 'maven.png', techName: 'Maven'),
+                    TechContainer(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
+                    TechContainer(asset: 'docker.png', techName: 'Docker'),
+                    TechContainer(asset: 'firebase.png', techName: 'Firebase'),
                     TechContainer(asset: 'json.png', techName: 'JSON'),
 
                   ],

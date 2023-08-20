@@ -46,7 +46,7 @@ class CustomParticleBackground extends StatelessWidget {
       child: ParticleBackground(
         
         backgroundColor: backgroundColor ?? Colors.transparent,
-        particleColor: particleColor ?? const Color(0x423B3B3B),
+        particleColor: particleColor ?? Color.fromARGB(243, 34, 34, 34),
         multiColor: multiColor ?? false,
         numberOfParticles: numberOfParticles ?? 90,
         allFilled: allFilled ?? true,
