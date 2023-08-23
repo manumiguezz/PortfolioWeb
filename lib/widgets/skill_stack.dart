@@ -45,7 +45,7 @@ class MyStack extends StatelessWidget {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 200),
+                padding: EdgeInsets.symmetric(horizontal: 190),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -62,7 +62,7 @@ class MyStack extends StatelessWidget {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 200),
+                padding: EdgeInsets.symmetric(horizontal: 190),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
