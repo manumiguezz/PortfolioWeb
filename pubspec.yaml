@@ -54,6 +54,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/projects
     - assets/parallax/
     - assets/icons/
     - assets/icons/socialmedia/
