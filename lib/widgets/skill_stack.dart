@@ -72,7 +72,7 @@ class MyStack extends StatelessWidget {
                     TechContainer(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
                     TechContainer(asset: 'docker.png', techName: 'Docker'),
                     TechContainer(asset: 'firebase.png', techName: 'Firebase'),
-                    TechContainer(asset: 'json.png', techName: 'JSON'),
+                    TechContainer(asset: 'jwt.png', techName: 'JWT'),
 
                   ],
                 ),

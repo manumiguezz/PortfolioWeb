@@ -19,7 +19,7 @@ class TechContainer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(16),
           child: Image.asset(
-            'assets/icons/techstack/$asset',
+            'assets/icons/techstackcolor/$asset',
             scale: 8,
           ),
         ),
