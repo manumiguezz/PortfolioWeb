@@ -16,13 +16,19 @@ class TechContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Image.asset(
-            'assets/icons/techstackcolor/$asset',
-            scale: 8,
-          ),
+        
+        ColorFiltered(
+          colorFilter: const ColorFilter.matrix([
+            0.2126,0.7152,0.0722,0,0,
+            0.2126,0.7152,0.0722,0,0,
+            0.2126,0.7152,0.0722,0,0,
+            0,0,0,1,0,
+          ]),
+          child: Image.asset('assets/icons/techstackcolor/$asset', scale: 8,),        
         ),
+
+        const SizedBox(height: 10),
+
         Text(
           techName, 
           textAlign: TextAlign.center,
