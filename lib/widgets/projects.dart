@@ -124,8 +124,8 @@ class NoteshopApp extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 0, ),
             child: Transform(
-              transform: Matrix4.translationValues(0, 0, 0),
-              child: Image.asset('assets/images/project/noteshop_white.png', scale: 4,), 
+              transform: Matrix4.translationValues(-250, 0, 0),
+              child: Image.asset('assets/images/project/noteshop_white_two.png', scale: 5.5,), 
             ),
           ),
 
@@ -134,7 +134,7 @@ class NoteshopApp extends StatelessWidget {
             children: [
             
               Padding(
-                padding: EdgeInsets.only(left: 900),
+                padding: EdgeInsets.only(left: 970),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
