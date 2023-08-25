@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_web/widgets/widgets.dart';
 
 class TechContainer extends StatelessWidget {
 
@@ -17,15 +18,17 @@ class TechContainer extends StatelessWidget {
     return Column(
       children: [
         
-        ColorFiltered(
-          colorFilter: const ColorFilter.matrix([
-            0.2126,0.7152,0.0722,0,0,
-            0.2126,0.7152,0.0722,0,0,
-            0.2126,0.7152,0.0722,0,0,
-            0,0,0,1,0,
-          ]),
-          child: Image.asset('assets/icons/techstackcolor/$asset', scale: 8,),        
-        ),
+
+        HoverImageSwitcher(coloredImagePath: 'assets/icons/techstackcolor/$asset', bwImagePath: 'assets/icons/techstack/$asset'),
+        // ColorFiltered(
+        //   colorFilter: const ColorFilter.matrix([
+        //     0.2126,0.7152,0.0722,0,0,
+        //     0.2126,0.7152,0.0722,0,0,
+        //     0.2126,0.7152,0.0722,0,0,
+        //     0,0,0,1,0,
+        //   ]),
+        //   child: Image.asset('assets/icons/techstackcolor/$asset', scale: 8,),        
+        // ),
 
         const SizedBox(height: 10),
 
