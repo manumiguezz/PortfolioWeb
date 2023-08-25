@@ -24,8 +24,6 @@ class Foreground extends StatelessWidget {
 
         ProjectSection()
 
-
-
       ],
     );
   }

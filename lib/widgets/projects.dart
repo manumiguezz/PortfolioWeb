@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_web/widgets/widgets.dart';
 
 class ProjectSection extends StatelessWidget {
   const ProjectSection({super.key});
@@ -36,6 +37,16 @@ class ProjectSection extends StatelessWidget {
                       fontSize: 70,
                       color: Colors.white
                     ),
+                  ),
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: [
+                      TechContainer(asset: 'flutter.png'),
+                      TechContainer(asset: 'dart.png'),
+                      TechContainer(asset: 'docker.png'),
+                    ],
                   ),
         
                   SizedBox(height: 20),
