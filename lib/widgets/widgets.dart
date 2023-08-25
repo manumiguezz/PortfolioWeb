@@ -1,4 +1,6 @@
 
+
+export 'package:personal_web/widgets/projects.dart';
 export 'package:personal_web/widgets/tech_container.dart';
 export 'package:personal_web/widgets/hover_switch.dart';
 export 'package:personal_web/widgets/skill_stack.dart';

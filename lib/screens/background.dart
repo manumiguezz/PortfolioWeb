@@ -10,9 +10,9 @@ class Background extends StatelessWidget {
     return const Stack(
       children: [
 
-        ParticleGroup(),
+        // ParticleGroup(),
 
-        WhiteFlagSection(),
+        // WhiteFlagSection(),
 
       ],
     );
