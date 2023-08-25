@@ -5,12 +5,12 @@ class ProjectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
 
-        Text(
+        const Text(
           textAlign: TextAlign.center,
-          'My Stack',
+          'My Projects',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'poppinsbold',
@@ -18,13 +18,15 @@ class ProjectSection extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
 
         Padding(
-          padding: EdgeInsets.only(left: 70 ),
+          padding: const EdgeInsets.only(left: 70 ),
           child: Row(
             children: [
-              Column(
+              
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   
                   Text(
@@ -39,7 +41,7 @@ class ProjectSection extends StatelessWidget {
                   SizedBox(height: 20),
         
                   SizedBox(
-                    width: 350,
+                    width: 510,
                     child: Text(
                       'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
                       softWrap: true,
@@ -51,7 +53,18 @@ class ProjectSection extends StatelessWidget {
                       )
                     ),
                   )
+
                 ],
+              ),
+
+              const SizedBox(width: 300,),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Image.asset(
+                  'assets/images/project/noteshop_white.png',
+                  scale: 7,
+                ),
               )
             ],
           ),
