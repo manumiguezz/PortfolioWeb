@@ -33,7 +33,7 @@ class ProjectSection extends StatelessWidget {
                 children: [
 
                   const Text(
-                    'Noteshop App',
+                    'Flickframes',
                     style: TextStyle(
                       fontFamily: 'poppinsbold',
                       fontSize: 70,
@@ -42,19 +42,45 @@ class ProjectSection extends StatelessWidget {
                   ),
 
                   SizedBox(
-                width: 250,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset('assets/icons/techstackcolor/flutter.png', scale: 20,),
-                    Image.asset('assets/icons/techstackcolor/dart.png', scale: 20,),
-                    Image.asset('assets/icons/techstackcolor/jwt.png', scale: 20,),
-                    Image.asset('assets/icons/techstackcolor/http.png', scale: 20,),
-                    Image.asset('assets/icons/techstackcolor/restapi.png', scale: 20,),
-                  ],
-                ),
-              ),
+                    width: 250,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset('assets/icons/techstackcolor/flutter.png', scale: 20,),
+                        Image.asset('assets/icons/techstackcolor/dart.png', scale: 20,),
+                        Image.asset('assets/icons/techstackcolor/isardb.png', scale: 20,),
+                        Image.asset('assets/icons/techstackcolor/riverpod.png', scale: 20,),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+    
+                  const SizedBox(
+                    width: 510,
+                    child: Text(
+                      'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
+                      softWrap: true,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'poppinslight',
+                          fontSize: 20,
+                      )
+                    ),
+                  )
+
                 ],
+              ),
+
+              const SizedBox(width: 300,),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Image.asset(
+                  'assets/images/project/flickframes_white.png',
+                  scale: 7,
+                ),
               )
             ]
           ),
@@ -84,7 +110,7 @@ class NoteshopApp extends StatelessWidget {
             children: [
               
               const Text(
-                'Noteshop App',
+                'Noteshop',
                 style: TextStyle(
                   fontFamily: 'poppinsbold',
                   fontSize: 70,
