@@ -125,7 +125,7 @@ class NoteshopApp extends StatelessWidget {
             padding: const EdgeInsets.only(top: 0, ),
             child: Transform(
               transform: Matrix4.translationValues(0, 0, 0),
-              child: Image.asset('assets/images/project/noteshop_white.png', scale: 4.6,), 
+              child: Image.asset('assets/images/project/noteshop_white_two.png', scale: 4.6,), 
             ),
           ),
 
