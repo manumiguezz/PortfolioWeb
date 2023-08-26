@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:personal_web/widgets/widgets.dart';
 
 class AboutMe extends StatelessWidget {
@@ -162,38 +163,60 @@ class AboutMe extends StatelessWidget {
                 // ),
               ),
 
-              ElevatedButton(
-                onPressed: () => launchUrl(''),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.black, width: 4),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
+              AnimatedButton(
+                animatedOn: AnimatedOn.onHover,
+                height: 50,
+                width: 150,
+                text: 'My Resume',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.LEFT_TO_RIGHT,
+                textStyle: const TextStyle(
+                  fontFamily: 'poppinsbold',
+                  fontSize: 20,
+                  color: Colors.black,
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'My resume',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontFamily: 'poppinsbold',
-                            fontSize: 20,
-                            color: Colors.black,
-                          )
-                      ),
-      
-                      SizedBox(width: 10,),
-      
-                      Icon(Icons.file_download_outlined, size: 40, color: Colors.black,)
-                    ],
-                  ),
-                ),
+                backgroundColor: Colors.white,
+                borderColor: Colors.black,
+                borderRadius: 0,
+                borderWidth: 4,
+                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
               ),
+
+              // ElevatedButton(
+              //   onPressed: () => launchUrl(''),
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.transparent,
+              //     shadowColor: Colors.transparent,
+              //     side: const BorderSide(color: Colors.black, width: 4),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(2.0),
+              //     ),
+              //   ),
+              //   child: const Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              //     child: Row(
+              //       mainAxisSize: MainAxisSize.min,
+              //       children: [
+              //         Text(
+              //           'My resume',
+              //           overflow: TextOverflow.ellipsis,
+              //           style: TextStyle(
+              //               fontFamily: 'poppinsbold',
+              //               fontSize: 20,
+              //               color: Colors.black,
+              //             )
+              //         ),
+      
+              //         SizedBox(width: 10,),
+      
+              //         Icon(Icons.file_download_outlined, size: 40, color: Colors.black,)
+              //       ],
+              //     ),
+              //   ),
+              // ),
+
+
             ],
           ),
     

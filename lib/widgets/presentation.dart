@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:personal_web/widgets/url_launcher.dart';
 
 import 'animated_text.dart';
@@ -66,37 +67,24 @@ class Presentation extends StatelessWidget {
           Row(
             children: [
 
-              ElevatedButton(
-                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.white, width: 3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
+              AnimatedButton(
+                animatedOn: AnimatedOn.onHover,
+                height: 50,
+                width: 150,
+                text: 'About Me',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.LEFT_TO_RIGHT,
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'poppinslight',
+                  fontSize: 20,
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'ABOUT ME',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontFamily: 'poppinslight',
-                            fontSize: 30,
-                            color: Colors.white,
-                          )
-                      ),
-      
-                      SizedBox(width: 10,),
-      
-                      Icon(Icons.keyboard_arrow_down_outlined, size: 40,)
-                    ],
-                  ),
-                ),
+                backgroundColor: Colors.transparent,
+                borderColor: Colors.white,
+                borderRadius: 0,
+                borderWidth: 2,
+                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
               ),
 
               const SizedBox(width: 17,),

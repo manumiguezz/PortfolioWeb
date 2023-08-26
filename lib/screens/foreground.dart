@@ -10,17 +10,17 @@ class Foreground extends StatelessWidget {
     return const Column(
       children: [
 
-        // Presentation(),
+        Presentation(),
 
-        // SizedBox(height: 235,),
+        SizedBox(height: 235,),
 
-        // AboutMe(),
+        AboutMe(),
 
-        // SizedBox(height: 350,),
+        SizedBox(height: 350,),
 
-        // MyStack(),
+        MyStack(),
 
-        // SizedBox(height: 200),
+        SizedBox(height: 200),
 
         ProjectSection()
 
