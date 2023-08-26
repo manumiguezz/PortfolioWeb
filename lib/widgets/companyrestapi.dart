@@ -11,16 +11,16 @@ class CompanyRestApi extends StatelessWidget {
       padding: const EdgeInsets.only(left: 70,),
       child: Stack(
         children: [
-          const Row(
+          Row(
             children: [
             
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  SizedBox(height: 250,),
+                  const SizedBox(height: 250,),
             
-                  Text(
+                  const Text(
                     'Company REST API',
                     style: TextStyle(
                       fontFamily: 'poppinsbold',
@@ -29,7 +29,7 @@ class CompanyRestApi extends StatelessWidget {
                     ),
                   ),
             
-                  SizedBox(
+                  const SizedBox(
                     width: 680,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,12 +45,12 @@ class CompanyRestApi extends StatelessWidget {
                     ),
                   ),
             
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
             
-                  SizedBox(
+                  const SizedBox(
                     width: 680,
                     child: Text(
-                      "This company REST API has been entirely constructed and designed using Java, with Spring Boot serving as the foundational framework for project organization. This API seamlessly integrates a MySQL database, employing JDBC to effectively incorporate it into the system's architecture. By leveraging Spring Data JPA, a remarkable reduction of about 70% in the necessary codebase has been achieved. Security enhancements are implemented through Spring Security, encompassing password encryption utilizing the Bcrypt algorithm. The development process also encompasses the creation of CRUD methods, thereby enabling smooth database updates and modifications through HTTP requests.",
+                      "This example of a company REST API utilizes Spring Boot as its foundational framework, and it's mainly built on Java. It seamlessly incorporates a MySQL database through JDBC and Spring Data JPA, reducing the codebase by approximately 70%. Security enhancements, such as Bcrypt-based password encryption, are integrated using Spring Security. The API also includes CRUD methods for smooth database updates via HTTP requests.",
                       softWrap: true,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
@@ -59,7 +59,7 @@ class CompanyRestApi extends StatelessWidget {
                           fontSize: 20,
                       )
                     ),
-                  )
+                  ),
             
                 ],
               ),
@@ -70,8 +70,8 @@ class CompanyRestApi extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 0, ),
             child: Transform(
-              transform: Matrix4.translationValues(250, -100, 0),
-              child: Image.asset('assets/images/project/companyrestapi.png', scale: 3,), 
+              transform: Matrix4.translationValues(370, -80, 0),
+              child: Image.asset('assets/images/project/companyrestapi.png', scale: 3.5,), 
             ),
           )
           
