@@ -70,8 +70,8 @@ class CompanyRestApi extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 0, ),
             child: Transform(
-              transform: Matrix4.translationValues(370, -80, 0),
-              child: Image.asset('assets/images/project/companyrestapi.png', scale: 3.5,), 
+              transform: Matrix4.translationValues(370, 0, 0),
+              child: Image.asset('assets/images/project/companyrestapi.png', scale: 2.7,), 
             ),
           )
           

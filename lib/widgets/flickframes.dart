@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pretty_animated_buttons/pretty_animated_buttons.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 class Flickframes extends StatelessWidget {
   const Flickframes({
@@ -59,18 +59,29 @@ class Flickframes extends StatelessWidget {
                     ),
                   ),
 
-                  PrettyBorderButton(
-                    label: 'Github',
-                    onPressed: () {},
-                    borderColor: Colors.red,
-                    bgColor: Colors.black,
-                    borderWidth: 9000,
-                    labelStyle: const TextStyle(
+                  const SizedBox(height: 20),
+
+                  AnimatedButton(
+                    animatedOn: AnimatedOn.onHover,
+                    height: 50,
+                    width: 130,
+                    text: 'Github',
+                    isReverse: true,
+                    selectedTextColor: Colors.black,
+                    transitionType: TransitionType.LEFT_TO_RIGHT,
+                    textStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'poppinslight',
                       fontSize: 20,
-                    )
-                  )
+                    ),
+                    backgroundColor: Colors.transparent,
+                    borderColor: Colors.white,
+                    borderRadius: 0,
+                    borderWidth: 2,
+                    onPress: () {},
+                  ),
+
+                  
             
                 ],
               ),
