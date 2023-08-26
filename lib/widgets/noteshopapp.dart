@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:personal_web/widgets/url_launcher.dart';
 
 class NoteshopApp extends StatelessWidget {
   const NoteshopApp({
@@ -22,19 +24,19 @@ class NoteshopApp extends StatelessWidget {
               ),
             ),
       
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
               
                 Padding(
-                  padding: EdgeInsets.only(left: 970),
+                  padding: const EdgeInsets.only(left: 970),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                           
-                      SizedBox(height: 250,),
+                      const SizedBox(height: 250,),
                             
-                      Text(
+                      const Text(
                         'Noteshop',
                         style: TextStyle(
                           fontFamily: 'poppinsbold',
@@ -43,7 +45,7 @@ class NoteshopApp extends StatelessWidget {
                         ),
                       ),
                             
-                      SizedBox(
+                      const SizedBox(
                         width: 330,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,9 +59,9 @@ class NoteshopApp extends StatelessWidget {
                         ),
                       ),
                             
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                             
-                      SizedBox(
+                      const SizedBox(
                         width: 420,
                         child: Text(
                           'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
@@ -71,7 +73,29 @@ class NoteshopApp extends StatelessWidget {
                               fontSize: 20,
                           )
                         ),
-                      )
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      AnimatedButton(
+                        animatedOn: AnimatedOn.onHover,
+                        height: 50,
+                        width: 130,
+                        text: 'Github',
+                        isReverse: true,
+                        selectedTextColor: Colors.black,
+                        transitionType: TransitionType.LEFT_TO_RIGHT,
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'poppinslight',
+                          fontSize: 20,
+                        ),
+                        backgroundColor: Colors.transparent,
+                        borderColor: Colors.white,
+                        borderRadius: 0,
+                        borderWidth: 2,
+                        onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
+                      ),
                             
                     ],
                   ),

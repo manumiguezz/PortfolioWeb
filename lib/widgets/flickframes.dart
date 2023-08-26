@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:personal_web/widgets/url_launcher.dart';
 
 class Flickframes extends StatelessWidget {
   const Flickframes({
@@ -78,7 +79,7 @@ class Flickframes extends StatelessWidget {
                     borderColor: Colors.white,
                     borderRadius: 0,
                     borderWidth: 2,
-                    onPress: () {},
+                    onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
                   ),
 
                   
