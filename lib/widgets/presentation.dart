@@ -92,55 +92,28 @@ class Presentation extends StatelessWidget {
 
               GestureDetector(
                 onTap: () => launchUrl('https://github.com/manumiguezz'),
-                child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 17,),
+                child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 13,),
               ),
 
               const SizedBox(width: 10,),
 
               GestureDetector(
                 onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 17,),
+                child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 13,),
+              ),
+
+              const SizedBox(width: 10,),
+              
+              GestureDetector(
+                onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
+                child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 13,),
               ),
               
               
-              ElevatedButton(
-                onPressed: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  side: const BorderSide(color: Colors.transparent, width: 3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 11.1,)
-                  ),
-                ),
-
-              const SizedBox(width: 10,),
-
-              ElevatedButton(
-                onPressed: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  side: const BorderSide(color: Color.fromARGB(0, 255, 0, 0), width: 3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 11.1,)
-                  ),
-                ),
 
             ],
           ),      
 
-          
         ],
         
       ),
