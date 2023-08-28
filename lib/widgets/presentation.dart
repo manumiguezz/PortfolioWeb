@@ -65,6 +65,7 @@ class Presentation extends StatelessWidget {
           const SizedBox(height: 30,),
       
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
 
               AnimatedButton(
@@ -92,24 +93,31 @@ class Presentation extends StatelessWidget {
 
               GestureDetector(
                 onTap: () => launchUrl('https://github.com/manumiguezz'),
-                child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 13,),
+                child: MouseRegion(
+                  cursor: MaterialStateMouseCursor.clickable,
+                  child: Image.asset('assets/icons/socialmedia/github_black.png', color: Colors.white, scale: 12,)
+                ),
               ),
 
-              const SizedBox(width: 10,),
+              const SizedBox(width: 12,),
 
               GestureDetector(
                 onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                child: Image.asset('assets/icons/socialmedia/linkedin_black_free.png', color: Colors.white, scale: 13,),
+                child: MouseRegion(
+                  cursor: MaterialStateMouseCursor.clickable,
+                  child: Image.asset('assets/icons/socialmedia/linkedin_black.png', color: Colors.white, scale: 11,)
+                ),
               ),
 
-              const SizedBox(width: 10,),
+              const SizedBox(width: 14,),
               
               GestureDetector(
                 onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
-                child: Image.asset('assets/icons/socialmedia/email_black_free.png', color: Colors.white, scale: 13,),
+                child: MouseRegion(
+                  cursor: MaterialStateMouseCursor.clickable,
+                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 11,)
+                ),
               ),
-              
-              
 
             ],
           ),      
