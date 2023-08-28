@@ -149,18 +149,6 @@ class AboutMe extends StatelessWidget {
                   ),
                 )
                 
-                
-                // Text(
-                //   textAlign: TextAlign.justify,
-                //   softWrap: true,
-                //   overflow: TextOverflow.clip,
-                //   "As an aspiring backend software developer, I have a strong foundation in Java development, with expertise in Java 11 and 17. I'm proficient in object-oriented programming and can work effectively with other languages like Dart, C, C++, as well as web technologies such as HTML and CSS. \n\nI also have extensive knowledge of frameworks like Spring Boot, Flutter, Hibernate, and JavaFX, enabling me to work on diverse projects. I've developed RESTful APIs with CRUD operations and established database connections. Additionally, I'm skilled in using dependency managers like Maven and Gradle for efficient project management and organization.\n\nBeyond my technical expertise, I possess effective and friendly communication skills, enabling seamless integration within teams. I easily adapt to new languages and tools, allowing me to contribute to a variety of projects. And employing critical thinking, I approach problem-solving methodically, while my confidence empowers me to confront challenges with determination.",
-                //   style: TextStyle(
-                //     fontFamily: 'poppinslight',
-                //     fontSize: 15,
-                //     color: Colors.black
-                //   ),
-                // ),
               ),
 
               AnimatedButton(
@@ -183,43 +171,10 @@ class AboutMe extends StatelessWidget {
                 onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
               ),
 
-              // ElevatedButton(
-              //   onPressed: () => launchUrl(''),
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.transparent,
-              //     shadowColor: Colors.transparent,
-              //     side: const BorderSide(color: Colors.black, width: 4),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(2.0),
-              //     ),
-              //   ),
-              //   child: const Padding(
-              //     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              //     child: Row(
-              //       mainAxisSize: MainAxisSize.min,
-              //       children: [
-              //         Text(
-              //           'My resume',
-              //           overflow: TextOverflow.ellipsis,
-              //           style: TextStyle(
-              //               fontFamily: 'poppinsbold',
-              //               fontSize: 20,
-              //               color: Colors.black,
-              //             )
-              //         ),
-      
-              //         SizedBox(width: 10,),
-      
-              //         Icon(Icons.file_download_outlined, size: 40, color: Colors.black,)
-              //       ],
-              //     ),
-              //   ),
-              // ),
-
 
             ],
           ),
-    
+
           // const SizedBox(width: 40),
     
           

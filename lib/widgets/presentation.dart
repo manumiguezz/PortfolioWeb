@@ -90,6 +90,12 @@ class Presentation extends StatelessWidget {
               const SizedBox(width: 17,),
 
 
+              GestureDetector(
+                onTap: () => launchUrl('https://github.com/manumiguezz'),
+                child: Image.asset('assets/icons/socialmedia/github_black_free.png', color: Colors.white, scale: 17,),
+              ),
+
+
               ElevatedButton(
                 onPressed: () => launchUrl('https://github.com/manumiguezz'),
                 style: ElevatedButton.styleFrom(
