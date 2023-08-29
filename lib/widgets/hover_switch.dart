@@ -4,12 +4,14 @@ class HoverImageSwitcher extends StatefulWidget {
   final String coloredImagePath;
   final String bwImagePath;
 
-  HoverImageSwitcher({
+  const HoverImageSwitcher({
+    super.key, 
     required this.coloredImagePath,
     required this.bwImagePath,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _HoverImageSwitcherState createState() => _HoverImageSwitcherState();
 }
 
