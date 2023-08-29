@@ -8,6 +8,10 @@ void precacheAssets(BuildContext context) {
   precacheImage(const AssetImage('assets/icons/socialmedia/github_black.png'), context);
   precacheImage(const AssetImage('assets/icons/socialmedia/linkedin_black.png'), context);
 
+  precacheImage(const AssetImage('assets/images/project/companyrestapi.png'), context);
+  precacheImage(const AssetImage('assets/images/project/flickframes_white.png'), context);
+  precacheImage(const AssetImage('assets/images/project/noteshop_white.png'), context);
+
   precacheImage(const AssetImage('assets/icons/techstackcolor/c.png'), context);
   precacheImage(const AssetImage('assets/icons/techstackcolor/css.png'), context);
   precacheImage(const AssetImage('assets/icons/techstackcolor/dart.png'), context);

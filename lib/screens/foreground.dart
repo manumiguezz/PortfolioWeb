@@ -24,6 +24,8 @@ class Foreground extends StatelessWidget {
 
         ProjectSection(),
 
+        SizedBox(height: 200,),
+
         LastInfo(),
 
       ],
