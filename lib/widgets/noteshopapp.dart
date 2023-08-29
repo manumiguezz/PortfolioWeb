@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:personal_web/widgets/url_launcher.dart';
+import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class NoteshopApp extends StatelessWidget {
   const NoteshopApp({
@@ -19,8 +19,8 @@ class NoteshopApp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 0, ),
               child: Transform(
-                transform: Matrix4.translationValues(-250, 0, 0),
-                child: Image.asset('assets/images/project/noteshop_white.png', scale: 5.5,), 
+                transform: Matrix4.translationValues(-300, 0, 0),
+                child: Image.asset('assets/images/project/noteshop_white.png', scale: 5.7,), 
               ),
             ),
       
@@ -29,7 +29,7 @@ class NoteshopApp extends StatelessWidget {
               children: [
               
                 Padding(
-                  padding: const EdgeInsets.only(left: 970),
+                  padding: const EdgeInsets.only(left: 815),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

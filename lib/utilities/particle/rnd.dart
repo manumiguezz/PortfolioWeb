@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/painting.dart';
-import 'package:personal_web/utilities/particle/exports.dart';
+import 'package:portfolio_web_version/utilities/particle/exports.dart';
 
 class Rnd {
   static int _seed = DateTime.now().millisecondsSinceEpoch;

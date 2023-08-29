@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/utilities/utilities.dart';
+import 'package:portfolio_web_version/utilities/utilities.dart';
 
 class WhiteFlagSection extends StatelessWidget {
   const WhiteFlagSection({super.key});

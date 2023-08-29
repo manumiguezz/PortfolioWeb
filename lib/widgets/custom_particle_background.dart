@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/utilities/particle/flutter_particle_background.dart';
+import 'package:portfolio_web_version/utilities/particle/flutter_particle_background.dart';
 
 class CustomParticleBackground extends StatelessWidget {
   final double? height;

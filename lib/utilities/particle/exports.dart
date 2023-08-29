@@ -1,10 +1,10 @@
-export 'package:personal_web/utilities/particle/configuration.dart';
-export 'package:personal_web/utilities/particle/palette.dart';
-export 'package:personal_web/utilities/particle/particle.dart';
-export 'package:personal_web/utilities/particle/particle_background_handler.dart';
-export 'package:personal_web/utilities/particle/particle_handler.dart';
-export 'package:personal_web/utilities/particle/particle_painter.dart';
-export 'package:personal_web/utilities/particle/rnd.dart';
-export 'package:personal_web/utilities/particle/scene.dart';
-export 'package:personal_web/utilities/particle/palette_colors.dart';
+export 'package:portfolio_web_version/utilities/particle/configuration.dart';
+export 'package:portfolio_web_version/utilities/particle/palette.dart';
+export 'package:portfolio_web_version/utilities/particle/particle.dart';
+export 'package:portfolio_web_version/utilities/particle/particle_background_handler.dart';
+export 'package:portfolio_web_version/utilities/particle/particle_handler.dart';
+export 'package:portfolio_web_version/utilities/particle/particle_painter.dart';
+export 'package:portfolio_web_version/utilities/particle/rnd.dart';
+export 'package:portfolio_web_version/utilities/particle/scene.dart';
+export 'package:portfolio_web_version/utilities/particle/palette_colors.dart';
 

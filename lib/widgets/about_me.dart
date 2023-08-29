@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:personal_web/widgets/widgets.dart';
+import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({super.key});
@@ -18,7 +18,7 @@ class AboutMe extends StatelessWidget {
             transform: Matrix4.translationValues(0, 10, 0),
             child: Image.asset(
               'assets/images/profile.png',
-              scale: 8,
+              scale: 3,
             ),
           ),
     
@@ -158,7 +158,7 @@ class AboutMe extends StatelessWidget {
                   fontFamily: 'poppinsbold',
                   fontSize: 20
                 ),
-                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
+                onPress: () => launchUrl('https://www.dropbox.com/scl/fi/whc7tdvtgu0hkluhdlagd/Manuel-Miguez-Laur-a-EN.pdf?rlkey=d4qdg7gekp54dg5khtegk04sg&dl=0'),
                 animatedOn: AnimatedOn.onHover,
                 height: 50,
                 width: 150,

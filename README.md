@@ -1,3 +1,3 @@
-# Portfolio Web Page
+# portfolio_web_version
 
-A project using Flutter to develop a portfolio webpage
+A new Flutter project.

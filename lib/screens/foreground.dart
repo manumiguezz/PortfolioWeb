@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/widgets/widgets.dart';
+import 'package:portfolio_web_version/widgets/widgets.dart';
 
 
 class Foreground extends StatelessWidget {

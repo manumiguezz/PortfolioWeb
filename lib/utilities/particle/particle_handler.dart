@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:personal_web/utilities/particle/exports.dart';
+import 'package:portfolio_web_version/utilities/particle/exports.dart';
 
 class ParticleHandler with ChangeNotifier {
   final List<Particle> particles;

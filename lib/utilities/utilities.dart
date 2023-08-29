@@ -1,3 +1,3 @@
 
-export 'package:personal_web/utilities/custompainter/whitestroke_custompainter.dart';
+export 'package:portfolio_web_version/utilities/custompainter/whitestroke_custompainter.dart';
 
