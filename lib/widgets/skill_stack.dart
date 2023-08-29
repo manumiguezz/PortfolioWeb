@@ -20,7 +20,7 @@ class MyStack extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 20,),
+        SizedBox(height: 60,),
 
         SizedBox(
           height: 500,
@@ -33,12 +33,12 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
               
-                    TechContainer(asset: 'java.png', techName: 'Java'),
-                    TechContainer(asset: 'c.png', techName: 'C'),
-                    TechContainer(asset: 'dart.png', techName: 'Dart'),
-                    TechContainer(asset: 'html.png', techName: 'HTML'),
-                    TechContainer(asset: 'css.png', techName: 'CSS'),
-                    TechContainer(asset: 'mysql.png', techName: 'MySQL'),
+                    TechStack(asset: 'java.png', techName: 'Java'),
+                    TechStack(asset: 'c.png', techName: 'C'),
+                    TechStack(asset: 'dart.png', techName: 'Dart'),
+                    TechStack(asset: 'html.png', techName: 'HTML'),
+                    TechStack(asset: 'css.png', techName: 'CSS'),
+                    TechStack(asset: 'mysql.png', techName: 'MySQL'),
               
                   ],
                 ),
@@ -50,12 +50,12 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   
-                    TechContainer(asset: 'spring.png', techName: 'Spring'),
-                    TechContainer(asset: 'javafx.png', techName: 'JavaFX'),
-                    TechContainer(asset: 'hibernate.png', techName: 'Hibernate'),
-                    TechContainer(asset: 'springboot.png', techName: 'Spring Boot'),
-                    TechContainer(asset: 'flutter.png', techName: 'Flutter'),
-                    TechContainer(asset: 'git.png', techName: 'Git'),
+                    TechStack(asset: 'spring.png', techName: 'Spring'),
+                    TechStack(asset: 'javafx.png', techName: 'JavaFX'),
+                    TechStack(asset: 'hibernate.png', techName: 'Hibernate'),
+                    TechStack(asset: 'springboot.png', techName: 'Spring Boot'),
+                    TechStack(asset: 'flutter.png', techName: 'Flutter'),
+                    TechStack(asset: 'git.png', techName: 'Git'),
 
                   ],
                 ),
@@ -67,12 +67,12 @@ class MyStack extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                   
-                    TechContainer(asset: 'postman.png', techName: 'Postman'),
-                    TechContainer(asset: 'maven.png', techName: 'Maven'),
-                    TechContainer(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
-                    TechContainer(asset: 'docker.png', techName: 'Docker'),
-                    TechContainer(asset: 'firebase.png', techName: 'Firebase'),
-                    TechContainer(asset: 'jwt.png', techName: 'JWT'),
+                    TechStack(asset: 'postman.png', techName: 'Postman'),
+                    TechStack(asset: 'maven.png', techName: 'Maven'),
+                    TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
+                    TechStack(asset: 'docker.png', techName: 'Docker'),
+                    TechStack(asset: 'firebase.png', techName: 'Firebase'),
+                    TechStack(asset: 'jwt.png', techName: 'JWT'),
 
                   ],
                 ),

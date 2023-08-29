@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:personal_web/widgets/widgets.dart';
 
-class TechContainer extends StatelessWidget {
+class TechStack extends StatelessWidget {
   final String asset;
   final String? techName; 
 
-  const TechContainer({
+  const TechStack({
     Key? key,
     required this.asset,
     this.techName, 

@@ -3,7 +3,7 @@ export 'package:personal_web/widgets/companyrestapi.dart';
 export 'package:personal_web/widgets/flickframes.dart';
 export 'package:personal_web/widgets/noteshopapp.dart';
 export 'package:personal_web/widgets/projects.dart';
-export 'package:personal_web/widgets/tech_container.dart';
+export 'package:personal_web/widgets/tech_stack.dart';
 export 'package:personal_web/widgets/hover_switch.dart';
 export 'package:personal_web/widgets/skill_stack.dart';
 export 'package:personal_web/widgets/white_flag_section.dart';
