@@ -14,9 +14,12 @@ class AboutMe extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
-          Image.asset(
-            'assets/images/profile.png',
-            scale: 8,
+          Transform(
+            transform: Matrix4.translationValues(0, 10, 0),
+            child: Image.asset(
+              'assets/images/profile.png',
+              scale: 8,
+            ),
           ),
     
           const SizedBox(width: 50,),
