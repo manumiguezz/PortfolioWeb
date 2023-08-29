@@ -17,7 +17,6 @@ class AboutMe extends StatelessWidget {
           Image.asset(
             'assets/images/profile.png',
             scale: 6.5,
-    
           ),
     
           const SizedBox(width: 50,),
@@ -148,7 +147,6 @@ class AboutMe extends StatelessWidget {
                     ],
                   ),
                 )
-                
               ),
 
               AnimatedButton(
@@ -167,37 +165,10 @@ class AboutMe extends StatelessWidget {
                 selectedTextColor: Colors.white,
                 borderRadius: 0,
                 borderWidth: 3,
-
               ),
-
-              AnimatedButton(
-                animatedOn: AnimatedOn.onHover,
-                height: 50,
-                width: 150,
-                text: 'My Resume',
-                isReverse: true,
-                selectedTextColor: Colors.white,
-                transitionType: TransitionType.LEFT_TO_RIGHT,
-                textStyle: const TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'poppinsbold',
-                  fontSize: 20,
-                ),
-                backgroundColor: Colors.transparent,
-                borderColor: Colors.black,
-                borderRadius: 0,
-                borderWidth: 4,
-                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
-              ),
-
 
             ],
           ),
-
-          // const SizedBox(width: 40),
-    
-          
-    
         ],
       ),
     );

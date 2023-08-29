@@ -63,23 +63,23 @@ class Flickframes extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   AnimatedButton(
-                    animatedOn: AnimatedOn.onHover,
-                    height: 50,
-                    width: 130,
                     text: 'Github',
-                    isReverse: true,
-                    selectedTextColor: Colors.black,
-                    transitionType: TransitionType.LEFT_TO_RIGHT,
                     textStyle: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'poppinslight',
                       fontSize: 20,
                     ),
-                    backgroundColor: Colors.transparent,
+                    onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
+                    animatedOn: AnimatedOn.onHover,
+                    height: 50,
+                    width: 130,
+                    transitionType: TransitionType.CENTER_TB_IN,
                     borderColor: Colors.white,
+                    backgroundColor: Colors.transparent,
+                    selectedBackgroundColor: Colors.white,
+                    selectedTextColor: Colors.black,
                     borderRadius: 0,
                     borderWidth: 2,
-                    onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
                   ),
 
                   
