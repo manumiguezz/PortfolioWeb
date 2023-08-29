@@ -74,7 +74,7 @@ class CompanyRestApi extends StatelessWidget {
                       text: 'Github',
                       isReverse: true,
                       selectedTextColor: Colors.black,
-                      transitionType: TransitionType.LEFT_TO_RIGHT,
+                      transitionType: TransitionType.CENTER_LR_IN,
                       textStyle: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'poppinslight',
@@ -90,7 +90,6 @@ class CompanyRestApi extends StatelessWidget {
                   ],
                 ),
               ),
-            
             ]
           ),
           

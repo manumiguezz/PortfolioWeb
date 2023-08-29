@@ -99,7 +99,7 @@ class Presentation extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 12,),
+              const SizedBox(width: 22,),
 
               GestureDetector(
                 onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
@@ -109,7 +109,7 @@ class Presentation extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 14,),
+              const SizedBox(width: 24,),
               
               GestureDetector(
                 onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
