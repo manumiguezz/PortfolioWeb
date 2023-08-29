@@ -152,6 +152,25 @@ class AboutMe extends StatelessWidget {
               ),
 
               AnimatedButton(
+                text: 'My Resume', 
+                textStyle: const TextStyle(
+                  fontFamily: 'poppinsbold',
+                  fontSize: 20
+                ),
+                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
+                animatedOn: AnimatedOn.onHover,
+                height: 50,
+                width: 150,
+                transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
+                borderColor: Colors.black,
+                selectedBackgroundColor: Colors.black,
+                selectedTextColor: Colors.white,
+                borderRadius: 0,
+                borderWidth: 3,
+
+              ),
+
+              AnimatedButton(
                 animatedOn: AnimatedOn.onHover,
                 height: 50,
                 width: 150,

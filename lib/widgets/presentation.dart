@@ -102,22 +102,23 @@ class Presentation extends StatelessWidget {
               const SizedBox(width: 12,),
 
               GestureDetector(
-                onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                child: MouseRegion(
-                  cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/linkedin_black.png', color: Colors.white, scale: 11,)
-                ),
-              ),
-
-              const SizedBox(width: 14,),
-              
-              GestureDetector(
                 onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                 child: MouseRegion(
                   cursor: MaterialStateMouseCursor.clickable,
                   child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 11,)
                 ),
               ),
+
+              const SizedBox(width: 14,),
+              
+              GestureDetector(
+                onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
+                child: MouseRegion(
+                  cursor: MaterialStateMouseCursor.clickable,
+                  child: Image.asset('assets/icons/socialmedia/linkedin_black.png', color: Colors.white, scale: 11,)
+                ),
+              ),
+              
 
             ],
           ),      
