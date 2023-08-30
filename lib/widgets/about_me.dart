@@ -160,7 +160,7 @@ class AboutMe extends StatelessWidget {
                     fontFamily: 'poppinsbold',
                     fontSize: 20
                   ),
-                  onPress: () => launchUrl('https://www.dropbox.com/scl/fi/whc7tdvtgu0hkluhdlagd/Manuel-Miguez-Laur-a-EN.pdf?rlkey=d4qdg7gekp54dg5khtegk04sg&dl=0'),
+                  onPress: () => launchUrl('https://www.canva.com/design/DAFs4o66NNU/UOVyn1JxrjPaNfYA4wfDKQ/view?utm_content=DAFs4o66NNU&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink'),
                   animatedOn: AnimatedOn.onHover,
                   height: 50,
                   width: 150,
