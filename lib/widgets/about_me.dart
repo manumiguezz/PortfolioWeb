@@ -19,7 +19,7 @@ class AboutMe extends StatelessWidget {
               transform: Matrix4.translationValues(0, 10, 0),
               child: Image.asset(
                 'assets/images/profile.png',
-                height: 620,
+                height: 630,
                 width: 550,
               )
             ),
@@ -153,6 +153,8 @@ class AboutMe extends StatelessWidget {
                     ),
                   )
                 ),
+
+                const SizedBox(height: 20,),
     
                 AnimatedButton(
                   text: 'My Resume', 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/screens/background.dart';
 import 'package:portfolio_web_version/screens/foreground.dart';
-import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
