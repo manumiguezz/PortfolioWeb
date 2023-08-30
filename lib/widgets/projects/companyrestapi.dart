@@ -86,7 +86,7 @@ class CompanyRestApi extends StatelessWidget {
           ),
     
           Transform(
-            transform: Matrix4.translationValues(0, 0, 0),
+            transform: Matrix4.translationValues(0, 80, 0),
             child: Transform.scale(
               scale: 1.3,
               child: const ResponsiveImage(

@@ -27,21 +27,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 18, 18, 18),
-      body: WebSmoothScroll(
-          controller: scrollController, 
-          child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: scrollController, 
-            child: const Stack(
-              children: [
-                Background(),
-                Foreground(),
-              ],
-            )
-          ),
-        ),
+    return const Scaffold(
+      backgroundColor: Color.fromARGB(255, 18, 18, 18),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Background(),
+            Foreground(),
+          ],
+        )
+      ),
     );
   }
 }
