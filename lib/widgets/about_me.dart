@@ -19,8 +19,9 @@ class AboutMe extends StatelessWidget {
               transform: Matrix4.translationValues(0, 10, 0),
               child: Image.asset(
                 'assets/images/profile.png',
-                scale: 3,
-              ),
+                height: 620,
+                width: 550,
+              )
             ),
       
             const SizedBox(width: 50,),

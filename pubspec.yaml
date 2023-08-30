@@ -47,8 +47,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/project/
-    - assets/parallax/
     - assets/icons/
     - assets/icons/socialmedia/
     - assets/icons/techstack/
     - assets/icons/techstackcolor/
+    - assets/gifs/yin-yang-loader.gif

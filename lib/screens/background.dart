@@ -12,7 +12,7 @@ class Background extends StatelessWidget {
 
         ParticleGroup(),
 
-        FittedBox(child: WhiteFlagSection()),
+        WhiteFlagSection(),
 
       ],
     );
