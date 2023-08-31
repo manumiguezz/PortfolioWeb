@@ -58,18 +58,20 @@ class MyStack extends StatelessWidget {
                   width: pagewidth,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 200),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                    child: FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                        
+                          TechStack(asset: 'spring.png', techName: 'Spring'),
+                          TechStack(asset: 'javafx.png', techName: 'JavaFX'),
+                          TechStack(asset: 'hibernate.png', techName: 'Hibernate'),
+                          TechStack(asset: 'springboot.png', techName: 'Spring Boot'),
+                          TechStack(asset: 'flutter.png', techName: 'Flutter'),
+                          TechStack(asset: 'git.png', techName: 'Git'),
                       
-                        TechStack(asset: 'spring.png', techName: 'Spring'),
-                        TechStack(asset: 'javafx.png', techName: 'JavaFX'),
-                        TechStack(asset: 'hibernate.png', techName: 'Hibernate'),
-                        TechStack(asset: 'springboot.png', techName: 'Spring Boot'),
-                        TechStack(asset: 'flutter.png', techName: 'Flutter'),
-                        TechStack(asset: 'git.png', techName: 'Git'),
-                    
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -78,18 +80,20 @@ class MyStack extends StatelessWidget {
                   width: pagewidth,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 200),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                    child: FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                        
+                          TechStack(asset: 'postman.png', techName: 'Postman'),
+                          TechStack(asset: 'maven.png', techName: 'Maven'),
+                          TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
+                          TechStack(asset: 'docker.png', techName: 'Docker'),
+                          TechStack(asset: 'firebase.png', techName: 'Firebase'),
+                          TechStack(asset: 'jwt.png', techName: 'JWT'),
                       
-                        TechStack(asset: 'postman.png', techName: 'Postman'),
-                        TechStack(asset: 'maven.png', techName: 'Maven'),
-                        TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
-                        TechStack(asset: 'docker.png', techName: 'Docker'),
-                        TechStack(asset: 'firebase.png', techName: 'Firebase'),
-                        TechStack(asset: 'jwt.png', techName: 'JWT'),
-                    
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
