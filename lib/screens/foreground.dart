@@ -20,7 +20,7 @@ class Foreground extends StatelessWidget {
 
         MyStack(),
 
-        SizedBox(height: 200),
+        SizedBox(height: 180),
 
         ProjectSection(),
 
