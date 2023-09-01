@@ -15,36 +15,33 @@ class CustomParticleBackground extends StatelessWidget {
   final int? biggestSize;
   final double? slowestSpeed;
   final double? highestSpeed;
-  
+
   const CustomParticleBackground({
-    super.key, 
-    this.backgroundColor, 
-    this.particleColor, 
-    this.multiColor, 
-    this.blur, 
-    this.blurIntensity, 
-    this.numberOfParticles, 
-    this.allFilled, 
-    this.smallestSize, 
-    this.biggestSize, 
-    this.slowestSpeed, 
-    this.highestSpeed, 
-    this.height, 
+    super.key,
+    this.backgroundColor,
+    this.particleColor,
+    this.multiColor,
+    this.blur,
+    this.blurIntensity,
+    this.numberOfParticles,
+    this.allFilled,
+    this.smallestSize,
+    this.biggestSize,
+    this.slowestSpeed,
+    this.highestSpeed,
+    this.height,
     this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-
-    final double pageHeight = MediaQuery.of(context).size.height - 30; 
-    final double pageWidth = MediaQuery.of(context).size.width- 30;
+    final double pageHeight = MediaQuery.of(context).size.height - 30;
+    final double pageWidth = MediaQuery.of(context).size.width - 30;
 
     return SizedBox(
       height: height ?? pageHeight,
       width: width ?? pageWidth,
-
       child: ParticleBackground(
-        
         backgroundColor: backgroundColor ?? Colors.transparent,
         particleColor: particleColor ?? const Color.fromARGB(243, 34, 34, 34),
         multiColor: multiColor ?? false,
