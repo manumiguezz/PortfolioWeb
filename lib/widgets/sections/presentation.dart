@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/url_launcher.dart';
-
-import 'animated_text.dart';
+import '../animated_text.dart';
 
 class Presentation extends StatelessWidget {
   const Presentation({
