@@ -78,11 +78,11 @@ class AboutMe extends StatelessWidget {
                           text: 'C',
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                        TextSpan(text: ', '),
-                        TextSpan(
-                          text: 'C++',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
+                        // TextSpan(text: ', '),
+                        // TextSpan(
+                        //   text: 'C++',
+                        //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        // ),
                         TextSpan(text: ', as well as web technologies such as '),
                         TextSpan(
                           text: 'HTML',
