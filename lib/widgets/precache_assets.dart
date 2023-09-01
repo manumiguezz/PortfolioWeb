@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 void precacheAssets(BuildContext context) {
 
+// function added to load images as soon as possible 
+
   precacheImage(const AssetImage('assets/images/profile.png'), context);
 
   precacheImage(const AssetImage('assets/icons/socialmedia/email_black.png'), context);
