@@ -37,7 +37,7 @@ class _HoverImageSwitcherState extends State<HoverImageSwitcher> {
           child: Image.asset(
             isColored ? widget.coloredImagePath : widget.bwImagePath,
             key: ValueKey<bool>(isColored),
-            scale: 9,
+            scale: 8,
           ),
           transitionBuilder: (child, animation) {
             return FadeTransition(
