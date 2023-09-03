@@ -76,13 +76,11 @@ class Presentation extends StatelessWidget {
 
               const SizedBox(width: 22,),
 
-
-              
               GestureDetector(
                 onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                 child: MouseRegion(
                   cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 11,)
+                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 10,)
                 ),
               ),
 
@@ -96,7 +94,6 @@ class Presentation extends StatelessWidget {
                 ),
               ),
               
-
             ],
           ),      
 
