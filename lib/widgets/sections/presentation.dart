@@ -9,6 +9,8 @@ class Presentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isHovered = false;
+
     return Padding(
       padding: const EdgeInsets.only(top: 200, left: 50),
       child: Column(
@@ -76,11 +78,28 @@ class Presentation extends StatelessWidget {
 
               const SizedBox(width: 22,),
 
-              GestureDetector(
-                onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
-                child: MouseRegion(
-                  cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 11,)
+
+              
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                onEnter: (_) {},
+                onExit: (_) {},
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  child: Container(
+                    
+                    width: isHovered ? 100.0 : 80.0,
+                    height: isHovered ? 100.0 : 80.0,
+                    child: GestureDetector(
+                      onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
+                      child: Image.asset(
+                        'assets/icons/socialmedia/email_black.png',
+                        color: Colors.white,
+                        scale: 11,
+                      ),
+                    ),
+                  ),
                 ),
               ),
 
