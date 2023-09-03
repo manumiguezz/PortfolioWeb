@@ -66,28 +66,6 @@ class Presentation extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
 
-              // AnimatedButton(
-              //   animatedOn: AnimatedOn.onHover,
-              //   height: 50,
-              //   width: 150,
-              //   text: 'About Me',
-              //   isReverse: true,
-              //   selectedTextColor: Colors.black,
-              //   transitionType: TransitionType.LEFT_TO_RIGHT,
-              //   textStyle: const TextStyle(
-              //     color: Colors.white,
-              //     fontFamily: 'poppinslight',
-              //     fontSize: 20,
-              //   ),
-              //   backgroundColor: Colors.transparent,
-              //   borderColor: Colors.white,
-              //   borderRadius: 0,
-              //   borderWidth: 2,
-              //   onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
-              // ),
-
-              // const SizedBox(width: 17,),
-
               GestureDetector(
                 onTap: () => launchUrl('https://github.com/manumiguezz'),
                 child: MouseRegion(
