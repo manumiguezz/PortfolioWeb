@@ -8,7 +8,7 @@ export 'package:portfolio_web_version/widgets/sections/projects.dart';
 export 'package:portfolio_web_version/widgets/tech_stack.dart';
 export 'package:portfolio_web_version/widgets/hover_switch.dart';
 export 'package:portfolio_web_version/widgets/sections/skill_stack.dart';
-export 'package:portfolio_web_version/widgets/white_flag.dart';
+export 'package:portfolio_web_version/utilities/custompainter/white_flag.dart';
 export 'package:portfolio_web_version/widgets/sections/about_me.dart';
 export 'package:portfolio_web_version/widgets/particle_group.dart';
 export 'package:portfolio_web_version/widgets/custom_particle_background.dart';

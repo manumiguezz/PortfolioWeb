@@ -31,6 +31,4 @@ void precacheAssets(BuildContext context) {
   precacheImage(const AssetImage('assets/icons/techstackcolor/spring.png'), context);
   precacheImage(const AssetImage('assets/icons/techstackcolor/springboot.png'), context);
   precacheImage(const AssetImage('assets/icons/techstackcolor/thymeleaf.png'), context);
-
-
 }
