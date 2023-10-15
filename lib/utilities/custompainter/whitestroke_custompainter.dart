@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class WhiteStrokePainter extends CustomPainter {
@@ -32,7 +31,6 @@ class WhiteStrokePainter extends CustomPainter {
         size.height * 0.07,
       );
       
-
       path.lineTo(size.width, size.height * 0.90);
 
       path.quadraticBezierTo(
@@ -53,7 +51,6 @@ class WhiteStrokePainter extends CustomPainter {
 
   canvas.drawPath(path, paint);
 }
-
 
   @override
   bool shouldRepaint(WhiteStrokePainter oldDelegate) => true;

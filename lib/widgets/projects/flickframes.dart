@@ -80,13 +80,10 @@ class Flickframes extends StatelessWidget {
                   selectedTextColor: Colors.black,
                   borderRadius: 0,
                   borderWidth: 2,
-                ),                  
-              
+                ),                                
               ],
             ),
           ),
-
-          // const SizedBox(width: 50,),
       
           Transform(
             transform: Matrix4.translationValues(100, 0, 0),
