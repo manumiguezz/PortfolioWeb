@@ -18,7 +18,7 @@ class _PdfViewer extends State<PdfViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Syncfusion Flutter PDF Viewer'),
+        title: const Text('Resume'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -32,10 +32,7 @@ class _PdfViewer extends State<PdfViewer> {
           ),
         ],
       ),
-      body: SfPdfViewer.network(
-        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
-        key: _pdfViewerKey,
-      ),
+      body: SfPdfViewer.asset('assets/pdf/resume.pdf')
     );
   }
 }
