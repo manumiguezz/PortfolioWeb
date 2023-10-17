@@ -22,30 +22,23 @@ class _PdfViewer extends State<PdfViewer> {
 
     pdfViewerController.zoomLevel = 2;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 170),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: const Text('Manuel Miguez Lauría Resume'),
-          actions: <Widget>[
-            IconButton(
-            icon: Icon(
-              Icons.zoom_in,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              pdfViewerController.zoomLevel = 2;
-            },
-          ),
-          ],
-        ),
-        body: SfPdfViewer.asset(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Manuel Miguez Lauría'),
+        backgroundColor: Colors.black,
+        actions: const <Widget>[
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 340, vertical: 20),
+        child: SfPdfViewer.asset(
           'assets/pdf/resume.pdf',
           controller: pdfViewerController,
-          initialZoomLevel: 0.4,
-        )
-      ),
+          pageLayoutMode: PdfPageLayoutMode.continuous,
+        ),
+      )
     );
   }
 }
