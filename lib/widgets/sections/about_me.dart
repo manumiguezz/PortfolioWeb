@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/screens/pdf_viewer.dart';
-import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({super.key});

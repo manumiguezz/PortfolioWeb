@@ -18,18 +18,9 @@ class _PdfViewer extends State<PdfViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Resume'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.bookmark,
-              color: Colors.white,
-              semanticLabel: 'Bookmark',
-            ),
-            onPressed: () {
-              _pdfViewerKey.currentState?.openBookmarkView();
-            },
-          ),
+        backgroundColor: Colors.black,
+        title: const Text('Manuel Miguez Lauría Resume'),
+        actions: const <Widget>[
         ],
       ),
       body: SfPdfViewer.asset('assets/pdf/resume.pdf')
