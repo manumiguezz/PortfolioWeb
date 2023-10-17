@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:portfolio_web_version/screens/pdf_viewer.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class AboutMe extends StatelessWidget {
@@ -162,7 +163,10 @@ class AboutMe extends StatelessWidget {
                     fontFamily: 'poppinsbold',
                     fontSize: 20
                   ),
-                  onPress: () => launchUrl('https://publuu.com/flip-book/226512/539375'),
+                  onPress: () => Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => PdfViewer(),)
+                  ),
                   animatedOn: AnimatedOn.onHover,
                   height: 50,
                   width: 150,
