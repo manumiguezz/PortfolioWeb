@@ -12,7 +12,7 @@ class MyStack extends StatelessWidget {
     double pagewidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 350),
+      padding: const EdgeInsets.symmetric(horizontal: 100),
       child: Column(
         children: [
       
@@ -31,7 +31,7 @@ class MyStack extends StatelessWidget {
           SizedBox(
             height: 500,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
       
                 SizedBox(
@@ -51,7 +51,6 @@ class MyStack extends StatelessWidget {
                   ),
                 ),
       
-                // const SizedBox(height: 10,),
       
                 SizedBox(
                   width: pagewidth,

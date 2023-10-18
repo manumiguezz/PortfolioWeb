@@ -8,6 +8,7 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
         Presentation(),
@@ -16,9 +17,9 @@ class Foreground extends StatelessWidget {
 
         AboutMe(),
 
-        SizedBox(height: 350,),
+        SizedBox(height: 400,),
 
-        MyStack(),
+        FittedBox(child: MyStack()),
 
         SizedBox(height: 190),
 
