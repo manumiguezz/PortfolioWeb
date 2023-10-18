@@ -9,18 +9,10 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    late double spaceOne;
-    late double spaceTwo;
-    late double spaceThree;
-    late double spaceFour;
-
-    if (MediaQuery.of(context).size.width < 1300){
-      spaceOne = 215;
-      spaceTwo = 400;
-      spaceThree = 190;
-      spaceFour = 200;
-      return LargeSize();
-    }
+    late double spaceOne = 100;
+    late double spaceTwo = 100;
+    late double spaceThree = 100;
+    late double spaceFour = 100;
 
     if (MediaQuery.of(context).size.width < 1300){
       spaceOne = 215;
@@ -28,6 +20,13 @@ class Foreground extends StatelessWidget {
       spaceThree = 190;
       spaceFour = 200;
     }
+
+    // if (MediaQuery.of(context).size.width < 1300){
+    //   spaceOne = 215;
+    //   spaceTwo = 400;
+    //   spaceThree = 190;
+    //   spaceFour = 200;
+    // }
 
     
     return Column(
@@ -38,19 +37,19 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceOne,),
 
-        AboutMe(),
+        const AboutMe(),
 
         SizedBox(height: spaceTwo,),
 
-        FittedBox(child: MyStack()),
+        const FittedBox(child: MyStack()),
 
         SizedBox(height: spaceThree),
 
-        ProjectSection(),
+        const ProjectSection(),
 
         SizedBox(height: spaceFour,),
 
-        LastInfo(),
+        const LastInfo(),
 
       ],
     );
