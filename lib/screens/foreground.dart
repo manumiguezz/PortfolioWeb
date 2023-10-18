@@ -9,37 +9,46 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final int spaceOne;
-    final int spaceTwo;
-    final int spaceThree;
-    final int spaceFour;
+    late double spaceOne;
+    late double spaceTwo;
+    late double spaceThree;
+    late double spaceFour;
 
-    if (MediaQuery.of(context).size.width < 600){
+    if (MediaQuery.of(context).size.width < 1300){
       spaceOne = 215;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
       return LargeSize();
     }
-    return const Column(
+
+    if (MediaQuery.of(context).size.width < 1300){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
+    }
+
+    
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        Presentation(),
+        const Presentation(),
 
-        SizedBox(height: 215,),
+        SizedBox(height: spaceOne,),
 
         AboutMe(),
 
-        SizedBox(height: 400,),
+        SizedBox(height: spaceTwo,),
 
         FittedBox(child: MyStack()),
 
-        SizedBox(height: 190),
+        SizedBox(height: spaceThree),
 
         ProjectSection(),
 
-        SizedBox(height: 200,),
+        SizedBox(height: spaceFour,),
 
         LastInfo(),
 
