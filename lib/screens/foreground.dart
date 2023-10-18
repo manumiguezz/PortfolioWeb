@@ -9,7 +9,16 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final int spaceOne;
+    final int spaceTwo;
+    final int spaceThree;
+    final int spaceFour;
+
     if (MediaQuery.of(context).size.width < 600){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
       return LargeSize();
     }
     return const Column(
