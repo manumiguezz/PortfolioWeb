@@ -12,7 +12,7 @@ class Foreground extends StatelessWidget {
 
         Presentation(),
 
-        SizedBox(height: 235,),
+        SizedBox(height: 215,),
 
         AboutMe(),
 

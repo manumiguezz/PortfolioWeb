@@ -12,7 +12,7 @@ class WhiteFlagSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 450),
       child: SizedBox(
-        height: pageHeight * 1.68,
+        height: pageHeight * 1.70,
         width: pageWidth,
         child: CustomPaint(
           painter: WhiteStrokePainter(),
