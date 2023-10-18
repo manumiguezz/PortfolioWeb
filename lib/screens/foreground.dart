@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/resize/large_size.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 
@@ -9,31 +10,32 @@ class Foreground extends StatelessWidget {
   Widget build(BuildContext context) {
 
     if (MediaQuery.of(context).size.width < 600){
-      return const Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
-          Presentation(),
-
-          SizedBox(height: 215,),
-
-          AboutMe(),
-
-          SizedBox(height: 400,),
-
-          FittedBox(child: MyStack()),
-
-          SizedBox(height: 190),
-
-          ProjectSection(),
-
-          SizedBox(height: 200,),
-
-          LastInfo(),
-
-        ],
-      );
+      return LargeSize();
     }
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+
+        Presentation(),
+
+        SizedBox(height: 215,),
+
+        AboutMe(),
+
+        SizedBox(height: 400,),
+
+        FittedBox(child: MyStack()),
+
+        SizedBox(height: 190),
+
+        ProjectSection(),
+
+        SizedBox(height: 200,),
+
+        LastInfo(),
+
+      ],
+    );
   }
 }
 
