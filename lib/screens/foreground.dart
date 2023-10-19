@@ -19,7 +19,7 @@ class Foreground extends StatelessWidget {
     late double reduceIcon = 1;
 
     if (MediaQuery.of(context).size.width > 1300){
-      spaceOne = 215;
+      spaceOne = 260;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
@@ -27,7 +27,7 @@ class Foreground extends StatelessWidget {
       fontSize = 80;
       reduceIcon = 0;
     } else if (MediaQuery.of(context).size.width > 1000){
-      spaceOne = 215;
+      spaceOne = 260;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
@@ -35,7 +35,7 @@ class Foreground extends StatelessWidget {
       fontSize = 70;
       reduceIcon = 1.5;
     } else if (MediaQuery.of(context).size.width > 800){
-      spaceOne = 215;
+      spaceOne = 180;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
