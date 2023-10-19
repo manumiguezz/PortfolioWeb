@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/resize/large_size.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 
@@ -14,23 +13,50 @@ class Foreground extends StatelessWidget {
     late double spaceThree = 100;
     late double spaceFour = 100;
 
+    late double fontSize = 80;
+
     if (MediaQuery.of(context).size.width > 1300){
       spaceOne = 215;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
+
+      fontSize = 80;
     } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 215;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
+
+      fontSize = 70;
+    } else if (MediaQuery.of(context).size.width > 800){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
+
+      fontSize = 60;
+    } else if (MediaQuery.of(context).size.width > 600){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
+
+      fontSize = 45;
+    } else if (MediaQuery.of(context).size.width > 400){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
+
+      fontSize = 35;
     }
     
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        const Presentation(),
+        Presentation(fontSize: fontSize,),
 
         SizedBox(height: spaceOne,),
 

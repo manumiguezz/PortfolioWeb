@@ -3,9 +3,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 class AnimatedText extends StatelessWidget {
   final int speed; 
+  final double fontSizeAnimated;
   const AnimatedText({
     super.key, 
-    required this.speed
+    required this.speed, 
+    required this.fontSizeAnimated
   });
 
   @override
@@ -15,9 +17,9 @@ class AnimatedText extends StatelessWidget {
       child: DefaultTextStyle(
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: 'poppinsbold',
-          fontSize: 80,
+          fontSize: fontSizeAnimated,
           color: Colors.white
         ),
 
