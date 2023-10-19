@@ -21,7 +21,7 @@ class Foreground extends StatelessWidget {
     if (MediaQuery.of(context).size.width > 1300){
       spaceOne = 260;
       spaceTwo = 400;
-      spaceThree = 190;
+      spaceThree = 150;
       spaceFour = 200;
 
       fontSize = 80;
@@ -29,31 +29,31 @@ class Foreground extends StatelessWidget {
     } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 260;
       spaceTwo = 400;
-      spaceThree = 190;
+      spaceThree = 50;
       spaceFour = 200;
 
       fontSize = 70;
       reduceIcon = 1.5;
     } else if (MediaQuery.of(context).size.width > 800){
       spaceOne = 180;
-      spaceTwo = 400;
-      spaceThree = 190;
+      spaceTwo = 230;
+      spaceThree = 50;
       spaceFour = 200;
 
       fontSize = 60;
       reduceIcon = 2;
     } else if (MediaQuery.of(context).size.width > 600){
-      spaceOne = 215;
-      spaceTwo = 400;
-      spaceThree = 190;
+      spaceOne = 145;
+      spaceTwo = 230;
+      spaceThree = 50;
       spaceFour = 200;
 
       fontSize = 45;
       reduceIcon = 4;
     } else if (MediaQuery.of(context).size.width > 400){
-      spaceOne = 215;
-      spaceTwo = 400;
-      spaceThree = 190;
+      spaceOne = 135;
+      spaceTwo = 150;
+      spaceThree = 50;
       spaceFour = 200;
 
       fontSize = 35;

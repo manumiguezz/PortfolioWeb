@@ -26,8 +26,8 @@ class WhiteFlagSection extends StatelessWidget {
       paddingTop = 340;
       pageHeightStroke = 1;
     } else if (MediaQuery.of(context).size.width > 400){
-      paddingTop = 450;
-      pageHeightStroke = 1.70;
+      paddingTop = 340;
+      pageHeightStroke = 0.7;
     }
 
     final double pageWidth = MediaQuery.of(context).size.width;
