@@ -5,9 +5,11 @@ import '../animated_text.dart';
 class Presentation extends StatelessWidget {
 
   final double fontSize;
+  final double reduceIcon;
   const Presentation({
     super.key, 
-    required this.fontSize,
+    required this.fontSize, 
+    required this.reduceIcon,
   });
 
   @override
@@ -71,32 +73,32 @@ class Presentation extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-
+          
               GestureDetector(
                 onTap: () => launchUrl('https://github.com/manumiguezz'),
                 child: MouseRegion(
                   cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/github_black.png', color: Colors.white, scale: 12,)
+                  child: Image.asset('assets/icons/socialmedia/github_black.png', color: Colors.white, scale: 12 + reduceIcon,)
                 ),
               ),
-
+          
               const SizedBox(width: 22,),
-
+          
               GestureDetector(
                 onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                 child: MouseRegion(
                   cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 10,)
+                  child: Image.asset('assets/icons/socialmedia/email_black.png', color: Colors.white, scale: 10 + reduceIcon,)
                 ),
               ),
-
+          
               const SizedBox(width: 24,),
               
               GestureDetector(
                 onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                 child: MouseRegion(
                   cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/linkedin_black.png', color: Colors.white, scale: 11,)
+                  child: Image.asset('assets/icons/socialmedia/linkedin_black.png', color: Colors.white, scale: 11 + reduceIcon,)
                 ),
               ),
               
