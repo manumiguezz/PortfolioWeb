@@ -10,14 +10,23 @@ class LargeSize extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Presentation(),
+
         Container(color: Colors.red, height: 800),
+
         SizedBox(height: 215,),
+
         AboutMe(),
+
         SizedBox(height: 400,),
+
         FittedBox(child: MyStack()),
+
         SizedBox(height: 190),
+
         ProjectSection(),
+
         SizedBox(height: 200,),
+        
         LastInfo(),
         ],
       );

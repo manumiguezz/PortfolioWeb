@@ -14,20 +14,17 @@ class Foreground extends StatelessWidget {
     late double spaceThree = 100;
     late double spaceFour = 100;
 
-    if (MediaQuery.of(context).size.width < 1300){
+    if (MediaQuery.of(context).size.width > 1300){
+      spaceOne = 215;
+      spaceTwo = 400;
+      spaceThree = 190;
+      spaceFour = 200;
+    } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 215;
       spaceTwo = 400;
       spaceThree = 190;
       spaceFour = 200;
     }
-
-    // if (MediaQuery.of(context).size.width < 1300){
-    //   spaceOne = 215;
-    //   spaceTwo = 400;
-    //   spaceThree = 190;
-    //   spaceFour = 200;
-    // }
-
     
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
