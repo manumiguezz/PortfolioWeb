@@ -8,6 +8,9 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    late double mediaQueryHeightValue = MediaQuery.of(context).size.height;
+
+
     // space between
     late double spaceOne = 100;
     late double spaceTwo = 100;
@@ -72,7 +75,7 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceTwo,),
 
-        const FittedBox(child: MyStack()),
+        const MyStack(),
 
         SizedBox(height: spaceThree),
 
