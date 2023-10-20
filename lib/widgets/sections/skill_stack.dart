@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class MyStack extends StatelessWidget {
+
+  final double iconStackScale;
+  final double nameStackScale;
+  final double horizontalTechPadding;
+  
   const MyStack({
-    super.key,
+    super.key, 
+    required this.iconStackScale, 
+    required this.nameStackScale, 
+    required this.horizontalTechPadding,
   });
 
   @override
@@ -12,7 +20,7 @@ class MyStack extends StatelessWidget {
     double pagewidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 100),
+      padding: EdgeInsets.symmetric(horizontal: horizontalTechPadding),
       child: Column(
         children: [
       
@@ -36,16 +44,16 @@ class MyStack extends StatelessWidget {
       
                 SizedBox(
                   width: pagewidth,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                                   
-                      TechStack(asset: 'java.png', techName: 'Java'),
-                      TechStack(asset: 'c.png', techName: 'C'),
-                      TechStack(asset: 'dart.png', techName: 'Dart'),
-                      TechStack(asset: 'html.png', techName: 'HTML'),
-                      TechStack(asset: 'css.png', techName: 'CSS'),
-                      TechStack(asset: 'mysql.png', techName: 'MySQL'),
+                      TechStack(asset: 'java.png', techName: 'Java', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'c.png', techName: 'C', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'dart.png', techName: 'Dart', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'html.png', techName: 'HTML', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'css.png', techName: 'CSS', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'mysql.png', techName: 'MySQL', stackScale: iconStackScale, nameScale: nameStackScale),
                                   
                     ],
                   ),
@@ -54,16 +62,16 @@ class MyStack extends StatelessWidget {
       
                 SizedBox(
                   width: pagewidth,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                     
-                      TechStack(asset: 'spring.png', techName: 'Spring'),
-                      TechStack(asset: 'javafx.png', techName: 'JavaFX'),
-                      TechStack(asset: 'hibernate.png', techName: 'Hibernate'),
-                      TechStack(asset: 'springboot.png', techName: 'Spring Boot'),
-                      TechStack(asset: 'flutter.png', techName: 'Flutter'),
-                      TechStack(asset: 'git.png', techName: 'Git'),
+                      TechStack(asset: 'spring.png', techName: 'Spring', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'javafx.png', techName: 'JavaFX', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'hibernate.png', techName: 'Hibernate', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'springboot.png', techName: 'Spring Boot', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'flutter.png', techName: 'Flutter', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'git.png', techName: 'Git', stackScale: iconStackScale, nameScale: nameStackScale),
                   
                     ],
                   ),
@@ -73,16 +81,16 @@ class MyStack extends StatelessWidget {
       
                 SizedBox(
                   width: pagewidth,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                     
-                      TechStack(asset: 'postman.png', techName: 'Postman'),
-                      TechStack(asset: 'maven.png', techName: 'Maven'),
-                      TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf'),
-                      TechStack(asset: 'docker.png', techName: 'Docker'),
-                      TechStack(asset: 'firebase.png', techName: 'Firebase'),
-                      TechStack(asset: 'jwt.png', techName: 'JWT'),
+                      TechStack(asset: 'postman.png', techName: 'Postman', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'maven.png', techName: 'Maven', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'docker.png', techName: 'Docker', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'firebase.png', techName: 'Firebase', stackScale: iconStackScale, nameScale: nameStackScale),
+                      TechStack(asset: 'jwt.png', techName: 'JWT', stackScale: iconStackScale, nameScale: nameStackScale),
                   
                     ],
                   ),

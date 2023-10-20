@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class HoverImageSwitcher extends StatefulWidget {
   final String coloredImagePath;
   final String bwImagePath;
+  final double scale;
 
   const HoverImageSwitcher({
     super.key, 
     required this.coloredImagePath,
-    required this.bwImagePath,
+    required this.bwImagePath, 
+    required this.scale,
   });
 
   @override
@@ -20,6 +22,7 @@ class _HoverImageSwitcherState extends State<HoverImageSwitcher> {
 
   @override
   Widget build(BuildContext context) {
+
     return MouseRegion(
       onEnter: (_) {
         setState(() {
@@ -37,7 +40,7 @@ class _HoverImageSwitcherState extends State<HoverImageSwitcher> {
           child: Image.asset(
             isColored ? widget.coloredImagePath : widget.bwImagePath,
             key: ValueKey<bool>(isColored),
-            scale: 8,
+            scale: widget.scale,
           ),
           transitionBuilder: (child, animation) {
             return FadeTransition(

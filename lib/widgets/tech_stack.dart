@@ -4,11 +4,15 @@ import 'package:portfolio_web_version/widgets/widgets.dart';
 class TechStack extends StatelessWidget {
   final String asset;
   final String? techName; 
+  final double nameScale;
+  final double stackScale;
 
   const TechStack({
-    Key? key,
     required this.asset,
+    required this.stackScale, 
+    required this.nameScale,
     this.techName, 
+    Key? key, 
   }) : super(key: key);
 
   @override
@@ -19,6 +23,7 @@ class TechStack extends StatelessWidget {
         HoverImageSwitcher(
           coloredImagePath: 'assets/icons/techstackcolor/$asset',
           bwImagePath: 'assets/icons/techstack/$asset',
+          scale: stackScale,
         ),
     
         const SizedBox(height: 10),
@@ -27,8 +32,8 @@ class TechStack extends StatelessWidget {
           Text(
             techName!,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 15,
+            style: TextStyle(
+              fontSize: nameScale,
               color: Colors.white,
               fontFamily: 'poppinsbold',
             ),

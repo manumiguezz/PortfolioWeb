@@ -21,6 +21,11 @@ class Foreground extends StatelessWidget {
     late double fontSize = 80;
     late double reduceIcon = 1;
 
+    // variables for MyStack
+    late double iconStackScale = 10;
+    late double nameStackScale = 10;
+    late double horizontalTechPadding = 100;
+
     if (MediaQuery.of(context).size.width > 1300){
       spaceOne = 260;
       spaceTwo = 400;
@@ -29,6 +34,10 @@ class Foreground extends StatelessWidget {
 
       fontSize = 80;
       reduceIcon = 0;
+
+      iconStackScale = 8;
+      nameStackScale = 15;
+      horizontalTechPadding = 200;
     } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 260;
       spaceTwo = 400;
@@ -37,6 +46,10 @@ class Foreground extends StatelessWidget {
 
       fontSize = 70;
       reduceIcon = 1.5;
+
+      iconStackScale = 8;
+      nameStackScale = 15;
+      horizontalTechPadding = 180; 
     } else if (MediaQuery.of(context).size.width > 800){
       spaceOne = 180;
       spaceTwo = 230;
@@ -45,6 +58,10 @@ class Foreground extends StatelessWidget {
 
       fontSize = 60;
       reduceIcon = 2;
+
+      iconStackScale = 10;
+      nameStackScale = 10;
+      horizontalTechPadding = 10;
     } else if (MediaQuery.of(context).size.width > 600){
       spaceOne = 145;
       spaceTwo = 230;
@@ -53,6 +70,10 @@ class Foreground extends StatelessWidget {
 
       fontSize = 45;
       reduceIcon = 4;
+
+      iconStackScale = 10;
+      nameStackScale = 10;
+      horizontalTechPadding = 10;
     } else if (MediaQuery.of(context).size.width > 400){
       spaceOne = 135;
       spaceTwo = 150;
@@ -61,6 +82,10 @@ class Foreground extends StatelessWidget {
 
       fontSize = 35;
       reduceIcon = 6;
+
+      iconStackScale = 10;
+      nameStackScale = 10;
+      horizontalTechPadding = 10;
     }
     
     return Column(
@@ -75,7 +100,7 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceTwo,),
 
-        const MyStack(),
+        MyStack(iconStackScale: iconStackScale, nameStackScale: nameStackScale, horizontalTechPadding: horizontalTechPadding),
 
         SizedBox(height: spaceThree),
 
