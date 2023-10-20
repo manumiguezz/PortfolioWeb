@@ -105,6 +105,21 @@ class Foreground extends StatelessWidget {
 
       projectSpaceBetween = 180;
 
+    } else if (MediaQuery.of(context).size.width > 300){
+      spaceOne = 135;
+      spaceTwo = 150;
+      spaceThree = 50;
+      spaceFour = 200;
+
+      fontSize = 25;
+      reduceIcon = 10;
+
+      iconStackScale = 14;
+      nameStackScale = 10.5;
+      horizontalTechPadding = 10;
+
+      projectSpaceBetween = 180;
+
     }
     
     return Column(
