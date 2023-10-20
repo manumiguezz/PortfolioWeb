@@ -37,12 +37,12 @@ class Foreground extends StatelessWidget {
 
       iconStackScale = 8;
       nameStackScale = 15;
-      horizontalTechPadding = 200;
+      horizontalTechPadding = 300;
     } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 260;
       spaceTwo = 400;
       spaceThree = 50;
-      spaceFour = 200;
+      spaceFour = 240;
 
       fontSize = 70;
       reduceIcon = 1.5;
@@ -59,9 +59,9 @@ class Foreground extends StatelessWidget {
       fontSize = 60;
       reduceIcon = 2;
 
-      iconStackScale = 10;
-      nameStackScale = 10;
-      horizontalTechPadding = 10;
+      iconStackScale = 8;
+      nameStackScale = 15;
+      horizontalTechPadding = 90;
     } else if (MediaQuery.of(context).size.width > 600){
       spaceOne = 145;
       spaceTwo = 230;
@@ -71,9 +71,9 @@ class Foreground extends StatelessWidget {
       fontSize = 45;
       reduceIcon = 4;
 
-      iconStackScale = 10;
-      nameStackScale = 10;
-      horizontalTechPadding = 10;
+      iconStackScale = 11;
+      nameStackScale = 12;
+      horizontalTechPadding = 60;
     } else if (MediaQuery.of(context).size.width > 400){
       spaceOne = 135;
       spaceTwo = 150;
@@ -83,9 +83,9 @@ class Foreground extends StatelessWidget {
       fontSize = 35;
       reduceIcon = 6;
 
-      iconStackScale = 10;
+      iconStackScale = 13;
       nameStackScale = 10;
-      horizontalTechPadding = 10;
+      horizontalTechPadding = 50;
     }
     
     return Column(
