@@ -21,3 +21,5 @@ class MainApp extends StatelessWidget {
     ).animate().fadeIn();
   }
 }
+
+// "flutter build web --no-tree-shake-icons" for "firebase deploy"
