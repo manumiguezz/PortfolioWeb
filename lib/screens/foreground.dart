@@ -11,6 +11,7 @@ class Foreground extends StatelessWidget {
     late double mediaQueryHeightValue = MediaQuery.of(context).size.height;
 
 
+
     // space between
     late double spaceOne = 100;
     late double spaceTwo = 100;
@@ -26,6 +27,9 @@ class Foreground extends StatelessWidget {
     late double nameStackScale = 10;
     late double horizontalTechPadding = 100;
 
+    // variables for Project Section
+    late double projectSpaceBetween = 10;
+
     if (MediaQuery.of(context).size.width > 1300){
       spaceOne = 260;
       spaceTwo = 400;
@@ -38,6 +42,9 @@ class Foreground extends StatelessWidget {
       iconStackScale = 8;
       nameStackScale = 15;
       horizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+
     } else if (MediaQuery.of(context).size.width > 1000){
       spaceOne = 260;
       spaceTwo = 400;
@@ -49,7 +56,10 @@ class Foreground extends StatelessWidget {
 
       iconStackScale = 8;
       nameStackScale = 15;
-      horizontalTechPadding = 180; 
+      horizontalTechPadding = 180;
+
+      projectSpaceBetween = 0;
+
     } else if (MediaQuery.of(context).size.width > 800){
       spaceOne = 180;
       spaceTwo = 230;
@@ -62,6 +72,9 @@ class Foreground extends StatelessWidget {
       iconStackScale = 8;
       nameStackScale = 15;
       horizontalTechPadding = 90;
+
+      projectSpaceBetween = 120;
+
     } else if (MediaQuery.of(context).size.width > 600){
       spaceOne = 145;
       spaceTwo = 230;
@@ -74,6 +87,9 @@ class Foreground extends StatelessWidget {
       iconStackScale = 11;
       nameStackScale = 12;
       horizontalTechPadding = 60;
+
+      projectSpaceBetween = 150;
+
     } else if (MediaQuery.of(context).size.width > 400){
       spaceOne = 135;
       spaceTwo = 150;
@@ -86,6 +102,9 @@ class Foreground extends StatelessWidget {
       iconStackScale = 13;
       nameStackScale = 10;
       horizontalTechPadding = 50;
+
+      projectSpaceBetween = 180;
+
     }
     
     return Column(
@@ -100,11 +119,15 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceTwo,),
 
-        MyStack(iconStackScale: iconStackScale, nameStackScale: nameStackScale, horizontalTechPadding: horizontalTechPadding),
+        MyStack(
+          iconStackScale: iconStackScale, 
+          nameStackScale: nameStackScale, 
+          horizontalTechPadding: horizontalTechPadding
+        ),
 
         SizedBox(height: spaceThree),
 
-        const ProjectSection(),
+        ProjectSection(projectSpaceBetween: projectSpaceBetween),
 
         SizedBox(height: spaceFour,),
 

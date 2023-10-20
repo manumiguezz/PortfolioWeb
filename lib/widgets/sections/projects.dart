@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class ProjectSection extends StatelessWidget {
-  const ProjectSection({super.key});
+
+  final double projectSpaceBetween;
+
+  const ProjectSection({
+    super.key, 
+    required this.projectSpaceBetween
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
 
-        Text(
+        const Text(
           textAlign: TextAlign.center,
           'My Projects',
           style: TextStyle(
@@ -19,13 +25,17 @@ class ProjectSection extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
 
-        Flickframes(),
+        const Flickframes(),
 
-        NoteshopApp(),
+        SizedBox(height: projectSpaceBetween),
 
-        CompanyRestApi()
+        const NoteshopApp(),
+
+        SizedBox(height: projectSpaceBetween),
+
+        const CompanyRestApi()
 
       ],
       
