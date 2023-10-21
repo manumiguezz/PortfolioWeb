@@ -8,9 +8,8 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    late double mediaQueryHeightValue = MediaQuery.of(context).size.height;
-
     // general variables
+    
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
@@ -19,6 +18,10 @@ class Foreground extends StatelessWidget {
     // variables for presentation
     late double presentationFontSize = 80;
     late double presentationReduceIcon = 1;
+
+    // variables for about me section
+    late double aboutMeTitleFontSize = 0;
+    late double aboutMeDescriptionFontSize = 0;
 
     // variables for MyStack
     late double myStackIconScale = 10;
@@ -114,6 +117,7 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 10;
 
     } else if (MediaQuery.of(context).size.width > 300){
+      
       spaceOne = 135;
       spaceTwo = 150;
       spaceThree = 50;
@@ -121,6 +125,9 @@ class Foreground extends StatelessWidget {
 
       presentationFontSize = 25;
       presentationReduceIcon = 10;
+
+      aboutMeTitleFontSize = 70;
+      aboutMeDescriptionFontSize = 28;
 
       myStackIconScale = 17;
       myStackNameScale = 10;
@@ -141,6 +148,9 @@ class Foreground extends StatelessWidget {
 
       presentationFontSize = 25;
       presentationReduceIcon = 10;
+
+      aboutMeTitleFontSize = 70;
+      aboutMeDescriptionFontSize = 28;
 
       myStackIconScale = 18;
       myStackNameScale = 10.5;
@@ -163,7 +173,10 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceOne,),
 
-        const AboutMe(),
+        AboutMe(
+          aboutMeTitleFontSize: aboutMeTitleFontSize,
+          aboutMeDescriptionFontSize: aboutMeDescriptionFontSize,
+        ),
 
         SizedBox(height: spaceTwo,),
 

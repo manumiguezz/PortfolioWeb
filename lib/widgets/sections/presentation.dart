@@ -15,7 +15,7 @@ class Presentation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final mediaQuery = MediaQuery.of(context).size.width;
+    double mediaQuery = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: EdgeInsets.only(top: 200, left: mediaQuery * 0.07),
