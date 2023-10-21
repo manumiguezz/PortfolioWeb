@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:portfolio_web_version/screens/pdf_viewer.dart';
+import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({super.key});
@@ -162,10 +162,11 @@ class AboutMe extends StatelessWidget {
                     fontFamily: 'poppinsbold',
                     fontSize: 20
                   ),
-                  onPress: () => Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => PdfViewer(),)
-                  ),
+                  // onPress: () => Navigator.push(
+                  //   context, 
+                  //   MaterialPageRoute(builder: (context) => PdfViewer(),)
+                  // ),
+                  onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
                   animatedOn: AnimatedOn.onHover,
                   height: 50,
                   width: 150,
