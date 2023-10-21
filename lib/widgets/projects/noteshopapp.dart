@@ -3,8 +3,12 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class NoteshopApp extends StatelessWidget {
+
+  final double scaleFactorSum;
+
   const NoteshopApp({
-    super.key,
+    super.key, 
+    required this.scaleFactorSum,
   });
 
   @override
@@ -16,7 +20,10 @@ class NoteshopApp extends StatelessWidget {
       
           Transform(
             transform: Matrix4.translationValues(-100, 0, 0),
-            child: const ResponsiveImage(imageAsset: 'assets/images/project/noteshop.png', scaleFactor: 0.8,)
+            child: ResponsiveImage(
+              imageAsset: 'assets/images/project/noteshop.png', 
+              scaleFactor: 0.8 + scaleFactorSum,
+            )
           ),
 
           const SizedBox(width: 50,),

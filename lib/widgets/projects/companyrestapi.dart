@@ -3,8 +3,12 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class CompanyRestApi extends StatelessWidget {
+
+  final double scaleFactorSum;
+
   const CompanyRestApi({
-    super.key,
+    super.key, 
+    required this.scaleFactorSum,
   });
 
   @override
@@ -89,9 +93,9 @@ class CompanyRestApi extends StatelessWidget {
             transform: Matrix4.translationValues(0, 80, 0),
             child: Transform.scale(
               scale: 1.3,
-              child: const ResponsiveImage(
+              child: ResponsiveImage(
                 imageAsset: 'assets/images/project/companyrestapi.png', 
-                scaleFactor: 0.6,
+                scaleFactor: 0.6 + scaleFactorSum,
               ),
             )
           ),

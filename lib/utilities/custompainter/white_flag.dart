@@ -10,8 +10,8 @@ class WhiteFlagSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    late double paddingTop;
-    late double pageHeightStroke;
+    late double paddingTop = 100;
+    late double pageHeightStroke = 0.5;
 
     if (MediaQuery.of(context).size.width > 1300){
       paddingTop = 450;
@@ -28,6 +28,9 @@ class WhiteFlagSection extends StatelessWidget {
     } else if (MediaQuery.of(context).size.width > 400){
       paddingTop = 340;
       pageHeightStroke = 0.7;
+    } else if (MediaQuery.of(context).size.width > 300){
+      paddingTop = 385;
+      pageHeightStroke = 0.4;
     }
 
     final double pageWidth = MediaQuery.of(context).size.width;

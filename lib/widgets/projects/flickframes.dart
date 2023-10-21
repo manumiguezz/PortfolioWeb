@@ -3,8 +3,12 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class Flickframes extends StatelessWidget {
+
+  final double scaleFactorSum;
+
   const Flickframes({
-    super.key,
+    super.key, 
+    required this.scaleFactorSum,
   });
 
   @override
@@ -87,9 +91,9 @@ class Flickframes extends StatelessWidget {
       
           Transform(
             transform: Matrix4.translationValues(100, 0, 0),
-            child: const ResponsiveImage(
+            child: ResponsiveImage(
               imageAsset: 'assets/images/project/flickframes.png', 
-              scaleFactor: 0.8,
+              scaleFactor: 0.8 + scaleFactorSum,
             ) 
           )
         ],

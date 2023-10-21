@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 class LastInfo extends StatelessWidget {
-  const LastInfo({super.key});
+
+  final double lastInfoFontSize;
+  final double lastInfoSpaceBetween;
+
+  const LastInfo({
+    super.key, 
+    required this.lastInfoFontSize, 
+    required this.lastInfoSpaceBetween
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -13,18 +21,18 @@ class LastInfo extends StatelessWidget {
           'manuelmiguezlauria@gmail.com',
           style: TextStyle(
             fontFamily: 'poppinslight',
-                  fontSize: 12,
+                  fontSize: lastInfoFontSize,
                   color: Colors.white
           ),
         ),
 
-        SizedBox(width: 150,),
+        SizedBox(width: lastInfoSpaceBetween,),
 
         Text(
           'Website built on Flutter',
           style: TextStyle(
             fontFamily: 'poppinslight',
-                  fontSize: 12,
+                  fontSize: lastInfoFontSize,
                   color: Colors.white
           ),
         )

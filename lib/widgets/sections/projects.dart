@@ -4,10 +4,14 @@ import 'package:portfolio_web_version/widgets/widgets.dart';
 class ProjectSection extends StatelessWidget {
 
   final double projectSpaceBetween;
+  final double projectFontSize;
+  final double projectScaleFactorSum;
 
   const ProjectSection({
     super.key, 
-    required this.projectSpaceBetween
+    required this.projectSpaceBetween, 
+    required this.projectFontSize, 
+    required this.projectScaleFactorSum
   });
 
   @override
@@ -15,27 +19,27 @@ class ProjectSection extends StatelessWidget {
     return Column(
       children: [
 
-        const Text(
+        Text(
           textAlign: TextAlign.center,
           'My Projects',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'poppinsbold',
-            fontSize: 60
+            fontSize: projectFontSize
           ),
         ),
 
         const SizedBox(height: 50),
 
-        const Flickframes(),
+        Flickframes(scaleFactorSum: projectScaleFactorSum),
 
         SizedBox(height: projectSpaceBetween),
 
-        const NoteshopApp(),
+        NoteshopApp(scaleFactorSum: projectScaleFactorSum),
 
         SizedBox(height: projectSpaceBetween),
 
-        const CompanyRestApi()
+        CompanyRestApi(scaleFactorSum: projectScaleFactorSum)
 
       ],
       

@@ -10,25 +10,29 @@ class Foreground extends StatelessWidget {
 
     late double mediaQueryHeightValue = MediaQuery.of(context).size.height;
 
-
-
-    // space between
+    // general variables
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
     late double spaceFour = 100;
 
     // variables for presentation
-    late double fontSize = 80;
-    late double reduceIcon = 1;
+    late double presentationFontSize = 80;
+    late double presentationReduceIcon = 1;
 
     // variables for MyStack
-    late double iconStackScale = 10;
-    late double nameStackScale = 10;
-    late double horizontalTechPadding = 100;
+    late double myStackIconScale = 10;
+    late double myStackNameScale = 10;
+    late double myStackHorizontalTechPadding = 100;
+    late double myStackSizedBoxBetweenStack = 60;
 
     // variables for Project Section
     late double projectSpaceBetween = 10;
+    late double projectScaleFactorSum = 0;
+
+    // variables for last infoFontSize
+    late double lastInfoFontSize = 12;
+    late double lastInfoSpaceBetween = 150;
 
     if (MediaQuery.of(context).size.width > 1300){
       spaceOne = 260;
@@ -36,12 +40,12 @@ class Foreground extends StatelessWidget {
       spaceThree = 150;
       spaceFour = 200;
 
-      fontSize = 80;
-      reduceIcon = 0;
+      presentationFontSize = 80;
+      presentationReduceIcon = 0;
 
-      iconStackScale = 8;
-      nameStackScale = 15;
-      horizontalTechPadding = 300;
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
 
@@ -51,12 +55,12 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 240;
 
-      fontSize = 70;
-      reduceIcon = 1.5;
+      presentationFontSize = 70;
+      presentationReduceIcon = 1.5;
 
-      iconStackScale = 8;
-      nameStackScale = 15;
-      horizontalTechPadding = 180;
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 180;
 
       projectSpaceBetween = 0;
 
@@ -66,12 +70,12 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      fontSize = 60;
-      reduceIcon = 2;
+      presentationFontSize = 60;
+      presentationReduceIcon = 2;
 
-      iconStackScale = 8;
-      nameStackScale = 15;
-      horizontalTechPadding = 90;
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 90;
 
       projectSpaceBetween = 120;
 
@@ -81,12 +85,12 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      fontSize = 45;
-      reduceIcon = 4;
+      presentationFontSize = 45;
+      presentationReduceIcon = 4;
 
-      iconStackScale = 11;
-      nameStackScale = 12;
-      horizontalTechPadding = 60;
+      myStackIconScale = 11;
+      myStackNameScale = 12;
+      myStackHorizontalTechPadding = 60;
 
       projectSpaceBetween = 150;
 
@@ -96,14 +100,17 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      fontSize = 35;
-      reduceIcon = 6;
+      presentationFontSize = 35;
+      presentationReduceIcon = 6;
 
-      iconStackScale = 13;
-      nameStackScale = 10;
-      horizontalTechPadding = 50;
+      myStackIconScale = 13;
+      myStackNameScale = 10;
+      myStackHorizontalTechPadding = 50;
 
       projectSpaceBetween = 180;
+
+      lastInfoFontSize = 17;
+      lastInfoFontSize = 10;
 
     } else if (MediaQuery.of(context).size.width > 300){
       spaceOne = 135;
@@ -111,14 +118,37 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      fontSize = 25;
-      reduceIcon = 10;
+      presentationFontSize = 25;
+      presentationReduceIcon = 10;
 
-      iconStackScale = 14;
-      nameStackScale = 10.5;
-      horizontalTechPadding = 10;
+      myStackIconScale = 17;
+      myStackNameScale = 10;
+      myStackHorizontalTechPadding = 10;
+
+      projectSpaceBetween = 110;
+      projectScaleFactorSum = 0.5;
+
+      lastInfoFontSize = 8;
+      lastInfoSpaceBetween = 30;
+
+    } else if (MediaQuery.of(context).size.width > 200){
+      spaceOne = 135;
+      spaceTwo = 150;
+      spaceThree = 50;
+      spaceFour = 200;
+
+      presentationFontSize = 25;
+      presentationReduceIcon = 10;
+
+      myStackIconScale = 18;
+      myStackNameScale = 10.5;
+      myStackHorizontalTechPadding = 10;
 
       projectSpaceBetween = 180;
+      projectScaleFactorSum = 0.5;
+
+      lastInfoFontSize = 7;
+      lastInfoSpaceBetween = 35;
 
     }
     
@@ -126,7 +156,7 @@ class Foreground extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        Presentation(fontSize: fontSize, reduceIcon: reduceIcon,),
+        Presentation(fontSize: presentationFontSize, reduceIcon: presentationReduceIcon,),
 
         SizedBox(height: spaceOne,),
 
@@ -135,18 +165,28 @@ class Foreground extends StatelessWidget {
         SizedBox(height: spaceTwo,),
 
         MyStack(
-          iconStackScale: iconStackScale, 
-          nameStackScale: nameStackScale, 
-          horizontalTechPadding: horizontalTechPadding
+          iconStackScale: myStackIconScale, 
+          nameStackScale: myStackNameScale, 
+          horizontalTechPadding: myStackHorizontalTechPadding,
+          fontSize: presentationFontSize,
+          sizedBoxBetweenStack: myStackSizedBoxBetweenStack,
         ),
 
         SizedBox(height: spaceThree),
 
-        ProjectSection(projectSpaceBetween: projectSpaceBetween),
+        ProjectSection(
+          projectSpaceBetween: projectSpaceBetween,
+          projectFontSize: presentationFontSize,
+          projectScaleFactorSum: projectScaleFactorSum,
+
+        ),
 
         SizedBox(height: spaceFour,),
 
-        const LastInfo(),
+        LastInfo(
+          lastInfoFontSize: lastInfoFontSize,
+          lastInfoSpaceBetween: lastInfoSpaceBetween,
+        ),
 
       ],
     );

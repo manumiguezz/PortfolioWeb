@@ -6,12 +6,16 @@ class MyStack extends StatelessWidget {
   final double iconStackScale;
   final double nameStackScale;
   final double horizontalTechPadding;
+  final double fontSize;
+  final double sizedBoxBetweenStack;
   
   const MyStack({
     super.key, 
     required this.iconStackScale, 
     required this.nameStackScale, 
-    required this.horizontalTechPadding,
+    required this.horizontalTechPadding, 
+    required this.fontSize, 
+    required this.sizedBoxBetweenStack,
   });
 
   @override
@@ -24,13 +28,13 @@ class MyStack extends StatelessWidget {
       child: Column(
         children: [
       
-          const Text(
+          Text(
             overflow: TextOverflow.ellipsis,
             'My Stack',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'poppinsbold',
-              fontSize: 60
+              fontSize: fontSize
             ),
           ),
       
