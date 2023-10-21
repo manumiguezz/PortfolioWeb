@@ -5,10 +5,12 @@ import 'package:portfolio_web_version/widgets/widgets.dart';
 class CompanyRestApi extends StatelessWidget {
 
   final double scaleFactorSum;
+  final double descriptionFontSize;
 
   const CompanyRestApi({
     super.key, 
-    required this.scaleFactorSum,
+    required this.scaleFactorSum, 
+    required this.descriptionFontSize,
   });
 
   @override
@@ -51,7 +53,7 @@ class CompanyRestApi extends StatelessWidget {
                       
                 const SizedBox(height: 20),
                       
-                const SizedBox(
+                SizedBox(
                   width: 670,
                   child: Text(
                     "This example of a company REST API utilizes Spring Boot as its foundational framework, and it's mainly built on Java. It seamlessly incorporates a MySQL database through JDBC and Spring Data JPA, reducing the codebase by approximately 70%. Security enhancements, such as Bcrypt-based password encryption, are integrated using Spring Security. The API also includes CRUD methods for smooth database updates via HTTP requests.",
@@ -60,23 +62,23 @@ class CompanyRestApi extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'poppinslight',
-                        fontSize: 20,
+                        fontSize: descriptionFontSize,
                     )
                   ),
                 ),
                 const SizedBox(height: 20),
                 AnimatedButton(
                   animatedOn: AnimatedOn.onHover,
-                  height: 50,
-                  width: 130,
+                  height: 50 + descriptionFontSize,
+                  width: 130 + descriptionFontSize,
                   text: 'Github',
                   isReverse: true,
                   selectedTextColor: Colors.black,
                   transitionType: TransitionType.CENTER_LR_IN,
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                     color: Colors.white,
                     fontFamily: 'poppinslight',
-                    fontSize: 20,
+                    fontSize: descriptionFontSize,
                   ),
                   backgroundColor: Colors.transparent,
                   borderColor: Colors.white,
@@ -90,7 +92,7 @@ class CompanyRestApi extends StatelessWidget {
           ),
     
           Transform(
-            transform: Matrix4.translationValues(0, 80, 0),
+            transform: Matrix4.translationValues(0, 110, 0),
             child: Transform.scale(
               scale: 1.3,
               child: ResponsiveImage(

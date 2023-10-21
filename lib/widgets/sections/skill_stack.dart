@@ -21,7 +21,8 @@ class MyStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    double pagewidth = MediaQuery.of(context).size.width;
+    double pageWidth = MediaQuery.of(context).size.width;
+    double pageHeight = MediaQuery.of(context).size.height;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: horizontalTechPadding),
@@ -38,7 +39,7 @@ class MyStack extends StatelessWidget {
             ),
           ),
       
-          const SizedBox(height: 60,),
+          SizedBox(height: pageHeight * 0.0002,),
       
           SizedBox(
             height: 500,
@@ -47,7 +48,7 @@ class MyStack extends StatelessWidget {
               children: [
       
                 SizedBox(
-                  width: pagewidth,
+                  width: pageWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,7 +66,7 @@ class MyStack extends StatelessWidget {
       
       
                 SizedBox(
-                  width: pagewidth,
+                  width: pageWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -84,7 +85,7 @@ class MyStack extends StatelessWidget {
                 // const SizedBox(height: 10,),
       
                 SizedBox(
-                  width: pagewidth,
+                  width: pageWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

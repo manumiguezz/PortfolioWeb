@@ -5,10 +5,12 @@ import 'package:portfolio_web_version/widgets/widgets.dart';
 class NoteshopApp extends StatelessWidget {
 
   final double scaleFactorSum;
+  final double descriptionFontSize;
 
   const NoteshopApp({
     super.key, 
-    required this.scaleFactorSum,
+    required this.scaleFactorSum, 
+    required this.descriptionFontSize,
   });
 
   @override
@@ -59,7 +61,7 @@ class NoteshopApp extends StatelessWidget {
                       
                 const SizedBox(height: 20),
                       
-                const SizedBox(
+                SizedBox(
                   width: 420,
                   child: Text(
                     'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
@@ -68,7 +70,7 @@ class NoteshopApp extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'poppinslight',
-                        fontSize: 20,
+                        fontSize: descriptionFontSize,
                     )
                   ),
                 ),
@@ -77,16 +79,16 @@ class NoteshopApp extends StatelessWidget {
               
                 AnimatedButton(
                   animatedOn: AnimatedOn.onHover,
-                  height: 50,
-                  width: 130,
+                  height: 50 + descriptionFontSize,
+                  width: 130 + descriptionFontSize,
                   text: 'Github',
                   isReverse: true,
                   selectedTextColor: Colors.black,
                   transitionType: TransitionType.LEFT_TO_RIGHT,
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                     color: Colors.white,
                     fontFamily: 'poppinslight',
-                    fontSize: 20,
+                    fontSize: descriptionFontSize,
                   ),
                   backgroundColor: Colors.transparent,
                   borderColor: Colors.white,

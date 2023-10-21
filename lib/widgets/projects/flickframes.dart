@@ -5,10 +5,12 @@ import 'package:portfolio_web_version/widgets/widgets.dart';
 class Flickframes extends StatelessWidget {
 
   final double scaleFactorSum;
+  final double descriptionFontSize;
 
   const Flickframes({
     super.key, 
-    required this.scaleFactorSum,
+    required this.scaleFactorSum, 
+    required this.descriptionFontSize,
   });
 
   @override
@@ -26,31 +28,31 @@ class Flickframes extends StatelessWidget {
               
                 const SizedBox(height: 10,),
               
-                const Text(
+                Text(
                   'Flickframes',
                   style: TextStyle(
                     fontFamily: 'poppinsbold',
-                    fontSize: 70,
+                    fontSize: 70 + (descriptionFontSize * 0.1),
                     color: Colors.white
                   ),
                 ),
               
-                const SizedBox(
-                  width: 330,
+                SizedBox(
+                  width: 330 + (descriptionFontSize * 1.8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
+                      Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                      Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                      Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                      Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
                     ],
                   ),
                 ),
               
                 const SizedBox(height: 20),
               
-                const SizedBox(
+                SizedBox(
                   width: 420,
                   child: Text(
                     'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
@@ -59,7 +61,7 @@ class Flickframes extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'poppinslight',
-                        fontSize: 20,
+                        fontSize: descriptionFontSize,
                     )
                   ),
                 ),
@@ -68,15 +70,15 @@ class Flickframes extends StatelessWidget {
               
                 AnimatedButton(
                   text: 'Github',
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                     color: Colors.white,
                     fontFamily: 'poppinslight',
-                    fontSize: 20,
+                    fontSize: descriptionFontSize,
                   ),
                   onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
                   animatedOn: AnimatedOn.onHover,
-                  height: 50,
-                  width: 130,
+                  height: 50 + descriptionFontSize,
+                  width: 130 + descriptionFontSize,
                   transitionType: TransitionType.CENTER_TB_IN,
                   borderColor: Colors.white,
                   backgroundColor: Colors.transparent,

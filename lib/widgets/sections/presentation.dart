@@ -14,8 +14,11 @@ class Presentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 200, left: 50),
+      padding: EdgeInsets.only(top: 200, left: mediaQuery * 0.07),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,

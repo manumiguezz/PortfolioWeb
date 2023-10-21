@@ -6,12 +6,14 @@ class ProjectSection extends StatelessWidget {
   final double projectSpaceBetween;
   final double projectFontSize;
   final double projectScaleFactorSum;
+  final double projectDescriptionFontSize;
 
   const ProjectSection({
     super.key, 
     required this.projectSpaceBetween, 
     required this.projectFontSize, 
-    required this.projectScaleFactorSum
+    required this.projectScaleFactorSum, 
+    required this.projectDescriptionFontSize
   });
 
   @override
@@ -31,15 +33,24 @@ class ProjectSection extends StatelessWidget {
 
         const SizedBox(height: 50),
 
-        Flickframes(scaleFactorSum: projectScaleFactorSum),
+        Flickframes(
+          scaleFactorSum: projectScaleFactorSum,
+          descriptionFontSize: projectDescriptionFontSize,
+        ),
 
         SizedBox(height: projectSpaceBetween),
 
-        NoteshopApp(scaleFactorSum: projectScaleFactorSum),
+        NoteshopApp(
+          scaleFactorSum: projectScaleFactorSum,
+          descriptionFontSize: projectDescriptionFontSize,
+        ),
 
         SizedBox(height: projectSpaceBetween),
 
-        CompanyRestApi(scaleFactorSum: projectScaleFactorSum)
+        CompanyRestApi(
+          scaleFactorSum: projectScaleFactorSum,
+          descriptionFontSize: projectDescriptionFontSize,
+        )
 
       ],
       

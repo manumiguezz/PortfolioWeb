@@ -29,6 +29,7 @@ class Foreground extends StatelessWidget {
     // variables for Project Section
     late double projectSpaceBetween = 10;
     late double projectScaleFactorSum = 0;
+    late double projectDescriptionFontSize = 20;
 
     // variables for last infoFontSize
     late double lastInfoFontSize = 12;
@@ -125,11 +126,12 @@ class Foreground extends StatelessWidget {
       myStackNameScale = 10;
       myStackHorizontalTechPadding = 10;
 
-      projectSpaceBetween = 110;
-      projectScaleFactorSum = 0.5;
+      projectSpaceBetween = 50;
+      projectScaleFactorSum = 1.4;
+      projectDescriptionFontSize = 28;
 
       lastInfoFontSize = 8;
-      lastInfoSpaceBetween = 30;
+      lastInfoSpaceBetween = 28;
 
     } else if (MediaQuery.of(context).size.width > 200){
       spaceOne = 135;
@@ -146,6 +148,7 @@ class Foreground extends StatelessWidget {
 
       projectSpaceBetween = 180;
       projectScaleFactorSum = 0.5;
+      projectDescriptionFontSize = 30;
 
       lastInfoFontSize = 7;
       lastInfoSpaceBetween = 35;
@@ -178,7 +181,7 @@ class Foreground extends StatelessWidget {
           projectSpaceBetween: projectSpaceBetween,
           projectFontSize: presentationFontSize,
           projectScaleFactorSum: projectScaleFactorSum,
-
+          projectDescriptionFontSize: projectDescriptionFontSize,
         ),
 
         SizedBox(height: spaceFour,),
