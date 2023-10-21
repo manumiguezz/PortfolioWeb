@@ -164,7 +164,6 @@ class AboutMe extends StatelessWidget {
                   ),
                   onPress: () => Navigator.push(
                     context, 
-                    // MaterialPageRoute(builder: (context) => PdfViewer(),)
                     MaterialPageRoute(builder: (context) => PdfViewer(),)
                   ),
                   animatedOn: AnimatedOn.onHover,
