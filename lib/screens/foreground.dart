@@ -117,7 +117,7 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 17;
       lastInfoFontSize = 10;
 
-    } else if (MediaQuery.of(context).size.width > 300){
+    } else if (MediaQuery.of(context).size.width > 350){
       
       mobileVersion = true;
       spaceOne = 135;
@@ -142,30 +142,7 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 8;
       lastInfoSpaceBetween = 28;
 
-    } else if (MediaQuery.of(context).size.width > 200){
-      spaceOne = 135;
-      spaceTwo = 150;
-      spaceThree = 50;
-      spaceFour = 200;
-
-      presentationFontSize = 25;
-      presentationReduceIcon = 10;
-
-      aboutMeTitleFontSize = 70;
-      aboutMeDescriptionFontSize = 28;
-
-      myStackIconScale = 18;
-      myStackNameScale = 10.5;
-      myStackHorizontalTechPadding = 10;
-
-      projectSpaceBetween = 180;
-      projectScaleFactorSum = 0.5;
-      projectDescriptionFontSize = 30;
-
-      lastInfoFontSize = 7;
-      lastInfoSpaceBetween = 35;
-
-    }
+    } 
     
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
