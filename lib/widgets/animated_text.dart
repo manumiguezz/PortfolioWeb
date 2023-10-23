@@ -13,6 +13,15 @@ class AnimatedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    String backend = ' Backend Specialist.';
+    String flutter = ' Flutter Developer.';
+    String java = ' Java Developer.';
+    if (MediaQuery.of(context).size.width > 350) {
+      backend = ' Backend Dev.';
+      flutter = ' Flutter Dev.';
+      java = ' Java Dev.';
+    }
+
     return Expanded(
       child: DefaultTextStyle(
         overflow: TextOverflow.ellipsis,
@@ -29,10 +38,10 @@ class AnimatedText extends StatelessWidget {
           pause: const Duration(milliseconds: 1800),
 
           animatedTexts: [
-            TyperAnimatedText(' Java Developer.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(java, speed: Duration(microseconds: speed)),
             TyperAnimatedText(' Student.', speed: Duration(microseconds: speed)),
-            TyperAnimatedText(' Flutter Developer.', speed: Duration(microseconds: speed)),
-            TyperAnimatedText(' Backend Specialist.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(flutter, speed: Duration(microseconds: speed)),
+            TyperAnimatedText(backend, speed: Duration(microseconds: speed)),
           
           ],
           onTap: () {},

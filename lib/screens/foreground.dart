@@ -148,7 +148,11 @@ class Foreground extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        Presentation(fontSize: presentationFontSize, reduceIcon: presentationReduceIcon,),
+        Presentation(
+          fontSize: presentationFontSize, 
+          reduceIcon: presentationReduceIcon,
+          mobileVersion: mobileVersion,
+        ),
 
         SizedBox(height: spaceOne,),
 
