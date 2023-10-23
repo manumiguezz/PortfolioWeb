@@ -10,6 +10,7 @@ class Foreground extends StatelessWidget {
 
     // general variables
     
+    late bool mobileVersion = false;
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
@@ -118,6 +119,7 @@ class Foreground extends StatelessWidget {
 
     } else if (MediaQuery.of(context).size.width > 300){
       
+      mobileVersion = true;
       spaceOne = 135;
       spaceTwo = 150;
       spaceThree = 50;
@@ -173,10 +175,7 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceOne,),
 
-        AboutMe(
-          aboutMeTitleFontSize: aboutMeTitleFontSize,
-          aboutMeDescriptionFontSize: aboutMeDescriptionFontSize,
-        ),
+        AboutMe(mobileVersion: mobileVersion),
 
         SizedBox(height: spaceTwo,),
 
