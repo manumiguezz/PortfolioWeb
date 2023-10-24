@@ -63,7 +63,7 @@ class Presentation extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: heightQuery * 0.015,),
+              SizedBox(height: heightQuery * 0.030,),
 
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -73,7 +73,7 @@ class Presentation extends StatelessWidget {
                     onTap: () => launchUrl('https://github.com/manumiguezz'),
                     child: MouseRegion(
                       cursor: MaterialStateMouseCursor.clickable,
-                      child: Image.asset('assets/icons/socialmedia/github_white.png', color: Colors.white, scale: 12 + reduceIcon,)
+                      child: Image.asset('assets/icons/socialmedia/github_white.png', color: Colors.white, scale: 12 + 2)
                     ),
                   ),
 
@@ -83,7 +83,7 @@ class Presentation extends StatelessWidget {
                     onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
                     child: MouseRegion(
                       cursor: MaterialStateMouseCursor.clickable,
-                      child: Image.asset('assets/icons/socialmedia/email_white.png', color: Colors.white, scale: 10 + reduceIcon,)
+                      child: Image.asset('assets/icons/socialmedia/email_white.png', color: Colors.white, scale: 10 + 2)
                     ),
                   ),
 
@@ -93,7 +93,7 @@ class Presentation extends StatelessWidget {
                     onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
                     child: MouseRegion(
                       cursor: MaterialStateMouseCursor.clickable,
-                      child: Image.asset('assets/icons/socialmedia/linkedin_white.png', color: Colors.white, scale: 11 + reduceIcon,)
+                      child: Image.asset('assets/icons/socialmedia/linkedin_white.png', color: Colors.white, scale: 11 + 2)
                     ),
                   ),
 

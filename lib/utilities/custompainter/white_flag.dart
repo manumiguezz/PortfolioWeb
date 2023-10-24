@@ -12,6 +12,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     late double paddingTop = 100;
     late double pageHeightStroke = 0.5;
+    late bool mobileVersion = false;
 
     if (MediaQuery.of(context).size.width > 1300){
       paddingTop = 450;
@@ -28,9 +29,10 @@ class WhiteFlagSection extends StatelessWidget {
     } else if (MediaQuery.of(context).size.width > 400){
       paddingTop = 340;
       pageHeightStroke = 0.7;
-    } else if (MediaQuery.of(context).size.width > 300){
-      paddingTop = 385;
-      pageHeightStroke = 0.4;
+    } else if (MediaQuery.of(context).size.width > 350){
+      paddingTop = 340;
+      pageHeightStroke = 1.42;
+      mobileVersion = true;
     }
 
     final double pageWidth = MediaQuery.of(context).size.width;
@@ -42,7 +44,7 @@ class WhiteFlagSection extends StatelessWidget {
         height: pageHeight * pageHeightStroke,
         width: pageWidth,
         child: CustomPaint(
-          painter: WhiteStrokePainter(),
+          painter: WhiteStrokePainter(mobileVersion: mobileVersion),
         ),
       ),
     );
