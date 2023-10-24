@@ -5,7 +5,6 @@ class MyStack extends StatelessWidget {
 
   final double iconStackScale;
   final double nameStackScale;
-  final double horizontalTechPadding;
   final double fontSize;
   final double sizedBoxBetweenStack;
   final bool mobileVersion;
@@ -13,8 +12,7 @@ class MyStack extends StatelessWidget {
   const MyStack({
     super.key, 
     required this.iconStackScale, 
-    required this.nameStackScale, 
-    required this.horizontalTechPadding, 
+    required this.nameStackScale,
     required this.fontSize, 
     required this.sizedBoxBetweenStack, 
     required this.mobileVersion,
@@ -148,7 +146,7 @@ class MyStack extends StatelessWidget {
     } else {
 
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalTechPadding),
+        padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.15),
         child: Column(
           children: [
         
@@ -162,10 +160,9 @@ class MyStack extends StatelessWidget {
               ),
             ),
         
-            SizedBox(height: heightQuery * 0.0002,),
+            SizedBox(height: heightQuery * 0.09,),
         
             SizedBox(
-              height: 500,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -186,7 +183,8 @@ class MyStack extends StatelessWidget {
                       ],
                     ),
                   ),
-        
+
+                  SizedBox(height: heightQuery * 0.07,),
         
                   SizedBox(
                     width: widthQuery,
@@ -205,7 +203,7 @@ class MyStack extends StatelessWidget {
                     ),
                   ),
         
-                  // const SizedBox(height: 10,),
+                  SizedBox(height: heightQuery * 0.07,),
         
                   SizedBox(
                     width: widthQuery,

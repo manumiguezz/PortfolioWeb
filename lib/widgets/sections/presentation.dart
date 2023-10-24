@@ -7,6 +7,7 @@ class Presentation extends StatelessWidget {
   late double fontSize;
   final double reduceIcon;
   final bool mobileVersion;
+
   Presentation({
     super.key, 
     required this.fontSize, 
@@ -20,9 +21,7 @@ class Presentation extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
 
-
     if (mobileVersion == true) {
-      fontSize = 36;
 
       return Padding(
         padding: EdgeInsets.only(top: heightQuery * 0.15, left: widthQuery * 0.09),

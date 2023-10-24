@@ -17,6 +17,10 @@ class WhiteFlagSection extends StatelessWidget {
     late double pageHeightStroke = 0.9;
     late bool mobileVersion = false;
 
+    if (heightQuery < 100) {
+
+    }
+
     if (widthQuery < 350) {
       paddingTop = heightQuery * 0.44;
       pageHeightStroke = heightQuery * 1.60;
@@ -26,11 +30,11 @@ class WhiteFlagSection extends StatelessWidget {
       pageHeightStroke = heightQuery * 1.42;
       mobileVersion = true;
     } else if (widthQuery < 500) {
-      paddingTop = heightQuery * 0.43;
+      paddingTop = heightQuery * 0.48;
       pageHeightStroke = heightQuery * 1.26;
       mobileVersion = true;
     } else if (widthQuery < 600) {
-      paddingTop = heightQuery * 0.46;
+      paddingTop = heightQuery * 0.49;
       pageHeightStroke = heightQuery * 1.25;
       mobileVersion = true;
     } else if (widthQuery < 700) {

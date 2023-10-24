@@ -49,7 +49,7 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      presentationFontSize = 25;
+      presentationFontSize = 0;
       presentationReduceIcon = 10;
 
       aboutMeTitleFontSize = 70;
@@ -66,15 +66,14 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 8;
       lastInfoSpaceBetween = 28;
 
-    } else if (widthQuery < 600) {
-
+    } else if (widthQuery < 500) {
       mobileVersion = true;
       spaceOne = 135;
       spaceTwo = 150;
       spaceThree = 50;
       spaceFour = 200;
 
-      presentationFontSize = 35;
+      presentationFontSize = 42;
       presentationReduceIcon = 6;
 
       myStackIconScale = 13;
@@ -86,13 +85,48 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 17;
       lastInfoFontSize = 10;
 
+    } else if (widthQuery < 600) {
+
+      mobileVersion = true;
+      spaceOne = 135;
+      spaceTwo = 150;
+      spaceThree = 50;
+      spaceFour = 200;
+
+      presentationFontSize = 52;
+      presentationReduceIcon = 6;
+
+      myStackIconScale = 13;
+      myStackNameScale = 10;
+      myStackHorizontalTechPadding = 50;
+
+      projectSpaceBetween = 180;
+
+      lastInfoFontSize = 17;
+      lastInfoFontSize = 10;
+
+    } else if (widthQuery < 700) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 50;
+      spaceFour = 240;
+
+      presentationFontSize = 47;
+      presentationReduceIcon = 1.5;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 180;
+
+      projectSpaceBetween = 0;
+
     } else if (widthQuery < 800) {
       spaceOne = 180;
       spaceTwo = 230;
       spaceThree = 50;
       spaceFour = 200;
 
-      presentationFontSize = 60;
+      presentationFontSize = 55;
       presentationReduceIcon = 2;
 
       myStackIconScale = 8;
@@ -100,6 +134,21 @@ class Foreground extends StatelessWidget {
       myStackHorizontalTechPadding = 90;
 
       projectSpaceBetween = 120;
+
+    } else if (widthQuery < 900) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 50;
+      spaceFour = 240;
+
+      presentationFontSize = 64;
+      presentationReduceIcon = 1.5;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 180;
+
+      projectSpaceBetween = 0;
 
     } else if (widthQuery < 1000) {
       spaceOne = 260;
@@ -130,6 +179,78 @@ class Foreground extends StatelessWidget {
       myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
+    } else if (widthQuery < 1200) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 80;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+    } else if (widthQuery < 1600) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 90;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+    } else if (widthQuery < 2000) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 95;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+    } else if (widthQuery < 2600) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 105;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 6;
+      myStackNameScale = 25;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+    } else if (widthQuery < 4000) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 120;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 5;
+      myStackNameScale = 30;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+
+      lastInfoFontSize = 20;
     }
     
     return Column(
@@ -153,8 +274,7 @@ class Foreground extends StatelessWidget {
         MyStack(
           mobileVersion: mobileVersion,
           iconStackScale: myStackIconScale, 
-          nameStackScale: myStackNameScale, 
-          horizontalTechPadding: myStackHorizontalTechPadding,
+          nameStackScale: myStackNameScale,
           fontSize: presentationFontSize,
           sizedBoxBetweenStack: myStackSizedBoxBetweenStack,
         ),
