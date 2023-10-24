@@ -23,6 +23,7 @@ class Flickframes extends StatelessWidget {
 
     if (mobileVersion) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           
           const Text(
@@ -34,32 +35,67 @@ class Flickframes extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
-            width: 330,
+          const SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
-                Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
-                Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
-                Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
               ],
             ),
           ),
 
-          SizedBox(
-                  width: 420,
-                  child: Text(
-                    'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
-                    softWrap: true,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'poppinslight',
-                        fontSize: descriptionFontSize,
-                    )
-                  ),
-                ),
+          SizedBox(height: heightQuery * 0.015),
+
+          const SizedBox(
+            child: Text(
+              'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
+              softWrap: true,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'poppinslight',
+                  fontSize: 14,
+              )
+            ),
+          ),
+
+          SizedBox(height: heightQuery * 0.015),
+
+          AnimatedButton(
+            text: 'Github',
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'poppinslight',
+              fontSize: 14,
+            ),
+            onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
+            animatedOn: AnimatedOn.onHover,
+            height: 40,
+            width: widthQuery - widthQuery * 0.085,
+            transitionType: TransitionType.CENTER_TB_IN,
+            borderColor: Colors.white,
+            backgroundColor: Colors.transparent,
+            selectedBackgroundColor: Colors.white,
+            selectedTextColor: Colors.black,
+            borderRadius: 0,
+            borderWidth: 2,
+          ),
+
+          SizedBox(height: heightQuery * 0.015),
+
+          Transform(
+            transform: Matrix4.translationValues(0, 40, 0),
+            child: Transform.scale(
+              scale: 1.7,
+              child: const ResponsiveImage(
+                imageAsset: 'assets/images/project/flickframes.png', 
+                scaleFactor: 1,
+              ),
+            ) 
+          )
 
         ],
       );
