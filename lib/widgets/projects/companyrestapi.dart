@@ -6,15 +6,116 @@ class CompanyRestApi extends StatelessWidget {
 
   final double scaleFactorSum;
   final double descriptionFontSize;
+  final bool mobileVersion;
 
   const CompanyRestApi({
     super.key, 
     required this.scaleFactorSum, 
-    required this.descriptionFontSize,
+    required this.descriptionFontSize, 
+    required this.mobileVersion,
   });
 
   @override
   Widget build(BuildContext context) {
+
+    double widthQuery = MediaQuery.of(context).size.width;
+    double heightQuery = MediaQuery.of(context).size.height;
+
+    if (mobileVersion) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          const Text(
+            'REST API',
+            style: TextStyle(
+              fontFamily: 'poppinsbold',
+              fontSize: 40,
+              letterSpacing: -2,
+              wordSpacing: -1,
+              color: Colors.white
+            ),
+          ),
+
+          SizedBox(
+            child: Column(
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('JAVA', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                    Text('SPRING BOOT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                    Text('JDBC', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                    Text('MYSQL', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                    Text('JPA', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+
+                  ],
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text('CRUD', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                    SizedBox(width: widthQuery * 0.05),
+                    const Text('SPRING SECURITY', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: heightQuery * 0.015),
+
+          const SizedBox(
+            child: Text(
+              "This example of a company REST API utilizes Spring Boot as its foundational framework, and it's mainly built on Java. It seamlessly incorporates a MySQL database through JDBC and Spring Data JPA, reducing the codebase by approximately 70%. Security enhancements, such as Bcrypt-based password encryption, are integrated using Spring Security. The API also includes CRUD methods for smooth database updates via HTTP requests.",
+              softWrap: true,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'poppinslight',
+                  fontSize: 14,
+              )
+            ),
+          ),
+
+          SizedBox(height: heightQuery * 0.015),
+
+          AnimatedButton(
+            animatedOn: AnimatedOn.onHover,
+            height: heightQuery * 0.055,
+            width: widthQuery - widthQuery * 0.085,
+            text: 'Github',
+            isReverse: true,
+            selectedTextColor: Colors.black,
+            transitionType: TransitionType.CENTER_LR_IN,
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'poppinslight',
+              fontSize: 14,
+            ),
+            backgroundColor: Colors.transparent,
+            borderColor: Colors.white,
+            borderRadius: 0,
+            borderWidth: 2,
+            onPress: () => launchUrl('https://github.com/manumiguezz/CompanySpringBootRESTAPI'),
+          ),
+
+          Transform(
+            transform: Matrix4.translationValues(-20, 40, 0),
+            child: Transform.scale(
+              scale: 1.6,
+              child: const ResponsiveImage(
+                imageAsset: 'assets/images/project/companyrestapi.png', 
+                scaleFactor: 1,
+              ),
+            )
+          ),
+
+        ],
+      );
+    }
+
     return FittedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -53,6 +53,7 @@ class ProjectSection extends StatelessWidget {
             NoteshopApp(
               scaleFactorSum: projectScaleFactorSum,
               descriptionFontSize: projectDescriptionFontSize,
+              mobileVersion: mobileVersion,
             ),
 
             SizedBox(height: projectSpaceBetween),
@@ -60,6 +61,7 @@ class ProjectSection extends StatelessWidget {
             CompanyRestApi(
               scaleFactorSum: projectScaleFactorSum,
               descriptionFontSize: projectDescriptionFontSize,
+              mobileVersion: mobileVersion,
             )
 
           ],
@@ -94,6 +96,7 @@ class ProjectSection extends StatelessWidget {
           NoteshopApp(
             scaleFactorSum: projectScaleFactorSum,
             descriptionFontSize: projectDescriptionFontSize,
+            mobileVersion: mobileVersion,
           ),
 
           SizedBox(height: projectSpaceBetween),
@@ -101,6 +104,7 @@ class ProjectSection extends StatelessWidget {
           CompanyRestApi(
             scaleFactorSum: projectScaleFactorSum,
             descriptionFontSize: projectDescriptionFontSize,
+            mobileVersion: mobileVersion,
           )
 
         ],
