@@ -39,13 +39,13 @@ class WhiteStrokePainter extends CustomPainter {
       path.quadraticBezierTo(
         size.width * 0.75,
         size.height * 0.85, 
-        size.width * 0.45,
-        size.height * 0.9, 
+        size.width * 0.445,
+        size.height * 0.90, 
       );
       
       path.quadraticBezierTo(
-        size.width * 0.2,
-        size.height * 0.94, 
+        size.width * 0.22,
+        size.height * 0.935, 
         size.width * 0,
         size.height * 0.90, 
       );

@@ -6,15 +6,65 @@ class Flickframes extends StatelessWidget {
 
   final double scaleFactorSum;
   final double descriptionFontSize;
+  final bool mobileVersion;
 
   const Flickframes({
     super.key, 
     required this.scaleFactorSum, 
-    required this.descriptionFontSize,
+    required this.descriptionFontSize, 
+    required this.mobileVersion,
   });
 
   @override
   Widget build(BuildContext context) {
+
+    double widthQuery = MediaQuery.of(context).size.width;
+    double heightQuery = MediaQuery.of(context).size.height;
+
+    if (mobileVersion) {
+      return Column(
+        children: [
+          
+          const Text(
+            'Flickframes',
+            style: TextStyle(
+              fontFamily: 'poppinsbold',
+              fontSize: 40,
+              color: Colors.white
+            ),
+          ),
+
+          SizedBox(
+            width: 330,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+                Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15 + (descriptionFontSize * 0.2), color: Colors.white)),
+              ],
+            ),
+          ),
+
+          SizedBox(
+                  width: 420,
+                  child: Text(
+                    'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
+                    softWrap: true,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'poppinslight',
+                        fontSize: descriptionFontSize,
+                    )
+                  ),
+                ),
+
+        ],
+      );
+    }
+
     return FittedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,  

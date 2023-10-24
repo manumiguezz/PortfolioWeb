@@ -131,8 +131,8 @@ class Foreground extends StatelessWidget {
       aboutMeTitleFontSize = 70;
       aboutMeDescriptionFontSize = 28;
 
-      myStackIconScale = 17;
-      myStackNameScale = 10;
+      myStackIconScale = 12;
+      myStackNameScale = 15;
       myStackHorizontalTechPadding = 10;
 
       projectSpaceBetween = 50;
@@ -161,6 +161,7 @@ class Foreground extends StatelessWidget {
         SizedBox(height: spaceTwo,),
 
         MyStack(
+          mobileVersion: mobileVersion,
           iconStackScale: myStackIconScale, 
           nameStackScale: myStackNameScale, 
           horizontalTechPadding: myStackHorizontalTechPadding,
@@ -175,6 +176,7 @@ class Foreground extends StatelessWidget {
           projectFontSize: presentationFontSize,
           projectScaleFactorSum: projectScaleFactorSum,
           projectDescriptionFontSize: projectDescriptionFontSize,
+          mobileVersion: mobileVersion,
         ),
 
         SizedBox(height: spaceFour,),
