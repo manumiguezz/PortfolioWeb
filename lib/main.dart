@@ -15,10 +15,14 @@ class MainApp extends StatelessWidget {
 
     precacheAssets(context);
 
+    print('width: ' + MediaQuery.of(context).size.width.toString());
+    print('height: ' + MediaQuery.of(context).size.height.toString());
+
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen()
     ).animate().fadeIn();
+
   }
 }
 

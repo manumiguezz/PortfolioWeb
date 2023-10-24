@@ -20,42 +20,42 @@ class AboutMe extends StatelessWidget {
     double aboutMeDescriptionFontSize = 15;
 
     if (mobileVersion == true){
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              Transform(
-                transform: Matrix4.translationValues(0, -8, 0),
-                child: Image.asset(
-                  'assets/images/profile.png',
-                  width: widthQuery * 0.25,
-                )
-              ),
-
-              SizedBox(width: widthQuery * 0.03,),
-
-              const Text(
-                'About \nme',
-                style: TextStyle(
-                  fontFamily: 'poppinsbold',
-                  fontSize: 60,
-                  height: 0.8,
-                  color: Colors.black
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+      
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+      
+                Transform(
+                  transform: Matrix4.translationValues(0, -8, 0),
+                  child: Image.asset(
+                    'assets/images/profile.png',
+                    width: widthQuery * 0.25,
+                  )
                 ),
-              ),
-
-            ],
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
-            child: RichText(
+      
+                SizedBox(width: widthQuery * 0.03,),
+      
+                const Text(
+                  'About \nme',
+                  style: TextStyle(
+                    fontFamily: 'poppinsbold',
+                    fontSize: 60,
+                    height: 0.8,
+                    color: Colors.black
+                  ),
+                ),
+      
+              ],
+            ),
+      
+            RichText(
               textAlign: TextAlign.justify,
               text: TextSpan(
                 style: TextStyle(
@@ -163,10 +163,10 @@ class AboutMe extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-
-
-        ],
+      
+      
+          ],
+        ),
       );
     }
 

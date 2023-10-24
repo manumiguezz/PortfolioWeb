@@ -102,7 +102,9 @@ class Foreground extends StatelessWidget {
 
       projectSpaceBetween = 150;
 
-    } else if (MediaQuery.of(context).size.width > 400){
+    } else if (MediaQuery.of(context).size.width < 600){
+      
+      mobileVersion = true;
       spaceOne = 135;
       spaceTwo = 150;
       spaceThree = 50;
@@ -120,7 +122,7 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 17;
       lastInfoFontSize = 10;
 
-    } else if (MediaQuery.of(context).size.width < 600){
+    } else if (MediaQuery.of(context).size.width < 400){
       
       mobileVersion = true;
       spaceOne = 135;
