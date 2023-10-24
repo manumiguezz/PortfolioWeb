@@ -42,88 +42,7 @@ class Foreground extends StatelessWidget {
     late double lastInfoFontSize = 12;
     late double lastInfoSpaceBetween = 150;
 
-    if (MediaQuery.of(context).size.width > 1300){
-      spaceOne = 260;
-      spaceTwo = 400;
-      spaceThree = 150;
-      spaceFour = 200;
-
-      presentationFontSize = 80;
-      presentationReduceIcon = 0;
-
-      myStackIconScale = 8;
-      myStackNameScale = 15;
-      myStackHorizontalTechPadding = 300;
-
-      projectSpaceBetween = 0;
-
-    } else if (MediaQuery.of(context).size.width > 1000){
-      spaceOne = 260;
-      spaceTwo = 400;
-      spaceThree = 50;
-      spaceFour = 240;
-
-      presentationFontSize = 70;
-      presentationReduceIcon = 1.5;
-
-      myStackIconScale = 8;
-      myStackNameScale = 15;
-      myStackHorizontalTechPadding = 180;
-
-      projectSpaceBetween = 0;
-
-    } else if (MediaQuery.of(context).size.width > 800){
-      spaceOne = 180;
-      spaceTwo = 230;
-      spaceThree = 50;
-      spaceFour = 200;
-
-      presentationFontSize = 60;
-      presentationReduceIcon = 2;
-
-      myStackIconScale = 8;
-      myStackNameScale = 15;
-      myStackHorizontalTechPadding = 90;
-
-      projectSpaceBetween = 120;
-
-    } else if (MediaQuery.of(context).size.width > 600){
-      spaceOne = 145;
-      spaceTwo = 230;
-      spaceThree = 50;
-      spaceFour = 200;
-
-      presentationFontSize = 45;
-      presentationReduceIcon = 4;
-
-      myStackIconScale = 11;
-      myStackNameScale = 12;
-      myStackHorizontalTechPadding = 60;
-
-      projectSpaceBetween = 150;
-
-    } else if (MediaQuery.of(context).size.width < 600){
-      
-      mobileVersion = true;
-      spaceOne = 135;
-      spaceTwo = 150;
-      spaceThree = 50;
-      spaceFour = 200;
-
-      presentationFontSize = 35;
-      presentationReduceIcon = 6;
-
-      myStackIconScale = 13;
-      myStackNameScale = 10;
-      myStackHorizontalTechPadding = 50;
-
-      projectSpaceBetween = 180;
-
-      lastInfoFontSize = 17;
-      lastInfoFontSize = 10;
-
-    } else if (MediaQuery.of(context).size.width < 400){
-      
+    if (widthQuery < 400) {
       mobileVersion = true;
       spaceOne = 135;
       spaceTwo = 150;
@@ -147,7 +66,71 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 8;
       lastInfoSpaceBetween = 28;
 
-    } 
+    } else if (widthQuery < 600) {
+
+      mobileVersion = true;
+      spaceOne = 135;
+      spaceTwo = 150;
+      spaceThree = 50;
+      spaceFour = 200;
+
+      presentationFontSize = 35;
+      presentationReduceIcon = 6;
+
+      myStackIconScale = 13;
+      myStackNameScale = 10;
+      myStackHorizontalTechPadding = 50;
+
+      projectSpaceBetween = 180;
+
+      lastInfoFontSize = 17;
+      lastInfoFontSize = 10;
+
+    } else if (widthQuery < 800) {
+      spaceOne = 180;
+      spaceTwo = 230;
+      spaceThree = 50;
+      spaceFour = 200;
+
+      presentationFontSize = 60;
+      presentationReduceIcon = 2;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 90;
+
+      projectSpaceBetween = 120;
+
+    } else if (widthQuery < 1000) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 50;
+      spaceFour = 240;
+
+      presentationFontSize = 70;
+      presentationReduceIcon = 1.5;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 180;
+
+      projectSpaceBetween = 0;
+
+    } else if (widthQuery < 1200) {
+      spaceOne = 260;
+      spaceTwo = 400;
+      spaceThree = 150;
+      spaceFour = 200;
+
+      presentationFontSize = 80;
+      presentationReduceIcon = 0;
+
+      myStackIconScale = 8;
+      myStackNameScale = 15;
+      myStackHorizontalTechPadding = 300;
+
+      projectSpaceBetween = 0;
+    }
     
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,7 +144,9 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: spaceOne,),
 
-        AboutMe(mobileVersion: mobileVersion),
+        AboutMe(
+          mobileVersion: mobileVersion
+        ),
 
         SizedBox(height: spaceTwo,),
 

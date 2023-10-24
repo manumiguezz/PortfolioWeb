@@ -15,8 +15,8 @@ class MainApp extends StatelessWidget {
 
     precacheAssets(context);
 
-    print('width: ' + MediaQuery.of(context).size.width.toString());
-    print('height: ' + MediaQuery.of(context).size.height.toString());
+    print('WIDTH: ' + MediaQuery.of(context).size.width.toString() + ' ______________________________________________________________________!!!!!!!!!!!!');
+    // print('height: ' + MediaQuery.of(context).size.height.toString());
 
     return const MaterialApp(
       debugShowCheckedModeBanner: false,

@@ -17,25 +17,46 @@ class WhiteFlagSection extends StatelessWidget {
     late double pageHeightStroke = 0.9;
     late bool mobileVersion = false;
 
-    if (widthQuery < 300) {
+    if (widthQuery < 350) {
       paddingTop = heightQuery * 0.44;
-      pageHeightStroke = heightQuery * 0;
+      pageHeightStroke = heightQuery * 1.60;
       mobileVersion = true;
     } else if (widthQuery < 400) {
-      paddingTop = heightQuery * 0.47;
-      pageHeightStroke = heightQuery * 0;
+      paddingTop = heightQuery * 0.43;
+      pageHeightStroke = heightQuery * 1.42;
+      mobileVersion = true;
+    } else if (widthQuery < 500) {
+      paddingTop = heightQuery * 0.43;
+      pageHeightStroke = heightQuery * 1.26;
+      mobileVersion = true;
     } else if (widthQuery < 600) {
-      paddingTop = heightQuery * 0.38;
-      pageHeightStroke = heightQuery * 1.35;
+      paddingTop = heightQuery * 0.46;
+      pageHeightStroke = heightQuery * 1.25;
+      mobileVersion = true;
+    } else if (widthQuery < 700) {
+      paddingTop = heightQuery * 0.54;
+      pageHeightStroke = heightQuery * 0.8;
     } else if (widthQuery < 800) {
+      paddingTop = heightQuery * 0.54;
+      pageHeightStroke = heightQuery * 0.9;
+    } else if (widthQuery < 900) {
       paddingTop = heightQuery * 0.58;
-      pageHeightStroke = heightQuery * 0.5;
+      pageHeightStroke = heightQuery * 1.12;
     } else if (widthQuery < 1000) {
+      paddingTop = heightQuery * 0.60;
+      pageHeightStroke = heightQuery * 1.1;
+    } else if (widthQuery < 1100) {
       paddingTop = heightQuery * 0.66;
-      pageHeightStroke = heightQuery * 0;
+      pageHeightStroke = heightQuery * 1.35;
     } else if (widthQuery < 1200) {
       paddingTop = heightQuery * 0.66;
-      pageHeightStroke = heightQuery * 0;
+      pageHeightStroke = heightQuery * 1.35;
+    } else if (widthQuery < 1300) {
+      paddingTop = heightQuery * 0.68;
+      pageHeightStroke = heightQuery * 1.50;
+    } else if (widthQuery > 1300) {
+      paddingTop = heightQuery * 0.68;
+      pageHeightStroke = heightQuery * 1.58;
     }
     
     
