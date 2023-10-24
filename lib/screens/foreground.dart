@@ -8,6 +8,9 @@ class Foreground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    double widthQuery = MediaQuery.of(context).size.width;
+    double heightQuery = MediaQuery.of(context).size.height;
+
     // general variables
     
     late bool mobileVersion = false;
@@ -117,7 +120,7 @@ class Foreground extends StatelessWidget {
       lastInfoFontSize = 17;
       lastInfoFontSize = 10;
 
-    } else if (MediaQuery.of(context).size.width > 350){
+    } else if (MediaQuery.of(context).size.width < 600){
       
       mobileVersion = true;
       spaceOne = 135;
@@ -135,7 +138,7 @@ class Foreground extends StatelessWidget {
       myStackNameScale = 15;
       myStackHorizontalTechPadding = 10;
 
-      projectSpaceBetween = 50;
+      projectSpaceBetween = heightQuery * 0.28;
       projectScaleFactorSum = 1.4;
       projectDescriptionFontSize = 28;
 

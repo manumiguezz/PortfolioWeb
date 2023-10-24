@@ -4,10 +4,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 class AnimatedText extends StatelessWidget {
   final int speed; 
   final double fontSizeAnimated;
+  final bool mobileVersion;
   const AnimatedText({
     super.key, 
     required this.speed, 
-    required this.fontSizeAnimated
+    required this.fontSizeAnimated, 
+    required this.mobileVersion
   });
 
   @override
@@ -16,7 +18,8 @@ class AnimatedText extends StatelessWidget {
     String backend = ' Backend Specialist.';
     String flutter = ' Flutter Developer.';
     String java = ' Java Developer.';
-    if (MediaQuery.of(context).size.width > 350) {
+
+    if (mobileVersion) {
       backend = ' Backend Dev.';
       flutter = ' Flutter Dev.';
       java = ' Java Dev.';

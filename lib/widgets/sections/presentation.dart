@@ -58,7 +58,8 @@ class Presentation extends StatelessWidget {
                 child: SizedBox(
                   child: AnimatedText(
                     speed: 70000,
-                    fontSizeAnimated: fontSize
+                    fontSizeAnimated: fontSize,
+                    mobileVersion: mobileVersion,
                   ),
                 ),
               ),
@@ -154,7 +155,8 @@ class Presentation extends StatelessWidget {
               ),  
               AnimatedText(
                 speed: 70000,
-                fontSizeAnimated: fontSize
+                fontSizeAnimated: fontSize,
+                mobileVersion: mobileVersion,
               ),
             ],
           ),

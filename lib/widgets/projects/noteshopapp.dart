@@ -91,7 +91,7 @@ class NoteshopApp extends StatelessWidget {
             transform: Matrix4.translationValues(0, 40, 0),
             child: Transform.scale(
               scale: 1.5,
-              child: ResponsiveImage(
+              child: const ResponsiveImage(
                 imageAsset: 'assets/images/project/noteshop.png', 
                 scaleFactor: 1,
               ),

@@ -10,39 +10,40 @@ class WhiteFlagSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final double widthQuery = MediaQuery.of(context).size.width;
+    final double heightQuery = MediaQuery.of(context).size.height;
+
     late double paddingTop = 100;
     late double pageHeightStroke = 0.5;
     late bool mobileVersion = false;
 
     if (MediaQuery.of(context).size.width > 1300){
-      paddingTop = 450;
-      pageHeightStroke = 1.70;
+      paddingTop = heightQuery * 0.66;
+      pageHeightStroke = heightQuery * 0.0022;
     } else if (MediaQuery.of(context).size.width > 1000){
-      paddingTop = 400;
-      pageHeightStroke = 1.70;
+      paddingTop = heightQuery * 0.66;
+      pageHeightStroke = heightQuery * 0.0019;
     } else if (MediaQuery.of(context).size.width > 800){
-      paddingTop = 390;
-      pageHeightStroke = 1.20;
+      paddingTop = heightQuery * 0.58;
+      pageHeightStroke = heightQuery * 0.0015;
     } else if (MediaQuery.of(context).size.width > 600){
-      paddingTop = 340;
-      pageHeightStroke = 1;
+      paddingTop = heightQuery * 0.49;
+      pageHeightStroke = heightQuery * 0.0013;
     } else if (MediaQuery.of(context).size.width > 400){
-      paddingTop = 340;
-      pageHeightStroke = 0.7;
+      paddingTop = heightQuery * 0.47;
+      pageHeightStroke = heightQuery * 0.001;
     } else if (MediaQuery.of(context).size.width > 350){
       paddingTop = 340;
       pageHeightStroke = 1.42;
       mobileVersion = true;
     }
-
-    final double pageWidth = MediaQuery.of(context).size.width;
-     final double pageHeight = MediaQuery.of(context).size.height;
+    
     
     return Padding(
       padding: EdgeInsets.only(top: paddingTop),
       child: SizedBox(
-        height: pageHeight * pageHeightStroke,
-        width: pageWidth,
+        height: heightQuery * pageHeightStroke,
+        width: widthQuery,
         child: CustomPaint(
           painter: WhiteStrokePainter(mobileVersion: mobileVersion),
         ),
