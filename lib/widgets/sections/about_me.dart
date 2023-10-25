@@ -18,8 +18,16 @@ class AboutMe extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double aboutMeDescriptionFontSize = 15;
+    double reduceAboutMe = 0;
+
+    if (widthQuery < 390){
+      reduceAboutMe = 18;
+    }
+    
 
     if (mobileVersion == true){
+
+      
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
         child: Column(
@@ -42,11 +50,11 @@ class AboutMe extends StatelessWidget {
       
                 SizedBox(width: widthQuery * 0.03,),
       
-                const Text(
+                Text(
                   'About \nme',
                   style: TextStyle(
                     fontFamily: 'poppinsbold',
-                    fontSize: 60,
+                    fontSize: 60 - reduceAboutMe,
                     height: 0.8,
                     color: Colors.black
                   ),

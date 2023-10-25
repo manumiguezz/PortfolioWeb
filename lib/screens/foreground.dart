@@ -23,14 +23,9 @@ class Foreground extends StatelessWidget {
     late double presentationFontSize = 80;
     late double presentationReduceIcon = 1;
 
-    // variables for about me section
-    late double aboutMeTitleFontSize = 0;
-    late double aboutMeDescriptionFontSize = 0;
-
     // variables for MyStack
     late double myStackIconScale = 10;
     late double myStackNameScale = 10;
-    late double myStackHorizontalTechPadding = 100;
     late double myStackSizedBoxBetweenStack = 60;
 
     // variables for Project Section
@@ -49,15 +44,11 @@ class Foreground extends StatelessWidget {
       spaceThree = 50;
       spaceFour = 200;
 
-      presentationFontSize = 0;
+      presentationFontSize = 30;
       presentationReduceIcon = 10;
-
-      aboutMeTitleFontSize = 70;
-      aboutMeDescriptionFontSize = 28;
 
       myStackIconScale = 12;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 10;
 
       projectSpaceBetween = heightQuery * 0.28;
       projectScaleFactorSum = 1.4;
@@ -78,7 +69,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 13;
       myStackNameScale = 10;
-      myStackHorizontalTechPadding = 50;
 
       projectSpaceBetween = 180;
 
@@ -98,7 +88,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 13;
       myStackNameScale = 10;
-      myStackHorizontalTechPadding = 50;
 
       projectSpaceBetween = 180;
 
@@ -116,7 +105,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 180;
 
       projectSpaceBetween = 0;
 
@@ -131,7 +119,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 90;
 
       projectSpaceBetween = 120;
 
@@ -146,7 +133,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 180;
 
       projectSpaceBetween = 0;
 
@@ -161,7 +147,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 180;
 
       projectSpaceBetween = 0;
 
@@ -176,7 +161,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
     } else if (widthQuery < 1200) {
@@ -190,7 +174,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
     } else if (widthQuery < 1600) {
@@ -204,7 +187,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
     } else if (widthQuery < 2000) {
@@ -218,7 +200,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 8;
       myStackNameScale = 15;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
     } else if (widthQuery < 2600) {
@@ -232,7 +213,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 6;
       myStackNameScale = 25;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
     } else if (widthQuery < 4000) {
@@ -246,7 +226,6 @@ class Foreground extends StatelessWidget {
 
       myStackIconScale = 5;
       myStackNameScale = 30;
-      myStackHorizontalTechPadding = 300;
 
       projectSpaceBetween = 0;
 
