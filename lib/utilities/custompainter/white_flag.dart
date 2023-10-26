@@ -17,9 +17,6 @@ class WhiteFlagSection extends StatelessWidget {
     late double pageHeightStroke = 0.9;
     late bool mobileVersion = false;
 
-    late double modifyPadding = 0;
-    late double modifyHeightStroke = 0;
-
     if (heightQuery < 100) {
       
     } else if (heightQuery < 200) {
@@ -88,45 +85,23 @@ class WhiteFlagSection extends StatelessWidget {
       
       mobileVersion = true;
     } else if (widthQuery < 500) {
-      if (heightQuery < 500) {
-        paddingTop = heightQuery * 0.685;
-        pageHeightStroke = heightQuery * 2;
-      } else if (heightQuery < 540) {
-        paddingTop = heightQuery * 0.63;
-        pageHeightStroke = heightQuery * 2.02;
-      } else if (heightQuery < 590) {
-        paddingTop = heightQuery * 0.62;
-        pageHeightStroke = heightQuery * 1.83;
-      } else if (heightQuery < 630) {
-        paddingTop = heightQuery * 0.58;
-        pageHeightStroke = heightQuery * 1.70;
-      } else if (heightQuery < 680) {
-        paddingTop = heightQuery * 0.56;
-        pageHeightStroke = heightQuery * 1.60;
-      } else if (heightQuery < 740) {
-        paddingTop = heightQuery * 0.52;
-        pageHeightStroke = heightQuery * 1.48;
-      } else if (heightQuery < 810) {
-        paddingTop = heightQuery * 0.50;
-        pageHeightStroke = heightQuery * 1.345;
-      } else if (heightQuery < 870) {
-        paddingTop = heightQuery * 0.47;
-        pageHeightStroke = heightQuery * 1.22;
-      } else if (heightQuery < 930) {
-        paddingTop = heightQuery * 0.44;
-        pageHeightStroke = heightQuery * 1.18;
-      } else if (heightQuery < 990) {
-        paddingTop = heightQuery * 0.43;
-        pageHeightStroke = heightQuery * 1.10;
-      } else if (heightQuery < 1060) {
-        paddingTop = heightQuery * 0.415;
-        pageHeightStroke = heightQuery * 1.02;
-      } else if (heightQuery < 1120) {
-        paddingTop = heightQuery * 0.40;
-        pageHeightStroke = heightQuery * 0.96;
-      } else if (heightQuery < 1200) {
-        paddingTop = heightQuery * 0.385;
-        pageHeightStroke = heightQuery * 0.90;
+      List<double> heightThresholds = [
+        500, 540, 590, 630, 680, 740, 810, 870, 930, 990, 1060, 1120, 1200
+      ];
+
+      List<double> paddingTopValues = [
+        0.685, 0.63, 0.62, 0.58, 0.56, 0.52, 0.50, 0.47, 0.44, 0.43, 0.415, 0.40, 0.385
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        2, 2.02, 1.83, 1.70, 1.60, 1.48, 1.345, 1.22, 1.18, 1.10, 1.02, 0.96, 0.90
+      ];
+
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {
         paddingTop = 0;
         pageHeightStroke = 0;
@@ -134,8 +109,29 @@ class WhiteFlagSection extends StatelessWidget {
       
       mobileVersion = true;
     } else if (widthQuery < 600) {
-      paddingTop = heightQuery * 0.49;
-      pageHeightStroke = heightQuery * 1.25;
+        if (heightQuery < 100) {
+      
+        } else if (heightQuery < 200) {
+          paddingTop = heightQuery * 0.49;
+          pageHeightStroke = heightQuery * 1.25;
+        } else if (heightQuery < 300) {
+
+        } else if (heightQuery < 400) {
+
+        } else if (heightQuery < 500) {
+
+        } else if (heightQuery < 600) {
+
+        } else if (heightQuery < 700) {
+
+        } else if (heightQuery < 800) {
+
+        } else if (heightQuery < 900) {
+
+        } else if (heightQuery < 1000) {
+
+        }
+      
       mobileVersion = true;
     } else if (widthQuery < 700) {
       paddingTop = heightQuery * 0.54;
