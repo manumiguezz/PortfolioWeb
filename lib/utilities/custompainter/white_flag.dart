@@ -183,28 +183,39 @@ class WhiteFlagSection extends StatelessWidget {
       mobileVersion = false;
 
     } else if (widthQuery < 900) {
-      if (heightQuery < 500) {
+      if (heightQuery < 520) {
         paddingTop = heightQuery * 1.15;
         pageHeightStroke = heightQuery * 1.35;
+      } else if (heightQuery < 560) {
+        paddingTop = heightQuery * 1;
+        pageHeightStroke = heightQuery * 1.3;
+      } else if (heightQuery < 610) {
+        paddingTop = heightQuery * 0.9;
+        pageHeightStroke = heightQuery * 1.4;
+      } else if (heightQuery < 660) {
+        paddingTop = heightQuery * 0.75;
+        pageHeightStroke = heightQuery * 1.4;
+      } else if (heightQuery < 730) {
+        paddingTop = heightQuery * 0.65;
+        pageHeightStroke = heightQuery * 1.4;
+      } else if (heightQuery < 820) {
+        paddingTop = heightQuery * 0.65;
+        pageHeightStroke = heightQuery * 1.2;
+      } else if (heightQuery < 920) {
+        paddingTop = heightQuery * 0.6;
+        pageHeightStroke = heightQuery * 1;
+      } else if (heightQuery < 1020) {
+        paddingTop = heightQuery * 0.5;
+        pageHeightStroke = heightQuery * 0.95;
+      } else if (heightQuery < 1110) {
+        paddingTop = heightQuery * 0.44;
+        pageHeightStroke = heightQuery * 0.90;
+      } else if (heightQuery < 1240) {
+        paddingTop = heightQuery * 0.41;
+        pageHeightStroke = heightQuery * 0.82;
       } else if (heightQuery < 9999) {
-        paddingTop = heightQuery * 1.15;
-        pageHeightStroke = heightQuery * 1.35;
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
-      } else if (heightQuery < 9999) {
-
+        paddingTop = heightQuery * 0.38;
+        pageHeightStroke = heightQuery * 0.7;
       }
       
       mobileVersion = false;
