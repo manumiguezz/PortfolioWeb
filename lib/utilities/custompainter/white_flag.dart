@@ -108,9 +108,11 @@ class WhiteFlagSection extends StatelessWidget {
       }
       
       mobileVersion = true;
-    } else if (widthQuery < 600) {
-        if (heightQuery < 100) {
       
+    } else if (widthQuery < 600) {
+        if (heightQuery < 300) {
+          paddingTop = heightQuery * 0.49;
+          pageHeightStroke = heightQuery * 1.25;
         } else if (heightQuery < 200) {
           paddingTop = heightQuery * 0.49;
           pageHeightStroke = heightQuery * 1.25;
