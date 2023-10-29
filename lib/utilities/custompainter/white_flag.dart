@@ -225,44 +225,76 @@ class WhiteFlagSection extends StatelessWidget {
       } else {}
       mobileVersion = false;
     } else if (widthQuery < 1100) {
-      if (heightQuery < 500) {
-      } else if (heightQuery < 550) {
-        paddingTop = heightQuery * 0.9;
-        pageHeightStroke = heightQuery * 1.7;
-      } else if (heightQuery < 610) {
-        paddingTop = heightQuery * 0.9;
-        pageHeightStroke = heightQuery * 1.4;
-      } else if (heightQuery < 660) {
-        paddingTop = heightQuery * 0.75;
-        pageHeightStroke = heightQuery * 1.4;
-      } else if (heightQuery < 730) {
-        paddingTop = heightQuery * 0.65;
-        pageHeightStroke = heightQuery * 1.4;
-      } else if (heightQuery < 820) {
-        paddingTop = heightQuery * 0.65;
-        pageHeightStroke = heightQuery * 1.2;
-      } else if (heightQuery < 920) {
-        paddingTop = heightQuery * 0.6;
-        pageHeightStroke = heightQuery * 1;
-      } else if (heightQuery < 1020) {
-        paddingTop = heightQuery * 0.5;
-        pageHeightStroke = heightQuery * 0.95;
-      } else if (heightQuery < 1110) {
-        paddingTop = heightQuery * 0.44;
-        pageHeightStroke = heightQuery * 0.90;
-      } else if (heightQuery < 1240) {
-        paddingTop = heightQuery * 0.41;
-        pageHeightStroke = heightQuery * 0.82;
-      } else if (heightQuery < 1300) {
-        paddingTop = heightQuery * 0.38;
-        pageHeightStroke = heightQuery * 0.7;
-      } else {
+      List<double> heightThresholds = [
+        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1320
+      ];
 
-      }
+      List<double> paddingTopValues = [
+        0, 1, 1, 0.9, 0.85, 0.75, 0.6, 0.6, 0.55, 0.55, 0.5, 0.5, 0.45, 0.45, 0.4, 0.37
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 2, 1.8, 1.7, 1.5, 1.4, 1.4, 1.3, 1.2, 1.05, 1.05, 0.95, 0.9, 0.85, 0.8, 0.8
+      ];
+
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
+
       mobileVersion = false;
     } else if (widthQuery < 1200) {
-      paddingTop = heightQuery * 0.66;
-      pageHeightStroke = heightQuery * 1.35;
+
+      if (heightQuery < 500) {
+      } else if (heightQuery < 530) {
+        paddingTop = heightQuery * 1;
+        pageHeightStroke = heightQuery * 2;
+      } else if (heightQuery < 560) {
+        paddingTop = heightQuery * 1;
+        pageHeightStroke = heightQuery * 1.8;
+      } else if (heightQuery < 610) {
+        paddingTop = heightQuery * 0.9;
+        pageHeightStroke = heightQuery * 1.7;
+      } else if (heightQuery < 660) {
+        paddingTop = heightQuery * 0.85;
+        pageHeightStroke = heightQuery * 1.55;
+      } else if (heightQuery < 750) {
+        paddingTop = heightQuery * 0.75;
+        pageHeightStroke = heightQuery * 1.4;
+      } else if (heightQuery < 800) {
+        paddingTop = heightQuery * 0.6;
+        pageHeightStroke = heightQuery * 1.4;
+      } else if (heightQuery < 840) {
+        paddingTop = heightQuery * 0.6;
+        pageHeightStroke = heightQuery * 1.3;
+      } else if (heightQuery < 900) {
+        paddingTop = heightQuery * 0.55;
+        pageHeightStroke = heightQuery * 1.2;
+      } else if (heightQuery < 970) {
+        paddingTop = heightQuery * 0.55;
+        pageHeightStroke = heightQuery * 1.05;
+      } else if (heightQuery < 1030) {
+        paddingTop = heightQuery * 0.5;
+        pageHeightStroke = heightQuery * 1.05;
+      } else if (heightQuery < 1080) {
+        paddingTop = heightQuery * 0.5;
+        pageHeightStroke = heightQuery * 0.95;
+      } else if (heightQuery < 1150) {
+        paddingTop = heightQuery * 0.45;
+        pageHeightStroke = heightQuery * 0.9;
+      } else if (heightQuery < 1200) {
+        paddingTop = heightQuery * 0.45;
+        pageHeightStroke = heightQuery * 0.85;
+      } else if (heightQuery < 1280) {
+        paddingTop = heightQuery * 0.4;
+        pageHeightStroke = heightQuery * 0.8;
+      } else if (heightQuery < 1320) {
+        paddingTop = heightQuery * 0.37;
+        pageHeightStroke = heightQuery * 0.8;
+      } else {}
+
     } else if (widthQuery < 1300) {
       paddingTop = heightQuery * 0.68;
       pageHeightStroke = heightQuery * 1.50;
