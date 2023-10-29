@@ -204,6 +204,27 @@ class WhiteFlagSection extends StatelessWidget {
       
       mobileVersion = false;
     } else if (widthQuery < 1000) {
+      
+      List<double> heightThresholds = [
+        500, 550, 610, 660, 730, 820, 920, 1020, 1110, 1240, 1300
+      ];
+
+      List<double> paddingTopValues = [
+        0, 0.9, 0.9, 0.75, 0.65, 0.65, 0.6, 0.5, 0.44, 0.41, 0.38
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 1.7, 1.4, 1.4, 1.4, 1.2, 1, 0.95, 0.90, 0.82, 0.7
+      ];
+
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
+      mobileVersion = false;
+    } else if (widthQuery < 1100) {
       if (heightQuery < 500) {
       } else if (heightQuery < 550) {
         paddingTop = heightQuery * 0.9;
@@ -235,10 +256,10 @@ class WhiteFlagSection extends StatelessWidget {
       } else if (heightQuery < 1300) {
         paddingTop = heightQuery * 0.38;
         pageHeightStroke = heightQuery * 0.7;
-      } 
-    } else if (widthQuery < 1100) {
-      paddingTop = heightQuery * 0.66;
-      pageHeightStroke = heightQuery * 1.35;
+      } else {
+
+      }
+      mobileVersion = false;
     } else if (widthQuery < 1200) {
       paddingTop = heightQuery * 0.66;
       pageHeightStroke = heightQuery * 1.35;
