@@ -262,37 +262,37 @@ class WhiteFlagSection extends StatelessWidget {
         pageHeightStroke = heightQuery * 1.55;
       } else if (heightQuery < 750) {
         paddingTop = heightQuery * 0.75;
-        pageHeightStroke = heightQuery * 1.4;
+        pageHeightStroke = heightQuery * 1.45;
       } else if (heightQuery < 800) {
         paddingTop = heightQuery * 0.6;
-        pageHeightStroke = heightQuery * 1.4;
+        pageHeightStroke = heightQuery * 1.45;
       } else if (heightQuery < 840) {
         paddingTop = heightQuery * 0.6;
-        pageHeightStroke = heightQuery * 1.3;
+        pageHeightStroke = heightQuery * 1.35;
       } else if (heightQuery < 900) {
         paddingTop = heightQuery * 0.55;
-        pageHeightStroke = heightQuery * 1.2;
+        pageHeightStroke = heightQuery * 1.25;
       } else if (heightQuery < 970) {
         paddingTop = heightQuery * 0.55;
-        pageHeightStroke = heightQuery * 1.05;
+        pageHeightStroke = heightQuery * 1.055;
       } else if (heightQuery < 1030) {
         paddingTop = heightQuery * 0.5;
-        pageHeightStroke = heightQuery * 1.05;
+        pageHeightStroke = heightQuery * 1.055;
       } else if (heightQuery < 1080) {
         paddingTop = heightQuery * 0.5;
-        pageHeightStroke = heightQuery * 0.95;
+        pageHeightStroke = heightQuery * 1;
       } else if (heightQuery < 1150) {
         paddingTop = heightQuery * 0.45;
-        pageHeightStroke = heightQuery * 0.9;
+        pageHeightStroke = heightQuery * 0.95;
       } else if (heightQuery < 1200) {
         paddingTop = heightQuery * 0.45;
-        pageHeightStroke = heightQuery * 0.85;
+        pageHeightStroke = heightQuery * 0.90;
       } else if (heightQuery < 1280) {
         paddingTop = heightQuery * 0.4;
-        pageHeightStroke = heightQuery * 0.8;
+        pageHeightStroke = heightQuery * 0.85;
       } else if (heightQuery < 1320) {
         paddingTop = heightQuery * 0.37;
-        pageHeightStroke = heightQuery * 0.8;
+        pageHeightStroke = heightQuery * 0.85;
       } else {}
 
     } else if (widthQuery < 1300) {
