@@ -247,60 +247,84 @@ class WhiteFlagSection extends StatelessWidget {
       mobileVersion = false;
     } else if (widthQuery < 1200) {
 
-      if (heightQuery < 500) {
-      } else if (heightQuery < 530) {
-        paddingTop = heightQuery * 1;
-        pageHeightStroke = heightQuery * 2;
-      } else if (heightQuery < 560) {
-        paddingTop = heightQuery * 1;
-        pageHeightStroke = heightQuery * 1.8;
-      } else if (heightQuery < 610) {
-        paddingTop = heightQuery * 0.9;
-        pageHeightStroke = heightQuery * 1.7;
-      } else if (heightQuery < 660) {
-        paddingTop = heightQuery * 0.85;
-        pageHeightStroke = heightQuery * 1.55;
-      } else if (heightQuery < 750) {
-        paddingTop = heightQuery * 0.75;
-        pageHeightStroke = heightQuery * 1.45;
-      } else if (heightQuery < 800) {
-        paddingTop = heightQuery * 0.6;
-        pageHeightStroke = heightQuery * 1.45;
-      } else if (heightQuery < 840) {
-        paddingTop = heightQuery * 0.6;
-        pageHeightStroke = heightQuery * 1.35;
-      } else if (heightQuery < 900) {
-        paddingTop = heightQuery * 0.55;
-        pageHeightStroke = heightQuery * 1.25;
-      } else if (heightQuery < 970) {
-        paddingTop = heightQuery * 0.55;
-        pageHeightStroke = heightQuery * 1.055;
-      } else if (heightQuery < 1030) {
-        paddingTop = heightQuery * 0.5;
-        pageHeightStroke = heightQuery * 1.055;
-      } else if (heightQuery < 1080) {
-        paddingTop = heightQuery * 0.5;
-        pageHeightStroke = heightQuery * 1;
-      } else if (heightQuery < 1150) {
-        paddingTop = heightQuery * 0.45;
-        pageHeightStroke = heightQuery * 0.95;
-      } else if (heightQuery < 1200) {
-        paddingTop = heightQuery * 0.45;
-        pageHeightStroke = heightQuery * 0.90;
-      } else if (heightQuery < 1280) {
-        paddingTop = heightQuery * 0.4;
-        pageHeightStroke = heightQuery * 0.85;
-      } else if (heightQuery < 1320) {
-        paddingTop = heightQuery * 0.37;
-        pageHeightStroke = heightQuery * 0.85;
+      List<double> heightThresholds = [
+        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1320
+      ];
+
+      List<double> paddingTopValues = [
+        0, 1, 1, 0.9, 0.85, 0.75, 0.6, 0.6, 0.55, 0.55, 0.5, 0.5, 0.45, 0.45, 0.4, 0.37
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 2, 1.8, 1.7, 1.55, 1.45, 1.45, 1.35, 1.25, 1.055, 1.055, 1, 0.95, 0.90, 0.85, 0.85
+      ];
+
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
 
     } else if (widthQuery < 1300) {
-      paddingTop = heightQuery * 0.68;
-      pageHeightStroke = heightQuery * 1.50;
+      List<double> heightThresholds = [
+        500, 530, 560, 610, 660, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
+      ];
+
+      List<double> paddingTopValues = [
+        0, 1, 1, 0.9, 0.85, 0.8, 0.7, 0.65, 0.6, 0.55, 0.5, 0.47, 0.45, 0.43, 0.41
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 2.2, 2, 1.9, 1.7, 1.6, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.05, 0.98, 0.9
+      ];
+
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
+
     } else if (widthQuery > 1300) {
-      paddingTop = heightQuery * 0.68;
-      pageHeightStroke = heightQuery * 1.58;
+      List<int> thresholds = [
+        500, 530, 560, 610, 660, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
+      ];
+
+      List<double> paddingTopValues = [
+        0, 1, 1, 0.9, 0.85, 0.8, 0.7, 0.65, 0.6, 0.55, 0.5, 0.47, 0.45, 0.43, 0.41
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 2.2, 2, 1.9, 1.8, 1.6, 1.6, 1.55, 1.45, 1.35, 1.25, 1.15, 1.055, 0.985, 0.905
+      ];
+
+      int index = thresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
+    } else if (widthQuery > 1400) {
+      List<int> thresholds = [
+        500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
+      ];
+
+      List<double> paddingTopValues = [
+        0, 1, 1, 0.9, 0.85, 0.8, 0.7, 0.65, 0.6, 0.55, 0.5, 0.47, 0.45, 0.43, 0.41
+      ];
+
+      List<double> pageHeightStrokeValues = [
+        0, 2.2, 2, 1.97, 1.8, 1.8, 1.6, 1.55, 1.45, 1.35, 1.25, 1.15, 1.055, 0.985, 0.905
+      ];
+
+      int index = thresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
+      mobileVersion = true;
     }
     
     
