@@ -17,29 +17,6 @@ class WhiteFlagSection extends StatelessWidget {
     late double pageHeightStroke = 0.9;
     late bool mobileVersion = false;
 
-    if (heightQuery < 100) {
-      paddingTop = heightQuery * 0.54;
-      pageHeightStroke = heightQuery * 0.9;
-    } else if (heightQuery < 200) {
-
-    } else if (heightQuery < 300) {
-
-    } else if (heightQuery < 400) {
-
-    } else if (heightQuery < 500) {
-
-    } else if (heightQuery < 600) {
-
-    } else if (heightQuery < 700) {
-
-    } else if (heightQuery < 800) {
-
-    } else if (heightQuery < 900) {
-
-    } else if (heightQuery < 1000) {
-
-    }
-
     if (widthQuery < 350) {
       
       List<double> paddingTopValues = [
@@ -72,18 +49,14 @@ class WhiteFlagSection extends StatelessWidget {
         2.8, 2.62, 2.5, 2.35, 2.2, 2.05, 1.92, 1.82, 1.72, 1.60, 1.48, 1.38, 1.26, 1.18, 1.12, 1
       ];
 
-      for (int i = 0; i < heightThresholds.length; i++) {
-        if (heightQuery < heightThresholds[i]) {
-          paddingTop = heightQuery * paddingTopValues[i];
-          pageHeightStroke = heightQuery * pageHeightStrokeValues[i];
-          break;
-        } else {
-          paddingTop = heightQuery * 0.35;
-          pageHeightStroke = heightQuery * 1;
-        }
-      }
-      
+      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
+
+      if (index != -1) {
+        paddingTop = heightQuery * paddingTopValues[index];
+        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
+      } else {}
       mobileVersion = true;
+
     } else if (widthQuery < 500) {
       List<double> heightThresholds = [
         500, 540, 590, 630, 680, 740, 810, 870, 930, 990, 1060, 1120, 1200
@@ -102,11 +75,7 @@ class WhiteFlagSection extends StatelessWidget {
       if (index != -1) {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {
-        paddingTop = 0;
-        pageHeightStroke = 0;
-      }
-      
+      } else {}
       mobileVersion = true;
       
     } else if (widthQuery < 600) {
@@ -127,11 +96,7 @@ class WhiteFlagSection extends StatelessWidget {
       if (index != -1) {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {
-        paddingTop = 0;
-        pageHeightStroke = 0;
-      }
-      
+      } else {}
       mobileVersion = true;
 
     } else if (widthQuery < 700) {
@@ -152,10 +117,7 @@ class WhiteFlagSection extends StatelessWidget {
       if (index != -1) {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {
-        paddingTop = 0;
-        pageHeightStroke = 0;
-      }
+      } else {}
       mobileVersion = false;
 
     } else if (widthQuery < 800) {
@@ -176,9 +138,7 @@ class WhiteFlagSection extends StatelessWidget {
     if (index != -1) {
       paddingTop = heightQuery * paddingTopValues[index];
       pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-    } else {
-      
-    }
+    } else {}
       mobileVersion = false;
 
     } else if (widthQuery < 900) {
@@ -199,10 +159,9 @@ class WhiteFlagSection extends StatelessWidget {
       if (index != -1) {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {
-      }
-      
+      } else {}
       mobileVersion = false;
+
     } else if (widthQuery < 1000) {
       
       List<double> heightThresholds = [
@@ -224,6 +183,7 @@ class WhiteFlagSection extends StatelessWidget {
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
       mobileVersion = false;
+
     } else if (widthQuery < 1100) {
       List<double> heightThresholds = [
         500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1320
@@ -243,8 +203,8 @@ class WhiteFlagSection extends StatelessWidget {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
-
       mobileVersion = false;
+
     } else if (widthQuery < 1200) {
 
       List<double> heightThresholds = [
@@ -265,6 +225,7 @@ class WhiteFlagSection extends StatelessWidget {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
+      mobileVersion = false;
 
     } else if (widthQuery < 1300) {
       List<double> heightThresholds = [
@@ -285,26 +246,8 @@ class WhiteFlagSection extends StatelessWidget {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
+      mobileVersion = false;
 
-    } else if (widthQuery > 1300) {
-      List<int> thresholds = [
-        500, 530, 560, 610, 660, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
-      ];
-
-      List<double> paddingTopValues = [
-        0, 1, 1, 0.9, 0.85, 0.8, 0.7, 0.65, 0.6, 0.55, 0.5, 0.47, 0.45, 0.43, 0.41
-      ];
-
-      List<double> pageHeightStrokeValues = [
-        0, 2.2, 2, 1.9, 1.8, 1.6, 1.6, 1.55, 1.45, 1.35, 1.25, 1.15, 1.055, 0.985, 0.905
-      ];
-
-      int index = thresholds.indexWhere((threshold) => heightQuery < threshold);
-
-      if (index != -1) {
-        paddingTop = heightQuery * paddingTopValues[index];
-        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {}
     } else if (widthQuery > 1400) {
       List<int> thresholds = [
         500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
@@ -324,7 +267,7 @@ class WhiteFlagSection extends StatelessWidget {
         paddingTop = heightQuery * paddingTopValues[index];
         pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
       } else {}
-      mobileVersion = true;
+      mobileVersion = false;
     }
     
     

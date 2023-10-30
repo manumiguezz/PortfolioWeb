@@ -5,10 +5,12 @@ import 'package:portfolio_web_version/widgets/url_launcher.dart';
 class AboutMe extends StatelessWidget {
 
   final bool mobileVersion;
+  final bool invertedVersion;
 
   const AboutMe({
     super.key, 
-    required this.mobileVersion,
+    required this.mobileVersion, 
+    required this.invertedVersion,
   });
 
 
@@ -19,6 +21,13 @@ class AboutMe extends StatelessWidget {
     double heightQuery = MediaQuery.of(context).size.height;
     double aboutMeDescriptionFontSize = 15;
     double reduceAboutMe = 0;
+    Color color = Colors.black;
+    Color invColor = Colors.white;
+
+    if (invertedVersion) {
+      color = Colors.white;
+      invColor = Colors.black;
+    } 
 
     if (widthQuery < 390){
       reduceAboutMe = 18;
@@ -56,7 +65,7 @@ class AboutMe extends StatelessWidget {
                     fontFamily: 'poppinsbold',
                     fontSize: 60 - reduceAboutMe,
                     height: 0.8,
-                    color: Colors.black
+                    color: color
                   ),
                 ),
       
@@ -67,7 +76,7 @@ class AboutMe extends StatelessWidget {
               textAlign: TextAlign.justify,
               text: TextSpan(
                 style: TextStyle(
-                  color: Colors.black,
+                  color: color,
                   fontFamily: 'poppinslight',
                   fontSize: aboutMeDescriptionFontSize
                 ),
@@ -201,12 +210,12 @@ class AboutMe extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               
-                const Text(
+                Text(
                   'About me',
                   style: TextStyle(
                     fontFamily: 'poppinsbold',
                     fontSize: 70,
-                    color: Colors.black
+                    color: color
                   ),
                 ),
             
@@ -216,13 +225,13 @@ class AboutMe extends StatelessWidget {
                   width: 570,
                   child: RichText(
                     textAlign: TextAlign.justify,
-                    text: const TextSpan(
+                    text: TextSpan(
                       style: TextStyle(
-                        color: Colors.black,
+                        color: color,
                         fontFamily: 'poppinslight',
                         fontSize: 15
                       ),
-                      children: [
+                      children: const [
                         TextSpan(text: 'As an aspiring '),
                         TextSpan(
                           text: 'backend software developer',
@@ -341,9 +350,9 @@ class AboutMe extends StatelessWidget {
                   height: 50,
                   width: 150,
                   transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-                  borderColor: Colors.black,
-                  selectedBackgroundColor: Colors.black,
-                  selectedTextColor: Colors.white,
+                  borderColor: color,
+                  selectedBackgroundColor: color,
+                  selectedTextColor: invColor,
                   borderRadius: 0,
                   borderWidth: 3,
                 ),

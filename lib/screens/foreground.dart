@@ -14,6 +14,7 @@ class Foreground extends StatelessWidget {
     // general variables
     
     late bool mobileVersion = false;
+    late bool invertedVersion = false;
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
@@ -38,6 +39,7 @@ class Foreground extends StatelessWidget {
     late double lastInfoSpaceBetween = 150;
 
     if (widthQuery < 400) {
+      if (heightQuery < 400){}
       mobileVersion = true;
       spaceOne = 135;
       spaceTwo = 150;
@@ -109,6 +111,9 @@ class Foreground extends StatelessWidget {
       projectSpaceBetween = 0;
 
     } else if (widthQuery < 800) {
+      if (heightQuery < 500){
+        invertedVersion = true;
+      }
       spaceOne = 180;
       spaceTwo = 230;
       spaceThree = 50;
@@ -245,6 +250,7 @@ class Foreground extends StatelessWidget {
         SizedBox(height: spaceOne,),
 
         AboutMe(
+          invertedVersion: invertedVersion,
           mobileVersion: mobileVersion
         ),
 
