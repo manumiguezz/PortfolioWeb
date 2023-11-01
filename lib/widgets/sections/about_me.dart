@@ -26,7 +26,7 @@ class AboutMe extends StatelessWidget {
 
     if (invertedVersion) {
       color = Colors.white;
-      invColor = Colors.black;
+      invColor = Colors.transparent;
     } 
 
     if (widthQuery < 390){
@@ -106,11 +106,6 @@ class AboutMe extends StatelessWidget {
                     text: 'C',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: aboutMeDescriptionFontSize),
                   ),
-                  // TextSpan(text: ', '),
-                  // TextSpan(
-                  //   text: 'C++',
-                  //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: aboutMeDescriptionFontSize),
-                  // ),
                   const TextSpan(text: ', as well as web technologies such as '),
                   TextSpan(
                     text: 'HTML',
@@ -257,11 +252,6 @@ class AboutMe extends StatelessWidget {
                           text: 'C',
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                         ),
-                        // TextSpan(text: ', '),
-                        // TextSpan(
-                        //   text: 'C++',
-                        //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                        // ),
                         TextSpan(text: ', as well as web technologies such as '),
                         TextSpan(
                           text: 'HTML',
@@ -341,10 +331,6 @@ class AboutMe extends StatelessWidget {
                     fontFamily: 'poppinsbold',
                     fontSize: 20
                   ),
-                  // onPress: () => Navigator.push(
-                  //   context, 
-                  //   MaterialPageRoute(builder: (context) => PdfViewer(),)
-                  // ),
                   onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
                   animatedOn: AnimatedOn.onHover,
                   height: 50,
