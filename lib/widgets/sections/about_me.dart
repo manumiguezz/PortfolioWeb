@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
 import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class AboutMe extends StatelessWidget {
@@ -22,23 +23,7 @@ class AboutMe extends StatelessWidget {
     double aboutMeDescriptionFontSize = 15;
     double reduceAboutMe = 0;
 
-    Color color = Colors.black;
-    Color borderColor = Colors.black;
-    Color selectedBackgroundColor = Colors.black;
-    Color selectedTextColor = Colors.white;
-    Color textColor = Colors.black;
-    Color backgroundColor = Colors.transparent;
-
-
-    if (invertedVersion) {
-      color = Colors.white;
-
-      borderColor = Colors.white;
-      backgroundColor;
-      selectedBackgroundColor;
-      selectedTextColor = Colors.white;
-      textColor = Colors.white;
-    } 
+    Color color = invertedVersion ? Colors.black : Colors.white;
 
     if (widthQuery < 390){
       reduceAboutMe = 18;
@@ -336,25 +321,7 @@ class AboutMe extends StatelessWidget {
 
                 const SizedBox(height: 20,),
     
-                AnimatedButton(
-                  text: 'My Resume', 
-                  textStyle: TextStyle(
-                    fontFamily: 'poppinsbold',
-                    fontSize: 20,
-                    color: textColor
-                  ),
-                  onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
-                  animatedOn: AnimatedOn.onHover,
-                  height: 50,
-                  width: 150,
-                  transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-                  borderColor: borderColor,
-                  selectedBackgroundColor: selectedBackgroundColor,
-                  selectedTextColor: selectedTextColor,
-                  backgroundColor: backgroundColor,
-                  borderRadius: 0,
-                  borderWidth: 3,
-                ),
+                CustomAnimatedButton(invertedVersion: invertedVersion),
     
               ],
             ),
@@ -364,3 +331,4 @@ class AboutMe extends StatelessWidget {
     );
   }
 }
+

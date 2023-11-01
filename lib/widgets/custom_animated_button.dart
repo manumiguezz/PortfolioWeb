@@ -26,7 +26,7 @@ class CustomAnimatedButton extends StatelessWidget {
         animatedOn: AnimatedOn.onHover,
         height: 50,
         width: 150,
-        transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
+        transitionType: TransitionType.LEFT_TO_RIGHT,
         borderColor: Colors.white,
         selectedTextColor: Colors.black,
         backgroundColor: Colors.transparent,
@@ -34,23 +34,21 @@ class CustomAnimatedButton extends StatelessWidget {
         borderWidth: 3,
       );
     }
-    
+
     return AnimatedButton(
       text: 'My Resume', 
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontFamily: 'poppinsbold',
         fontSize: 20,
-        color: textColor
       ),
       onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
       animatedOn: AnimatedOn.onHover,
       height: 50,
       width: 150,
       transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-      borderColor: borderColor,
-      selectedBackgroundColor: selectedBackgroundColor,
-      selectedTextColor: selectedTextColor,
-      backgroundColor: backgroundColor,
+      borderColor: Colors.black,
+      selectedBackgroundColor: Colors.black,
+      selectedTextColor: Colors.white,
       borderRadius: 0,
       borderWidth: 3,
     );
