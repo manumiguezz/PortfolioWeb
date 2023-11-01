@@ -27,14 +27,17 @@ class AboutMe extends StatelessWidget {
     Color selectedBackgroundColor = Colors.black;
     Color selectedTextColor = Colors.white;
     Color textColor = Colors.black;
+    Color backgroundColor = Colors.transparent;
 
 
     if (invertedVersion) {
       color = Colors.white;
 
       borderColor = Colors.white;
-      selectedBackgroundColor = Colors.transparent;
+      backgroundColor;
+      selectedBackgroundColor;
       selectedTextColor = Colors.white;
+      textColor = Colors.white;
     } 
 
     if (widthQuery < 390){
@@ -348,6 +351,7 @@ class AboutMe extends StatelessWidget {
                   borderColor: borderColor,
                   selectedBackgroundColor: selectedBackgroundColor,
                   selectedTextColor: selectedTextColor,
+                  backgroundColor: backgroundColor,
                   borderRadius: 0,
                   borderWidth: 3,
                 ),

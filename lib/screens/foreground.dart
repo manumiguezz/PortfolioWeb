@@ -14,7 +14,7 @@ class Foreground extends StatelessWidget {
     // general variables
     
     late bool mobileVersion = false;
-    late bool invertedVersion = false;
+    late bool invertedVersion = true;
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
