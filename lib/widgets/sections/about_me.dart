@@ -27,7 +27,7 @@ class AboutMe extends StatelessWidget {
       reduceAboutMe = 18;
     }
     
-    if (mobileVersion == true){
+    if (mobileVersion){
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
         child: Column(

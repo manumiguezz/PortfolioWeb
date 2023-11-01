@@ -20,7 +20,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     
 
-    if (widthQuery < 450) {
+    if (widthQuery < 450 || widthQuery > 1800) {
       showWhiteStroke = false;
 
     } else if (widthQuery < 500) {
@@ -214,7 +214,7 @@ class WhiteFlagSection extends StatelessWidget {
       } else {}
       mobileVersion = false;
 
-    } else if (widthQuery > 1400) {
+    } else if (widthQuery < 1800) {
       List<int> thresholds = [
         500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
       ];
