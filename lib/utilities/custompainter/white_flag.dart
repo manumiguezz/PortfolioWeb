@@ -13,9 +13,13 @@ class WhiteFlagSection extends StatelessWidget {
     final double widthQuery = MediaQuery.of(context).size.width;
     final double heightQuery = MediaQuery.of(context).size.height;
 
-    late double paddingTop = 100;
-    late double pageHeightStroke = 0.9;
+    late double paddingTop;
+    late double pageHeightStroke;
     late bool mobileVersion = false;
+
+    if (widthQuery < 340) {
+      
+    }
 
     if (widthQuery < 350) {
       

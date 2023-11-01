@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
-import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class AboutMe extends StatelessWidget {
 
@@ -23,16 +21,13 @@ class AboutMe extends StatelessWidget {
     double aboutMeDescriptionFontSize = 15;
     double reduceAboutMe = 0;
 
-    Color color = invertedVersion ? Colors.black : Colors.white;
+    Color color = invertedVersion ? Colors.white : Colors.black;
 
     if (widthQuery < 390){
       reduceAboutMe = 18;
     }
     
-
     if (mobileVersion == true){
-
-      
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
         child: Column(
@@ -172,12 +167,10 @@ class AboutMe extends StatelessWidget {
               ),
             ),
       
-      
           ],
         ),
       );
     }
-
 
     return FittedBox(
       child: Padding(

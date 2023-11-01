@@ -12,9 +12,8 @@ class Foreground extends StatelessWidget {
     double heightQuery = MediaQuery.of(context).size.height;
 
     // general variables
-    
     late bool mobileVersion = false;
-    late bool invertedVersion = true;
+    late bool invertedVersion = false;
     late double spaceOne = 100;
     late double spaceTwo = 100;
     late double spaceThree = 100;
