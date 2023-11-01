@@ -21,12 +21,20 @@ class AboutMe extends StatelessWidget {
     double heightQuery = MediaQuery.of(context).size.height;
     double aboutMeDescriptionFontSize = 15;
     double reduceAboutMe = 0;
+
     Color color = Colors.black;
-    Color invColor = Colors.white;
+    Color borderColor = Colors.black;
+    Color selectedBackgroundColor = Colors.black;
+    Color selectedTextColor = Colors.white;
+    Color textColor = Colors.black;
+
 
     if (invertedVersion) {
       color = Colors.white;
-      invColor = Colors.transparent;
+
+      borderColor = Colors.white;
+      selectedBackgroundColor = Colors.transparent;
+      selectedTextColor = Colors.white;
     } 
 
     if (widthQuery < 390){
@@ -327,18 +335,19 @@ class AboutMe extends StatelessWidget {
     
                 AnimatedButton(
                   text: 'My Resume', 
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                     fontFamily: 'poppinsbold',
-                    fontSize: 20
+                    fontSize: 20,
+                    color: textColor
                   ),
                   onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
                   animatedOn: AnimatedOn.onHover,
                   height: 50,
                   width: 150,
                   transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-                  borderColor: color,
-                  selectedBackgroundColor: color,
-                  selectedTextColor: invColor,
+                  borderColor: borderColor,
+                  selectedBackgroundColor: selectedBackgroundColor,
+                  selectedTextColor: selectedTextColor,
                   borderRadius: 0,
                   borderWidth: 3,
                 ),
