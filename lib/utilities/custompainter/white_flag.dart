@@ -20,20 +20,20 @@ class WhiteFlagSection extends StatelessWidget {
 
     
 
-    if (widthQuery < 500 || widthQuery > 1800) {
+    if (widthQuery < 500 || widthQuery > 1340) {
       showWhiteStroke = false;
 
     } else if (widthQuery < 600) {
       List<double> heightThresholds = [
-        500, 530, 580, 640, 700, 770, 830, 910, 980, 1050, 1120, 1220, 1340
+        500, 530, 570, 620, 670, 720, 780, 840, 880, 920, 970, 1010, 1050, 1110, 1180, 1250, 1340
       ];
 
       List<double> paddingTopValues = [
-        0, 0.77, 0.73, 0.68, 0.62, 0.57, 0.54, 0.52, 0.5, 0.48, 0.46, 0.43, 0.40
+        0, 0.77, 0.73, 0.68, 0.62, 0.57, 0.54, 0.52, 0.5, 0.48, 0.46, 0.46, 0.46, 0.45, 0.43, 0.41, 0.40
       ];
 
       List<double> pageHeightStrokeValues = [
-        0, 1.85, 1.68, 1.55, 1.38, 1.30, 1.20, 1.08, 1.0, 0.92, 0.86, 0.81, 0.75
+        0, 1.75, 1.68, 1.55, 1.45, 1.35, 1.26, 1.15, 1.10, 1.05, 1, 0.95, 0.90, 0.85, 0.80, 0.78, 0.75
       ];
 
       int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
@@ -46,7 +46,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 700) {
       List<double> heightThresholds = [
-        500, 550, 650, 760, 880, 1000, 1150, 1220, 9999
+        500, 550, 650, 760, 880, 1000, 1150, 1220, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -67,7 +67,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 800) {
       List<double> heightThresholds = [
-      500, 550, 580, 630, 690, 740, 820, 890, 960, 1050, 1150, 1240, 1300
+      500, 550, 580, 630, 690, 740, 820, 890, 960, 1050, 1150, 1240, 1340
     ];
 
     List<double> paddingTopValues = [
@@ -88,7 +88,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 900) {
       List<double> heightThresholds = [
-        500, 560, 610, 660, 730, 820, 920, 1020, 1110, 1240, 1300
+        500, 560, 610, 660, 730, 820, 920, 1020, 1110, 1240, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -110,7 +110,7 @@ class WhiteFlagSection extends StatelessWidget {
     } else if (widthQuery < 1000) {
       
       List<double> heightThresholds = [
-        500, 550, 610, 660, 730, 820, 920, 1020, 1110, 1240, 1300
+        500, 550, 610, 660, 730, 820, 920, 1020, 1110, 1240, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -131,7 +131,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 1100) {
       List<double> heightThresholds = [
-        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1320
+        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -153,7 +153,7 @@ class WhiteFlagSection extends StatelessWidget {
     } else if (widthQuery < 1200) {
 
       List<double> heightThresholds = [
-        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1320
+        500, 530, 560, 610, 660, 750, 800, 840, 900, 970, 1030, 1080, 1150, 1200, 1280, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -174,7 +174,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 1300) {
       List<double> heightThresholds = [
-        500, 530, 560, 610, 660, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
+        500, 530, 560, 610, 660, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1340
       ];
 
       List<double> paddingTopValues = [
@@ -195,7 +195,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 1800) {
       List<int> thresholds = [
-        500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1320
+        500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1340
       ];
 
       List<double> paddingTopValues = [
