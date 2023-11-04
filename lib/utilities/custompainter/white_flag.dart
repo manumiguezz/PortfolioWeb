@@ -20,30 +20,9 @@ class WhiteFlagSection extends StatelessWidget {
 
     
 
-    if (widthQuery < 450 || widthQuery > 1800) {
+    if (widthQuery < 500 || widthQuery > 1800) {
       showWhiteStroke = false;
 
-    } else if (widthQuery < 500) {
-      List<double> heightThresholds = [
-        500, 540, 590, 630, 680, 740, 810, 870, 930, 990, 1060, 1120, 1200
-      ];
-
-      List<double> paddingTopValues = [
-        0, 0.63, 0.62, 0.58, 0.56, 0.52, 0.50, 0.47, 0.44, 0.43, 0.415, 0.40, 0.385
-      ];
-
-      List<double> pageHeightStrokeValues = [
-        0, 2.02, 1.83, 1.70, 1.60, 1.48, 1.345, 1.22, 1.18, 1.10, 1.02, 0.96, 0.90
-      ];
-
-      int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
-
-      if (index != -1) {
-        paddingTop = heightQuery * paddingTopValues[index];
-        pageHeightStroke = heightQuery * pageHeightStrokeValues[index];
-      } else {}
-      mobileVersion = true;
-      
     } else if (widthQuery < 600) {
       List<double> heightThresholds = [
         500, 530, 580, 640, 700, 770, 830, 910, 980, 1050, 1120, 1220, 1340
@@ -117,7 +96,7 @@ class WhiteFlagSection extends StatelessWidget {
       ];
 
       List<double> pageHeightStrokeValues = [
-        0, 1.3, 1.4, 1.4, 1.4, 1.2, 1, 0.95, 0.90, 0.82, 0.7
+        0, 1.5, 1.4, 1.4, 1.4, 1.2, 1, 0.95, 0.90, 0.82, 0.7
       ];
 
       int index = heightThresholds.indexWhere((threshold) => heightQuery < threshold);
