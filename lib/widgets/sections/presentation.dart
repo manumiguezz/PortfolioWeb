@@ -21,7 +21,7 @@ class Presentation extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
 
-    if (mobileVersion == true) {
+    if (mobileVersion) {
 
       return Padding(
         padding: EdgeInsets.only(top: heightQuery * 0.15, left: widthQuery * 0.09),

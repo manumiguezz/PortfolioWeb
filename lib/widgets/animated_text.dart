@@ -25,16 +25,15 @@ class AnimatedText extends StatelessWidget {
       java = ' Java Dev.';
     }
 
-    return Expanded(
-      child: DefaultTextStyle(
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-        style: TextStyle(
-          fontFamily: 'poppinsbold',
-          fontSize: fontSizeAnimated,
-          color: Colors.white
-        ),
-
+    return DefaultTextStyle(
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: TextStyle(
+        fontFamily: 'poppinsbold',
+        fontSize: fontSizeAnimated,
+        color: Colors.white
+      ),
+      child: Expanded(
         child: AnimatedTextKit(
           isRepeatingAnimation: true,
           repeatForever: true,
