@@ -37,7 +37,7 @@ class Foreground extends StatelessWidget {
     late double lastInfoFontSize = 12;
     late double lastInfoSpaceBetween = 150;
 
-    if (widthQuery < 450 || widthQuery > 1800) {
+    if (widthQuery < 500 || widthQuery > 1800) {
       invertedVersion = true;
     }
 
