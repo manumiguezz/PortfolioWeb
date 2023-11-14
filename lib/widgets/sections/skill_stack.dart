@@ -8,6 +8,7 @@ class MyStack extends StatelessWidget {
   final double fontSize;
   final double sizedBoxBetweenStack;
   final bool mobileVersion;
+  final double iconReduction;
   
   const MyStack({
     super.key, 
@@ -15,7 +16,8 @@ class MyStack extends StatelessWidget {
     required this.nameStackScale,
     required this.fontSize, 
     required this.sizedBoxBetweenStack, 
-    required this.mobileVersion,
+    required this.mobileVersion, 
+    required this.iconReduction,
   });
 
   @override
@@ -24,7 +26,8 @@ class MyStack extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
 
-    if (mobileVersion) {
+
+    if (mobileVersion || widthQuery < 850) {
 
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.085),
@@ -55,9 +58,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                                     
-                        TechStack(asset: 'java.png', techName: 'Java', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'c.png', techName: 'C', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'dart.png', techName: 'Dart', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'java.png', techName: 'Java', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'c.png', techName: 'C', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'dart.png', techName: 'Dart', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
                                     
                       ],
                     ),
@@ -70,9 +73,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                       
-                        TechStack(asset: 'spring.png', techName: 'Spring', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'javafx.png', techName: 'JavaFX', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'hibernate.png', techName: 'Hibernate', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'spring.png', techName: 'Spring', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'javafx.png', techName: 'JavaFX', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'hibernate.png', techName: 'Hibernate', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
                     
                       ],
                     ),
@@ -86,9 +89,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                       
-                        TechStack(asset: 'postman.png', techName: 'Postman', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'maven.png', techName: 'Maven', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'postman.png', techName: 'Postman', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'maven.png', techName: 'Maven', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'thymeleaf.png', techName: 'Thymeleaf', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
                     
                       ],
                     ),
@@ -100,9 +103,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                       
-                        TechStack(asset: 'css.png', techName: 'CSS', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'mysql.png', techName: 'MySQL', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'flutter.png', techName: 'Flutter', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'css.png', techName: 'CSS', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'mysql.png', techName: 'MySQL', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'flutter.png', techName: 'Flutter', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
                     
                       ],
                     ),
@@ -114,9 +117,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                       
-                        TechStack(asset: 'html.png', techName: 'HTML', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'springboot.png', techName: 'Spring Boot', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'docker.png', techName: 'Docker', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'html.png', techName: 'HTML', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'springboot.png', techName: 'Spring Boot', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'docker.png', techName: 'Docker', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
 
                       ],
                     ),
@@ -128,9 +131,9 @@ class MyStack extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                       
-                        TechStack(asset: 'git.png', techName: 'Git', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'firebase.png', techName: 'Firebase', stackScale: iconStackScale, nameScale: nameStackScale),
-                        TechStack(asset: 'jwt.png', techName: 'JWT', stackScale: iconStackScale, nameScale: nameStackScale),
+                        TechStack(asset: 'git.png', techName: 'Git', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'firebase.png', techName: 'Firebase', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
+                        TechStack(asset: 'jwt.png', techName: 'JWT', stackScale: iconStackScale + iconReduction, nameScale: nameStackScale),
                         
                       ],
                     ),

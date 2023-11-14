@@ -20,7 +20,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     
 
-    if (widthQuery < 500 || widthQuery > 1340) {
+    if (widthQuery < 500 || widthQuery > 1800) {
       showWhiteStroke = false;
 
     } else if (widthQuery < 600) {
@@ -195,7 +195,7 @@ class WhiteFlagSection extends StatelessWidget {
 
     } else if (widthQuery < 1800) {
       List<int> thresholds = [
-        500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1340
+        500, 530, 560, 610, 650, 710, 760, 820, 880, 960, 1020, 1090, 1160, 1250, 1340 
       ];
 
       List<double> paddingTopValues = [

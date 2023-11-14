@@ -25,6 +25,7 @@ class Foreground extends StatelessWidget {
 
     // variables for MyStack
     late double myStackIconScale = 10;
+    late double myStackIconScaleReduction = 0;
     late double myStackNameScale = 10;
     late double myStackSizedBoxBetweenStack = 60;
 
@@ -41,6 +42,9 @@ class Foreground extends StatelessWidget {
       invertedVersion = true;
     }
 
+    if (heightQuery < 900) {
+      myStackIconScaleReduction = 2;
+    }
 
     if (widthQuery < 400) {
       mobileVersion = true;
@@ -264,7 +268,8 @@ class Foreground extends StatelessWidget {
           iconStackScale: myStackIconScale, 
           nameStackScale: myStackNameScale,
           fontSize: presentationFontSize,
-          sizedBoxBetweenStack: myStackSizedBoxBetweenStack,
+          sizedBoxBetweenStack: myStackSizedBoxBetweenStack, 
+          iconReduction: myStackIconScaleReduction,
         ),
 
         SizedBox(height: spaceThree),
