@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/widgets/test/projects_test.dart';
+import 'package:portfolio_web_version/widgets/test/skill_stack_test.dart';
 
-import '../widgets/sections/about_me_test.dart';
-import '../widgets/sections/presentation_test.dart';
+import '../widgets/test/about_me_test.dart';
+import '../widgets/test/presentation_test.dart';
 
 class ForegroundTwo extends StatelessWidget {
   const ForegroundTwo({super.key});
@@ -23,34 +25,14 @@ class ForegroundTwo extends StatelessWidget {
 
         const AboutMeTwo(),
 
-        // SizedBox(height: spaceTwo,),
+        SizedBox(height: heightQuery * 0.07,),
 
-        // MyStack(
-        //   mobileVersion: mobileVersion,
-        //   iconStackScale: myStackIconScale, 
-        //   nameStackScale: myStackNameScale,
-        //   fontSize: presentationFontSize,
-        //   sizedBoxBetweenStack: myStackSizedBoxBetweenStack, 
-        //   iconReduction: myStackIconScaleReduction,
-        // ),
+        MyStackTwo(mobileVersion: mobileVersion),
 
-        // SizedBox(height: spaceThree),
+        SizedBox(height: heightQuery * 0.07,),
 
-        // ProjectSection(
-        //   projectSpaceBetween: projectSpaceBetween,
-        //   projectFontSize: presentationFontSize,
-        //   projectScaleFactorSum: projectScaleFactorSum,
-        //   projectDescriptionFontSize: projectDescriptionFontSize,
-        //   mobileVersion: mobileVersion,
-        // ),
-
-        // SizedBox(height: spaceFour,),
-
-        // LastInfo(
-        //   lastInfoFontSize: lastInfoFontSize,
-        //   lastInfoSpaceBetween: lastInfoSpaceBetween,
-        // ),
-
+        ProjectSectionTwo(mobileVersion: mobileVersion),
+        
       ],
     );
   }

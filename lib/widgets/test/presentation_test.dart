@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/social_button.dart';
-import 'package:portfolio_web_version/widgets/url_launcher.dart';
 import '../animated_text.dart';
 
 class PresentationTwo extends StatelessWidget {
@@ -76,23 +75,26 @@ class PresentationTwo extends StatelessWidget {
             ],
           ),
       
-          const SizedBox(height: 30,),
+          SizedBox(height: heightQuery * 0.02),
       
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-
-              const SocialButton(imageUrl: 'assets/icons/socialmedia/github_white.png', url: 'https://github.com/manumiguezz'),
+          SizedBox(
+            height: heightQuery * 0.15,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
           
-              SizedBox(width: widthQuery * 0.02),
-
-              const SocialButton(imageUrl: 'assets/icons/socialmedia/email_white.png', url: 'mailto:manuelmiguezlauria@gmail.com'),
-
-              SizedBox(width: widthQuery * 0.02),
-
-              const SocialButton(imageUrl: 'assets/icons/socialmedia/linkedin_white.png', url: 'https://www.linkedin.com/in/manuelmiguezlauria/'),
-              
-            ],
+                const SocialButton(imageUrl: 'assets/icons/socialmedia/github_white.png', url: 'https://github.com/manumiguezz'),
+            
+                SizedBox(width: widthQuery * 0.02),
+          
+                const SocialButton(imageUrl: 'assets/icons/socialmedia/email_white.png', url: 'mailto:manuelmiguezlauria@gmail.com'),
+          
+                SizedBox(width: widthQuery * 0.02),
+          
+                const SocialButton(imageUrl: 'assets/icons/socialmedia/linkedin_white.png', url: 'https://www.linkedin.com/in/manuelmiguezlauria/'),
+                
+              ],
+            ),
           ),      
     
         ],

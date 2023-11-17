@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/sections/about_me_test.dart';
-import 'package:portfolio_web_version/widgets/sections/presentation_test.dart';
+import 'package:portfolio_web_version/widgets/test/about_me_test.dart';
+import 'package:portfolio_web_version/widgets/test/presentation_test.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 
