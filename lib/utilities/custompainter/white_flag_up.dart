@@ -15,7 +15,7 @@ class WhiteFlagUp extends CustomPainter {
 
     final path = Path();
 
-      path.moveTo(0, size.height * 0 );
+      path.moveTo(0, size.height * 0.2 );
 
       path.quadraticBezierTo(
         size.width * 0.24,
@@ -27,7 +27,7 @@ class WhiteFlagUp extends CustomPainter {
 
       path.quadraticBezierTo(
         size.width * 0.75,
-        size.height * - 0.3,
+        size.height * - 0.35,
 
         size.width,
         size.height * 0.4,

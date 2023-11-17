@@ -39,7 +39,7 @@ class AboutMeTwo extends StatelessWidget {
                     
                     Image.asset(
                       'assets/images/profile.png',
-                      width: widthQuery * 0.4,
+                      width: widthQuery * 0.415,
                     ),
               
                     SizedBox(width: widthQuery * 0.04,),
