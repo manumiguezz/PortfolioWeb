@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/widgets/projects/test/companyrestapi_test.dart';
+import 'package:portfolio_web_version/widgets/projects/test/flickframes_test.dart';
+import 'package:portfolio_web_version/widgets/projects/test/noteshopapp_test.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 class ProjectSectionTwo extends StatelessWidget {
@@ -29,29 +32,15 @@ class ProjectSectionTwo extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 50),
+        FlickFramesTwo(mobileVersion: mobileVersion),
 
-        Flickframes(
-          scaleFactorSum: widthQuery * 0.5,
-          descriptionFontSize: widthQuery * 0.5,
-          mobileVersion: mobileVersion,
-        ),
+        SizedBox(height: widthQuery * 0.1),
 
-        SizedBox(height: widthQuery * 0.2),
+        NoteshopAppTwo(mobileVersion: mobileVersion),
 
-        NoteshopApp(
-          scaleFactorSum: widthQuery * 0.5,
-          descriptionFontSize: widthQuery * 0.5,
-          mobileVersion: mobileVersion,
-        ),
+        SizedBox(height: widthQuery * 0.1),
 
-        SizedBox(height: widthQuery * 0.2),
-
-        CompanyRestApi(
-          scaleFactorSum: widthQuery * 0.5,
-          descriptionFontSize: widthQuery * 0.5,
-          mobileVersion: mobileVersion,
-        )
+        CompanyRestApiTwo(mobileVersion: mobileVersion),
 
       ],
       

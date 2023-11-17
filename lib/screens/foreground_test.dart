@@ -19,17 +19,17 @@ class ForegroundTwo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        PresentationTwo(mobileVersion: mobileVersion),
+        // PresentationTwo(mobileVersion: mobileVersion),
 
-        SizedBox(height: heightQuery * 0.07,),
+        // SizedBox(height: heightQuery * 0.07,),
 
-        const AboutMeTwo(),
+        // const AboutMeTwo(),
 
-        SizedBox(height: heightQuery * 0.07,),
+        // SizedBox(height: heightQuery * 0.07,),
 
-        MyStackTwo(mobileVersion: mobileVersion),
+        // MyStackTwo(mobileVersion: mobileVersion),
 
-        SizedBox(height: heightQuery * 0.07,),
+        // SizedBox(height: heightQuery * 0.07,),
 
         ProjectSectionTwo(mobileVersion: mobileVersion),
         

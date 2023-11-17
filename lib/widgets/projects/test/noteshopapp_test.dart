@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:portfolio_web_version/widgets/responsive_image.dart';
+
+import '../../responsive_image.dart';
 import '../../url_launcher.dart';
 
-class FlickFramesTwo extends StatelessWidget {
+class NoteshopAppTwo extends StatelessWidget {
   
   final bool mobileVersion;
-
-  const FlickFramesTwo({
+  
+  const NoteshopAppTwo({
     super.key, 
     required this.mobileVersion
   });
@@ -19,24 +20,46 @@ class FlickFramesTwo extends StatelessWidget {
     double heightQuery = MediaQuery.of(context).size.height;
     double subtitleSize = widthQuery * 0.013;
 
-    return Padding(
-      padding: EdgeInsets.only(left: widthQuery * 0.07),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+
+        Transform(
+          transform: Matrix4.translationValues(-50, 60, 0),
+          child: Transform.scale(
+            scale: 1.2,
+            child: SizedBox(
+              width: widthQuery * 0.5,
+              child: Image.asset('assets/images/project/noteshop.png'),
+            ),
+          ),
+        ),
+
+        // Transform(
+        //   transform: Matrix4.translationValues(-80, 0, 0),
+        //   child: SizedBox(
+        //     width: widthQuery * 0.6,
+        //     child: const ResponsiveImage(
+        //       imageAsset: 'assets/images/project/noteshop.png',
+        //     ),
+        //   )
+        // ),
+
+        Padding(
+          padding: EdgeInsets.only(right: widthQuery * 0.07),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-    
+        
               Text(
-                'Flickframes',
+                'Noteshop',
                 style: TextStyle(
                   fontFamily: 'poppinsbold',
                   fontSize: widthQuery * 0.05,
                   color: Colors.white
                 ),
               ),
-    
+        
               SizedBox(
                 width: widthQuery * 0.30,
                 child: Row(
@@ -44,18 +67,19 @@ class FlickFramesTwo extends StatelessWidget {
                   children: [
                     Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
                     Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('ISARDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('THEMOVIEDB', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('JWT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('HTTP', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('RESTAPI', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
                   ],
                 ),
               ),
-
+        
               SizedBox(height: heightQuery * 0.025),
-
+        
               SizedBox(
                 width: widthQuery * 0.30,
                 child: Text(
-                  'FlickerFrames is an entertainment app designed for movie enthusiasts, providing a comprehensive collection of movies, including information about vote averages, descriptions, and cast details. With FlickerFrames, you can explore a wide range of movies and discover similar titles that match your interests.',
+                  'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
                   softWrap: true,
                   textAlign: TextAlign.justify,
                   style: TextStyle(
@@ -65,9 +89,9 @@ class FlickFramesTwo extends StatelessWidget {
                   )
                 ),
               ),
-
+        
               SizedBox(height: heightQuery * 0.025),
-
+        
               AnimatedButton(
                 text: 'Github',
                 textStyle: TextStyle(
@@ -75,47 +99,22 @@ class FlickFramesTwo extends StatelessWidget {
                   fontFamily: 'poppinslight',
                   fontSize: widthQuery * 0.013,
                 ),
-                onPress: () => launchUrl('https://github.com/manumiguezz/FlickFramesApp'),
+                onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
                 animatedOn: AnimatedOn.onHover,
                 height: heightQuery * 0.08,
                 width: widthQuery * 0.30,
-                transitionType: TransitionType.CENTER_TB_IN,
+                transitionType: TransitionType.LEFT_TO_RIGHT,
                 borderColor: Colors.white,
                 backgroundColor: Colors.transparent,
-                selectedBackgroundColor: Colors.white,
                 selectedTextColor: Colors.black,
+                isReverse: true,
                 borderRadius: 0,
                 borderWidth: widthQuery * 0.002,
-              ),    
-    
+              ),
             ],
           ),
-
-          Transform(
-            transform: Matrix4.translationValues(50, 150, 0),
-            child: Transform.scale(
-              scale: 1.2,
-              child: SizedBox(
-                width: widthQuery * 0.5,
-                child: Image.asset('assets/images/project/flickframes.png'),
-              ),
-            ),
-          )
-
-          // Transform(
-          //   transform: Matrix4.translationValues(100, 0, 0),
-          //   child: Transform.scale(
-          //     scale: 1.4,
-          //     child: SizedBox(
-          //       width: widthQuery * 0.5,
-          //       child: const ResponsiveImage(
-          //         imageAsset: 'assets/images/project/flickframes.png',
-          //       ),
-          //     ),
-          //   ) 
-          // )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
