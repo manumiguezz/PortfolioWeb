@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/widgets/social_button.dart';
 import 'package:portfolio_web_version/widgets/url_launcher.dart';
 import '../animated_text.dart';
 
@@ -80,34 +81,16 @@ class PresentationTwo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-          
-              GestureDetector(
-                onTap: () => launchUrl('https://github.com/manumiguezz'),
-                child: MouseRegion(
-                  cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/github_white.png', color: Colors.white, width: widthQuery * 0.05,)
-                ),
-              ),
+
+              const SocialButton(imageUrl: 'assets/icons/socialmedia/github_white.png', url: 'https://github.com/manumiguezz'),
           
               SizedBox(width: widthQuery * 0.02),
-          
-              GestureDetector(
-                onTap: () => launchUrl('mailto:manuelmiguezlauria@gmail.com'),
-                child: MouseRegion(
-                  cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/email_white.png', color: Colors.white, width: widthQuery * 0.05,)
-                ),
-              ),
-          
+
+              const SocialButton(imageUrl: 'assets/icons/socialmedia/email_white.png', url: 'mailto:manuelmiguezlauria@gmail.com'),
+
               SizedBox(width: widthQuery * 0.02),
-              
-              GestureDetector(
-                onTap: () => launchUrl('https://www.linkedin.com/in/manuelmiguezlauria/'),
-                child: MouseRegion(
-                  cursor: MaterialStateMouseCursor.clickable,
-                  child: Image.asset('assets/icons/socialmedia/linkedin_white.png', color: Colors.white, width: widthQuery * 0.05,)
-                ),
-              ),
+
+              const SocialButton(imageUrl: 'assets/icons/socialmedia/linkedin_white.png', url: 'https://www.linkedin.com/in/manuelmiguezlauria/'),
               
             ],
           ),      

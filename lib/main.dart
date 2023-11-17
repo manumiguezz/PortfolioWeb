@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
     print('WIDTH: ' + MediaQuery.of(context).size.width.toString() + '--------- HEIGHT: '+ MediaQuery.of(context).size.height.toString() + ' ______________________________________________________________________!!!!!!!!!!!!');
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreenMobile()
+      home: HomeScreen()
     ).animate().fadeIn();
 
   }
