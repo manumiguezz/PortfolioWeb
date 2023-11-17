@@ -26,11 +26,11 @@ class AboutMeTwo extends StatelessWidget {
                 transform: Matrix4.translationValues(0, 0, 0),
                 child: Image.asset(
                   'assets/images/profile.png',
-                  height: heightQuery * 0.88,
+                  width: widthQuery * 0.4,
                 )
               ),
         
-              SizedBox(width: widthQuery * 0.05,),
+              SizedBox(width: widthQuery * 0.04,),
         
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +153,7 @@ class AboutMeTwo extends StatelessWidget {
 
                   SizedBox(height: heightQuery * 0.04,),
 
-                  const CustomAnimatedButton(invertedVersion: false)
+                  const FittedBox(child: CustomAnimatedButton(invertedVersion: false))
 
                     
                 ],
