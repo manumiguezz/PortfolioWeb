@@ -14,6 +14,9 @@ class CustomAnimatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    double widthQuery = MediaQuery.of(context).size.width;
+    double heightQuery = MediaQuery.of(context).size.height;
+
     if (invertedVersion) {
       return AnimatedButton(
         text: 'My Resume', 
@@ -37,20 +40,20 @@ class CustomAnimatedButton extends StatelessWidget {
 
     return AnimatedButton(
       text: 'My Resume', 
-      textStyle: const TextStyle(
+      textStyle: TextStyle(
         fontFamily: 'poppinsbold',
-        fontSize: 20,
+        fontSize: widthQuery * 0.012,
       ),
       onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/manuelmiguezlauriaresume-en.pdf?alt=media&token=4353914e-7180-4fba-8936-489a428c3181'),
       animatedOn: AnimatedOn.onHover,
-      height: 50,
-      width: 150,
+      height: heightQuery * 0.07,
+      width: widthQuery * 0.1,
       transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
       borderColor: Colors.black,
       selectedBackgroundColor: Colors.black,
       selectedTextColor: Colors.white,
       borderRadius: 0,
-      borderWidth: 3,
+      borderWidth: widthQuery * 0.0025,
     );
   }
 }

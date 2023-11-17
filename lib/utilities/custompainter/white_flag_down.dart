@@ -28,7 +28,7 @@ class WhiteFlagDown extends CustomPainter {
 
       path.quadraticBezierTo(
         size.width * 0.13,
-        size.height * 1.00, 
+        size.height * 1.56, 
         size.width * 0,
         size.height * 0.95, 
       );
