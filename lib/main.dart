@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:portfolio_web_version/mobile/home_mobile.dart';
 import 'package:portfolio_web_version/screens/home.dart';
 import 'package:portfolio_web_version/widgets/precache_assets.dart';
 
@@ -14,11 +15,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     precacheAssets(context);
-
     print('WIDTH: ' + MediaQuery.of(context).size.width.toString() + '--------- HEIGHT: '+ MediaQuery.of(context).size.height.toString() + ' ______________________________________________________________________!!!!!!!!!!!!');
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen()
+      home: HomeScreenMobile()
     ).animate().fadeIn();
 
   }
