@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/widgets/sections/aboutme.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
 
@@ -248,18 +249,20 @@ class Foreground extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        Presentation(
-          fontSize: presentationFontSize, 
-          reduceIcon: presentationReduceIcon,
-          mobileVersion: mobileVersion,
-        ),
+        // Presentation(
+        //   fontSize: presentationFontSize, 
+        //   reduceIcon: presentationReduceIcon,
+        //   mobileVersion: mobileVersion,
+        // ),
+        SizedBox(height: 50,),
+        // SizedBox(height: spaceOne,),
 
-        SizedBox(height: spaceOne,),
+        // AboutMe(
+        //   invertedVersion: invertedVersion,
+        //   mobileVersion: mobileVersion
+        // ),
 
-        AboutMe(
-          invertedVersion: invertedVersion,
-          mobileVersion: mobileVersion
-        ),
+        const AboutMeTwo(),
 
         SizedBox(height: spaceTwo,),
 
