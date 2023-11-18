@@ -16,16 +16,18 @@ class AboutMeMobile extends StatelessWidget {
     return Column(
       children: [
 
-        SizedBox(
-          height: heightQuery * 0.2,
-          width: widthQuery,
-          child: CustomPaint(
-            painter: WhiteFlagUpMobile(),
+        Transform.translate(
+          offset: const Offset(0, 5),
+          child: SizedBox(
+            height: heightQuery * 0.2,
+            width: widthQuery,
+            child: CustomPaint(
+              painter: WhiteFlagUpMobile(),
+            ),
           ),
         ),
 
         Container(
-          height: heightQuery * 1.25,
           color: Colors.white,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.1),
@@ -33,6 +35,8 @@ class AboutMeMobile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                SizedBox(height: heightQuery * 0.03,),
           
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -177,17 +181,23 @@ class AboutMeMobile extends StatelessWidget {
             
                 SizedBox(height: heightQuery * 0.04,),
             
-                const CustomAnimatedButton()
+                const CustomAnimatedButton(),
+
+                SizedBox(height: heightQuery * 0.03,),
+
               ],
             ),
           ),
         ),
 
-        SizedBox(
-          height: heightQuery * 0.2,
-          width: widthQuery,
-          child: CustomPaint(
-            painter: WhiteFlagDownMobile(),
+        Transform.translate(
+          offset: const Offset(0, -5),
+          child: SizedBox(
+            height: heightQuery * 0.2,
+            width: widthQuery,
+            child: CustomPaint(
+              painter: WhiteFlagDownMobile(),
+            ),
           ),
         ),
       ],

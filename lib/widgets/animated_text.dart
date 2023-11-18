@@ -28,29 +28,34 @@ class AnimatedText extends StatelessWidget {
     }
 
     return Expanded(
-      child: DefaultTextStyle(
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-        style: TextStyle(
-          fontFamily: 'poppinsbold',
-          fontSize: fontSizeAnimated,
-          color: Colors.white
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DefaultTextStyle(
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(
+              fontFamily: 'poppinsbold',
+              fontSize: fontSizeAnimated,
+              color: Colors.white
+            ),
 
-        child: AnimatedTextKit(
-          isRepeatingAnimation: true,
-          repeatForever: true,
-          pause: const Duration(milliseconds: 1800),
+            child: AnimatedTextKit(
+              isRepeatingAnimation: true,
+              repeatForever: true,
+              pause: const Duration(milliseconds: 1800),
 
-          animatedTexts: [
-            TyperAnimatedText(java, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(student, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(flutter, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(backend, speed: Duration(microseconds: speed)),
-          
-          ],
-          onTap: () {},
-        ),
+              animatedTexts: [
+                TyperAnimatedText(java, speed: Duration(microseconds: speed)),
+                TyperAnimatedText(student, speed: Duration(microseconds: speed)),
+                TyperAnimatedText(flutter, speed: Duration(microseconds: speed)),
+                TyperAnimatedText(backend, speed: Duration(microseconds: speed)),
+              
+              ],
+              onTap: () {},
+            ),
+          ),
+        ],
       ),
     );
   }

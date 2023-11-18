@@ -27,7 +27,7 @@ class Foreground extends StatelessWidget {
 
           const ArrowIcon(),
 
-          SizedBox(height: heightQuery * 0.07),
+          SizedBox(height: heightQuery * 0.0),
 
           const AboutMeMobile(),
 

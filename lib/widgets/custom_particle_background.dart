@@ -35,7 +35,7 @@ class CustomParticleBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double pageHeight = MediaQuery.of(context).size.height - 30;
+    final double pageHeight = MediaQuery.of(context).size.height;
     final double pageWidth = MediaQuery.of(context).size.width;
 
     return SizedBox(

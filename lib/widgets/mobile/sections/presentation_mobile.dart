@@ -14,7 +14,7 @@ class PresentationMobile extends StatelessWidget {
     double fontSize = widthQuery * 0.13;
 
     return Padding(
-      padding: EdgeInsets.only(top: heightQuery * 0.32),
+      padding: EdgeInsets.only(top: heightQuery * 0.25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -43,15 +43,17 @@ class PresentationMobile extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
-            child: AnimatedText(
-              speed: 100000,
-              fontSizeAnimated: fontSize,
-              mobileVersion: true,
-            ),
+          Row(
+            children: [
+              AnimatedText(
+                speed: 100000,
+                fontSizeAnimated: fontSize,
+                mobileVersion: true,
+              ),
+            ],
           ),
 
-          SizedBox(height: heightQuery * 0.1),
+          SizedBox(height: heightQuery * 0.05),
           
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,

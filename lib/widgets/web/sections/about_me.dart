@@ -17,11 +17,14 @@ class AboutMe extends StatelessWidget {
     return Column(
       children: [
 
-        SizedBox(
-          height: heightQuery * 0.2,
-          width: widthQuery,
-          child: CustomPaint(
-            painter: WhiteFlagUp(),
+        Transform.translate(
+          offset: const Offset(0, 5),
+          child: SizedBox(
+            height: heightQuery * 0.2,
+            width: widthQuery,
+            child: CustomPaint(
+              painter: WhiteFlagUp(),
+            ),
           ),
         ),
 
@@ -179,11 +182,14 @@ class AboutMe extends StatelessWidget {
           ),
         ),
 
-        SizedBox(
-          height: heightQuery * 0.2,
-          width: widthQuery,
-          child: CustomPaint(
-            painter: WhiteFlagDown(),
+        Transform.translate(
+          offset: const Offset(0, -5),
+          child: SizedBox(
+            height: heightQuery * 0.2,
+            width: widthQuery,
+            child: CustomPaint(
+              painter: WhiteFlagDown(),
+            ),
           ),
         ),
       ],

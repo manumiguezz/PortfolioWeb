@@ -23,7 +23,7 @@ class _SocialButtonState extends State<SocialButton> {
   Widget build(BuildContext context) {
 
     double widthQuery = MediaQuery.of(context).size.width;
-    double imageSize = widthQuery < 600 ? widthQuery * 0.12 : widthQuery * 0.05;
+    double imageSize = widthQuery < 600 ? widthQuery * 0.11 : widthQuery * 0.05;
 
     return GestureDetector(
       onTap: () => launchUrl(widget.url),
