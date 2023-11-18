@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:portfolio_web_version/widgets/widgets.dart';
+import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class NoteshopApp extends StatelessWidget {
-
-  final double scaleFactorSum;
-  final double descriptionFontSize;
+  
   final bool mobileVersion;
-
+  
   const NoteshopApp({
     super.key, 
-    required this.scaleFactorSum, 
-    required this.descriptionFontSize, 
-    required this.mobileVersion,
+    required this.mobileVersion
   });
 
   @override
@@ -20,176 +16,103 @@ class NoteshopApp extends StatelessWidget {
 
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
+    double subtitleSize = widthQuery * 0.013;
 
-    if (mobileVersion){
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
 
-          const Text(
-            'Noteshop',
-            style: TextStyle(
-              fontFamily: 'poppinsbold',
-              fontSize: 40,
-              color: Colors.white
+        Transform(
+          transform: Matrix4.translationValues(-50, 0, 0),
+          child: Transform.scale(
+            scale: 1.2,
+            child: SizedBox(
+              width: widthQuery * 0.5,
+              child: Image.asset('assets/images/project/noteshop.png'),
             ),
           ),
+        ),
 
-          const SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
-                Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
-                Text('JWT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
-                Text('HTTP', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
-                Text('RESTAPI', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 14, color: Colors.white)),
-              ],
-            ),
-          ),
+        // Transform(
+        //   transform: Matrix4.translationValues(-80, 0, 0),
+        //   child: SizedBox(
+        //     width: widthQuery * 0.6,
+        //     child: const ResponsiveImage(
+        //       imageAsset: 'assets/images/project/noteshop.png',
+        //     ),
+        //   )
+        // ),
 
-          SizedBox(height: heightQuery * 0.015),
-
-          const SizedBox(
-            child: Text(
-              'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
-              softWrap: true,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
+        Padding(
+          padding: EdgeInsets.only(right: widthQuery * 0.07),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+        
+              Text(
+                'Noteshop',
+                style: TextStyle(
+                  fontFamily: 'poppinsbold',
+                  fontSize: widthQuery * 0.05,
+                  color: Colors.white
+                ),
+              ),
+        
+              SizedBox(
+                width: widthQuery * 0.30,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('JWT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('HTTP', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                    Text('RESTAPI', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
+                  ],
+                ),
+              ),
+        
+              SizedBox(height: heightQuery * 0.025),
+        
+              SizedBox(
+                width: widthQuery * 0.30,
+                child: Text(
+                  'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
+                  softWrap: true,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'poppinslight',
+                      fontSize: widthQuery * 0.010,
+                  )
+                ),
+              ),
+        
+              SizedBox(height: heightQuery * 0.025),
+        
+              AnimatedButton(
+                text: 'Github',
+                textStyle: TextStyle(
                   color: Colors.white,
                   fontFamily: 'poppinslight',
-                  fontSize: 14,
-              )
-            ),
-          ),
-
-          SizedBox(height: heightQuery * 0.015),
-
-          AnimatedButton(
-            animatedOn: AnimatedOn.onHover,
-            height: heightQuery * 0.055,
-            width: widthQuery - widthQuery * 0.085,
-            text: 'Github',
-            isReverse: true,
-            selectedTextColor: Colors.black,
-            transitionType: TransitionType.LEFT_TO_RIGHT,
-            textStyle: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'poppinslight',
-              fontSize: 14,
-            ),
-            backgroundColor: Colors.transparent,
-            borderColor: Colors.white,
-            borderRadius: 0,
-            borderWidth: 2,
-            onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
-          ),
-
-          SizedBox(height: heightQuery * 0.015),
-
-          Transform(
-            transform: Matrix4.translationValues(0, 40, 0),
-            child: Transform.scale(
-              scale: 1.5,
-              child: const ResponsiveImage(
-                imageAsset: 'assets/images/project/noteshop.png', 
-                scaleFactor: 1,
+                  fontSize: widthQuery * 0.013,
+                ),
+                onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
+                animatedOn: AnimatedOn.onHover,
+                height: heightQuery * 0.08,
+                width: widthQuery * 0.30,
+                transitionType: TransitionType.LEFT_TO_RIGHT,
+                borderColor: Colors.white,
+                backgroundColor: Colors.transparent,
+                selectedTextColor: Colors.black,
+                isReverse: true,
+                borderRadius: 0,
+                borderWidth: widthQuery * 0.002,
               ),
-            )
+            ],
           ),
-
-        ],
-      );
-    }
-
-    return FittedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-      
-          Transform(
-            transform: Matrix4.translationValues(-100, 0, 0),
-            child: ResponsiveImage(
-              imageAsset: 'assets/images/project/noteshop.png', 
-              scaleFactor: 0.8 + scaleFactorSum,
-            )
-          ),
-
-          const SizedBox(width: 50,),
-      
-          Padding(
-            padding: const EdgeInsets.only(right: 70),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                      
-                const Text(
-                  'Noteshop',
-                  style: TextStyle(
-                    fontFamily: 'poppinsbold',
-                    fontSize: 70,
-                    color: Colors.white
-                  ),
-                ),
-                      
-                const SizedBox(
-                  width: 330,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('JWT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('HTTP', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                      Text('RESTAPI', style: TextStyle(fontFamily: 'poppinsregular', fontSize: 15, color: Colors.white)),
-                    ],
-                  ),
-                ),
-                      
-                const SizedBox(height: 20),
-                      
-                SizedBox(
-                  width: 420,
-                  child: Text(
-                    'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
-                    softWrap: true,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'poppinslight',
-                        fontSize: descriptionFontSize,
-                    )
-                  ),
-                ),
-              
-                const SizedBox(height: 21),
-              
-                AnimatedButton(
-                  animatedOn: AnimatedOn.onHover,
-                  height: 50 + descriptionFontSize,
-                  width: 130 + descriptionFontSize,
-                  text: 'Github',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  transitionType: TransitionType.LEFT_TO_RIGHT,
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'poppinslight',
-                    fontSize: descriptionFontSize,
-                  ),
-                  backgroundColor: Colors.transparent,
-                  borderColor: Colors.white,
-                  borderRadius: 0,
-                  borderWidth: 2,
-                  onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
-                ),
-                      
-              ],
-            ),
-          ),
-          
-        ],
-      ),
+        )
+      ],
     );
   }
 }

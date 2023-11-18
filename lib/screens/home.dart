@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/screens/background.dart';
 import 'package:portfolio_web_version/screens/foreground.dart';
-import 'package:portfolio_web_version/screens/foreground_test.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             Background(),
-            ForegroundTwo(),
+            ForegroundWeb(),
           ],
         )
       ),

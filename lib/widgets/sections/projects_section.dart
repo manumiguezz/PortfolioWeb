@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/projects/test/companyrestapi_test.dart';
-import 'package:portfolio_web_version/widgets/projects/test/flickframes_test.dart';
-import 'package:portfolio_web_version/widgets/projects/test/noteshopapp_test.dart';
-import 'package:portfolio_web_version/widgets/widgets.dart';
+import 'package:portfolio_web_version/widgets/projects/companyrestapi.dart';
+import 'package:portfolio_web_version/widgets/projects/flickframes.dart';
+import 'package:portfolio_web_version/widgets/projects/noteshopapp.dart';
 
 class ProjectSectionTwo extends StatelessWidget {
 
@@ -17,7 +16,6 @@ class ProjectSectionTwo extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double widthQuery = MediaQuery.of(context).size.width;
-    double heightQuery = MediaQuery.of(context).size.height;
 
     return Column(
       children: [
@@ -32,15 +30,17 @@ class ProjectSectionTwo extends StatelessWidget {
           ),
         ),
 
-        FlickFramesTwo(mobileVersion: mobileVersion),
+        SizedBox(height: widthQuery * 0.05),
+
+        FlickFrames(mobileVersion: mobileVersion),
 
         SizedBox(height: widthQuery * 0.1),
 
-        NoteshopAppTwo(mobileVersion: mobileVersion),
+        NoteshopApp(mobileVersion: mobileVersion),
 
         SizedBox(height: widthQuery * 0.1),
 
-        CompanyRestApiTwo(mobileVersion: mobileVersion),
+        CompanyRestApi(mobileVersion: mobileVersion),
 
       ],
       
