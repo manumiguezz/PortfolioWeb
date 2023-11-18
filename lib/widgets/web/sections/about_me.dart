@@ -167,7 +167,7 @@ class AboutMe extends StatelessWidget {
                       
                           SizedBox(height: heightQuery * 0.04,),
                       
-                          const CustomAnimatedButton(invertedVersion: false)
+                          const CustomAnimatedButton()
                         ],
                       ),
                     ),
