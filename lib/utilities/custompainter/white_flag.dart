@@ -18,8 +18,6 @@ class WhiteFlagSection extends StatelessWidget {
     late bool mobileVersion = false;
     late bool showWhiteStroke = true;
 
-    
-
     if (widthQuery < 500 || widthQuery > 1800) {
       showWhiteStroke = false;
 

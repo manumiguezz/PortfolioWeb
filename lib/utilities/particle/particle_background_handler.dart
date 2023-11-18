@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/utilities/particle/configuration.dart';
 import 'package:portfolio_web_version/utilities/particle/particle_handler.dart';
 import 'package:portfolio_web_version/utilities/particle/rnd.dart';
-
 import 'particle.dart';
 
 class ParticleBackgroundHandler extends ParticleHandler {

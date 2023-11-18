@@ -183,8 +183,8 @@ class AboutMeMobile extends StatelessWidget {
             
                 const CustomAnimatedButton(),
 
-                SizedBox(height: heightQuery * 0.03,),
-
+                SizedBox(height: heightQuery * 0.04,),
+                
               ],
             ),
           ),
