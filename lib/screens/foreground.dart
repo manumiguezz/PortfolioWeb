@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/arrow_icon.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/about_me_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/presentation_mobile.dart';
+import 'package:portfolio_web_version/widgets/mobile/sections/skill_stack_mobile.dart';
 import '../widgets/widgets.dart';
 
 class Foreground extends StatelessWidget {
@@ -18,18 +19,19 @@ class Foreground extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          // const PresentationMobile(),
+          const PresentationMobile(),
 
           SizedBox(height: heightQuery * 0.07),
 
-          // const ArrowIcon(),
+          const ArrowIcon(),
 
-          // SizedBox(height: heightQuery * 0.07),
+          SizedBox(height: heightQuery * 0.07),
 
           const AboutMeMobile(),
 
           SizedBox(height: heightQuery * 0.07),
 
+          const MyStackMobile()
 
         ],
       );
