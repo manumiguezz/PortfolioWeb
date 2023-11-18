@@ -25,15 +25,15 @@ class ProjectSection extends StatelessWidget {
 
         SizedBox(height: widthQuery * 0.05),
 
-        const FlickFrames(mobileVersion: false),
+        const FlickFrames(),
 
         SizedBox(height: widthQuery * 0.1),
 
-        const NoteshopApp(mobileVersion: false),
+        const NoteshopApp(),
 
         SizedBox(height: widthQuery * 0.1),
 
-        const CompanyRestApi(mobileVersion: false),
+        const CompanyRestApi(),
 
       ],
       

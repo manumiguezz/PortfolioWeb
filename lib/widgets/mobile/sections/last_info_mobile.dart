@@ -18,18 +18,18 @@ class LastInfoMobile extends StatelessWidget {
           'manuelmiguezlauria@gmail.com',
           style: TextStyle(
             fontFamily: 'poppinslight',
-                  fontSize: widthQuery * 0.010,
+                  fontSize: widthQuery * 0.025,
                   color: Colors.white
           ),
         ),
 
-        SizedBox(width: widthQuery * 0.1,),
+        SizedBox(width: widthQuery * 0.05,),
 
         Text(
           'Website built on Flutter',
           style: TextStyle(
             fontFamily: 'poppinslight',
-                  fontSize: widthQuery * 0.010,
+                  fontSize: widthQuery * 0.025,
                   color: Colors.white
           ),
         )

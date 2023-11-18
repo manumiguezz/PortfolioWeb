@@ -4,12 +4,7 @@ import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class CompanyRestApi extends StatelessWidget {
 
-  final bool mobileVersion;
-
-  const CompanyRestApi({
-    super.key, 
-    required this.mobileVersion
-  });
+  const CompanyRestApi({super.key});
 
   @override
   Widget build(BuildContext context) {

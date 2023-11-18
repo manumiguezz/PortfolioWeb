@@ -4,12 +4,7 @@ import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class NoteshopApp extends StatelessWidget {
   
-  final bool mobileVersion;
-  
-  const NoteshopApp({
-    super.key, 
-    required this.mobileVersion
-  });
+  const NoteshopApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +27,6 @@ class NoteshopApp extends StatelessWidget {
             ),
           ),
         ),
-
-        // Transform(
-        //   transform: Matrix4.translationValues(-80, 0, 0),
-        //   child: SizedBox(
-        //     width: widthQuery * 0.6,
-        //     child: const ResponsiveImage(
-        //       imageAsset: 'assets/images/project/noteshop.png',
-        //     ),
-        //   )
-        // ),
 
         Padding(
           padding: EdgeInsets.only(right: widthQuery * 0.07),

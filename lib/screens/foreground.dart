@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/arrow_icon.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/about_me_mobile.dart';
+import 'package:portfolio_web_version/widgets/mobile/sections/last_info_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/presentation_mobile.dart';
+import 'package:portfolio_web_version/widgets/mobile/sections/projects_section_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/skill_stack_mobile.dart';
 import '../widgets/widgets.dart';
 
@@ -31,7 +33,15 @@ class Foreground extends StatelessWidget {
 
           SizedBox(height: heightQuery * 0.07),
 
-          const MyStackMobile()
+          const MyStackMobile(),
+
+          SizedBox(height: heightQuery * 0.07),
+
+          const ProjectSectionMobile(),
+
+          SizedBox(height: heightQuery * 0.15),
+
+          const LastInfoMobile()
 
         ],
       );

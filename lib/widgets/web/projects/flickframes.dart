@@ -3,13 +3,8 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class FlickFrames extends StatelessWidget {
-  
-  final bool mobileVersion;
 
-  const FlickFrames({
-    super.key, 
-    required this.mobileVersion
-  });
+  const FlickFrames({super.key});
 
   @override
   Widget build(BuildContext context) {
