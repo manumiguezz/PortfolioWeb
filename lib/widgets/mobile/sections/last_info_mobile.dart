@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LastInfoTwo extends StatelessWidget {
+class LastInfoMobile extends StatelessWidget {
 
-  const LastInfoTwo({
+  const LastInfoMobile({
     super.key,});
 
   @override

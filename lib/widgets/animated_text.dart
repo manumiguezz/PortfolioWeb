@@ -18,11 +18,13 @@ class AnimatedText extends StatelessWidget {
     String backend = ' Backend Specialist.';
     String flutter = ' Flutter Developer.';
     String java = ' Java Developer.';
+    String student = ' Student.';
 
     if (mobileVersion) {
-      backend = ' Backend Dev.';
-      flutter = ' Flutter Dev.';
-      java = ' Java Dev.';
+      backend = 'Backend Dev';
+      flutter = 'Flutter Dev';
+      java = 'Java Dev';
+      student = 'Student';
     }
 
     return Expanded(
@@ -42,7 +44,7 @@ class AnimatedText extends StatelessWidget {
 
           animatedTexts: [
             TyperAnimatedText(java, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(' Student.', speed: Duration(microseconds: speed)),
+            TyperAnimatedText(student, speed: Duration(microseconds: speed)),
             TyperAnimatedText(flutter, speed: Duration(microseconds: speed)),
             TyperAnimatedText(backend, speed: Duration(microseconds: speed)),
           

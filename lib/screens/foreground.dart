@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/test/last_info_test.dart';
-import 'package:portfolio_web_version/widgets/test/projects_test.dart';
-import 'package:portfolio_web_version/widgets/test/skill_stack_test.dart';
+import 'package:portfolio_web_version/widgets/arrow_icon.dart';
+import 'package:portfolio_web_version/widgets/mobile/sections/presentation_mobile.dart';
+import '../widgets/widgets.dart';
 
-import '../widgets/test/about_me_test.dart';
-import '../widgets/test/presentation_test.dart';
-
-class ForegroundWeb extends StatelessWidget {
-  const ForegroundWeb({super.key});
+class Foreground extends StatelessWidget {
+  const Foreground({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
-    late bool mobileVersion = false;
+    double widthQuery = MediaQuery.of(context).size.width;
+    bool mobileVersion = widthQuery < 600 ? true : false;
+
+    if (mobileVersion) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+
+          const PresentationMobile(),
+
+          SizedBox(height: heightQuery * 0.07),
+
+
+          ArrowIcon(),
+          // Icon(
+          //   Icons.keyboard_arrow_down_rounded,
+          //   color: Colors.white,
+          //   size: widthQuery * 0.2,
+          // )
+        ],
+      );
+    } 
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 
-        PresentationTwo(mobileVersion: mobileVersion),
+        const Presentation(),
 
         SizedBox(height: heightQuery * 0.07,),
 
-        const AboutMeTwo(),
+        const AboutMe(),
 
         SizedBox(height: heightQuery * 0.07,),
 
-        MyStackTwo(mobileVersion: mobileVersion),
+        const MyStack(),
 
         SizedBox(height: heightQuery * 0.1,),
 
-        ProjectSectionTwo(mobileVersion: mobileVersion),
+        const ProjectSection(),
 
         SizedBox(height: heightQuery * 0.5,),
         
-        const LastInfoTwo()
+        const LastInfo()
       ],
     );
   }

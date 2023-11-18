@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
-class MyStackTwo extends StatelessWidget {
+class MyStackMobile extends StatelessWidget {
 
   final bool mobileVersion;
   
-  const MyStackTwo({
+  const MyStackMobile({
     super.key, 
     required this.mobileVersion, 
   });

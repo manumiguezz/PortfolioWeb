@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/widgets.dart';
 
@@ -10,7 +9,6 @@ class Background extends StatelessWidget {
     return const Stack(
       children: [ 
         ParticleGroup(),
-        // WhiteFlagSection(),
       ],
     );
   }

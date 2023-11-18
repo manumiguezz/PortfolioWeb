@@ -23,6 +23,7 @@ class _SocialButtonState extends State<SocialButton> {
   Widget build(BuildContext context) {
 
     double widthQuery = MediaQuery.of(context).size.width;
+    double imageSize = widthQuery < 600 ? widthQuery * 0.12 : widthQuery * 0.05;
 
     return GestureDetector(
       onTap: () => launchUrl(widget.url),
@@ -32,11 +33,11 @@ class _SocialButtonState extends State<SocialButton> {
         onExit: (_) => setState(() => isHovered = false),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          width: isHovered ? widthQuery * 0.06 : widthQuery * 0.05, // Cambia el tamaño aquí
+          width: isHovered ? imageSize + widthQuery * 0.01 : imageSize, 
           child: Image.asset(
             widget.imageUrl,
             color: Colors.white,
-            width: widthQuery * 0.05,
+            width: imageSize,
           ),
         ),
       ),

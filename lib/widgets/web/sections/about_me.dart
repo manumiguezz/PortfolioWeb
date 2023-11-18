@@ -3,8 +3,8 @@ import 'package:portfolio_web_version/utilities/custompainter/white_flag_down.da
 import 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
 import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
 
-class AboutMeTwo extends StatelessWidget {
-  const AboutMeTwo({super.key});
+class AboutMe extends StatelessWidget {
+  const AboutMe({super.key});
 
   @override
   Widget build(BuildContext context) {

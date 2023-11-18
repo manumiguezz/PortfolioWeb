@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/projects/companyrestapi.dart';
-import 'package:portfolio_web_version/widgets/projects/flickframes.dart';
-import 'package:portfolio_web_version/widgets/projects/noteshopapp.dart';
+import '../../widgets.dart';
 
-class ProjectSectionTwo extends StatelessWidget {
+class ProjectSectionMobile extends StatelessWidget {
 
   final bool mobileVersion;
 
-  const ProjectSectionTwo({
+  const ProjectSectionMobile({
     super.key,
     required this.mobileVersion
   });

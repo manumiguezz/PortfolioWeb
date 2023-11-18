@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/widgets/animated_text.dart';
 import 'package:portfolio_web_version/widgets/social_button.dart';
-import '../animated_text.dart';
 
-class PresentationTwo extends StatelessWidget {
-  final bool mobileVersion;
+class Presentation extends StatelessWidget {
 
-  const PresentationTwo({
-    super.key, 
-    required this.mobileVersion,
-  });
+  const Presentation({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +12,6 @@ class PresentationTwo extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double fontSize = widthQuery * 0.065;
-
-    String name = (mobileVersion == true) ? 'Manu' : 'Manuel Miguez,';
 
 
     return Padding(
@@ -41,7 +35,7 @@ class PresentationTwo extends StatelessWidget {
               
               Expanded(
                 child: Text(
-                  name, 
+                  'Manuel Miguez,', 
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   softWrap: true,
@@ -70,7 +64,7 @@ class PresentationTwo extends StatelessWidget {
               AnimatedText(
                 speed: 70000,
                 fontSizeAnimated: fontSize,
-                mobileVersion: mobileVersion,
+                mobileVersion: false,
               ),
             ],
           ),
