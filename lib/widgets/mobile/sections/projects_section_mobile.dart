@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/mobile/projects/companyrestapi_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/projects/flickframes_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/projects/noteshopapp_mobile.dart';
-import '../../widgets.dart';
 
 class ProjectSectionMobile extends StatelessWidget {
 

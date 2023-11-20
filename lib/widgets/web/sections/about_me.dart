@@ -22,9 +22,7 @@ class AboutMe extends StatelessWidget {
           child: SizedBox(
             height: heightQuery * 0.2,
             width: widthQuery,
-            child: CustomPaint(
-              painter: WhiteFlagUp(),
-            ),
+            child: CustomPaint(painter: WhiteFlagUp())
           ),
         ),
 
@@ -36,7 +34,7 @@ class AboutMe extends StatelessWidget {
             children: [
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.07),
+                padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.07, vertical: heightQuery * 0.01),
                 child: Row(
                   children: [
                     
@@ -47,8 +45,7 @@ class AboutMe extends StatelessWidget {
               
                     SizedBox(width: widthQuery * 0.04,),
               
-                    Transform(
-                      transform: Matrix4.translationValues(0, widthQuery * - 0.013, 0),
+                    SizedBox(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -62,7 +59,6 @@ class AboutMe extends StatelessWidget {
                           ),
                       
                           SizedBox(
-                            width: widthQuery * 0.35,
                             child: RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -187,9 +183,7 @@ class AboutMe extends StatelessWidget {
           child: SizedBox(
             height: heightQuery * 0.2,
             width: widthQuery,
-            child: CustomPaint(
-              painter: WhiteFlagDown(),
-            ),
+            child: CustomPaint(painter: WhiteFlagDown()),
           ),
         ),
       ],

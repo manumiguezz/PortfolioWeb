@@ -5,6 +5,7 @@ import 'package:portfolio_web_version/widgets/mobile/sections/last_info_mobile.d
 import 'package:portfolio_web_version/widgets/mobile/sections/presentation_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/projects_section_mobile.dart';
 import 'package:portfolio_web_version/widgets/mobile/sections/skill_stack_mobile.dart';
+import 'package:portfolio_web_version/widgets/web/sections/aboutme_test.dart';
 import '../widgets/widgets.dart';
 
 class Foreground extends StatelessWidget {
@@ -55,7 +56,8 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: heightQuery * 0.07,),
 
-        const AboutMe(),
+        // const AboutMe(),
+        const AboutMeTest(),
 
         SizedBox(height: heightQuery * 0.07,),
 
