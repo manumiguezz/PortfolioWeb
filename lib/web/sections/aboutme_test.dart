@@ -27,21 +27,7 @@ class AboutMeTest extends StatelessWidget {
           ),
         ),
 
-        Container(
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-
-              SizedBox(height: heightQuery * 0.04),
-              
-              const AboutGroup(),
-
-              SizedBox(height: heightQuery * 0.04),
-
-            ],
-          ),
-        ),
+        SizedBox(child: const AboutGroup()),
 
         Transform.translate(
           offset: const Offset(0, -5),
