@@ -27,7 +27,12 @@ class AboutMeTest extends StatelessWidget {
           ),
         ),
 
-        SizedBox(child: const AboutGroup()),
+        Stack(
+          children: [
+            Container(color: Colors.white,),
+            AboutGroup(),
+          ],
+        ),
 
         Transform.translate(
           offset: const Offset(0, -5),
