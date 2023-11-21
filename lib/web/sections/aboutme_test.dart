@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/utilities/custompainter/white_flag_down.dart';
 import 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
+import 'package:portfolio_web_version/widgets/about_group.dart';
 import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
 
 class AboutMeTest extends StatelessWidget {
@@ -31,9 +32,12 @@ class AboutMeTest extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              
 
-              SizedBox(height: heightQuery * 0.04,),
+              SizedBox(height: heightQuery * 0.04),
+              
+              const AboutGroup(),
+
+              SizedBox(height: heightQuery * 0.04),
 
             ],
           ),
