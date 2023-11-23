@@ -1,3 +1,5 @@
+export 'package:portfolio_web_version/widgets/social_button.dart';
+export 'package:portfolio_web_version/widgets/animated_text.dart';
 export 'package:portfolio_web_version/web/projects/companyrestapi.dart';
 export 'package:portfolio_web_version/web/projects/flickframes.dart';
 export 'package:portfolio_web_version/web/projects/noteshopapp.dart';
@@ -14,6 +16,9 @@ export 'package:portfolio_web_version/widgets/particle_group.dart';
 export 'package:portfolio_web_version/widgets/custom_particle_background.dart';
 export 'package:portfolio_web_version/utilities/particle/flutter_particle_background.dart';
 export 'package:portfolio_web_version/widgets/url_launcher.dart';
+
+
+
 
 
 
