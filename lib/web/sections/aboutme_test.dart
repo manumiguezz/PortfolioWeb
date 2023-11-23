@@ -27,11 +27,9 @@ class AboutMeTest extends StatelessWidget {
           ),
         ),
 
-        Stack(
-          children: [
-            Container(color: Colors.white,),
-            AboutGroup(),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AboutGroup(),
         ),
 
         Transform.translate(
