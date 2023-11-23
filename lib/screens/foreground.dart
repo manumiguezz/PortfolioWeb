@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/arrow_icon.dart';
-import 'package:portfolio_web_version/mobile/sections/about_me_mobile.dart';
-import 'package:portfolio_web_version/mobile/sections/last_info_mobile.dart';
-import 'package:portfolio_web_version/mobile/sections/presentation_mobile.dart';
 import 'package:portfolio_web_version/mobile/sections/projects_section_mobile.dart';
-import 'package:portfolio_web_version/mobile/sections/skill_stack_mobile.dart';
 import 'package:portfolio_web_version/web/sections/aboutme_test.dart';
 import '../widgets/widgets.dart';
 
