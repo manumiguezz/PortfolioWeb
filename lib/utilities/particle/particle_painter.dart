@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/particle/exports.dart';
+import '../../exports/utils.dart';
 
 class ParticlePainter extends CustomPainter {
   ParticleHandler particleHandler;

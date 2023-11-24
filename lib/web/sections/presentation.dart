@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/widgets.dart';
+import '../../exports/widgets.dart';
 
 class Presentation extends StatelessWidget {
 

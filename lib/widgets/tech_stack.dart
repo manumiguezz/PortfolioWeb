@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/widgets/hover_switch_mobile.dart';
-import 'package:portfolio_web_version/widgets/widgets.dart';
+import 'package:portfolio_web_version/exports/widgets.dart';
 
 class TechStack extends StatelessWidget {
   final String asset;

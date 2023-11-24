@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/arrow_icon.dart';
-import 'package:portfolio_web_version/mobile/sections/projects_section_mobile.dart';
-import 'package:portfolio_web_version/web/sections/aboutme_test.dart';
-import '../widgets/widgets.dart';
+import '../exports/widgets.dart';
 
 class Foreground extends StatelessWidget {
   const Foreground({super.key});

@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/particle/exports.dart';
+import '../../exports/utils.dart';
 
 class ParticleBackground extends StatelessWidget {
 
