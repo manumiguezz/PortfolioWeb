@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/widgets/animated_text.dart';
-import 'package:portfolio_web_version/widgets/social_button.dart';
+import '../../exports/widgets.dart';
 
 class PresentationMobile extends StatelessWidget {
 
