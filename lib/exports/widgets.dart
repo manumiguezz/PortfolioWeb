@@ -1,4 +1,5 @@
 
+export 'package:flutter_animated_button/flutter_animated_button.dart';
 export 'package:portfolio_web_version/widgets/hover_switch_mobile.dart';
 export 'package:portfolio_web_version/widgets/arrow_icon.dart';
 export 'package:portfolio_web_version/widgets/custom_animated_button.dart';

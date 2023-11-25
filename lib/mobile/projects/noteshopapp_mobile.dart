@@ -8,7 +8,6 @@ class NoteshopAppMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double subtitleSize = widthQuery * 0.04;

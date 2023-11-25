@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:portfolio_web_version/widgets/url_launcher.dart';
+
+import '../../exports/widgets.dart';
 
 class FlickFramesMobile extends StatelessWidget {
 
@@ -8,7 +8,6 @@ class FlickFramesMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double subtitleSize = widthQuery * 0.04;

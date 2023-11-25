@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_down_mobile.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_up_mobile.dart';
-import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
+import '../../exports/utils.dart';
+import '../../exports/widgets.dart';
 
 class AboutMeMobile extends StatelessWidget {
   const AboutMeMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double fontSize = widthQuery * 0.04;
@@ -201,7 +199,6 @@ class AboutMeMobile extends StatelessWidget {
           ),
         ),
       ],
-    );
-    
+    );  
   }
 }
