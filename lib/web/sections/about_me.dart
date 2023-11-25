@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_down.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
-import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
+
+import '../../exports/utils.dart';
+import '../../exports/widgets.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({super.key});

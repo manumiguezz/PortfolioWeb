@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../exports/widgets.dart';
 
 class CompanyRestApi extends StatelessWidget {
