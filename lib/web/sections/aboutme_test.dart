@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_down.dart';
-import 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
-import 'package:portfolio_web_version/widgets/about_group.dart';
-import 'package:portfolio_web_version/widgets/custom_animated_button.dart';
+import '../../exports/utils.dart';
+import '../../exports/widgets.dart';
 
 class AboutMeTest extends StatelessWidget {
   const AboutMeTest({super.key});
@@ -12,7 +10,7 @@ class AboutMeTest extends StatelessWidget {
 
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
-    double fontSize = widthQuery * 0.012;
+    // double fontSize = widthQuery * 0.012;
 
 
     return Column(

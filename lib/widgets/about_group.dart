@@ -5,9 +5,8 @@ class AboutGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
-    double heightQuery = MediaQuery.of(context).size.height;
+    // double heightQuery = MediaQuery.of(context).size.height;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.15),
@@ -26,7 +25,6 @@ class AboutGroup extends StatelessWidget {
               ),
             ),
           ),
-    
         ],
       ),
     );
