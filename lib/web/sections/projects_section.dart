@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../exports/widgets.dart';
+import '../../exports/projects.dart';
 
 class ProjectSection extends StatelessWidget {
 
@@ -7,7 +7,6 @@ class ProjectSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
 
     return Column(
@@ -36,7 +35,6 @@ class ProjectSection extends StatelessWidget {
         const CompanyRestApi(),
 
       ],
-      
     );
   }
 }

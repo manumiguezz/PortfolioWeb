@@ -7,11 +7,9 @@ class Presentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double fontSize = widthQuery * 0.065;
-
 
     return Padding(
       padding: EdgeInsets.only(top: heightQuery * 0.2, left: widthQuery * 0.07),
@@ -89,9 +87,7 @@ class Presentation extends StatelessWidget {
               ],
             ),
           ),      
-    
         ],
-        
       ),
     );
   }
