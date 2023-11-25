@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class LastInfo extends StatelessWidget {
 
-  const LastInfo({
-    super.key,});
+  const LastInfo({super.key,});
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
 
     return Row(

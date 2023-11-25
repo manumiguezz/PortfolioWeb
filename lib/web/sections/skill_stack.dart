@@ -7,7 +7,6 @@ class MyStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     double stackSize = widthQuery * 0.074;
@@ -91,8 +90,7 @@ class MyStack extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-      
+          ), 
         ],
       ),
     );
