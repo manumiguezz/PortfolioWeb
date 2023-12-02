@@ -18,5 +18,4 @@ export 'package:portfolio_web_version/utilities/custompainter/white_flag_down.da
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_down_mobile.dart';
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_up_mobile.dart';
-export 'package:portfolio_web_version/utilities/utilities.dart';
 
