@@ -50,8 +50,8 @@ class Foreground extends StatelessWidget {
 
         SizedBox(height: heightQuery * 0.07,),
 
-        // const AboutMe(),
-        const AboutMeTest(),
+        const AboutMe(),
+        // const AboutMeTest(),
 
         SizedBox(height: heightQuery * 0.07,),
 

@@ -11,7 +11,6 @@ export 'package:portfolio_web_version/utilities/particle/scene.dart';
 export 'package:portfolio_web_version/utilities/particle/palette_colors.dart';
 
 // white stroke painter exports
-export 'package:portfolio_web_version/utilities/custompainter/white_flag.dart';
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_down.dart';
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_down_mobile.dart';
 export 'package:portfolio_web_version/utilities/custompainter/white_flag_up.dart';
