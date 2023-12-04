@@ -1,5 +1,3 @@
-
-
 export 'package:portfolio_web_version/web/sections/aboutme_test.dart';
 export 'package:portfolio_web_version/mobile/sections/about_me_mobile.dart';
 export 'package:portfolio_web_version/mobile/sections/last_info_mobile.dart';
