@@ -58,7 +58,7 @@ class CompanyRestApiMobile extends StatelessWidget {
             fontFamily: 'poppinslight',
             fontSize: widthQuery * 0.04,
           ),
-          onPress: () => launchUrl('https://github.com/manumiguezz/CompanySpringBootRESTAPI'),
+          onPress: () => launchUrl('https://github.com/manumiguezz/SpringbootEventsCRUD'),
           animatedOn: AnimatedOn.onHover,
           height: heightQuery * 0.05,
           width: widthQuery,

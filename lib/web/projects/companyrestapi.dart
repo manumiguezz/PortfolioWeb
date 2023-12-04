@@ -70,7 +70,7 @@ class CompanyRestApi extends StatelessWidget {
                 fontFamily: 'poppinslight',
                 fontSize: widthQuery * 0.013,
               ),
-              onPress: () => launchUrl('https://github.com/manumiguezz/CompanySpringBootRESTAPI'),
+              onPress: () => launchUrl('https://github.com/manumiguezz/SpringbootEventsCRUD'),
               animatedOn: AnimatedOn.onHover,
               height: heightQuery * 0.08,
               width: widthQuery * 0.477,

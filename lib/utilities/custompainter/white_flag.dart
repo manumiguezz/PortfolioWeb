@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web_version/utilities/utilities.dart';
+import 'package:portfolio_web_version/utilities/custompainter/whitestroke_custompainter.dart';
 
 class WhiteFlagSection extends StatelessWidget {
 
