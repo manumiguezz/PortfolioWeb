@@ -19,7 +19,7 @@ class CustomAnimatedButton extends StatelessWidget {
         fontFamily: 'poppinsbold',
         fontSize: widthQuery < 600 ? widthQuery * 0.05: widthQuery * 0.012,
       ),
-      onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/Manuel%20Miguez%20Laur%C3%ADa%20(EN).pdf?alt=media&token=b832f6b3-af2e-46a3-9b57-e06b47dedf0a'),
+      onPress: () => launchUrl('https://firebasestorage.googleapis.com/v0/b/manuelmiguezlauriaportfolio.appspot.com/o/Manuel%20Miguez%20Laur%C3%ADa%20(ES).pdf?alt=media&token=e1d7e6ae-31ca-4d97-8b23-cecc67062b14'),
       animatedOn: AnimatedOn.onHover,
       height: widthQuery < 600 ? heightQuery * 0.05: heightQuery * 0.07,
       width: widthQuery < 600 ? widthQuery * 0.75 : widthQuery * 0.1,
