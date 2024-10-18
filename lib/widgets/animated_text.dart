@@ -15,7 +15,7 @@ class AnimatedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    String backend = ' Backend Specialist.';
+    String backend = ' Backend Developer.';
     String flutter = ' Flutter Developer.';
     String java = ' Java Developer.';
     String student = ' Student.';

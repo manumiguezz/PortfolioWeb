@@ -41,7 +41,7 @@ class MyStack extends StatelessWidget {
                     children: [
                                   
                       TechStack(asset: 'java.png', techName: 'Java', stackSize: stackSize, nameSize: nameSize),
-                      TechStack(asset: 'c.png', techName: 'C', stackSize: stackSize, nameSize: nameSize),
+                      TechStack(asset: 'android.png', techName: 'Android', stackSize: stackSize, nameSize: nameSize),
                       TechStack(asset: 'dart.png', techName: 'Dart', stackSize: stackSize, nameSize: nameSize),
                       TechStack(asset: 'html.png', techName: 'HTML', stackSize: stackSize, nameSize: nameSize),
                       TechStack(asset: 'css.png', techName: 'CSS', stackSize: stackSize, nameSize: nameSize),
