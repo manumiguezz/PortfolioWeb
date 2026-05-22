@@ -9,14 +9,19 @@ class AboutMeMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
-    double fontSize = widthQuery * 0.04;
+    double fontSize = clampSize(widthQuery * 0.037, 14, 18);
+    final flagHeight = clampSize(heightQuery * 0.16, 80, 130);
+    final horizontalPadding = clampSize(widthQuery * 0.1, 28, 56);
+    final contentWidth = widthQuery - (horizontalPadding * 2);
+    final imageWidth = clampSize(widthQuery * 0.2, 72, 130);
+    final titleSize = clampSize(widthQuery * 0.115, 42, 64);
 
     return Column(
       children: [
         Transform.translate(
           offset: const Offset(0, 5),
           child: SizedBox(
-            height: heightQuery * 0.2,
+            height: flagHeight,
             width: widthQuery,
             child: CustomPaint(
               painter: WhiteFlagUpMobile(),
@@ -26,53 +31,57 @@ class AboutMeMobile extends StatelessWidget {
         Container(
           color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: widthQuery * 0.1),
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: heightQuery * 0.03,
+                  height: clampSize(heightQuery * 0.03, 20, 32),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Transform.translate(
-                      offset: const Offset(0, -5),
-                      child: Image.asset(
-                        'assets/images/profile.png',
-                        width: widthQuery * 0.26,
-                      ),
-                    ),
-                    SizedBox(
-                      width: widthQuery * 0.04,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'About\nMe',
-                          style: TextStyle(
-                              height: heightQuery * 0.0012,
-                              fontFamily: 'poppinsbold',
-                              color: Colors.black,
-                              fontSize: widthQuery * 0.155),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: heightQuery * 0.01),
                 SizedBox(
-                  width: widthQuery,
+                  width: contentWidth,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Transform.translate(
+                        offset: const Offset(0, -5),
+                        child: Image.asset(
+                          'assets/images/profile.png',
+                          width: imageWidth,
+                        ),
+                      ),
+                      SizedBox(
+                        width: clampSize(widthQuery * 0.035, 14, 24),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'About\nMe',
+                            style: TextStyle(
+                                height: 0.9,
+                                fontFamily: 'poppinsbold',
+                                color: Colors.black,
+                                fontSize: titleSize),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: clampSize(heightQuery * 0.025, 18, 30)),
+                SizedBox(
+                  width: contentWidth,
                   child: RichText(
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.left,
                     text: TextSpan(
                       style: TextStyle(
                         color: Colors.black,
                         fontFamily: 'poppinslight',
                         fontSize: fontSize,
+                        height: 1.38,
                       ),
                       children: [
                         const TextSpan(text: 'As an aspiring '),
@@ -184,11 +193,11 @@ class AboutMeMobile extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: heightQuery * 0.04,
+                  height: clampSize(heightQuery * 0.04, 24, 38),
                 ),
                 const CustomAnimatedButton(),
                 SizedBox(
-                  height: heightQuery * 0.04,
+                  height: clampSize(heightQuery * 0.04, 24, 38),
                 ),
               ],
             ),
@@ -197,7 +206,7 @@ class AboutMeMobile extends StatelessWidget {
         Transform.translate(
           offset: const Offset(0, -5),
           child: SizedBox(
-            height: heightQuery * 0.2,
+            height: flagHeight,
             width: widthQuery,
             child: CustomPaint(
               painter: WhiteFlagDownMobile(),
