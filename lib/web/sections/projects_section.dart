@@ -11,7 +11,7 @@ class ProjectSection extends StatelessWidget {
   Widget build(BuildContext context) {
     double widthQuery = MediaQuery.of(context).size.width;
     final sectionTitleSize = clampSize(widthQuery * 0.07, 52, 96);
-    final introGap = clampSize(widthQuery * 0.06, 52, 96);
+    final introGap = clampSize(widthQuery * 0.075, 68, 128);
     final projectGap = clampSize(widthQuery * 0.08, 64, 116);
 
     return Column(
