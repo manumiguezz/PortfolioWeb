@@ -16,11 +16,20 @@ and vertical copy flow.
 Project previews no longer default to fully contained screenshots. `ProjectPreview`
 keeps a responsive layout slot while letting scaled mockups paint past that slot.
 Wide web project rows use a centered composition width so text and artwork stay
-visually related on ultra-wide screens. At common desktop widths the scaled
-mockups can still reach the viewport edge and keep the original phone peek-in
-effect; at ultra-wide widths a complete preview is acceptable when it keeps the
-composition from spreading apart. The bleed scale and alignment stay responsive,
-without adding a visible inner clip box.
+visually related on ultra-wide screens. A responsive paint offset now moves
+desktop previews toward the nearest viewport edge when the centered composition
+would otherwise leave a visible side gap, then adds a small overscan so the
+mockup is perceived as cropped by the viewport instead of merely touching it.
+This restores the original peek-in feeling across common desktop and laptop
+widths without reopening the row to the full viewport. As the viewport approaches
+ultra-wide sizes, the offset eases back to a compact cap, so a complete preview
+is acceptable when it keeps the composition from spreading apart. The bleed
+scale, alignment, and paint offset stay responsive, without adding a visible
+inner clip box.
+
+The `My Projects` heading also keeps a larger responsive intro gap before the
+first project, giving the title and the project rows more breathing room while
+preserving the compact stacked/mobile layouts.
 
 Project headings use `ProjectTitle` to keep titles on one line within their
 available project detail width and scale down only when needed. This prevents
