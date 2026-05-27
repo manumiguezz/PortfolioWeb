@@ -30,6 +30,18 @@ class CompanyRestApi extends StatelessWidget {
         final gap = isStacked
             ? clampSize(heightQuery * 0.045, 32, 52)
             : clampSize(widthQuery * 0.035, 36, 56);
+        final previewBleedScale = isStacked ? 1.12 : 1.2;
+        final previewPaintOffset = isStacked
+            ? Offset.zero
+            : Offset(
+                projectPreviewBleedOffset(
+                  viewportWidth: widthQuery,
+                  horizontalPadding: horizontalPadding,
+                  imageWidth: imageWidth,
+                  bleedScale: previewBleedScale,
+                ),
+                0,
+              );
 
         final details = SizedBox(
           width: detailsWidth,
@@ -45,8 +57,9 @@ class CompanyRestApi extends StatelessWidget {
         final image = ProjectPreview(
           asset: 'assets/images/project/companyrestapi.png',
           maxWidth: imageWidth,
-          bleedScale: isStacked ? 1.12 : 1.2,
+          bleedScale: previewBleedScale,
           alignment: isStacked ? Alignment.center : Alignment.centerLeft,
+          paintOffset: previewPaintOffset,
         );
 
         return Padding(

@@ -30,6 +30,18 @@ class NoteshopApp extends StatelessWidget {
         final gap = isStacked
             ? clampSize(heightQuery * 0.045, 32, 52)
             : clampSize(widthQuery * 0.045, 48, 72);
+        final previewBleedScale = isStacked ? 1.16 : 1.24;
+        final previewPaintOffset = isStacked
+            ? Offset.zero
+            : Offset(
+                -projectPreviewBleedOffset(
+                  viewportWidth: widthQuery,
+                  horizontalPadding: horizontalPadding,
+                  imageWidth: imageWidth,
+                  bleedScale: previewBleedScale,
+                ),
+                0,
+              );
 
         final details = SizedBox(
           width: detailsWidth,
@@ -45,8 +57,9 @@ class NoteshopApp extends StatelessWidget {
         final image = ProjectPreview(
           asset: 'assets/images/project/noteshop.png',
           maxWidth: imageWidth,
-          bleedScale: isStacked ? 1.16 : 1.24,
+          bleedScale: previewBleedScale,
           alignment: isStacked ? Alignment.center : Alignment.centerRight,
+          paintOffset: previewPaintOffset,
         );
 
         return Padding(
