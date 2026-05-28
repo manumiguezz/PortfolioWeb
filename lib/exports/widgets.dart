@@ -11,21 +11,6 @@ export 'package:portfolio_web_version/widgets/hover_switch.dart';
 export 'package:portfolio_web_version/widgets/particle_group.dart';
 export 'package:portfolio_web_version/widgets/custom_particle_background.dart';
 export 'package:portfolio_web_version/widgets/url_launcher.dart';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export 'package:portfolio_web_version/widgets/project_tech_labels.dart';
+export 'package:portfolio_web_version/widgets/project_preview.dart';
+export 'package:portfolio_web_version/widgets/project_title.dart';

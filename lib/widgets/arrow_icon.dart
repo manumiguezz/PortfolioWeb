@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/exports/utils.dart';
 
 class ArrowIcon extends StatefulWidget {
   const ArrowIcon({super.key});
@@ -50,7 +51,7 @@ class _ArrowIconState extends State<ArrowIcon>
         alignment: Alignment.bottomCenter,
         child: Icon(
           Icons.keyboard_arrow_down_rounded,
-          size: widthQuery * 0.2,
+          size: clampSize(widthQuery * 0.18, 64, 110),
           color: Colors.white,
         ),
       ),

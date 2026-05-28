@@ -1,101 +1,171 @@
 import 'package:flutter/material.dart';
+import '../../exports/utils.dart';
 import '../../exports/widgets.dart';
 
 class NoteshopApp extends StatelessWidget {
-  
   const NoteshopApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final widthQuery = MediaQuery.of(context).size.width;
+    final heightQuery = MediaQuery.of(context).size.height;
 
-    double widthQuery = MediaQuery.of(context).size.width;
-    double heightQuery = MediaQuery.of(context).size.height;
-    double subtitleSize = widthQuery * 0.013;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isStacked = constraints.maxWidth < kWideDesktopBreakpoint;
+        final horizontalPadding = isStacked
+            ? clampSize(widthQuery * 0.08, 40, 72)
+            : clampSize(widthQuery * 0.07, 70, 110);
+        final detailsWidth = isStacked
+            ? clampSize(widthQuery - (horizontalPadding * 2), 320, 760)
+            : clampSize(widthQuery * 0.3, 360, 460);
+        final imageWidth = isStacked
+            ? clampSize(widthQuery - (horizontalPadding * 2), 420, 760)
+            : clampSize(widthQuery * 0.5, 500, 760);
+        final titleSize = isStacked
+            ? clampSize(widthQuery * 0.05, 36, 54)
+            : clampSize(widthQuery * 0.05, 48, 72);
+        final subtitleSize = clampSize(widthQuery * 0.012, 12, 16);
+        final bodySize = clampSize(widthQuery * 0.011, 14, 16);
+        final gap = isStacked
+            ? clampSize(widthQuery * 0.16, 132, 176)
+            : clampSize(widthQuery * 0.045, 48, 72);
+        final stackedImageTopInset = clampSize(widthQuery * 0.05, 36, 64);
+        final widePreviewScaleBump = isStacked
+            ? 0.0
+            : projectPreviewScaleBridge(viewportWidth: widthQuery);
+        final previewBleedScale =
+            isStacked ? 1.38 : 1.24 + widePreviewScaleBump;
+        final previewPaintOffset = isStacked
+            ? Offset.zero
+            : Offset(
+                -projectPreviewBleedOffset(
+                  viewportWidth: widthQuery,
+                  horizontalPadding: horizontalPadding,
+                  imageWidth: imageWidth,
+                  bleedScale: previewBleedScale,
+                ),
+                0,
+              );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
+        final details = SizedBox(
+          width: detailsWidth,
+          child: _ProjectDetails(
+            titleSize: titleSize,
+            subtitleSize: subtitleSize,
+            bodySize: bodySize,
+            buttonHeight: clampSize(heightQuery * 0.065, 46, 60),
+            buttonWidth: detailsWidth,
+          ),
+        );
 
-        Transform(
-          transform: Matrix4.translationValues(-50, 0, 0),
-          child: Transform.scale(
-            scale: 1.2,
-            child: SizedBox(
-              width: widthQuery * 0.5,
-              child: Image.asset('assets/images/project/noteshop.png'),
+        final image = ProjectPreview(
+          asset: 'assets/images/project/noteshop.png',
+          maxWidth: imageWidth,
+          bleedScale: previewBleedScale,
+          alignment: isStacked ? Alignment.center : Alignment.centerRight,
+          paintOffset: previewPaintOffset,
+        );
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: Center(
+            child: ConstrainedBox(
+              constraints:
+                  const BoxConstraints(maxWidth: kProjectCompositionMaxWidth),
+              child: isStacked
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: stackedImageTopInset),
+                        image,
+                        SizedBox(height: gap),
+                        details,
+                      ],
+                    )
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: image,
+                          ),
+                        ),
+                        SizedBox(width: gap),
+                        details,
+                      ],
+                    ),
             ),
           ),
-        ),
+        );
+      },
+    );
+  }
+}
 
-        Padding(
-          padding: EdgeInsets.only(right: widthQuery * 0.07),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-        
-              Text(
-                'Noteshop',
-                style: TextStyle(
-                  fontFamily: 'poppinsbold',
-                  fontSize: widthQuery * 0.05,
-                  color: Colors.white
-                ),
-              ),
-        
-              SizedBox(
-                width: widthQuery * 0.30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('FLUTTER', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('DART', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('JWT', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('HTTP', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                    Text('RESTAPI', style: TextStyle(fontFamily: 'poppinsregular', fontSize: subtitleSize, color: Colors.white)),
-                  ],
-                ),
-              ),
-        
-              SizedBox(height: heightQuery * 0.025),
-        
-              SizedBox(
-                width: widthQuery * 0.30,
-                child: Text(
-                  'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
-                  softWrap: true,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'poppinslight',
-                      fontSize: widthQuery * 0.010,
-                  )
-                ),
-              ),
-        
-              SizedBox(height: heightQuery * 0.025),
-        
-              AnimatedButton(
-                text: 'Github',
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'poppinslight',
-                  fontSize: widthQuery * 0.013,
-                ),
-                onPress: () => launchUrl('https://github.com/manumiguezz/NoteShopApp'),
-                animatedOn: AnimatedOn.onHover,
-                height: heightQuery * 0.08,
-                width: widthQuery * 0.30,
-                transitionType: TransitionType.LEFT_TO_RIGHT,
-                borderColor: Colors.white,
-                backgroundColor: Colors.transparent,
-                selectedTextColor: Colors.black,
-                isReverse: true,
-                borderRadius: 0,
-                borderWidth: widthQuery * 0.002,
-              ),
-            ],
+class _ProjectDetails extends StatelessWidget {
+  const _ProjectDetails({
+    required this.titleSize,
+    required this.subtitleSize,
+    required this.bodySize,
+    required this.buttonHeight,
+    required this.buttonWidth,
+  });
+
+  final double titleSize;
+  final double subtitleSize;
+  final double bodySize;
+  final double buttonHeight;
+  final double buttonWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ProjectTitle(
+          text: 'Noteshop',
+          fontSize: titleSize,
+        ),
+        const SizedBox(height: 8),
+        ProjectTechLabels(
+          labels: const ['FLUTTER', 'DART', 'JWT', 'HTTP', 'RESTAPI'],
+          fontSize: subtitleSize,
+        ),
+        const SizedBox(height: 22),
+        Text(
+          'Noteshop is a Dart/Flutter app designed to enhance your shopping experience. Integrated with the Teslo Shop backend, this app leverages Riverpod, Go Router, and CRUD REST API endpoints to provide a seamless shopping journey. With Noteshop, you can effortlessly browse and purchase products while enjoying the ability to add notes to your products.',
+          softWrap: true,
+          textAlign: TextAlign.justify,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'poppinslight',
+            fontSize: bodySize,
+            height: 1.4,
           ),
-        )
+        ),
+        const SizedBox(height: 24),
+        AnimatedButton(
+          text: 'Github',
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontFamily: 'poppinslight',
+            fontSize: bodySize,
+          ),
+          onPress: () =>
+              launchUrl('https://github.com/manumiguezz/NoteShopApp'),
+          animatedOn: AnimatedOn.onHover,
+          height: buttonHeight,
+          width: buttonWidth,
+          transitionType: TransitionType.LEFT_TO_RIGHT,
+          borderColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          selectedTextColor: Colors.black,
+          isReverse: true,
+          borderRadius: 0,
+          borderWidth: 2,
+        ),
       ],
     );
   }

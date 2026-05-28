@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/exports/utils.dart';
 import 'package:portfolio_web_version/widgets/url_launcher.dart';
 
 class SocialButton extends StatefulWidget {
@@ -6,7 +7,7 @@ class SocialButton extends StatefulWidget {
   final String url;
 
   const SocialButton({
-    super.key, 
+    super.key,
     required this.imageUrl,
     required this.url,
   });
@@ -21,9 +22,11 @@ class _SocialButtonState extends State<SocialButton> {
 
   @override
   Widget build(BuildContext context) {
-
     double widthQuery = MediaQuery.of(context).size.width;
-    double imageSize = widthQuery < 600 ? widthQuery * 0.11 : widthQuery * 0.05;
+    final imageSize = isMobileWidth(widthQuery)
+        ? clampSize(widthQuery * 0.1, 36, 56)
+        : clampSize(widthQuery * 0.045, 38, 64);
+    final hoverDelta = clampSize(widthQuery * 0.006, 4, 10);
 
     return GestureDetector(
       onTap: () => launchUrl(widget.url),
@@ -33,7 +36,7 @@ class _SocialButtonState extends State<SocialButton> {
         onExit: (_) => setState(() => isHovered = false),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          width: isHovered ? imageSize + widthQuery * 0.01 : imageSize, 
+          width: isHovered ? imageSize + hoverDelta : imageSize,
           child: Image.asset(
             widget.imageUrl,
             color: Colors.white,
