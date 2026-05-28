@@ -31,7 +31,11 @@ class NoteshopApp extends StatelessWidget {
             ? clampSize(widthQuery * 0.16, 132, 176)
             : clampSize(widthQuery * 0.045, 48, 72);
         final stackedImageTopInset = clampSize(widthQuery * 0.05, 36, 64);
-        final previewBleedScale = isStacked ? 1.38 : 1.24;
+        final widePreviewScaleBump = isStacked
+            ? 0.0
+            : projectPreviewScaleBridge(viewportWidth: widthQuery);
+        final previewBleedScale =
+            isStacked ? 1.38 : 1.24 + widePreviewScaleBump;
         final previewPaintOffset = isStacked
             ? Offset.zero
             : Offset(
