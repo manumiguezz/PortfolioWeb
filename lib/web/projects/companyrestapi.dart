@@ -31,7 +31,7 @@ class CompanyRestApi extends StatelessWidget {
             ? clampSize(widthQuery * 0.16, 132, 176)
             : clampSize(widthQuery * 0.035, 36, 56);
         final stackedImageTopInset = clampSize(widthQuery * 0.05, 36, 64);
-        final previewBleedScale = isStacked ? 1.4 : 1.2;
+        final previewBleedScale = isStacked ? 1.4 : 1.34;
         final previewPaintOffset = isStacked
             ? Offset.zero
             : Offset(

@@ -1,8 +1,8 @@
 const double kMobileBreakpoint = 600;
 const double kWideDesktopBreakpoint = 1100;
 const double kProjectCompositionMaxWidth = 1240;
-const double _kProjectPreviewFullBleedMaxWidth = 2200;
-const double _kProjectPreviewCompactBleedWidth = 2580;
+const double _kProjectPreviewFullBleedMaxWidth = 1900;
+const double _kProjectPreviewCompactBleedWidth = 2300;
 const double _kProjectPreviewDesktopOverscanMin = 64;
 const double _kProjectPreviewDesktopOverscanMax = 132;
 
