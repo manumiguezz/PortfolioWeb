@@ -20,7 +20,7 @@ class CompanyRestApi extends StatelessWidget {
             ? clampSize(widthQuery - (horizontalPadding * 2), 320, 760)
             : clampSize(widthQuery * 0.43, 430, 620);
         final imageWidth = isStacked
-            ? clampSize(detailsWidth, 360, 680)
+            ? clampSize(widthQuery - (horizontalPadding * 2), 420, 760)
             : clampSize(widthQuery * 0.4, 420, 620);
         final titleSize = isStacked
             ? clampSize(widthQuery * 0.05, 36, 54)
@@ -28,9 +28,10 @@ class CompanyRestApi extends StatelessWidget {
         final subtitleSize = clampSize(widthQuery * 0.012, 12, 16);
         final bodySize = clampSize(widthQuery * 0.011, 14, 16);
         final gap = isStacked
-            ? clampSize(heightQuery * 0.045, 32, 52)
+            ? clampSize(widthQuery * 0.16, 132, 176)
             : clampSize(widthQuery * 0.035, 36, 56);
-        final previewBleedScale = isStacked ? 1.12 : 1.2;
+        final stackedImageTopInset = clampSize(widthQuery * 0.05, 36, 64);
+        final previewBleedScale = isStacked ? 1.4 : 1.2;
         final previewPaintOffset = isStacked
             ? Offset.zero
             : Offset(
@@ -72,9 +73,10 @@ class CompanyRestApi extends StatelessWidget {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        details,
-                        SizedBox(height: gap),
+                        SizedBox(height: stackedImageTopInset),
                         image,
+                        SizedBox(height: gap),
+                        details,
                       ],
                     )
                   : Row(

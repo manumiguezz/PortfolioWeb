@@ -20,7 +20,7 @@ class FlickFrames extends StatelessWidget {
             ? clampSize(widthQuery - (horizontalPadding * 2), 320, 760)
             : clampSize(widthQuery * 0.3, 360, 460);
         final imageWidth = isStacked
-            ? clampSize(detailsWidth, 360, 680)
+            ? clampSize(widthQuery - (horizontalPadding * 2), 420, 760)
             : clampSize(widthQuery * 0.5, 500, 760);
         final titleSize = isStacked
             ? clampSize(widthQuery * 0.05, 36, 54)
@@ -28,9 +28,10 @@ class FlickFrames extends StatelessWidget {
         final subtitleSize = clampSize(widthQuery * 0.012, 12, 16);
         final bodySize = clampSize(widthQuery * 0.011, 14, 16);
         final gap = isStacked
-            ? clampSize(heightQuery * 0.045, 32, 52)
+            ? clampSize(widthQuery * 0.16, 132, 176)
             : clampSize(widthQuery * 0.045, 48, 72);
-        final previewBleedScale = isStacked ? 1.16 : 1.24;
+        final stackedImageTopInset = clampSize(widthQuery * 0.05, 36, 64);
+        final previewBleedScale = isStacked ? 1.38 : 1.24;
         final previewPaintOffset = isStacked
             ? Offset.zero
             : Offset(
@@ -72,9 +73,10 @@ class FlickFrames extends StatelessWidget {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        details,
-                        SizedBox(height: gap),
+                        SizedBox(height: stackedImageTopInset),
                         image,
+                        SizedBox(height: gap),
+                        details,
                       ],
                     )
                   : Row(
