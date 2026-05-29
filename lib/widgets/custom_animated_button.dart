@@ -6,18 +6,26 @@ import 'package:portfolio_web_version/widgets/url_launcher.dart';
 class CustomAnimatedButton extends StatelessWidget {
   const CustomAnimatedButton({
     super.key,
+    this.width,
   });
+
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     final compact = isMobileWidth(widthQuery);
+    final buttonWidth = width ??
+        (compact
+            ? clampSize(widthQuery * 0.68, 220, 320)
+            : clampSize(widthQuery * 0.13, 150, 220));
 
     return AnimatedButton(
       text: 'My Resume',
       textStyle: TextStyle(
-        fontFamily: 'poppinsbold',
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold,
         fontSize: compact
             ? clampSize(widthQuery * 0.045, 16, 24)
             : clampSize(widthQuery * 0.012, 14, 18),
@@ -28,9 +36,7 @@ class CustomAnimatedButton extends StatelessWidget {
       height: compact
           ? clampSize(heightQuery * 0.05, 44, 54)
           : clampSize(heightQuery * 0.065, 48, 64),
-      width: compact
-          ? clampSize(widthQuery * 0.68, 220, 320)
-          : clampSize(widthQuery * 0.13, 150, 220),
+      width: buttonWidth,
       transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
       borderColor: Colors.black,
       selectedBackgroundColor: Colors.black,
