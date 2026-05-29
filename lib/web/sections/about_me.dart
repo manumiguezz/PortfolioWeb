@@ -55,7 +55,8 @@ class AboutMe extends StatelessWidget {
                     Text(
                       'About me',
                       style: TextStyle(
-                        fontFamily: 'poppinsbold',
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
                         fontSize: titleSize,
                         color: Colors.black,
                       ),
@@ -122,68 +123,20 @@ class _AboutCopy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boldStyle = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: fontSize,
-    );
-
     return RichText(
       textAlign: TextAlign.justify,
       text: TextSpan(
         style: TextStyle(
           color: Colors.black,
-          fontFamily: 'poppinslight',
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w300,
           fontSize: fontSize,
           height: 1.45,
         ),
-        children: [
-          const TextSpan(text: 'As an aspiring '),
-          TextSpan(text: 'backend software developer', style: boldStyle),
-          const TextSpan(text: ', I have a deep passion for '),
-          TextSpan(text: 'Java', style: boldStyle),
-          const TextSpan(
+        children: const [
+          TextSpan(
             text:
-                ' development, constantly refining my skills and knowledge through continuous learning. I am dedicated to mastering ',
-          ),
-          TextSpan(text: 'object-oriented programming', style: boldStyle),
-          const TextSpan(
-            text: ' and can efficiently work with other languages like ',
-          ),
-          TextSpan(text: 'Dart', style: boldStyle),
-          const TextSpan(text: ', as well as web technologies such as '),
-          TextSpan(text: 'HTML', style: boldStyle),
-          const TextSpan(text: ' and '),
-          TextSpan(text: 'CSS', style: boldStyle),
-          const TextSpan(text: '.\n\nI also love frameworks like '),
-          TextSpan(text: 'Spring Boot', style: boldStyle),
-          const TextSpan(text: ', '),
-          TextSpan(text: 'Flutter', style: boldStyle),
-          const TextSpan(text: ', '),
-          TextSpan(text: 'Hibernate', style: boldStyle),
-          const TextSpan(text: ', and '),
-          TextSpan(text: 'JavaFX', style: boldStyle),
-          const TextSpan(
-            text:
-                ', which allow me to contribute to a wide range of projects that fuel my enthusiasm. I’ve developed ',
-          ),
-          TextSpan(text: 'RESTful APIs', style: boldStyle),
-          const TextSpan(text: ' with '),
-          TextSpan(text: 'CRUD', style: boldStyle),
-          const TextSpan(
-            text:
-                ' operations and established reliable database connections. Additionally, I’m proficient in using dependency managers like ',
-          ),
-          TextSpan(text: 'Maven', style: boldStyle),
-          const TextSpan(text: ' and '),
-          TextSpan(text: 'Gradle', style: boldStyle),
-          const TextSpan(
-            text:
-                ' to ensure efficient project management and organization.\n\nBeyond my technical expertise, I have strong ',
-          ),
-          TextSpan(text: 'communication', style: boldStyle),
-          const TextSpan(
-            text:
-                ' skills enabling seamless collaboration within teams. I quickly adapt to new languages and tools, allowing me to contribute effectively to diverse projects. My passion for design extends beyond visuals, I approach design from a broader and more abstract perspective, striving to structure and solve problems methodically. By considering every detail and organizing each step carefully, I ensure that projects progress as smoothly and successfully as possible.',
+                'I’m a Software Developer focused on testing with hands-on Testing Lead experience across Web, Android, and iOS applications.\n\nMy work focuses on building scalable automation coverage, improving testability, validating releases, and creating QA-oriented tooling that helps teams work faster and more reliably. I have experience with Java, Selenium WebDriver, Appium, ACCELQ, REST API testing, SQL validation, Jira, TestRail, and Jenkins.\n\nI’ve worked across SaaS, fintech/payment, healthcare, and mobile/web product environments, combining automation, manual testing, defect management, and a product-minded QA approach to improve delivery quality.',
           ),
         ],
       ),

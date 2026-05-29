@@ -140,7 +140,8 @@ class _ProjectDetails extends StatelessWidget {
           textAlign: TextAlign.justify,
           style: TextStyle(
             color: Colors.white,
-            fontFamily: 'poppinslight',
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w300,
             fontSize: bodySize,
             height: 1.4,
           ),
@@ -150,7 +151,8 @@ class _ProjectDetails extends StatelessWidget {
           text: 'Github',
           textStyle: TextStyle(
             color: Colors.white,
-            fontFamily: 'poppinslight',
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w300,
             fontSize: bodySize,
           ),
           onPress: () =>

@@ -9,42 +9,57 @@ class PresentationMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
-    double fontSize = clampSize(widthQuery * 0.105, 38, 60);
+    final microMobile = isMicroMobileWidth(widthQuery);
+    double fontSize = microMobile
+        ? clampSize(widthQuery * 0.13, 28, 36)
+        : clampSize(widthQuery * 0.105, 38, 60);
     final topPadding = clampSize(heightQuery * 0.22, 96, 170);
-    final socialGap = clampSize(widthQuery * 0.05, 18, 32);
-    final textWidth = widthQuery - 40;
+    final horizontalPadding = microMobile ? 16.0 : 20.0;
+    final socialGap = microMobile
+        ? clampSize(widthQuery * 0.045, 10, 14)
+        : clampSize(widthQuery * 0.05, 18, 32);
+    final textWidth = widthQuery - (horizontalPadding * 2);
 
     return Padding(
-      padding: EdgeInsets.only(top: topPadding, left: 20, right: 20),
+      padding: EdgeInsets.only(
+        top: topPadding,
+        left: horizontalPadding,
+        right: horizontalPadding,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             width: textWidth,
-            child: Text(
-              "Hi, I'm ",
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: TextStyle(
-                  fontFamily: 'poppinslight',
-                  fontSize: fontSize,
-                  color: Colors.white),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                "Hi, I'm ",
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w300,
+                    fontSize: fontSize,
+                    color: Colors.white),
+              ),
             ),
           ),
           SizedBox(
             width: textWidth,
-            child: Text(
-              'Manu Miguez',
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              softWrap: true,
-              style: TextStyle(
-                  fontFamily: 'poppinsbold',
-                  fontSize: fontSize,
-                  color: Colors.white),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                'Manu Miguez',
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: fontSize,
+                    color: Colors.white),
+              ),
             ),
           ),
           SizedBox(
@@ -55,6 +70,7 @@ class PresentationMobile extends StatelessWidget {
                   speed: 100000,
                   fontSizeAnimated: fontSize,
                   mobileVersion: true,
+                  microMobile: microMobile,
                 ),
               ],
             ),

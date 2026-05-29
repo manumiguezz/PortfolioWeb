@@ -26,7 +26,8 @@ class ProjectSection extends StatelessWidget {
           'My Projects',
           style: TextStyle(
               color: Colors.white,
-              fontFamily: 'poppinsbold',
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
               fontSize: sectionTitleSize),
         ),
         SizedBox(height: introGap),

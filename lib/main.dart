@@ -12,13 +12,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     precacheAssets(context);
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen()
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+      ),
+      home: const HomeScreen(),
     ).animate().fadeIn();
-
   }
 }
 

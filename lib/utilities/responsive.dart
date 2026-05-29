@@ -1,4 +1,5 @@
 const double kMobileBreakpoint = 600;
+const double kMicroMobileBreakpoint = 300;
 const double kWideDesktopBreakpoint = 1100;
 const double kProjectCompositionMaxWidth = 1240;
 const double _kProjectPreviewFullBleedMaxWidth = 1900;
@@ -13,6 +14,8 @@ double clampSize(double value, double min, double max) {
 }
 
 bool isMobileWidth(double width) => width < kMobileBreakpoint;
+
+bool isMicroMobileWidth(double width) => width < kMicroMobileBreakpoint;
 
 bool isNarrowDesktopWidth(double width) {
   return width >= kMobileBreakpoint && width < kWideDesktopBreakpoint;
