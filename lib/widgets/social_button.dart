@@ -23,10 +23,15 @@ class _SocialButtonState extends State<SocialButton> {
   @override
   Widget build(BuildContext context) {
     double widthQuery = MediaQuery.of(context).size.width;
-    final imageSize = isMobileWidth(widthQuery)
-        ? clampSize(widthQuery * 0.1, 36, 56)
-        : clampSize(widthQuery * 0.045, 38, 64);
-    final hoverDelta = clampSize(widthQuery * 0.006, 4, 10);
+    final microMobile = isMicroMobileWidth(widthQuery);
+    final imageSize = microMobile
+        ? clampSize(widthQuery * 0.1, 26, 32)
+        : isMobileWidth(widthQuery)
+            ? clampSize(widthQuery * 0.1, 36, 56)
+            : clampSize(widthQuery * 0.045, 38, 64);
+    final hoverDelta = microMobile
+        ? clampSize(widthQuery * 0.004, 2, 4)
+        : clampSize(widthQuery * 0.006, 4, 10);
 
     return GestureDetector(
       onTap: () => launchUrl(widget.url),
