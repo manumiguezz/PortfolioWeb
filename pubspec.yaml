@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.2.0+1
   flutter_animated_button: ^2.0.3
-  google_fonts: ^5.1.0
   syncfusion_flutter_pdfviewer: ^23.1.40
   url_launcher: ^6.1.12
   web_smooth_scroll: ^1.1.0
@@ -27,24 +26,16 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: madetommy
-      fonts:
-        - asset: assets/fonts/made_tommy/made_tommy.otf
-    - family: madetommybold
-      fonts:
-        - asset: assets/fonts/made_tommy/made_tommy_bold.otf
-    - family: poppinsregular
-      fonts:
-        - asset: assets/fonts/poppins/poppins_regular.ttf
-    - family: poppinsbold
-      fonts:
-        - asset: assets/fonts/poppins/poppins_bold.ttf
-    - family: poppinslight
-      fonts:
-        - asset: assets/fonts/poppins/poppins_light.ttf
-    - family: poppinsthin
+    - family: Poppins
       fonts:
         - asset: assets/fonts/poppins/poppins_thin.ttf
+          weight: 100
+        - asset: assets/fonts/poppins/poppins_light.ttf
+          weight: 300
+        - asset: assets/fonts/poppins/poppins_regular.ttf
+          weight: 400
+        - asset: assets/fonts/poppins/poppins_bold.ttf
+          weight: 700
 
   assets:
     - assets/images/

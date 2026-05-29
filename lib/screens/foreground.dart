@@ -14,15 +14,36 @@ class Foreground extends StatelessWidget {
     final sectionGap = clampSize(heightQuery * 0.07, 40, 72);
     final largeSectionGap = clampSize(heightQuery * 0.1, 56, 104);
     final footerGap = clampSize(heightQuery * 0.16, 80, 160);
+    final aboutFlagHeight = mobileVersion
+        ? clampSize(heightQuery * 0.16, 80, 130)
+        : clampSize(heightQuery * 0.16, 86, 150);
+    final whitePeek = mobileVersion
+        ? clampSize(heightQuery * 0.015, 8, 14)
+        : clampSize(heightQuery * 0.035, 24, 36);
+    final arrowHeight = clampSize(widthQuery * 0.18, 64, 110);
+    final heroHeight = clampSize(
+      heightQuery -
+          sectionGap -
+          aboutFlagHeight -
+          whitePeek -
+          (mobileVersion ? arrowHeight : 0),
+      0,
+      heightQuery,
+    );
 
     if (mobileVersion) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const PresentationMobile(),
+          SizedBox(
+            height: heroHeight,
+            child: const PresentationMobile(),
+          ),
           SizedBox(height: sectionGap),
-          const ArrowIcon(),
-          const SizedBox(height: 0),
+          SizedBox(
+            height: arrowHeight,
+            child: const ArrowIcon(),
+          ),
           const AboutMeMobile(),
           SizedBox(height: sectionGap),
           const MyStackMobile(),
@@ -37,7 +58,10 @@ class Foreground extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Presentation(),
+        SizedBox(
+          height: heroHeight,
+          child: const Presentation(),
+        ),
 
         SizedBox(height: sectionGap),
 

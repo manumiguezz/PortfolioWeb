@@ -27,7 +27,8 @@ class LastInfo extends StatelessWidget {
               child: Text(
                 'manuelmiguezlauria@gmail.com',
                 style: TextStyle(
-                  fontFamily: 'poppinslight',
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w300,
                   fontSize: fontSize,
                   color: Colors.white,
                 ),
@@ -37,7 +38,8 @@ class LastInfo extends StatelessWidget {
           Text(
             'Website built on Flutter',
             style: TextStyle(
-              fontFamily: 'poppinslight',
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w300,
               fontSize: fontSize,
               color: Colors.white,
             ),

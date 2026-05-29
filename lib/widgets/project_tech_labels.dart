@@ -28,7 +28,8 @@ class ProjectTechLabels extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontFamily: 'poppinsregular',
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w400,
               fontSize: fontSize,
               color: Colors.white,
             ),

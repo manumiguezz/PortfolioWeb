@@ -25,7 +25,8 @@ class MyStack extends StatelessWidget {
             'My Stack',
             style: TextStyle(
                 color: Colors.white,
-                fontFamily: 'poppinsbold',
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
                 fontSize: clampSize(widthQuery * 0.07, 52, 96)),
           ),
           SizedBox(height: clampSize(heightQuery * 0.075, 44, 72)),

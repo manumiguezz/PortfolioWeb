@@ -39,7 +39,8 @@ class TechStack extends StatelessWidget {
               style: TextStyle(
                 fontSize: nameSize,
                 color: Colors.white,
-                fontFamily: 'poppinsbold',
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
               ),
             ),
         ],
@@ -62,7 +63,8 @@ class TechStack extends StatelessWidget {
               style: TextStyle(
                 fontSize: nameSize,
                 color: Colors.white,
-                fontFamily: 'poppinsbold',
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
               ),
             ),
         ],

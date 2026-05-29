@@ -30,7 +30,8 @@ class Presentation extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
-                    fontFamily: 'poppinslight',
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w300,
                     fontSize: fontSize,
                     color: Colors.white),
               ),
@@ -41,7 +42,8 @@ class Presentation extends StatelessWidget {
                   maxLines: 1,
                   softWrap: true,
                   style: TextStyle(
-                      fontFamily: 'poppinsbold',
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
                       fontSize: fontSize,
                       color: Colors.white),
                 ),
@@ -55,7 +57,8 @@ class Presentation extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
-                    fontFamily: 'poppinslight',
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w300,
                     fontSize: fontSize,
                     color: Colors.white),
               ),
