@@ -44,6 +44,106 @@
        <script type="text/javascript">
           pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js";
        </script>
+  <script type="text/javascript">
+    window.portfolioRenderPdfPages = async function(container, sourceUrl, zoom, maxPages, compact, animateTransition) {
+      if (!container || !window.pdfjsLib || !sourceUrl) {
+        return;
+      }
+
+      const renderToken = `${Date.now()}-${Math.random()}`;
+      const pageLimit = Math.max(1, Math.min(maxPages || 2, 2));
+      const zoomMultiplier = Math.max(0.65, Math.min(1.6, (zoom || 100) / 100));
+      const pixelRatio = window.devicePixelRatio || 1;
+      const containerPadding = compact ? 12 : 18;
+
+      container.dataset.renderToken = renderToken;
+      container.style.transition = animateTransition ? "opacity 360ms ease" : "none";
+      if (animateTransition) {
+        container.style.opacity = "0.16";
+        await new Promise(resolve => setTimeout(resolve, 260));
+        if (container.dataset.renderToken !== renderToken) return;
+      }
+
+      container.innerHTML = "";
+      container.style.width = "100%";
+      container.style.height = "100%";
+      container.style.overflow = "auto";
+      container.style.backgroundColor = "#ffffff";
+      container.style.boxSizing = "border-box";
+      container.style.padding = `${containerPadding}px`;
+      container.style.display = "flex";
+      container.style.flexDirection = "column";
+      container.style.alignItems = compact && zoomMultiplier > 1 ? "flex-start" : "center";
+      container.style.gap = compact ? "14px" : "18px";
+      container.style.opacity = animateTransition ? "0.16" : "1";
+
+      const loader = document.createElement("div");
+      loader.textContent = "Loading CV...";
+      loader.style.color = "#111111";
+      loader.style.fontFamily = "Poppins, sans-serif";
+      loader.style.fontWeight = "700";
+      loader.style.padding = "32px";
+      container.appendChild(loader);
+
+      const isCurrentRender = () => container.dataset.renderToken === renderToken;
+
+      try {
+        const pdfDocument = await pdfjsLib.getDocument(sourceUrl).promise;
+        if (!isCurrentRender()) return;
+
+        container.removeChild(loader);
+
+        const pagesToRender = Math.min(pdfDocument.numPages, pageLimit);
+        for (let pageNumber = 1; pageNumber <= pagesToRender; pageNumber++) {
+          const page = await pdfDocument.getPage(pageNumber);
+          if (!isCurrentRender()) return;
+
+          const baseViewport = page.getViewport({ scale: 1 });
+          const availableWidth = Math.max(240, container.clientWidth - (containerPadding * 2));
+          const fitScale = compact ? availableWidth / baseViewport.width : 1;
+          const viewport = page.getViewport({ scale: fitScale * zoomMultiplier });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+
+          canvas.width = Math.floor(viewport.width * pixelRatio);
+          canvas.height = Math.floor(viewport.height * pixelRatio);
+          canvas.style.width = `${viewport.width}px`;
+          canvas.style.height = `${viewport.height}px`;
+          canvas.style.maxWidth = "none";
+          canvas.style.flex = "0 0 auto";
+          canvas.style.backgroundColor = "#ffffff";
+          canvas.style.boxShadow = "0 10px 22px rgba(0, 0, 0, 0.12)";
+
+          context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, viewport.width, viewport.height);
+
+          await page.render({ canvasContext: context, viewport }).promise;
+          if (!isCurrentRender()) return;
+
+          container.appendChild(canvas);
+        }
+
+        requestAnimationFrame(() => {
+          if (isCurrentRender()) {
+            container.style.opacity = "1";
+          }
+        });
+      } catch (error) {
+        if (!isCurrentRender()) return;
+
+        container.innerHTML = "";
+        const message = document.createElement("div");
+        message.textContent = "Unable to load the CV.";
+        message.style.color = "#111111";
+        message.style.fontFamily = "Poppins, sans-serif";
+        message.style.fontWeight = "700";
+        message.style.padding = "32px";
+        container.appendChild(message);
+        container.style.opacity = "1";
+      }
+    };
+  </script>
   <style>
     body {
       background-color: black;
@@ -79,6 +179,7 @@
             loaderContent.style.opacity = "0";
             await delay(400);
             await appRunner.runApp();
+            loaderContent.style.display = "none";
           });
         }
       });
