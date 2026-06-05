@@ -37,6 +37,12 @@ const stackTechnologyGroups = [
         semanticLabel: 'Selenium logo',
       ),
       StackTechnology(
+        name: 'Appium',
+        group: stackGroupQaTesting,
+        iconAsset: 'assets/icons/techstackcolor/appium.png',
+        semanticLabel: 'Appium logo',
+      ),
+      StackTechnology(
         name: 'TestNG',
         group: stackGroupQaTesting,
         iconAsset: 'assets/icons/techstackcolor/testng.png',
@@ -72,6 +78,12 @@ const stackTechnologyGroups = [
         iconAsset: 'assets/icons/techstackcolor/testrail.png',
         semanticLabel: 'TestRail logo',
       ),
+      StackTechnology(
+        name: 'Jenkins',
+        group: stackGroupQaTesting,
+        iconAsset: 'assets/icons/techstackcolor/jenkins.png',
+        semanticLabel: 'Jenkins logo',
+      ),
     ],
   ),
   StackTechnologyGroup(
@@ -94,6 +106,12 @@ const stackTechnologyGroups = [
         group: stackGroupBackendApis,
         iconAsset: 'assets/icons/techstackcolor/hibernate.png',
         semanticLabel: 'Hibernate logo',
+      ),
+      StackTechnology(
+        name: 'Maven',
+        group: stackGroupBackendApis,
+        iconAsset: 'assets/icons/techstackcolor/maven.png',
+        semanticLabel: 'Maven logo',
       ),
       StackTechnology(
         name: 'MySQL',
@@ -139,7 +157,7 @@ const stackTechnologyGroups = [
       StackTechnology(
         name: 'iOS',
         group: stackGroupMobileCloud,
-        iconAsset: 'assets/icons/techstackcolor/ios.png',
+        iconAsset: 'assets/icons/techstackcolor/ios_apple.png',
         semanticLabel: 'iOS logo',
       ),
       StackTechnology(

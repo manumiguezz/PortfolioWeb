@@ -3,22 +3,22 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/data/stack_technologies.dart';
 
-const _grayscaleMatrix = <double>[
-  0.2126,
-  0.7152,
-  0.0722,
+const _inactiveIconMatrix = <double>[
+  0.1169,
+  0.3934,
+  0.0397,
   0,
+  90,
+  0.1169,
+  0.3934,
+  0.0397,
   0,
-  0.2126,
-  0.7152,
-  0.0722,
+  90,
+  0.1169,
+  0.3934,
+  0.0397,
   0,
-  0,
-  0.2126,
-  0.7152,
-  0.0722,
-  0,
-  0,
+  90,
   0,
   0,
   0,
@@ -204,7 +204,7 @@ class _StackIcon extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             ColorFiltered(
-              colorFilter: const ColorFilter.matrix(_grayscaleMatrix),
+              colorFilter: const ColorFilter.matrix(_inactiveIconMatrix),
               child: _StackIconImage(iconAsset: iconAsset),
             ),
             AnimatedOpacity(
