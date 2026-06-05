@@ -15,6 +15,9 @@ class Presentation extends StatelessWidget {
     double fontSize = narrowDesktop
         ? clampSize(widthQuery * 0.056, 40, 56)
         : clampSize(widthQuery * 0.065, 48, 96);
+    final roleFontSize = narrowDesktop
+        ? clampSize(widthQuery * 0.052, 38, 54)
+        : clampSize(widthQuery * 0.058, 58, 96);
     final topPadding = clampSize(heightQuery * 0.2, 96, 180);
     final leftPadding = narrowDesktop
         ? clampSize(widthQuery * 0.055, 32, 64)
@@ -33,6 +36,7 @@ class Presentation extends StatelessWidget {
         fontWeight: FontWeight.bold,
         fontSize: fontSize,
         color: Colors.white);
+    final roleLightStyle = lightStyle.copyWith(fontSize: roleFontSize);
 
     return Padding(
       padding: EdgeInsets.only(top: topPadding, left: leftPadding, right: 24),
@@ -80,39 +84,34 @@ class Presentation extends StatelessWidget {
           if (narrowDesktop)
             SizedBox(
               width: contentWidth,
-              child: FittedBox(
-                alignment: Alignment.centerLeft,
-                fit: BoxFit.scaleDown,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('a', maxLines: 1, style: lightStyle),
-                    AnimatedText(
-                      speed: 70000,
-                      fontSizeAnimated: fontSize,
-                      mobileVersion: false,
-                      expanded: false,
-                      useEllipsis: false,
-                    ),
-                  ],
-                ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('a', maxLines: 1, style: roleLightStyle),
+                  AnimatedText(
+                    speed: 70000,
+                    fontSizeAnimated: roleFontSize,
+                    mobileVersion: false,
+                    useEllipsis: false,
+                  ),
+                ],
               ),
             )
           else
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'a',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: lightStyle,
+                  style: roleLightStyle,
                 ),
                 AnimatedText(
                   speed: 70000,
-                  fontSizeAnimated: fontSize,
+                  fontSizeAnimated: roleFontSize,
                   mobileVersion: false,
                   useEllipsis: false,
-                  scaleDown: true,
                 ),
               ],
             ),

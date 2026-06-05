@@ -8,7 +8,6 @@ class AnimatedText extends StatelessWidget {
   final bool microMobile;
   final bool expanded;
   final bool useEllipsis;
-  final bool scaleDown;
   const AnimatedText(
       {super.key,
       required this.speed,
@@ -16,8 +15,7 @@ class AnimatedText extends StatelessWidget {
       required this.mobileVersion,
       this.microMobile = false,
       this.expanded = true,
-      this.useEllipsis = true,
-      this.scaleDown = false});
+      this.useEllipsis = true});
 
   @override
   Widget build(BuildContext context) {
@@ -32,74 +30,130 @@ class AnimatedText extends StatelessWidget {
       java = microMobile ? 'QA Engineer' : 'Automation Dev';
       student = 'Student';
 
+      final textStyle = TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold,
+        fontSize: fontSizeAnimated,
+        color: Colors.white,
+      );
+
+      final phrases = [java, student, flutter, backend];
+
       return Expanded(
         child: Align(
           alignment: Alignment.center,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: DefaultTextStyle(
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.bold,
-                fontSize: fontSizeAnimated,
-                color: Colors.white,
-              ),
-              child: AnimatedTextKit(
-                isRepeatingAnimation: true,
-                repeatForever: true,
-                pause: const Duration(milliseconds: 1800),
-                animatedTexts: [
-                  TyperAnimatedText(java, speed: Duration(microseconds: speed)),
-                  TyperAnimatedText(student,
-                      speed: Duration(microseconds: speed)),
-                  TyperAnimatedText(flutter,
-                      speed: Duration(microseconds: speed)),
-                  TyperAnimatedText(backend,
-                      speed: Duration(microseconds: speed)),
-                ],
-                onTap: () {},
-              ),
-            ),
+          child: _StableTyperText(
+            alignment: Alignment.center,
+            phrases: phrases,
+            referenceText: _longestPhrase(phrases),
+            speed: speed,
+            style: textStyle,
+            textAlign: TextAlign.center,
           ),
         ),
       );
     } else {
-      final desktopText = DefaultTextStyle(
+      final textStyle = TextStyle(
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.bold,
+          fontSize: fontSizeAnimated,
+          color: Colors.white);
+      final phrases = [java, student, flutter, backend];
+      final desktopChild = _StableTyperText(
+        alignment: Alignment.topLeft,
         overflow: useEllipsis ? TextOverflow.ellipsis : TextOverflow.visible,
-        maxLines: 1,
-        style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.bold,
-            fontSize: fontSizeAnimated,
-            color: Colors.white),
-        child: AnimatedTextKit(
-          isRepeatingAnimation: true,
-          repeatForever: true,
-          pause: const Duration(milliseconds: 1800),
-          animatedTexts: [
-            TyperAnimatedText(java, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(student, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(flutter, speed: Duration(microseconds: speed)),
-            TyperAnimatedText(backend, speed: Duration(microseconds: speed)),
-          ],
-          onTap: () {},
-        ),
+        maxLines: useEllipsis ? 1 : null,
+        phrases: phrases,
+        referenceText: _longestPhrase(phrases),
+        speed: speed,
+        style: textStyle,
       );
-
-      final desktopChild = scaleDown
-          ? Align(
-              alignment: Alignment.centerLeft,
-              child: FittedBox(
-                alignment: Alignment.centerLeft,
-                fit: BoxFit.scaleDown,
-                child: desktopText,
-              ),
-            )
-          : desktopText;
 
       if (!expanded) return desktopChild;
 
-      return Expanded(child: desktopChild);
+      return Expanded(
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: desktopChild,
+        ),
+      );
     }
+  }
+}
+
+String _longestPhrase(List<String> phrases) {
+  return phrases.reduce(
+    (longest, phrase) => phrase.length > longest.length ? phrase : longest,
+  );
+}
+
+class _StableTyperText extends StatelessWidget {
+  const _StableTyperText({
+    required this.alignment,
+    required this.phrases,
+    required this.referenceText,
+    required this.speed,
+    required this.style,
+    this.maxLines,
+    this.overflow = TextOverflow.visible,
+    this.textAlign = TextAlign.start,
+  });
+
+  final Alignment alignment;
+  final List<String> phrases;
+  final String referenceText;
+  final int speed;
+  final TextStyle style;
+  final int? maxLines;
+  final TextOverflow overflow;
+  final TextAlign textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    final typerTexts = phrases
+        .map(
+          (phrase) => TyperAnimatedText(
+            phrase,
+            textAlign: textAlign,
+            speed: Duration(microseconds: speed),
+          ),
+        )
+        .toList();
+
+    return DefaultTextStyle(
+      overflow: overflow,
+      maxLines: maxLines,
+      style: style,
+      child: Stack(
+        alignment: alignment,
+        children: [
+          ExcludeSemantics(
+            child: Opacity(
+              opacity: 0,
+              child: Text(
+                referenceText,
+                maxLines: maxLines,
+                overflow: overflow,
+                softWrap: maxLines != 1,
+                textAlign: textAlign,
+                style: style,
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Align(
+              alignment: alignment,
+              child: AnimatedTextKit(
+                isRepeatingAnimation: true,
+                repeatForever: true,
+                pause: const Duration(milliseconds: 1800),
+                animatedTexts: typerTexts,
+                onTap: () {},
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
