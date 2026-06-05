@@ -10,10 +10,16 @@ class PresentationMobile extends StatelessWidget {
     double widthQuery = MediaQuery.of(context).size.width;
     double heightQuery = MediaQuery.of(context).size.height;
     final microMobile = isMicroMobileWidth(widthQuery);
+    final compactMobile = widthQuery >= 560;
     double fontSize = microMobile
         ? clampSize(widthQuery * 0.13, 28, 36)
-        : clampSize(widthQuery * 0.105, 38, 60);
-    final topPadding = clampSize(heightQuery * 0.22, 96, 170);
+        : clampSize(widthQuery * 0.105, 38, compactMobile ? 54 : 60);
+    final roleFontSize = microMobile
+        ? fontSize
+        : clampSize(fontSize, 38, compactMobile ? 52 : 60);
+    final topPadding = compactMobile
+        ? clampSize(heightQuery * 0.14, 88, 112)
+        : clampSize(heightQuery * 0.22, 96, 170);
     final horizontalPadding = microMobile ? 16.0 : 20.0;
     final socialGap = microMobile
         ? clampSize(widthQuery * 0.045, 10, 14)
@@ -68,7 +74,7 @@ class PresentationMobile extends StatelessWidget {
               children: [
                 AnimatedText(
                   speed: 100000,
-                  fontSizeAnimated: fontSize,
+                  fontSizeAnimated: roleFontSize,
                   mobileVersion: true,
                   microMobile: microMobile,
                 ),
