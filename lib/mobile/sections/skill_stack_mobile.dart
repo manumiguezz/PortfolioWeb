@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web_version/data/stack_technologies.dart';
 import 'package:portfolio_web_version/exports/utils.dart';
 import 'package:portfolio_web_version/exports/widgets.dart';
 
@@ -29,11 +30,20 @@ class MyStackMobile extends StatelessWidget {
         ? (contentWidth - (itemGap * 2)) / 3
         : clampSize(widthQuery * 0.22, 82, 118);
     final rowGap = microMobile
-        ? clampSize(heightQuery * 0.022, 18, 24)
-        : clampSize(heightQuery * 0.05, 28, 44);
+        ? clampSize(heightQuery * 0.018, 14, 22)
+        : clampSize(heightQuery * 0.035, 24, 36);
     final titleSize = microMobile
         ? clampSize(widthQuery * 0.19, 40, 48)
         : clampSize(widthQuery * 0.14, 48, 76);
+    final groupGap = microMobile
+        ? clampSize(heightQuery * 0.04, 28, 36)
+        : clampSize(heightQuery * 0.055, 36, 52);
+    final groupTitleSize = microMobile
+        ? clampSize(widthQuery * 0.052, 13, 16)
+        : clampSize(widthQuery * 0.042, 16, 22);
+    final groupTitleGap = microMobile
+        ? clampSize(heightQuery * 0.014, 10, 14)
+        : clampSize(heightQuery * 0.022, 14, 20);
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
@@ -55,76 +65,24 @@ class MyStackMobile extends StatelessWidget {
           ),
           SizedBox(
               height: microMobile
-                  ? clampSize(heightQuery * 0.014, 10, 16)
-                  : clampSize(heightQuery * 0.025, 18, 28)),
-          SizedBox(
-            width: double.infinity,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                'Tap on them!',
-                style: TextStyle(
-                    color: const Color.fromARGB(255, 89, 89, 89),
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: microMobile
-                        ? clampSize(widthQuery * 0.035, 9, 11)
-                        : clampSize(widthQuery * 0.028, 11, 14)),
-              ),
-            ),
-          ),
-          SizedBox(
-              height: microMobile
                   ? clampSize(heightQuery * 0.025, 18, 26)
-                  : clampSize(heightQuery * 0.045, 28, 44)),
-          Wrap(
-            alignment: WrapAlignment.center,
-            runAlignment: WrapAlignment.center,
-            spacing: itemGap,
-            runSpacing: rowGap,
-            children: [
-              for (final tech in _stackItems)
-                SizedBox(
-                  width: itemWidth,
-                  child: TechStack(
-                    asset: tech.asset,
-                    techName: tech.name,
-                    stackSize: stackSize,
-                    nameSize: nameSize,
-                  ),
-                ),
-            ],
-          ),
+                  : clampSize(heightQuery * 0.04, 28, 40)),
+          for (var i = 0; i < stackTechnologyGroups.length; i++) ...[
+            if (i > 0) SizedBox(height: groupGap),
+            TechStackGroup(
+              group: stackTechnologyGroups[i],
+              stackSize: stackSize,
+              nameSize: nameSize,
+              itemWidth: itemWidth,
+              itemGap: itemGap,
+              rowGap: rowGap,
+              groupTitleSize: groupTitleSize,
+              groupTitleGap: groupTitleGap,
+              maxColumns: 3,
+            ),
+          ],
         ],
       ),
     );
   }
-}
-
-const _stackItems = [
-  _StackItem('java.png', 'Java'),
-  _StackItem('android.png', 'Android'),
-  _StackItem('dart.png', 'Dart'),
-  _StackItem('html.png', 'HTML'),
-  _StackItem('css.png', 'CSS'),
-  _StackItem('mysql.png', 'MySQL'),
-  _StackItem('spring.png', 'Spring'),
-  _StackItem('javafx.png', 'JavaFX'),
-  _StackItem('hibernate.png', 'Hibernate'),
-  _StackItem('springboot.png', 'Spring Boot'),
-  _StackItem('flutter.png', 'Flutter'),
-  _StackItem('git.png', 'Git'),
-  _StackItem('postman.png', 'Postman'),
-  _StackItem('maven.png', 'Maven'),
-  _StackItem('thymeleaf.png', 'Thymeleaf'),
-  _StackItem('docker.png', 'Docker'),
-  _StackItem('firebase.png', 'Firebase'),
-  _StackItem('jwt.png', 'JWT'),
-];
-
-class _StackItem {
-  const _StackItem(this.asset, this.name);
-
-  final String asset;
-  final String name;
 }
