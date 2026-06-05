@@ -48,6 +48,7 @@ class MyStack extends StatelessWidget {
                   rowGap: rowGap,
                   groupTitleSize: groupTitleSize,
                   groupTitleGap: clampSize(heightQuery * 0.025, 18, 28),
+                  maxColumns: 5,
                 ),
               ],
             ],

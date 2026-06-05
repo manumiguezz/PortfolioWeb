@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/data/stack_technologies.dart';
@@ -135,6 +136,7 @@ class TechStackGroup extends StatelessWidget {
     required this.rowGap,
     required this.groupTitleSize,
     this.groupTitleGap = 24,
+    this.maxColumns = 5,
     super.key,
   });
 
@@ -146,6 +148,7 @@ class TechStackGroup extends StatelessWidget {
   final double rowGap;
   final double groupTitleSize;
   final double groupTitleGap;
+  final int maxColumns;
 
   @override
   Widget build(BuildContext context) {
@@ -162,26 +165,85 @@ class TechStackGroup extends StatelessWidget {
           ),
         ),
         SizedBox(height: groupTitleGap),
-        Wrap(
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.center,
-          spacing: itemGap,
-          runSpacing: rowGap,
-          children: [
-            for (final technology in group.technologies)
-              SizedBox(
-                width: itemWidth,
-                child: TechStack(
-                  technology: technology,
-                  stackSize: stackSize,
-                  nameSize: nameSize,
-                ),
-              ),
-          ],
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final rowCounts = _balancedRowCounts(
+              itemCount: group.technologies.length,
+              availableWidth: constraints.maxWidth,
+              itemWidth: itemWidth,
+              itemGap: itemGap,
+              maxColumns: maxColumns,
+            );
+            var technologyIndex = 0;
+
+            return Column(
+              children: [
+                for (var rowIndex = 0;
+                    rowIndex < rowCounts.length;
+                    rowIndex++) ...[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (var itemIndex = 0;
+                          itemIndex < rowCounts[rowIndex];
+                          itemIndex++) ...[
+                        if (itemIndex > 0) SizedBox(width: itemGap),
+                        SizedBox(
+                          width: itemWidth,
+                          child: TechStack(
+                            technology: group.technologies[technologyIndex++],
+                            stackSize: stackSize,
+                            nameSize: nameSize,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                  if (rowIndex < rowCounts.length - 1) SizedBox(height: rowGap),
+                ],
+              ],
+            );
+          },
         ),
       ],
     );
   }
+}
+
+List<int> _balancedRowCounts({
+  required int itemCount,
+  required double availableWidth,
+  required double itemWidth,
+  required double itemGap,
+  required int maxColumns,
+}) {
+  if (itemCount == 0) return const [];
+
+  final fallbackWidth =
+      (itemWidth * itemCount) + (itemGap * math.max(0, itemCount - 1));
+  final boundedWidth = availableWidth.isFinite && availableWidth > 0
+      ? availableWidth
+      : fallbackWidth;
+  final fittingColumns =
+      ((boundedWidth + itemGap) / (itemWidth + itemGap)).floor();
+  final effectiveColumns = math.min(
+    itemCount,
+    math.max(1, math.min(maxColumns, fittingColumns)),
+  );
+  final rowCount = (itemCount / effectiveColumns).ceil();
+  final counts = <int>[];
+  var remainingItems = itemCount;
+  var remainingRows = rowCount;
+
+  while (remainingRows > 0) {
+    final rowItems = (remainingItems / remainingRows).ceil();
+    counts.add(rowItems);
+    remainingItems -= rowItems;
+    remainingRows--;
+  }
+
+  return counts;
 }
 
 class _StackIcon extends StatelessWidget {

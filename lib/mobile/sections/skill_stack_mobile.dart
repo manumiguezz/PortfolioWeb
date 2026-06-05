@@ -78,6 +78,7 @@ class MyStackMobile extends StatelessWidget {
               rowGap: rowGap,
               groupTitleSize: groupTitleSize,
               groupTitleGap: groupTitleGap,
+              maxColumns: 3,
             ),
           ],
         ],
