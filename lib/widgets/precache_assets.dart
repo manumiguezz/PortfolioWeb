@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/data/stack_technologies.dart';
 
-void precacheAssets(BuildContext context) {
-  // Load core images early so the first scroll through the portfolio is smooth.
+const List<String> _initialPortfolioAssets = [
+  'assets/icons/socialmedia/email_white.png',
+  'assets/icons/socialmedia/github_white.png',
+  'assets/icons/socialmedia/linkedin_white.png',
+];
 
-  precacheImage(const AssetImage('assets/images/profile.png'), context);
+List<String> get _deferredPortfolioAssets => [
+      'assets/images/profile.png',
+      'assets/images/project/companyrestapi.png',
+      'assets/images/project/flickframes.png',
+      'assets/images/project/noteshop.png',
+      for (final group in stackTechnologyGroups)
+        for (final technology in group.technologies) technology.iconAsset,
+    ];
 
-  precacheImage(
-      const AssetImage('assets/icons/socialmedia/email_white.png'), context);
-  precacheImage(
-      const AssetImage('assets/icons/socialmedia/github_white.png'), context);
-  precacheImage(
-      const AssetImage('assets/icons/socialmedia/linkedin_white.png'), context);
+Future<void> precacheInitialPortfolioAssets(BuildContext context) {
+  return _precachePortfolioImages(context, _initialPortfolioAssets);
+}
 
-  precacheImage(
-      const AssetImage('assets/images/project/companyrestapi.png'), context);
-  precacheImage(
-      const AssetImage('assets/images/project/flickframes.png'), context);
-  precacheImage(
-      const AssetImage('assets/images/project/noteshop.png'), context);
+Future<void> precacheDeferredPortfolioAssets(BuildContext context) {
+  return _precachePortfolioImages(context, _deferredPortfolioAssets);
+}
 
-  for (final group in stackTechnologyGroups) {
-    for (final technology in group.technologies) {
-      precacheImage(AssetImage(technology.iconAsset), context);
-    }
+Future<void> _precachePortfolioImages(
+  BuildContext context,
+  Iterable<String> assetPaths,
+) {
+  return Future.wait(
+    assetPaths.map((assetPath) => _precachePortfolioImage(context, assetPath)),
+  );
+}
+
+Future<void> _precachePortfolioImage(
+  BuildContext context,
+  String assetPath,
+) async {
+  try {
+    await precacheImage(AssetImage(assetPath), context);
+  } catch (error) {
+    debugPrint('Unable to precache portfolio asset "$assetPath": $error');
   }
 }
