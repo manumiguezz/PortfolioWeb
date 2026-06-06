@@ -17,6 +17,7 @@
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="portfolio" content="Manuel Miguez Lauria.">
 
@@ -31,6 +32,10 @@
 
   <title>Portfolio</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/yingyang.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/yingyangwithoutdots.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/black.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/white.png">
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -145,41 +150,949 @@
     };
   </script>
   <style>
-    body {
-      background-color: black;
-      font-family: "Poppins", sans-serif;
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-      transition: opacity .4s ease-out;
+    :root {
+      --loader-black: #20201e;
+      --loader-spin-duration: 1120ms;
     }
 
-    .main-content {
+    html,
+    body {
+      background-color: #121212;
+      font-family: "Poppins", sans-serif;
       height: 100%;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      position: fixed;
+      inset: 0;
+    }
+
+    #portfolio-app-root {
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+      filter: blur(10px);
+      transition:
+        opacity 780ms ease 260ms,
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 260ms,
+        filter 900ms ease 260ms;
+      pointer-events: none;
+      will-change: opacity, transform, filter;
+    }
+
+    body.portfolio-reveal-active #portfolio-app-root {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+
+    body.portfolio-reduced-motion-reveal #portfolio-app-root {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+      pointer-events: auto;
+    }
+
+    .portfolio-loader {
+      --hero-flag-height: clamp(86px, 16vh, 150px);
+      --hero-white-peek: clamp(24px, 3.5vh, 36px);
+      --hero-stripe-overlap: 5px;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: transparent;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 620ms ease;
+    }
+
+    .portfolio-loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.12), transparent 1.7%),
+        radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.09), transparent 1.4%),
+        radial-gradient(circle at 76% 66%, rgba(255, 255, 255, 0.08), transparent 3.6%),
+        radial-gradient(circle at 24% 68%, rgba(255, 255, 255, 0.07), transparent 2.9%),
+        var(--loader-black);
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 940ms ease 180ms;
+      will-change: opacity;
+    }
+
+    .portfolio-loader.is-white-covering::before,
+    .portfolio-loader.is-liquid-revealing::before,
+    .portfolio-loader.is-fading::before {
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-fading,
+    .portfolio-loader.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .portfolio-loader.is-hidden {
+      display: none;
+    }
+
+    .loader-center {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      transition:
+        opacity 620ms ease,
+        filter 720ms ease;
+      will-change: opacity, filter;
+    }
+
+    .yin-yang-gate {
+      --mark-size: clamp(92px, 12vmin, 136px);
+      position: relative;
+      width: var(--mark-size);
+      height: var(--mark-size);
+      opacity: 0;
+      filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.45));
+      transform-origin: center;
+      isolation: isolate;
+      animation: loader-logo-enter 780ms cubic-bezier(0.22, 1, 0.36, 1) 90ms both;
+      will-change: opacity;
+    }
+
+    .yin-yang-symbol {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      animation: loader-spin var(--loader-spin-duration) linear infinite;
+      transform-origin: center;
+      transition: opacity 180ms ease;
+      will-change: transform, filter, opacity;
+    }
+
+    .yin-yang-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      transform: translate3d(0, 0, 0) scale(1);
+      transform-origin: center;
+      transition:
+        opacity 500ms ease,
+        transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .yin-yang-complete {
+      opacity: 1;
+      z-index: 4;
+      filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 0.34))
+        drop-shadow(0 14px 30px rgba(0, 0, 0, 0.34));
+    }
+
+    .yin-yang-no-dots {
+      z-index: 3;
+      transform: translate3d(0, 0, 0) scale(1.006);
+    }
+
+    .yin-yang-part {
+      z-index: 2;
+      transition:
+        opacity 180ms ease,
+        transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .yin-yang-part-white {
+      z-index: 2;
+      filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.08));
+    }
+
+    .yin-yang-part-black {
+      z-index: 3;
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.24));
+    }
+
+    .yin-yang-dot-cover {
+      position: absolute;
+      z-index: 5;
+      left: 50.2%;
+      width: 12.5%;
+      height: 12.5%;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1);
+      transition:
+        opacity 240ms ease,
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .yin-yang-dot-cover-dark {
+      top: 25%;
+      background: #ffffff;
+    }
+
+    .yin-yang-dot-cover-light {
+      top: 75%;
+      background: #000000;
+    }
+
+    .portfolio-loader.is-simplifying .yin-yang-complete {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.998);
+      transition-duration: 1080ms;
+    }
+
+    .portfolio-loader.is-simplifying .yin-yang-no-dots {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      transition-duration: 1080ms;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-complete,
+    .portfolio-loader.is-separated .yin-yang-no-dots {
+      opacity: 0;
+      transition-duration: 220ms;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-part {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-dot-cover {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.36);
+    }
+
+    .portfolio-loader.is-white-covering .yin-yang-symbol,
+    .portfolio-loader.is-liquid-revealing .yin-yang-symbol,
+    .portfolio-loader.is-liquid-settled .yin-yang-symbol {
+      opacity: 0;
+      transition-delay: 160ms;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-center,
+    .portfolio-loader.is-liquid-settled .loader-center {
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-white-covering .yin-yang-dot-cover,
+    .portfolio-loader.is-liquid-revealing .yin-yang-dot-cover {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.36);
+      transition-duration: 220ms;
+    }
+
+    .loader-liquid-reveal {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 3;
+      width: 100%;
+      height: calc(100vh + var(--hero-flag-height) + var(--hero-white-peek));
+      color: #ffffff;
+      opacity: 0;
+      transform: translate3d(0, calc(-1 * var(--hero-flag-height)), 0);
+      transform-origin: 50% 0;
+      transition:
+        opacity 220ms ease,
+        transform 1840ms cubic-bezier(0.68, 0, 0.18, 1);
+      will-change: opacity, transform;
+    }
+
+    .loader-liquid-wave {
+      position: absolute;
+      top: 0;
+      left: -2%;
+      width: 104%;
+      height: var(--hero-flag-height);
+      display: block;
+      transform-origin: 50% 50%;
+      opacity: 1;
+      will-change: opacity, transform;
+    }
+
+    .loader-liquid-wave path {
+      fill: currentColor;
+    }
+
+    .loader-liquid-wave-soft {
+      color: #f1f0ea;
+      opacity: 0;
+    }
+
+    .loader-liquid-wave-mid {
+      color: #f8f7f2;
+      opacity: 0;
+    }
+
+    .loader-liquid-wave-front {
+      color: #ffffff;
+    }
+
+    .loader-liquid-fill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(var(--hero-flag-height) - var(--hero-stripe-overlap));
+      bottom: 0;
+      background: currentColor;
+    }
+
+    .portfolio-loader.is-white-covering .loader-liquid-reveal {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-reveal,
+    .portfolio-loader.is-liquid-settled .loader-liquid-reveal {
+      opacity: 1;
+      transform: translate3d(
+        0,
+        calc(100vh - var(--hero-flag-height) - var(--hero-white-peek) + var(--hero-stripe-overlap)),
+        0
+      );
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-wave-soft {
+      opacity: 0.34;
+      animation: loader-liquid-wave-soft 1840ms cubic-bezier(0.68, 0, 0.18, 1) both;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-wave-mid {
+      opacity: 0.58;
+      animation: loader-liquid-wave-mid 1840ms cubic-bezier(0.68, 0, 0.18, 1) both;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-wave-front {
+      animation: loader-liquid-wave-front 1840ms cubic-bezier(0.68, 0, 0.18, 1) both;
+    }
+
+    .portfolio-loader.is-liquid-settled .loader-liquid-wave-soft,
+    .portfolio-loader.is-liquid-settled .loader-liquid-wave-mid {
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-liquid-settled .loader-liquid-wave-front {
+      transform: translate3d(0, 0, 0) scaleX(1);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes loader-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loader-logo-enter {
+      from {
+        opacity: 0;
+      }
+
+      55% {
+        opacity: 0.78;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes loader-liquid-wave-soft {
+      0% {
+        transform: translate3d(2.8%, -12px, 0) scaleX(1.075);
+      }
+
+      48% {
+        transform: translate3d(-1.7%, -7px, 0) scaleX(1.045);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) scaleX(1);
+      }
+    }
+
+    @keyframes loader-liquid-wave-mid {
+      0% {
+        transform: translate3d(-2.2%, -7px, 0) scaleX(1.055);
+      }
+
+      38% {
+        transform: translate3d(1.4%, -2px, 0) scaleX(1.07);
+      }
+
+      78% {
+        transform: translate3d(-0.7%, 2px, 0) scaleX(1.025);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) scaleX(1);
+      }
+    }
+
+    @keyframes loader-liquid-wave-front {
+      0% {
+        transform: translate3d(-1.8%, 0, 0) scaleX(1.04);
+      }
+
+      42% {
+        transform: translate3d(1.1%, -3px, 0) scaleX(1.055);
+      }
+
+      76% {
+        transform: translate3d(-0.6%, 1px, 0) scaleX(1.018);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) scaleX(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #portfolio-app-root,
+      .portfolio-loader,
+      .loader-center,
+      .loader-liquid-reveal,
+      .yin-yang-layer,
+      .yin-yang-dot-cover {
+        transition-duration: 1ms !important;
+        transition-delay: 0ms !important;
+      }
+
+      #portfolio-app-root {
+        transform: none;
+      }
+
+      .yin-yang-symbol {
+        animation: none;
+      }
+
+      .loader-liquid-wave {
+        animation: none !important;
+      }
+
+      .portfolio-loader.is-liquid-revealing .loader-liquid-reveal {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .loader-liquid-reveal {
+        --hero-flag-height: clamp(80px, 16vh, 130px);
+        --hero-white-peek: clamp(8px, 1.5vh, 14px);
+      }
+
+      .loader-stripe-desktop {
+        display: none;
+      }
+    }
+
+    @media (max-width: 300px) {
+      .loader-liquid-reveal {
+        --hero-flag-height: clamp(64px, 13vh, 100px);
+      }
+    }
+
+    @media (min-width: 701px) {
+      .loader-stripe-mobile {
+        display: none;
+      }
     }
   </style>
   <script>
     function delay(time) {
-      return new Promise(resolve => setTimeout(resolve, time))
+      return new Promise(resolve => setTimeout(resolve, time));
     }
 
+    function nextFrame() {
+      return new Promise(resolve => requestAnimationFrame(() => resolve()));
+    }
+
+    function createPortfolioLoader() {
+      const loaderContent = document.querySelector('#loader-content');
+      const appRoot = document.querySelector('#portfolio-app-root');
+      const yinYangGate = loaderContent?.querySelector('.yin-yang-gate');
+      const yinYangSymbol = loaderContent?.querySelector('.yin-yang-symbol');
+      const blackPart = loaderContent?.querySelector('.yin-yang-part-black');
+      const whitePart = loaderContent?.querySelector('.yin-yang-part-white');
+      const state = {
+        isAppReady: false,
+        isLoaderExiting: false,
+        showLoader: Boolean(loaderContent),
+        hasHeroEntered: false,
+      };
+      const loaderAssetUrls = [
+        'assets/assets/loader-yingyang/yingyang.png',
+        'assets/assets/loader-yingyang/yingyangwithoutdots.png',
+        'assets/assets/loader-yingyang/black.png',
+        'assets/assets/loader-yingyang/white.png',
+      ];
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const minLoaderDuration = delay(940);
+      const windowLoaded = document.readyState === 'complete'
+        ? Promise.resolve()
+        : new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
+      const fontsReady = document.fonts?.ready
+        ? document.fonts.ready.catch(() => undefined)
+        : Promise.resolve();
+      const appReady = new Promise(resolve => {
+        window.addEventListener('portfolio-app-ready', function handleAppReady() {
+          state.isAppReady = true;
+          resolve();
+        }, { once: true });
+      });
+      const loaderAssetsReady = Promise.all(loaderAssetUrls.map(waitForImageAsset));
+
+      function waitForImageAsset(url) {
+        return new Promise(resolve => {
+          const image = new Image();
+          let settled = false;
+          const finish = () => {
+            if (settled) {
+              return;
+            }
+            settled = true;
+            if (image.decode) {
+              image.decode().catch(() => undefined).then(resolve);
+            } else {
+              resolve();
+            }
+          };
+
+          image.decoding = 'async';
+          image.onload = finish;
+          image.onerror = finish;
+          image.src = url;
+
+          if (image.complete) {
+            finish();
+          }
+        });
+      }
+
+      function revealHeroContent() {
+        if (state.hasHeroEntered) {
+          return;
+        }
+
+        appRoot?.removeAttribute('aria-hidden');
+        document.body.classList.add('portfolio-reveal-active');
+        state.hasHeroEntered = true;
+      }
+
+      function getCurrentRotationDegrees(element) {
+        const transform = window.getComputedStyle(element).transform;
+        if (!transform || transform === 'none') {
+          return 0;
+        }
+
+        const matrix = new DOMMatrixReadOnly(transform);
+        return Math.atan2(matrix.b, matrix.a) * (180 / Math.PI);
+      }
+
+      function parseCssTimeToMs(value, fallback) {
+        const cssTime = String(value || '').trim();
+        const numericValue = Number.parseFloat(cssTime);
+        if (!Number.isFinite(numericValue)) {
+          return fallback;
+        }
+
+        return cssTime.endsWith('ms') ? numericValue : numericValue * 1000;
+      }
+
+      function getLoadingSpinDuration() {
+        if (!yinYangSymbol) {
+          return 1120;
+        }
+
+        const duration = window
+          .getComputedStyle(yinYangSymbol)
+          .getPropertyValue('--loader-spin-duration');
+        return parseCssTimeToMs(duration, 1120);
+      }
+
+      function getLoadingSpinAnimation() {
+        if (!yinYangSymbol?.getAnimations) {
+          return null;
+        }
+
+        return yinYangSymbol
+          .getAnimations()
+          .find(animation => animation.animationName === 'loader-spin') || null;
+      }
+
+      async function waitForSpinHandoffPoint() {
+        if (!yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const spinAnimation = getLoadingSpinAnimation();
+        const spinDuration = getLoadingSpinDuration();
+        const currentTime = Number(spinAnimation?.currentTime);
+        if (!spinAnimation || !Number.isFinite(currentTime) || spinDuration <= 0) {
+          await nextFrame();
+          return;
+        }
+
+        const cycleProgress = ((currentTime % spinDuration) + spinDuration) % spinDuration;
+        let timeUntilBoundary = spinDuration - cycleProgress;
+        if (timeUntilBoundary < 90) {
+          timeUntilBoundary += spinDuration;
+        }
+
+        await delay(timeUntilBoundary);
+        await nextFrame();
+      }
+
+      async function prepareSpinExitHandoff() {
+        await waitForSpinHandoffPoint();
+
+        if (!yinYangSymbol) {
+          return 0;
+        }
+
+        const currentRotation = getCurrentRotationDegrees(yinYangSymbol);
+        yinYangSymbol.style.transform = `rotate(${currentRotation}deg) scale(1)`;
+        yinYangSymbol.style.animation = 'none';
+        return currentRotation;
+      }
+
+      function getLiquidRevealDuration() {
+        return prefersReducedMotion.matches ? 1 : 1840;
+      }
+
+      async function accelerateAndCompressSymbol(handoffRotation) {
+        if (!loaderContent || !yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const currentRotation = Number.isFinite(handoffRotation)
+          ? handoffRotation
+          : getCurrentRotationDegrees(yinYangSymbol);
+        const targetRotation = currentRotation + 1980;
+        yinYangSymbol.style.transform = `rotate(${currentRotation}deg) scale(1)`;
+        yinYangSymbol.style.animation = 'none';
+
+        const simplifyDots = delay(840).then(() => {
+          loaderContent.classList.add('is-simplifying');
+        });
+        const animation = yinYangSymbol.animate([
+          {
+            filter: 'blur(0px) brightness(1)',
+            transform: `rotate(${currentRotation}deg) scale(1)`,
+          },
+          {
+            filter: 'blur(0.25px) brightness(1.02)',
+            transform: `rotate(${currentRotation + 540}deg) scale(0.7)`,
+            offset: 0.28,
+          },
+          {
+            filter: 'blur(1.05px) brightness(1.06)',
+            transform: `rotate(${currentRotation + 1320}deg) scale(0.32)`,
+            offset: 0.72,
+          },
+          {
+            filter: 'blur(1.65px) brightness(1.08)',
+            transform: `rotate(${targetRotation}deg) scale(0.14)`,
+          },
+        ], {
+          duration: 1560,
+          easing: 'cubic-bezier(0.34, 0.1, 0.84, 0.32)',
+          fill: 'forwards',
+        });
+
+        simplifyDots.catch(() => undefined);
+        await animation.finished.catch(() => undefined);
+        yinYangSymbol.style.filter = 'blur(1.65px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(0.14)`;
+        return targetRotation;
+      }
+
+      async function implodeSymbol(startRotation) {
+        if (!yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const rotation = Number.isFinite(startRotation) ? startRotation : 0;
+        const targetRotation = rotation + 360;
+        const animation = yinYangSymbol.animate([
+          {
+            filter: 'blur(1.65px) brightness(1.08)',
+            transform: `rotate(${rotation}deg) scale(0.14)`,
+          },
+          {
+            filter: 'blur(2.35px) brightness(1.2)',
+            transform: `rotate(${rotation + 280}deg) scale(0.038)`,
+            offset: 0.68,
+          },
+          {
+            filter: 'blur(0px) brightness(1)',
+            transform: `rotate(${targetRotation}deg) scale(0.11)`,
+          },
+        ], {
+          duration: 580,
+          easing: 'cubic-bezier(0.86, 0, 0.16, 1)',
+          fill: 'forwards',
+        });
+
+        await animation.finished.catch(() => undefined);
+        yinYangSymbol.style.filter = 'blur(0px)';
+        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(0.11)`;
+        return targetRotation;
+      }
+
+      async function splitSymbolIntoParts(finalRotation) {
+        if (!loaderContent || !yinYangSymbol || !blackPart || !whitePart || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const rotation = Number.isFinite(finalRotation) ? finalRotation : 0;
+        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(0.11)`;
+        blackPart.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+        whitePart.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+        loaderContent.classList.add('is-separated');
+        await nextFrame();
+        return rotation;
+      }
+
+      async function expandSplitPartsToWhiteCover(finalRotation) {
+        if (!loaderContent || !yinYangGate || !yinYangSymbol || !blackPart || !whitePart || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const gateBounds = yinYangGate.getBoundingClientRect();
+        const partWidth = Math.max(gateBounds.width, 1);
+        const viewportMax = Math.max(window.innerWidth, window.innerHeight);
+        const whiteCoverScale = Math.max((viewportMax / partWidth) * 3.8, window.innerWidth < 700 ? 28 : 34);
+        const blackScale = Math.max((viewportMax / partWidth) * 1.9, window.innerWidth < 700 ? 11.5 : 15);
+        const spreadX = Math.min(Math.max(window.innerWidth * 0.42, 140), window.innerWidth < 700 ? 250 : 560);
+        const spreadY = Math.min(Math.max(window.innerHeight * 0.11, 38), window.innerWidth < 700 ? 105 : 150);
+        const rotation = Number.isFinite(finalRotation) ? finalRotation : 0;
+        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(0.11)`;
+
+        const symbolSpin = yinYangSymbol.animate([
+          {
+            transform: `rotate(${rotation}deg) scale(0.11)`,
+          },
+          {
+            transform: `rotate(${rotation + 270}deg) scale(0.36)`,
+            offset: 0.24,
+          },
+          {
+            transform: `rotate(${rotation + 560}deg) scale(0.68)`,
+            offset: 0.56,
+          },
+          {
+            transform: `rotate(${rotation + 940}deg) scale(1.02)`,
+          },
+        ], {
+          duration: 3020,
+          easing: 'cubic-bezier(0.34, 0, 0.2, 1)',
+          fill: 'forwards',
+        });
+
+        const switchToWhiteCover = delay(2540).then(async () => {
+          loaderContent.classList.add('is-white-covering');
+          await delay(260);
+          symbolSpin.cancel();
+          blackAnimation.cancel();
+          whiteAnimation.cancel();
+          yinYangSymbol.style.opacity = '0';
+        });
+
+        const blackAnimation = blackPart.animate([
+          {
+            opacity: 1,
+            transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${-spreadX}px, ${-spreadY * 0.55}px, 0) rotate(-135deg) scale(${blackScale * 0.12})`,
+            offset: 0.24,
+          },
+          {
+            opacity: 0.98,
+            transform: `translate3d(${-spreadX * 1.08}px, ${spreadY * 1.2}px, 0) rotate(-405deg) scale(${blackScale * 0.26})`,
+            offset: 0.48,
+          },
+          {
+            opacity: 0.52,
+            transform: `translate3d(${-spreadX * 0.9}px, ${spreadY * 2.1}px, 0) rotate(-665deg) scale(${blackScale * 0.42})`,
+            offset: 0.68
+          },
+          {
+            opacity: 0.02,
+            transform: `translate3d(${-spreadX * 0.42}px, ${spreadY * 1.1}px, 0) rotate(-800deg) scale(${blackScale * 0.68})`,
+            offset: 0.82
+          },
+          {
+            opacity: 0,
+            transform: `translate3d(${-spreadX * 0.2}px, ${spreadY * 0.65}px, 0) rotate(-920deg) scale(${blackScale})`,
+          },
+        ], {
+          duration: 2460,
+          easing: 'cubic-bezier(0.56, 0, 0.18, 1)',
+          fill: 'forwards',
+        });
+
+        const whiteAnimation = whitePart.animate([
+          {
+            opacity: 1,
+            transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${spreadX}px, ${spreadY * 0.65}px, 0) rotate(135deg) scale(${whiteCoverScale * 0.058})`,
+            offset: 0.23,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${spreadX * 1.25}px, ${-spreadY * 0.7}px, 0) rotate(405deg) scale(${whiteCoverScale * 0.115})`,
+            offset: 0.46,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${spreadX * 1.32}px, ${-spreadY * 1.35}px, 0) rotate(665deg) scale(${whiteCoverScale * 0.17})`,
+            offset: 0.68,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${spreadX * 0.96}px, ${-spreadY * 0.95}px, 0) rotate(790deg) scale(${whiteCoverScale * 0.3})`,
+            offset: 0.8,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${spreadX * 0.36}px, ${-spreadY * 0.28}px, 0) rotate(875deg) scale(${whiteCoverScale * 0.58})`,
+            offset: 0.88,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(0, 0, 0) rotate(960deg) scale(${whiteCoverScale})`,
+          },
+        ], {
+          duration: 3020,
+          easing: 'cubic-bezier(0.55, 0, 0.13, 1)',
+          fill: 'forwards',
+        });
+
+        await Promise.all([
+          blackAnimation.finished.catch(() => undefined),
+          whiteAnimation.finished.catch(() => undefined),
+          symbolSpin.finished.catch(() => undefined),
+          switchToWhiteCover,
+        ]);
+      }
+
+      async function revealHeroWithLiquidWave() {
+        if (!loaderContent || prefersReducedMotion.matches) {
+          return;
+        }
+
+        loaderContent.classList.add('is-liquid-revealing');
+        await delay(getLiquidRevealDuration());
+        loaderContent.classList.add('is-liquid-settled');
+      }
+
+      async function startLoaderExit() {
+        if (!loaderContent || state.isLoaderExiting || !state.showLoader) {
+          return;
+        }
+
+        state.isLoaderExiting = true;
+
+        if (prefersReducedMotion.matches) {
+          loaderContent.classList.add('is-exiting');
+          document.body.classList.add('portfolio-reduced-motion-reveal');
+          revealHeroContent();
+          loaderContent.classList.add('is-fading');
+          await delay(120);
+        } else {
+          const handoffRotation = await prepareSpinExitHandoff();
+          loaderContent.classList.add('is-exiting');
+          const compressedRotation = await accelerateAndCompressSymbol(handoffRotation);
+          const implodedRotation = await implodeSymbol(compressedRotation);
+          const finalRotation = await splitSymbolIntoParts(implodedRotation);
+          await expandSplitPartsToWhiteCover(finalRotation);
+          revealHeroContent();
+          await delay(180);
+          await revealHeroWithLiquidWave();
+          await delay(360);
+          loaderContent.classList.add('is-fading');
+          await delay(640);
+        }
+
+        loaderContent.classList.add('is-hidden');
+        loaderContent.setAttribute('aria-hidden', 'true');
+        loaderContent.remove();
+        state.showLoader = false;
+      }
+
+      async function waitForReadyAndExit() {
+        await Promise.all([
+          minLoaderDuration,
+          windowLoaded,
+          fontsReady,
+          loaderAssetsReady,
+          appReady,
+        ]);
+        await startLoaderExit();
+      }
+
+      return {
+        appRoot,
+        state,
+        waitForReadyAndExit,
+      };
+    }
+
+    window.portfolioLoader = null;
+
     window.addEventListener('load', function(ev) {
-      var loaderContent = document.querySelector('#loader-content');
-      // Download main.dart.js
+      window.portfolioLoader = createPortfolioLoader();
+      window.portfolioLoader.waitForReadyAndExit();
+
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(async function(appRunner) {
-            loaderContent.style.opacity = "0";
-            await delay(400);
+          engineInitializer.initializeEngine({
+            hostElement: window.portfolioLoader.appRoot,
+          }).then(async function(appRunner) {
             await appRunner.runApp();
-            loaderContent.style.display = "none";
           });
         }
       });
@@ -188,14 +1101,36 @@
   <script type="text/javascript">
     window.flutterWebRenderer = "html";
   </script>
-  <div class="main-content" id="loader-content">
-    <img 
-    src="icons/yin-yang-loader.gif" 
-    alt="logo preview"
-    width="80"
-    height="80"
-    style="filter: invert(100%);"
-    >
+  <div id="portfolio-app-root" aria-hidden="true"></div>
+  <div class="portfolio-loader" id="loader-content" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <div class="loader-center" aria-hidden="true">
+      <div class="yin-yang-gate">
+        <div class="yin-yang-symbol">
+          <img class="yin-yang-layer yin-yang-complete" src="assets/assets/loader-yingyang/yingyang.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-no-dots" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-part yin-yang-part-black" src="assets/assets/loader-yingyang/black.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-part yin-yang-part-white" src="assets/assets/loader-yingyang/white.png" alt="" decoding="async">
+          <span class="yin-yang-dot-cover yin-yang-dot-cover-dark"></span>
+          <span class="yin-yang-dot-cover yin-yang-dot-cover-light"></span>
+        </div>
+      </div>
+    </div>
+    <div class="loader-liquid-reveal" aria-hidden="true">
+      <svg class="loader-liquid-wave loader-liquid-wave-soft" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+        <path class="loader-stripe-desktop" d="M0 14 Q20 76 50 19 Q77 -29 100 34 L100 100 L0 100 Z"></path>
+        <path class="loader-stripe-mobile" d="M0 54 Q23 78 48 53 Q75 20 100 50 L100 100 L0 100 Z"></path>
+      </svg>
+      <svg class="loader-liquid-wave loader-liquid-wave-mid" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+        <path class="loader-stripe-desktop" d="M0 24 Q23 86 54 12 Q76 -33 100 43 L100 100 L0 100 Z"></path>
+        <path class="loader-stripe-mobile" d="M0 64 Q24 86 49 57 Q75 27 100 58 L100 100 L0 100 Z"></path>
+      </svg>
+      <svg class="loader-liquid-wave loader-liquid-wave-front" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+        <path class="loader-stripe-desktop" d="M0 20 Q24 82 55 10 Q75 -35 100 40 L100 100 L0 100 Z"></path>
+        <path class="loader-stripe-mobile" d="M0 60 Q24 82 49 55 Q75 25 100 55 L100 100 L0 100 Z"></path>
+      </svg>
+      <div class="loader-liquid-fill"></div>
+    </div>
+    <span class="sr-only">Loading portfolio</span>
   </div>
 </body>
 </html>
