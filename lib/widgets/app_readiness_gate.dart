@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:portfolio_web_version/widgets/app_ready_notifier_stub.dart'
     if (dart.library.html) 'package:portfolio_web_version/widgets/app_ready_notifier_web.dart';
+import 'package:portfolio_web_version/widgets/hero_reveal_notifier_stub.dart'
+    if (dart.library.html) 'package:portfolio_web_version/widgets/hero_reveal_notifier_web.dart';
 import 'package:portfolio_web_version/widgets/precache_assets.dart';
 
 class AppReadinessGate extends StatefulWidget {
@@ -21,6 +23,17 @@ class AppReadinessGate extends StatefulWidget {
 class _AppReadinessGateState extends State<AppReadinessGate> {
   bool _isAppReady = false;
   bool _isPreparingApp = false;
+  late bool _isHeroRevealStarted;
+  HeroRevealListenerHandle? _heroRevealListener;
+
+  @override
+  void initState() {
+    super.initState();
+    _isHeroRevealStarted = isHeroRevealStarted();
+    if (!_isHeroRevealStarted) {
+      _heroRevealListener = addHeroRevealListener(_handleHeroRevealStarted);
+    }
+  }
 
   @override
   void didChangeDependencies() {
@@ -52,8 +65,27 @@ class _AppReadinessGateState extends State<AppReadinessGate> {
     await precacheDeferredPortfolioAssets(context);
   }
 
+  void _handleHeroRevealStarted() {
+    if (!mounted || _isHeroRevealStarted) {
+      return;
+    }
+
+    setState(() {
+      _isHeroRevealStarted = true;
+    });
+  }
+
+  @override
+  void dispose() {
+    removeHeroRevealListener(_heroRevealListener);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return TickerMode(
+      enabled: _isHeroRevealStarted,
+      child: widget.child,
+    );
   }
 }
