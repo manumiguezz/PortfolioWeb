@@ -1366,12 +1366,18 @@
           ? handoffRotation
           : getCurrentRotationDegrees(yinYangSymbol);
         const targetRotation = currentRotation + 1980;
+        const compressionDuration = 1560;
+        const compressionEasing = 'linear';
         yinYangSymbol.style.transform = `rotate(${currentRotation}deg) scale(1)`;
         yinYangSymbol.style.animation = 'none';
 
         const simplifyDots = delay(840).then(() => {
           loaderContent.classList.add('is-simplifying');
         });
+        const motionBlurAnimations = animateCompressionMotionBlur(
+          compressionDuration,
+          compressionEasing,
+        );
         const animation = yinYangSymbol.animate([
           {
             filter: 'blur(0px) brightness(1)',
@@ -1379,26 +1385,42 @@
           },
           {
             filter: 'blur(0.25px) brightness(1.02)',
-            transform: `rotate(${currentRotation + 540}deg) scale(0.7)`,
-            offset: 0.28,
+            transform: `rotate(${currentRotation + 130}deg) scale(0.82)`,
+            offset: 0.18,
+          },
+          {
+            filter: 'blur(0.55px) brightness(1.04)',
+            transform: `rotate(${currentRotation + 470}deg) scale(0.56)`,
+            offset: 0.42,
           },
           {
             filter: 'blur(1.05px) brightness(1.06)',
-            transform: `rotate(${currentRotation + 1320}deg) scale(0.32)`,
-            offset: 0.72,
+            transform: `rotate(${currentRotation + 1020}deg) scale(0.32)`,
+            offset: 0.68,
+          },
+          {
+            filter: 'blur(1.45px) brightness(1.08)',
+            transform: `rotate(${currentRotation + 1540}deg) scale(0.19)`,
+            offset: 0.86,
           },
           {
             filter: 'blur(1.65px) brightness(1.08)',
             transform: `rotate(${targetRotation}deg) scale(0.14)`,
           },
         ], {
-          duration: 1560,
-          easing: 'cubic-bezier(0.34, 0.1, 0.84, 0.32)',
+          duration: compressionDuration,
+          easing: compressionEasing,
           fill: 'forwards',
         });
 
         simplifyDots.catch(() => undefined);
-        await animation.finished.catch(() => undefined);
+        await Promise.all([
+          animation.finished.catch(() => undefined),
+          ...motionBlurAnimations.map(motionBlurAnimation =>
+            motionBlurAnimation.finished.catch(() => undefined),
+          ),
+        ]);
+        resetCompressionMotionBlur();
         yinYangSymbol.style.filter = 'blur(1.65px) brightness(1.08)';
         yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(0.14)`;
         return targetRotation;
@@ -1410,183 +1432,236 @@
         }
 
         const rotation = Number.isFinite(startRotation) ? startRotation : 0;
-        const targetRotation = rotation + 360;
+        const implodeDuration = 520;
+        const targetRotation = rotation + (peakRotationDegreesPerMs * implodeDuration);
         const animation = yinYangSymbol.animate([
           {
             filter: 'blur(1.65px) brightness(1.08)',
             transform: `rotate(${rotation}deg) scale(0.14)`,
           },
           {
-            filter: 'blur(2.35px) brightness(1.2)',
-            transform: `rotate(${rotation + 280}deg) scale(0.038)`,
-            offset: 0.68,
+            filter: 'blur(2.05px) brightness(1.14)',
+            transform: `rotate(${rotation + 430}deg) scale(0.085)`,
+            offset: 0.42,
           },
           {
-            filter: 'blur(0px) brightness(1)',
-            transform: `rotate(${targetRotation}deg) scale(0.11)`,
+            filter: 'blur(2.35px) brightness(1.2)',
+            transform: `rotate(${rotation + 830}deg) scale(0.056)`,
+            offset: 0.78,
+          },
+          {
+            filter: 'blur(1.2px) brightness(1.08)',
+            transform: `rotate(${targetRotation}deg) scale(${implosionScale})`,
           },
         ], {
-          duration: 580,
-          easing: 'cubic-bezier(0.86, 0, 0.16, 1)',
+          duration: implodeDuration,
+          easing: 'linear',
           fill: 'forwards',
         });
 
         await animation.finished.catch(() => undefined);
-        yinYangSymbol.style.filter = 'blur(0px)';
-        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(0.11)`;
+        yinYangSymbol.style.filter = 'blur(1.2px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(${implosionScale})`;
         return targetRotation;
       }
 
-      async function splitSymbolIntoParts(finalRotation) {
-        if (!loaderContent || !yinYangSymbol || !blackPart || !whitePart || prefersReducedMotion.matches) {
+      function resetWhiteBlob() {
+        if (!whiteBlob) {
           return;
         }
 
-        const rotation = Number.isFinite(finalRotation) ? finalRotation : 0;
-        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(0.11)`;
-        blackPart.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
-        whitePart.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
-        loaderContent.classList.add('is-separated');
-        await nextFrame();
-        return rotation;
+        whiteBlob.getAnimations?.().forEach(animation => animation.cancel());
+        whiteBlob.style.left = '50%';
+        whiteBlob.style.top = '50%';
+        whiteBlob.style.width = '120px';
+        whiteBlob.style.height = '120px';
+        whiteBlob.style.opacity = '0';
+        whiteBlob.style.visibility = 'visible';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(0, 0.001);
+        setWhiteBlobPath(whiteDropPathStart);
       }
 
-      async function expandSplitPartsToWhiteCover(finalRotation) {
-        if (!loaderContent || !yinYangGate || !yinYangSymbol || !blackPart || !whitePart || prefersReducedMotion.matches) {
+      function getWhiteBlobCoverageBaseSize(blobSize, centerX, centerY) {
+        const safeBlobSize = Math.max(blobSize, 1);
+        const viewportWidth = Math.max(window.innerWidth, 1);
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const viewportDiagonal = Math.hypot(viewportWidth, viewportHeight);
+        const farthestViewportCorner = getFarthestViewportDistanceFrom(centerX, centerY);
+        const coverageSize = Math.max(
+          safeBlobSize,
+          viewportDiagonal * 0.58,
+          farthestViewportCorner * 1.85,
+          window.innerWidth < 700 ? 760 : 980,
+        );
+
+        return Math.min(coverageSize, 1800);
+      }
+
+      function getWhiteBlobTargetScale(blobSize, centerX, centerY) {
+        const safeBlobSize = Math.max(blobSize, 1);
+        const conservativeBlobRadius = safeBlobSize * 0.38;
+        const farthestViewportCorner = getFarthestViewportDistanceFrom(centerX, centerY);
+
+        return Math.max(
+          (farthestViewportCorner / conservativeBlobRadius) * 1.18,
+          window.innerWidth < 700 ? 1.28 : 1.36,
+        );
+      }
+
+      async function runWhiteBlobTransition(startRotation) {
+        if (!loaderContent || !yinYangGate || !yinYangSymbol || !whiteBlob || prefersReducedMotion.matches) {
+          await lockFullWhiteCoverage();
           return;
         }
 
+        const rotation = Number.isFinite(startRotation) ? startRotation : 0;
         const gateBounds = yinYangGate.getBoundingClientRect();
-        const partWidth = Math.max(gateBounds.width, 1);
-        const viewportMax = Math.max(window.innerWidth, window.innerHeight);
-        const whiteCoverScale = Math.max((viewportMax / partWidth) * 3.8, window.innerWidth < 700 ? 28 : 34);
-        const blackScale = Math.max((viewportMax / partWidth) * 1.9, window.innerWidth < 700 ? 11.5 : 15);
-        const spreadX = Math.min(Math.max(window.innerWidth * 0.42, 140), window.innerWidth < 700 ? 250 : 560);
-        const spreadY = Math.min(Math.max(window.innerHeight * 0.11, 38), window.innerWidth < 700 ? 105 : 150);
-        const rotation = Number.isFinite(finalRotation) ? finalRotation : 0;
-        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(0.11)`;
+        const centerX = gateBounds.left + (gateBounds.width / 2);
+        const centerY = gateBounds.top + (gateBounds.height / 2);
+        const viewportCenterX = Math.max(window.innerWidth, 1) / 2;
+        const viewportCenterY = Math.max(window.innerHeight, 1) / 2;
+        const recenterX = viewportCenterX - centerX;
+        const recenterY = viewportCenterY - centerY;
+        const blobSize = Math.max(gateBounds.width, gateBounds.height, 1);
+        const coverageBaseSize = getWhiteBlobCoverageBaseSize(
+          blobSize,
+          viewportCenterX,
+          viewportCenterY,
+        );
+        const baseScaleRatio = blobSize / coverageBaseSize;
+        const toCoverageScale = scale => scale * baseScaleRatio;
+        const startScale = toCoverageScale(Math.max(implosionScale * 0.72, 0.026));
+        const targetScale = getWhiteBlobTargetScale(
+          coverageBaseSize,
+          viewportCenterX,
+          viewportCenterY,
+        );
+        const growthDuration = 2860;
+        const finalRotation = rotation + 1460;
 
-        const symbolSpin = yinYangSymbol.animate([
-          {
-            transform: `rotate(${rotation}deg) scale(0.11)`,
-          },
-          {
-            transform: `rotate(${rotation + 270}deg) scale(0.36)`,
-            offset: 0.24,
-          },
-          {
-            transform: `rotate(${rotation + 560}deg) scale(0.68)`,
-            offset: 0.56,
-          },
-          {
-            transform: `rotate(${rotation + 940}deg) scale(1.02)`,
-          },
-        ], {
-          duration: 3020,
-          easing: 'cubic-bezier(0.34, 0, 0.2, 1)',
-          fill: 'forwards',
-        });
+        resetCompressionMotionBlur();
+        resetWhiteBlob();
+        loaderContent.classList.remove('is-replacing-parts', 'is-separated');
+        loaderContent.classList.add('is-blob-expanding');
 
-        const switchToWhiteCover = delay(2540).then(async () => {
-          loaderContent.classList.add('is-white-covering');
-          await delay(260);
-          symbolSpin.cancel();
-          blackAnimation.cancel();
-          whiteAnimation.cancel();
-          yinYangSymbol.style.opacity = '0';
-        });
+        whiteBlob.style.left = `${centerX}px`;
+        whiteBlob.style.top = `${centerY}px`;
+        whiteBlob.style.width = `${coverageBaseSize}px`;
+        whiteBlob.style.height = `${coverageBaseSize}px`;
+        whiteBlob.style.opacity = '0';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(rotation, startScale);
+        setWhiteBlobPath(whiteDropPathStart);
 
-        const blackAnimation = blackPart.animate([
+        yinYangSymbol.style.opacity = '1';
+        yinYangSymbol.style.filter = 'blur(1.2px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(${implosionScale})`;
+
+        const symbolTakeover = yinYangSymbol.animate([
           {
             opacity: 1,
-            transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+            filter: 'blur(1.2px) brightness(1.08)',
+            transform: `rotate(${rotation}deg) scale(${implosionScale})`,
           },
           {
             opacity: 1,
-            transform: `translate3d(${-spreadX}px, ${-spreadY * 0.55}px, 0) rotate(-135deg) scale(${blackScale * 0.12})`,
-            offset: 0.24,
-          },
-          {
-            opacity: 0.98,
-            transform: `translate3d(${-spreadX * 1.08}px, ${spreadY * 1.2}px, 0) rotate(-405deg) scale(${blackScale * 0.26})`,
-            offset: 0.48,
-          },
-          {
-            opacity: 0.52,
-            transform: `translate3d(${-spreadX * 0.9}px, ${spreadY * 2.1}px, 0) rotate(-665deg) scale(${blackScale * 0.42})`,
-            offset: 0.68
-          },
-          {
-            opacity: 0.02,
-            transform: `translate3d(${-spreadX * 0.42}px, ${spreadY * 1.1}px, 0) rotate(-800deg) scale(${blackScale * 0.68})`,
-            offset: 0.82
+            filter: 'blur(2.4px) brightness(1.16)',
+            transform: `rotate(${rotation + 360}deg) scale(${implosionScale * 0.98})`,
+            offset: 0.58,
           },
           {
             opacity: 0,
-            transform: `translate3d(${-spreadX * 0.2}px, ${spreadY * 0.65}px, 0) rotate(-920deg) scale(${blackScale})`,
+            filter: 'blur(2.7px) brightness(1.1)',
+            transform: `rotate(${rotation + 650}deg) scale(${implosionScale * 0.9})`,
           },
         ], {
-          duration: 2460,
-          easing: 'cubic-bezier(0.56, 0, 0.18, 1)',
+          duration: 320,
+          easing: 'linear',
           fill: 'forwards',
         });
 
-        const whiteAnimation = whitePart.animate([
+        const blobExpansion = whiteBlob.animate([
           {
-            opacity: 1,
-            transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+            opacity: 0,
+            transform: getBlobTransform(rotation, startScale),
           },
           {
             opacity: 1,
-            transform: `translate3d(${spreadX}px, ${spreadY * 0.65}px, 0) rotate(135deg) scale(${whiteCoverScale * 0.058})`,
-            offset: 0.23,
+            transform: getBlobTransform(rotation + 460, toCoverageScale(0.13)),
+            offset: 0.08,
           },
           {
             opacity: 1,
-            transform: `translate3d(${spreadX * 1.25}px, ${-spreadY * 0.7}px, 0) rotate(405deg) scale(${whiteCoverScale * 0.115})`,
-            offset: 0.46,
+            transform: getBlobTransform(rotation + 780, toCoverageScale(0.38)),
+            offset: 0.18,
           },
           {
             opacity: 1,
-            transform: `translate3d(${spreadX * 1.32}px, ${-spreadY * 1.35}px, 0) rotate(665deg) scale(${whiteCoverScale * 0.17})`,
-            offset: 0.68,
+            transform: getBlobTransform(rotation + 1100, targetScale * 0.22, recenterX * 0.28, recenterY * 0.28),
+            offset: 0.36,
           },
           {
             opacity: 1,
-            transform: `translate3d(${spreadX * 0.96}px, ${-spreadY * 0.95}px, 0) rotate(790deg) scale(${whiteCoverScale * 0.3})`,
-            offset: 0.8,
+            transform: getBlobTransform(rotation + 1320, targetScale * 0.56, recenterX * 0.72, recenterY * 0.72),
+            offset: 0.62,
           },
           {
             opacity: 1,
-            transform: `translate3d(${spreadX * 0.36}px, ${-spreadY * 0.28}px, 0) rotate(875deg) scale(${whiteCoverScale * 0.58})`,
-            offset: 0.88,
-          },
-          {
-            opacity: 1,
-            transform: `translate3d(0, 0, 0) rotate(960deg) scale(${whiteCoverScale})`,
+            transform: getBlobTransform(finalRotation, targetScale, recenterX, recenterY),
           },
         ], {
-          duration: 3020,
-          easing: 'cubic-bezier(0.55, 0, 0.13, 1)',
+          duration: growthDuration,
+          easing: 'linear',
           fill: 'forwards',
         });
+        const shapeMorph = animateWhiteBlobPathMorph(growthDuration);
 
         await Promise.all([
-          blackAnimation.finished.catch(() => undefined),
-          whiteAnimation.finished.catch(() => undefined),
-          symbolSpin.finished.catch(() => undefined),
-          switchToWhiteCover,
+          symbolTakeover.finished.catch(() => undefined),
+          blobExpansion.finished.catch(() => undefined),
+          shapeMorph.catch(() => undefined),
         ]);
+
+        whiteBlob.style.opacity = '1';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(finalRotation, targetScale, recenterX, recenterY);
+        setWhiteBlobPath(whiteDropPathCover);
+        yinYangSymbol.style.opacity = '0';
+        yinYangSymbol.style.filter = 'blur(0px)';
+        state.hasShapeWhiteCoverage = true;
+        await nextFrame();
+        await nextFrame();
+        await lockFullWhiteCoverage();
+        await prepareStripeRevealLayer();
       }
 
       async function revealHeroWithLiquidWave() {
-        if (!loaderContent || prefersReducedMotion.matches) {
+        if (!loaderContent || prefersReducedMotion.matches || !state.hasFullWhiteCoverage) {
           return;
         }
 
+        if (!state.hasStripeReady) {
+          await prepareStripeRevealLayer();
+        }
+
+        setLayerOpacityImmediately(fullWhiteCover, 0);
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+        if (whiteBlob) {
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+        await nextFrame();
+
+        const liquidDescent = startLiquidRevealDescent();
         loaderContent.classList.add('is-liquid-revealing');
-        await delay(getLiquidRevealDuration());
+        await liquidDescent.aligned;
+        loaderContent.classList.add('is-liquid-clearing');
+        await liquidDescent.finished;
         loaderContent.classList.add('is-liquid-settled');
+        await clearSettledLiquidReveal();
       }
 
       async function startLoaderExit() {
@@ -1607,8 +1682,7 @@
           loaderContent.classList.add('is-exiting');
           const compressedRotation = await accelerateAndCompressSymbol(handoffRotation);
           const implodedRotation = await implodeSymbol(compressedRotation);
-          const finalRotation = await splitSymbolIntoParts(implodedRotation);
-          await expandSplitPartsToWhiteCover(finalRotation);
+          await runWhiteBlobTransition(implodedRotation);
           revealHeroContent();
           await delay(180);
           await revealHeroWithLiquidWave();
@@ -1669,6 +1743,9 @@
     <div class="loader-center" aria-hidden="true">
       <div class="yin-yang-gate">
         <div class="yin-yang-symbol">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-a" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-b" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-c" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
           <img class="yin-yang-layer yin-yang-complete" src="assets/assets/loader-yingyang/yingyang.png" alt="" decoding="async">
           <img class="yin-yang-layer yin-yang-no-dots" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
           <img class="yin-yang-layer yin-yang-part yin-yang-part-black" src="assets/assets/loader-yingyang/black.png" alt="" decoding="async">
@@ -1678,15 +1755,22 @@
         </div>
       </div>
     </div>
+    <div class="loader-white-blob" aria-hidden="true">
+      <svg class="loader-white-blob-shape" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" focusable="false">
+        <g transform="rotate(180 50 50)">
+          <path
+            class="loader-white-drop-glow"
+            d="M50 0 C78 0 100 22 100 50 C100 78 78 100 50 100 C32 100 15 87 16 69 C17 56 31 50 50 50 C69 50 82 40 82 25 C82 10 68 0 50 0 Z"
+          ></path>
+          <path
+            class="loader-white-drop-core"
+            d="M50 0 C78 0 100 22 100 50 C100 78 78 100 50 100 C32 100 15 87 16 69 C17 56 31 50 50 50 C69 50 82 40 82 25 C82 10 68 0 50 0 Z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-full-white-cover" aria-hidden="true"></div>
     <div class="loader-liquid-reveal" aria-hidden="true">
-      <svg class="loader-liquid-wave loader-liquid-wave-soft" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
-        <path class="loader-stripe-desktop" d="M0 14 Q20 76 50 19 Q77 -29 100 34 L100 100 L0 100 Z"></path>
-        <path class="loader-stripe-mobile" d="M0 54 Q23 78 48 53 Q75 20 100 50 L100 100 L0 100 Z"></path>
-      </svg>
-      <svg class="loader-liquid-wave loader-liquid-wave-mid" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
-        <path class="loader-stripe-desktop" d="M0 24 Q23 86 54 12 Q76 -33 100 43 L100 100 L0 100 Z"></path>
-        <path class="loader-stripe-mobile" d="M0 64 Q24 86 49 57 Q75 27 100 58 L100 100 L0 100 Z"></path>
-      </svg>
       <svg class="loader-liquid-wave loader-liquid-wave-front" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
         <path class="loader-stripe-desktop" d="M0 20 Q24 82 55 10 Q75 -35 100 40 L100 100 L0 100 Z"></path>
         <path class="loader-stripe-mobile" d="M0 60 Q24 82 49 55 Q75 25 100 55 L100 100 L0 100 Z"></path>
