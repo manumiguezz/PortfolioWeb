@@ -641,21 +641,15 @@
       }
     }
 
-    @keyframes loader-liquid-wave-front {
+    @keyframes loader-white-drop-glow {
       0% {
-        transform: translate3d(-1.8%, 0, 0) scaleX(1.04);
-      }
-
-      42% {
-        transform: translate3d(1.1%, -3px, 0) scaleX(1.055);
-      }
-
-      76% {
-        transform: translate3d(-0.6%, 1px, 0) scaleX(1.018);
+        opacity: 0.18;
+        transform: scale(1.025);
       }
 
       100% {
-        transform: translate3d(0, 0, 0) scaleX(1);
+        opacity: 0.34;
+        transform: scale(1.055);
       }
     }
 
@@ -664,6 +658,8 @@
       .portfolio-loader,
       .loader-center,
       .loader-liquid-reveal,
+      .loader-full-white-cover,
+      .loader-white-blob,
       .yin-yang-layer,
       .yin-yang-dot-cover {
         transition-duration: 1ms !important;
@@ -676,6 +672,14 @@
 
       .yin-yang-symbol {
         animation: none;
+      }
+
+      .yin-yang-motion-ghost {
+        display: none;
+      }
+
+      .loader-white-drop-glow {
+        animation: none !important;
       }
 
       .loader-liquid-wave {
@@ -724,13 +728,23 @@
       const appRoot = document.querySelector('#portfolio-app-root');
       const yinYangGate = loaderContent?.querySelector('.yin-yang-gate');
       const yinYangSymbol = loaderContent?.querySelector('.yin-yang-symbol');
-      const blackPart = loaderContent?.querySelector('.yin-yang-part-black');
-      const whitePart = loaderContent?.querySelector('.yin-yang-part-white');
+      const whiteBlob = loaderContent?.querySelector('.loader-white-blob');
+      const whiteBlobPathNodes = Array.from(
+        whiteBlob?.querySelectorAll('.loader-white-drop-core, .loader-white-drop-glow') || [],
+      );
+      const fullWhiteCover = loaderContent?.querySelector('.loader-full-white-cover');
+      const liquidReveal = loaderContent?.querySelector('.loader-liquid-reveal');
+      const motionGhosts = Array.from(
+        loaderContent?.querySelectorAll('.yin-yang-motion-ghost') || [],
+      );
       const state = {
         isAppReady: false,
         isLoaderExiting: false,
         showLoader: Boolean(loaderContent),
         hasHeroEntered: false,
+        hasShapeWhiteCoverage: false,
+        hasFullWhiteCoverage: false,
+        hasStripeReady: false,
       };
       const loaderAssetUrls = [
         'assets/assets/loader-yingyang/yingyang.png',
@@ -753,6 +767,38 @@
         }, { once: true });
       });
       const loaderAssetsReady = Promise.all(loaderAssetUrls.map(waitForImageAsset));
+      const implosionScale = 0.045;
+      const peakRotationDegreesPerMs = 2.05;
+      const liquidRevealEaseInOutExpo = 'cubic-bezier(0.87, 0, 0.13, 1)';
+      const liquidRevealEaseInOutExpoPoints = [0.87, 0, 0.13, 1];
+      const liquidRevealEaseDurationScale = 1.18;
+      const whiteDropPathStart = [
+        50, 0,
+        78, 0, 100, 22, 100, 50,
+        100, 78, 78, 100, 50, 100,
+        32, 100, 15, 87, 16, 69,
+        17, 56, 31, 50, 50, 50,
+        69, 50, 82, 40, 82, 25,
+        82, 10, 68, 0, 50, 0,
+      ];
+      const whiteDropPathMid = [
+        50, -5,
+        82, -4, 106, 21, 106, 51,
+        106, 83, 81, 107, 49, 106,
+        27, 105, 7, 91, 7, 69,
+        7, 52, 27, 45, 49, 47,
+        73, 49, 91, 37, 91, 20,
+        91, 6, 71, -5, 50, -5,
+      ];
+      const whiteDropPathCover = [
+        50, -20,
+        92, -20, 123, 9, 120, 50,
+        118, 90, 87, 122, 47, 119,
+        5, 116, -24, 84, -19, 45,
+        -14, 11, 13, -17, 50, -20,
+        70, -22, 93, -10, 98, 12,
+        88, -6, 68, -20, 50, -20,
+      ];
 
       function waitForImageAsset(url) {
         return new Promise(resolve => {
@@ -870,6 +916,445 @@
 
       function getLiquidRevealDuration() {
         return prefersReducedMotion.matches ? 1 : 1840;
+      }
+
+      function getBezierCoordinate(progress, pointA, pointB) {
+        const inverse = 1 - progress;
+        return (3 * inverse * inverse * progress * pointA)
+          + (3 * inverse * progress * progress * pointB)
+          + (progress * progress * progress);
+      }
+
+      function getLiquidRevealEaseProgress(timeProgress) {
+        const [x1, y1, x2, y2] = liquidRevealEaseInOutExpoPoints;
+        let low = 0;
+        let high = 1;
+        let progress = 0.5;
+
+        for (let index = 0; index < 24; index += 1) {
+          progress = (low + high) / 2;
+          const x = getBezierCoordinate(progress, x1, x2);
+
+          if (x < timeProgress) {
+            low = progress;
+          } else {
+            high = progress;
+          }
+        }
+
+        return getBezierCoordinate(progress, y1, y2);
+      }
+
+      function getLiquidRevealEaseTimeForProgress(targetProgress) {
+        const clampedProgress = Math.min(Math.max(targetProgress, 0), 1);
+        let low = 0;
+        let high = 1;
+        let timeProgress = 0.5;
+
+        for (let index = 0; index < 24; index += 1) {
+          timeProgress = (low + high) / 2;
+          const easedProgress = getLiquidRevealEaseProgress(timeProgress);
+
+          if (easedProgress < clampedProgress) {
+            low = timeProgress;
+          } else {
+            high = timeProgress;
+          }
+        }
+
+        return timeProgress;
+      }
+
+      function getLiquidRevealTransformY() {
+        if (!liquidReveal) {
+          return 0;
+        }
+
+        const transform = getComputedStyle(liquidReveal).transform;
+        if (!transform || transform === 'none') {
+          return 0;
+        }
+
+        return new DOMMatrixReadOnly(transform).m42 || 0;
+      }
+
+      function getLiquidRevealMotion() {
+        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
+        const waveHeight = wave?.getBoundingClientRect().height || 0;
+        const liquidHeight = liquidReveal?.getBoundingClientRect().height || 0;
+        const whitePeek = Math.max(liquidHeight - window.innerHeight - waveHeight, 0);
+        const stripeOverlap = parseFloat(
+          getComputedStyle(loaderContent).getPropertyValue('--hero-stripe-overlap'),
+        ) || 0;
+        const startY = getLiquidRevealTransformY();
+        const alignedY = window.innerHeight - waveHeight - whitePeek + stripeOverlap;
+        const targetY = alignedY;
+        const revealDuration = getLiquidRevealDuration();
+        const revealDistance = Math.max(alignedY - startY, 1);
+        const clearDistance = Math.max(targetY - alignedY, 0);
+        const clearDuration = prefersReducedMotion.matches
+          ? 1
+          : Math.max(Math.round((clearDistance / revealDistance) * revealDuration), 1);
+        const baseTotalDuration = revealDuration + clearDuration;
+        const totalDuration = prefersReducedMotion.matches
+          ? 1
+          : Math.max(Math.round(baseTotalDuration * liquidRevealEaseDurationScale), 1);
+        const travelDistance = Math.max(targetY - startY, 1);
+        const alignedProgress = (alignedY - startY) / travelDistance;
+        const alignedDuration = prefersReducedMotion.matches
+          ? 1
+          : Math.max(
+            Math.round(getLiquidRevealEaseTimeForProgress(alignedProgress) * totalDuration),
+            1,
+          );
+
+        return {
+          startY,
+          targetY,
+          alignedDuration,
+          totalDuration,
+        };
+      }
+
+      function createLiquidTranslateY(value) {
+        return `translate3d(0, ${value}px, 0)`;
+      }
+
+      function getLiquidRevealHiddenY() {
+        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
+        const waveHeight = wave?.getBoundingClientRect().height || 0;
+        const waveOvershoot = Math.max(waveHeight * 0.5, 24);
+        return Math.ceil(window.innerHeight + waveOvershoot);
+      }
+
+      function hideLiquidRevealImmediately(transform) {
+        if (!liquidReveal) {
+          return;
+        }
+
+        liquidReveal.style.transition = 'none';
+        if (transform) {
+          liquidReveal.style.transform = transform;
+        }
+        liquidReveal.style.visibility = 'hidden';
+        liquidReveal.style.opacity = '0';
+        liquidReveal.getBoundingClientRect();
+        liquidReveal.style.transition = '';
+      }
+
+      function startLiquidRevealDescent() {
+        if (!liquidReveal) {
+          return {
+            aligned: delay(getLiquidRevealDuration()),
+            finished: delay(getLiquidRevealDuration()),
+          };
+        }
+
+        const motion = getLiquidRevealMotion();
+        const startTransform = createLiquidTranslateY(motion.startY);
+        const targetTransform = createLiquidTranslateY(motion.targetY);
+        liquidReveal.style.transition = 'none';
+        liquidReveal.style.transform = startTransform;
+        liquidReveal.getBoundingClientRect();
+
+        const animation = liquidReveal.animate([
+          { transform: startTransform },
+          { transform: targetTransform },
+        ], {
+          duration: motion.totalDuration,
+          easing: liquidRevealEaseInOutExpo,
+          fill: 'forwards',
+        });
+
+        return {
+          aligned: delay(motion.alignedDuration),
+          finished: animation.finished
+            .catch(() => undefined)
+            .then(() => {
+              liquidReveal.style.transform = targetTransform;
+              liquidReveal.style.transition = '';
+              animation.cancel();
+            }),
+        };
+      }
+
+      function clearSettledLiquidReveal() {
+        if (!liquidReveal) {
+          return Promise.resolve();
+        }
+
+        const startY = getLiquidRevealTransformY();
+        const targetY = getLiquidRevealHiddenY();
+        const startTransform = createLiquidTranslateY(startY);
+        const targetTransform = createLiquidTranslateY(targetY);
+
+        if (targetY <= startY + 1 || prefersReducedMotion.matches) {
+          hideLiquidRevealImmediately(targetTransform);
+          return Promise.resolve();
+        }
+
+        const finishDistance = targetY - startY;
+        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
+        const waveHeight = wave?.getBoundingClientRect().height || 0;
+        const mainDistance = Math.max(startY + waveHeight, 1);
+        const finishDuration = Math.min(
+          Math.max(
+            Math.round(
+              (finishDistance / mainDistance)
+                * getLiquidRevealDuration()
+                * liquidRevealEaseDurationScale,
+            ),
+            1110,
+          ),
+          1470,
+        );
+
+        liquidReveal.style.transition = 'none';
+        liquidReveal.style.opacity = '1';
+        liquidReveal.style.visibility = 'visible';
+        liquidReveal.style.transform = startTransform;
+        liquidReveal.getBoundingClientRect();
+
+        const animation = liquidReveal.animate([
+          { transform: startTransform },
+          { transform: targetTransform },
+        ], {
+          duration: finishDuration,
+          easing: 'cubic-bezier(0.33, 0, 0.67, 1)',
+          fill: 'forwards',
+        });
+
+        return animation.finished
+          .catch(() => undefined)
+          .then(() => {
+            hideLiquidRevealImmediately(targetTransform);
+            animation.cancel();
+          });
+      }
+
+      function getFarthestViewportDistanceFrom(centerX, centerY) {
+        const viewportWidth = Math.max(window.innerWidth, 1);
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const cornerDistances = [
+          Math.hypot(centerX, centerY),
+          Math.hypot(viewportWidth - centerX, centerY),
+          Math.hypot(centerX, viewportHeight - centerY),
+          Math.hypot(viewportWidth - centerX, viewportHeight - centerY),
+        ];
+
+        return Math.max(...cornerDistances);
+      }
+
+      function getBlobTransform(rotation, scale, offsetX = 0, offsetY = 0) {
+        return `translate3d(${offsetX}px, ${offsetY}px, 0) translate3d(-50%, -50%, 0) rotate(${rotation}deg) scale(${scale})`;
+      }
+
+      function createWhiteDropPath(values) {
+        return [
+          `M${values[0]} ${values[1]}`,
+          `C${values[2]} ${values[3]} ${values[4]} ${values[5]} ${values[6]} ${values[7]}`,
+          `C${values[8]} ${values[9]} ${values[10]} ${values[11]} ${values[12]} ${values[13]}`,
+          `C${values[14]} ${values[15]} ${values[16]} ${values[17]} ${values[18]} ${values[19]}`,
+          `C${values[20]} ${values[21]} ${values[22]} ${values[23]} ${values[24]} ${values[25]}`,
+          `C${values[26]} ${values[27]} ${values[28]} ${values[29]} ${values[30]} ${values[31]}`,
+          `C${values[32]} ${values[33]} ${values[34]} ${values[35]} ${values[36]} ${values[37]}`,
+          'Z',
+        ].join(' ');
+      }
+
+      function setWhiteBlobPath(values) {
+        const path = createWhiteDropPath(values);
+        whiteBlobPathNodes.forEach(node => {
+          node.setAttribute('d', path);
+        });
+      }
+
+      function mixPathValues(from, to, amount) {
+        return from.map((value, index) => value + ((to[index] - value) * amount));
+      }
+
+      function smoothstep(value) {
+        const clamped = Math.min(Math.max(value, 0), 1);
+        return clamped * clamped * (3 - (2 * clamped));
+      }
+
+      function getMorphPathValues(progress) {
+        if (progress < 0.34) {
+          return whiteDropPathStart;
+        }
+
+        if (progress < 0.74) {
+          return mixPathValues(
+            whiteDropPathStart,
+            whiteDropPathMid,
+            smoothstep((progress - 0.34) / 0.4),
+          );
+        }
+
+        return mixPathValues(
+          whiteDropPathMid,
+          whiteDropPathCover,
+          smoothstep((progress - 0.74) / 0.26),
+        );
+      }
+
+      function animateWhiteBlobPathMorph(duration) {
+        if (!whiteBlobPathNodes.length || prefersReducedMotion.matches) {
+          setWhiteBlobPath(whiteDropPathCover);
+          return Promise.resolve();
+        }
+
+        const startTime = performance.now();
+        setWhiteBlobPath(whiteDropPathStart);
+
+        return new Promise(resolve => {
+          function updatePath(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            setWhiteBlobPath(getMorphPathValues(progress));
+
+            if (progress < 1) {
+              requestAnimationFrame(updatePath);
+              return;
+            }
+
+            resolve();
+          }
+
+          requestAnimationFrame(updatePath);
+        });
+      }
+
+      function setLayerOpacityImmediately(element, opacity) {
+        if (!element) {
+          return;
+        }
+
+        element.style.transition = 'none';
+        element.style.opacity = `${opacity}`;
+        element.getBoundingClientRect();
+        element.style.transition = '';
+      }
+
+      async function lockFullWhiteCoverage() {
+        if (!loaderContent) {
+          return;
+        }
+
+        loaderContent.classList.add('is-full-white-covered');
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'visible';
+        }
+        setLayerOpacityImmediately(fullWhiteCover, 1);
+        await nextFrame();
+        state.hasFullWhiteCoverage = true;
+        loaderContent.classList.add('is-white-covering');
+        setLayerOpacityImmediately(liquidReveal, 1);
+        await nextFrame();
+      }
+
+      async function prepareStripeRevealLayer() {
+        if (!loaderContent || !state.hasFullWhiteCoverage) {
+          return;
+        }
+
+        loaderContent.classList.add('is-stripe-ready');
+        setLayerOpacityImmediately(liquidReveal, 1);
+        await nextFrame();
+
+        if (whiteBlob) {
+          whiteBlob.getAnimations?.().forEach(animation => animation.cancel());
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+
+        setLayerOpacityImmediately(fullWhiteCover, 0);
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+
+        loaderContent.classList.remove('is-blob-expanding');
+        state.hasStripeReady = true;
+        await nextFrame();
+      }
+
+      function resetCompressionMotionBlur() {
+        motionGhosts.forEach(ghost => {
+          ghost.getAnimations?.().forEach(animation => animation.cancel());
+          ghost.style.opacity = '0';
+          ghost.style.filter = 'blur(0px)';
+          ghost.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+        });
+      }
+
+      function animateCompressionMotionBlur(duration, easing) {
+        if (!motionGhosts.length || prefersReducedMotion.matches) {
+          return [];
+        }
+
+        resetCompressionMotionBlur();
+
+        const ghostSettings = [
+          {
+            rotations: [-2, -8, -19, -32],
+            opacity: [0, 0.11, 0.26, 0.38, 0.42],
+            blur: [0.2, 1.15, 2.55, 3.65],
+          },
+          {
+            rotations: [2, 10, 25, 42],
+            opacity: [0, 0.09, 0.22, 0.32, 0.36],
+            blur: [0.25, 1.45, 3.1, 4.25],
+          },
+          {
+            rotations: [-4, -15, -36, -56],
+            opacity: [0, 0.055, 0.14, 0.23, 0.25],
+            blur: [0.35, 1.9, 4, 5.4],
+          },
+        ];
+
+        return motionGhosts.map((ghost, index) => {
+          const settings = ghostSettings[index] || ghostSettings[ghostSettings.length - 1];
+
+          return ghost.animate([
+            {
+              opacity: 0,
+              filter: 'blur(0px)',
+              transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+            },
+            {
+              opacity: settings.opacity[1],
+              filter: `blur(${settings.blur[0]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[0]}deg) scale(1.004)`,
+              offset: 0.18,
+            },
+            {
+              opacity: settings.opacity[2],
+              filter: `blur(${settings.blur[1]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[1]}deg) scale(1.014)`,
+              offset: 0.42,
+            },
+            {
+              opacity: settings.opacity[3],
+              filter: `blur(${settings.blur[2]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[2]}deg) scale(1.024)`,
+              offset: 0.74,
+            },
+            {
+              opacity: settings.opacity[4],
+              filter: `blur(${settings.blur[3]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[3]}deg) scale(1.034)`,
+              offset: 0.88,
+            },
+            {
+              opacity: 0,
+              filter: `blur(${settings.blur[2]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[3]}deg) scale(1.034)`,
+            },
+          ], {
+            duration,
+            easing,
+            fill: 'forwards',
+          });
+        });
       }
 
       async function accelerateAndCompressSymbol(handoffRotation) {
