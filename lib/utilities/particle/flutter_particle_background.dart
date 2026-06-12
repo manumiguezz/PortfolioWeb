@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../exports/utils.dart';
 
 class ParticleBackground extends StatelessWidget {
-
   final bool multiColor;
   final Color particleColor;
   final Color backgroundColor;
@@ -16,7 +15,8 @@ class ParticleBackground extends StatelessWidget {
   final bool allFilled;
   final int blurIntensity;
 
-  const ParticleBackground({super.key, 
+  const ParticleBackground({
+    super.key,
     this.multiColor = true,
     this.particleColor = Colors.blue,
     this.backgroundColor = Colors.white,
@@ -33,47 +33,25 @@ class ParticleBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Configuration configuration = Configuration(
-      multiColor: multiColor,
-      particleColor: particleColor,
-      backgroundColor: backgroundColor,
-      numberOfParticles: numberOfParticles,
-      blur: blur,
-      slowestSpeed: slowestSpeed,
-      highestSpeed: highestSpeed,
-      biggestSize: biggestSize,
-      smallestSize: smallestSize,
-      blurIntensity: blurIntensity,
-      allFilled: allFilled);
+        multiColor: multiColor,
+        particleColor: particleColor,
+        backgroundColor: backgroundColor,
+        numberOfParticles: numberOfParticles,
+        blur: blur,
+        slowestSpeed: slowestSpeed,
+        highestSpeed: highestSpeed,
+        biggestSize: biggestSize,
+        smallestSize: smallestSize,
+        blurIntensity: blurIntensity,
+        allFilled: allFilled);
     return MyHomePage(configuration);
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   final Configuration configuration;
 
-  @override
-  MyHomePageState createState() => MyHomePageState();
-
   const MyHomePage(this.configuration, {super.key});
-}
-
-class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
-  Animation? _animation;
-  AnimationController? _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 60));
-    _animation =
-        Tween<double>(begin: 0, end: 255).chain(CurveTween(curve: Curves.elasticOut)).animate(_animationController!)
-          ..addListener(() {
-            if (_animation!.isCompleted) _animationController!.repeat();
-            setState(() {});
-          });
-
-    _animationController!.forward();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,18 +61,18 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
           children: [
             Positioned.fill(
               child: Container(
-                color: widget.configuration.backgroundColor,
+                color: configuration.backgroundColor,
               ),
             ),
-            Scene(constraints.biggest, widget.configuration),
-            widget.configuration.blur == true
+            Scene(constraints.biggest, configuration),
+            configuration.blur == true
                 ? Positioned.fill(
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
-                          sigmaY: widget.configuration.blurIntensity.toDouble(),
-                          sigmaX: widget.configuration.blurIntensity.toDouble()),
+                          sigmaY: configuration.blurIntensity.toDouble(),
+                          sigmaX: configuration.blurIntensity.toDouble()),
                       child: Container(
-                        color: Colors.black.withOpacity(0),
+                        color: Colors.black.withValues(alpha: 0),
                       ),
                     ),
                   )
