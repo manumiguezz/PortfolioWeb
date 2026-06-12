@@ -151,7 +151,7 @@
   </script>
   <style>
     :root {
-      --loader-black: #20201e;
+      --loader-black: #121212;
       --loader-spin-duration: 1120ms;
     }
 
@@ -220,16 +220,35 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background:
-        radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.12), transparent 1.7%),
-        radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.09), transparent 1.4%),
-        radial-gradient(circle at 76% 66%, rgba(255, 255, 255, 0.08), transparent 3.6%),
-        radial-gradient(circle at 24% 68%, rgba(255, 255, 255, 0.07), transparent 2.9%),
-        var(--loader-black);
+      background: var(--loader-black);
       opacity: 1;
       pointer-events: none;
       transition: opacity 940ms ease 180ms;
       will-change: opacity;
+    }
+
+    .loader-particle-background {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.92;
+      pointer-events: none;
+      transition:
+        opacity 360ms ease,
+        visibility 360ms ease;
+      will-change: opacity;
+    }
+
+    .portfolio-loader.is-stripe-ready .loader-particle-background,
+    .portfolio-loader.is-liquid-revealing .loader-particle-background,
+    .portfolio-loader.is-liquid-clearing .loader-particle-background,
+    .portfolio-loader.is-liquid-settled .loader-particle-background,
+    .portfolio-loader.is-fading .loader-particle-background {
+      opacity: 0;
+      visibility: hidden;
     }
 
     .portfolio-loader.is-full-white-covered::before,
@@ -723,6 +742,329 @@
       return new Promise(resolve => requestAnimationFrame(() => resolve()));
     }
 
+    const loaderParticlesConfig = [
+      {
+        count: 90,
+        color: 'rgba(34, 34, 34, 0.95)',
+        minSize: 10,
+        maxSize: 80,
+        minSpeed: 0.01,
+        maxSpeed: 0.4,
+        blur: 90,
+      },
+      {
+        count: 30,
+        color: 'rgb(21, 21, 21)',
+        minSize: 1,
+        maxSize: 70,
+        minSpeed: 0.01,
+        maxSpeed: 1.5,
+        blur: 70,
+      },
+      {
+        count: 7,
+        color: 'rgba(34, 34, 34, 0.82)',
+        minSize: 1,
+        maxSize: 70,
+        minSpeed: 0.01,
+        maxSpeed: 2,
+        blur: 8,
+      },
+      {
+        count: 10,
+        color: 'rgb(50, 50, 50)',
+        minSize: 1,
+        maxSize: 30,
+        minSpeed: 0.01,
+        maxSpeed: 0.7,
+        blur: 0,
+      },
+    ];
+
+    function createLoaderParticleBackground() {
+      const canvas = document.querySelector('.loader-particle-background');
+      const context = canvas?.getContext('2d');
+
+      if (!canvas || !context) {
+        return null;
+      }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const particlePixelRatio = 1;
+      const particleFrameInterval = 1000 / 30;
+      const particleSpriteSizeStep = 8;
+      let seed = 17431;
+      let width = 0;
+      let height = 0;
+      let animationFrame = 0;
+      let stopped = false;
+      let lastFrame = performance.now();
+      let lastDrawFrame = 0;
+      let layers = [];
+
+      function random() {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+      }
+
+      function randomBetween(min, max) {
+        return min + (random() * (max - min));
+      }
+
+      function createCanvas(width, height) {
+        if (typeof OffscreenCanvas !== 'undefined') {
+          return new OffscreenCanvas(width, height);
+        }
+
+        const spriteCanvas = document.createElement('canvas');
+        spriteCanvas.width = width;
+        spriteCanvas.height = height;
+        return spriteCanvas;
+      }
+
+      function getColorWithAlpha(color, alpha) {
+        const channels = String(color).match(/rgba?\(([^)]+)\)/i)?.[1]
+          ?.split(',')
+          .map(value => value.trim());
+
+        if (!channels || channels.length < 3) {
+          return `rgba(255, 255, 255, ${alpha})`;
+        }
+
+        return `rgba(${channels[0]}, ${channels[1]}, ${channels[2]}, ${alpha})`;
+      }
+
+      function detectCanvasBlurSupport() {
+        try {
+          const testCanvas = createCanvas(32, 32);
+          const testContext = testCanvas.getContext('2d');
+
+          if (!testContext || !('filter' in testContext)) {
+            return false;
+          }
+
+          testContext.clearRect(0, 0, 32, 32);
+          testContext.filter = 'blur(4px)';
+
+          if (testContext.filter !== 'blur(4px)') {
+            return false;
+          }
+
+          testContext.fillStyle = 'rgba(0, 0, 0, 1)';
+          testContext.fillRect(15, 15, 2, 2);
+          testContext.filter = 'none';
+
+          return testContext.getImageData(10, 15, 1, 1).data[3] > 0;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      const supportsParticleCanvasBlur = detectCanvasBlurSupport();
+
+      function createParticleSprite(size, blur, color) {
+        const radius = Math.max(size / 1.2, 1);
+        const padding = Math.ceil((blur || 0) * 2) + 2;
+        const spriteSize = Math.max(Math.ceil((radius + padding) * 2), 4);
+        const spriteCanvas = createCanvas(spriteSize, spriteSize);
+        const spriteContext = spriteCanvas.getContext('2d');
+
+        if (!spriteContext) {
+          return null;
+        }
+
+        spriteContext.clearRect(0, 0, spriteSize, spriteSize);
+
+        if (blur && !supportsParticleCanvasBlur) {
+          const center = spriteSize / 2;
+          const outerRadius = Math.min(center, radius + (blur * 1.35));
+          const coreStop = Math.min(Math.max(radius / (outerRadius * 3.2), 0.04), 0.16);
+          const glowStop = Math.min(coreStop + 0.38, 0.72);
+          const gradient = spriteContext.createRadialGradient(
+            center,
+            center,
+            Math.max(radius * 0.12, 1),
+            center,
+            center,
+            outerRadius,
+          );
+
+          gradient.addColorStop(0, color);
+          gradient.addColorStop(coreStop, color);
+          gradient.addColorStop(glowStop, getColorWithAlpha(color, 0.18));
+          gradient.addColorStop(1, getColorWithAlpha(color, 0));
+          spriteContext.fillStyle = gradient;
+          spriteContext.fillRect(0, 0, spriteSize, spriteSize);
+        } else {
+          spriteContext.filter = blur ? `blur(${blur}px)` : 'none';
+          spriteContext.fillStyle = color;
+          spriteContext.beginPath();
+          spriteContext.arc(spriteSize / 2, spriteSize / 2, radius, 0, Math.PI * 2);
+          spriteContext.fill();
+          spriteContext.filter = 'none';
+        }
+
+        return {
+          image: spriteCanvas,
+          size: spriteSize,
+          particleSize: size,
+        };
+      }
+
+      function getParticleSprite(layer, size) {
+        const sizeBucket = Math.max(
+          particleSpriteSizeStep,
+          Math.round(size / particleSpriteSizeStep) * particleSpriteSizeStep,
+        );
+        const spriteKey = `${sizeBucket}`;
+
+        if (!layer.spriteCache.has(spriteKey)) {
+          layer.spriteCache.set(
+            spriteKey,
+            createParticleSprite(sizeBucket, layer.blur, layer.color),
+          );
+        }
+
+        return layer.spriteCache.get(spriteKey);
+      }
+
+      function activateParticle(config) {
+        const angleSeed = Math.floor(randomBetween(-200, 200));
+        const speed = randomBetween(config.minSpeed, config.maxSpeed);
+        const direction = random() < 0.5 ? -1 : 1;
+        const size = randomBetween(config.minSize, config.maxSize);
+
+        return {
+          x: randomBetween(0, width),
+          y: randomBetween(0, height),
+          size,
+          baseSize: size,
+          sprite: getParticleSprite(config, size),
+          vx: Math.sin(angleSeed) * speed * direction,
+          vy: Math.cos(angleSeed) * speed * direction,
+          lifeLeft: randomBetween(200, 500),
+        };
+      }
+
+      function createLayers() {
+        layers = loaderParticlesConfig.map(config => {
+          const layer = {
+            ...config,
+            spriteCache: new Map(),
+            particles: [],
+          };
+          layer.particles = Array.from({ length: config.count }, () => activateParticle(layer));
+          return layer;
+        });
+      }
+
+      function resizeCanvas() {
+        width = Math.max(window.innerWidth, 1);
+        height = Math.max(window.innerHeight, 1);
+        canvas.width = Math.ceil(width * particlePixelRatio);
+        canvas.height = Math.ceil(height * particlePixelRatio);
+        context.setTransform(particlePixelRatio, 0, 0, particlePixelRatio, 0, 0);
+        createLayers();
+        drawParticles();
+      }
+
+      function advanceParticles(delta) {
+        const frameScale = Math.min(Math.max(delta / 16.67, 0.25), 2);
+
+        layers.forEach(layer => {
+          layer.particles = layer.particles.map(particle => {
+            particle.x += particle.vx * frameScale;
+            particle.y += particle.vy * frameScale;
+            particle.lifeLeft -= frameScale;
+
+            if (particle.lifeLeft < 400) {
+              particle.size -= particle.size * 0.0035 * frameScale;
+            }
+
+            if (particle.lifeLeft <= 0 || particle.size <= 0.5) {
+              return activateParticle(layer);
+            }
+
+            if (!particle.sprite) {
+              particle.sprite = getParticleSprite(layer, particle.size);
+            }
+
+            return particle;
+          });
+        });
+      }
+
+      function drawParticles() {
+        context.clearRect(0, 0, width, height);
+
+        layers.forEach(layer => {
+          layer.particles.forEach(particle => {
+            if (!particle.sprite) {
+              return;
+            }
+
+            const scale = Math.max(particle.size / Math.max(particle.baseSize, 1), 0.02);
+            const drawSize = particle.sprite.size * scale;
+            context.drawImage(
+              particle.sprite.image,
+              particle.x - (drawSize / 2),
+              particle.y - (drawSize / 2),
+              drawSize,
+              drawSize,
+            );
+          });
+        });
+      }
+
+      function render(now) {
+        if (stopped || !canvas.isConnected) {
+          return;
+        }
+
+        if (!document.hidden) {
+          const elapsedSinceDraw = now - lastDrawFrame;
+
+          if (!reducedMotion.matches && elapsedSinceDraw >= particleFrameInterval) {
+            const delta = now - lastFrame;
+            lastFrame = now;
+            lastDrawFrame = now;
+            advanceParticles(delta);
+            drawParticles();
+          }
+        } else {
+          lastFrame = now;
+          lastDrawFrame = now;
+        }
+
+        animationFrame = requestAnimationFrame(render);
+      }
+
+      function stop() {
+        if (stopped) {
+          return;
+        }
+
+        stopped = true;
+        cancelAnimationFrame(animationFrame);
+        canvas.style.transition = 'none';
+        canvas.style.opacity = '0';
+        canvas.style.visibility = 'hidden';
+        canvas.getBoundingClientRect();
+        canvas.style.transition = '';
+        window.removeEventListener('resize', resizeCanvas);
+      }
+
+      resizeCanvas();
+      if (!reducedMotion.matches) {
+        animationFrame = requestAnimationFrame(render);
+      }
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      return {
+        stop,
+      };
+    }
+
     function createPortfolioLoader() {
       const loaderContent = document.querySelector('#loader-content');
       const appRoot = document.querySelector('#portfolio-app-root');
@@ -745,6 +1087,8 @@
         hasShapeWhiteCoverage: false,
         hasFullWhiteCoverage: false,
         hasStripeReady: false,
+        hasLiquidRevealStarted: false,
+        hasLoaderCompleted: false,
       };
       const loaderAssetUrls = [
         'assets/assets/loader-yingyang/yingyang.png',
@@ -772,6 +1116,8 @@
       const liquidRevealEaseInOutExpo = 'cubic-bezier(0.87, 0, 0.13, 1)';
       const liquidRevealEaseInOutExpoPoints = [0.87, 0, 0.13, 1];
       const liquidRevealEaseDurationScale = 1.18;
+      const liquidRevealHandoffLead = 520;
+      const liquidRevealFinalDurationScale = 4.59;
       const whiteDropPathStart = [
         50, 0,
         78, 0, 100, 22, 100, 50,
@@ -834,6 +1180,7 @@
 
         appRoot?.removeAttribute('aria-hidden');
         document.body.classList.add('portfolio-reveal-active');
+        window.dispatchEvent(new Event('portfolio-hero-reveal-start'));
         state.hasHeroEntered = true;
       }
 
@@ -999,19 +1346,17 @@
         const totalDuration = prefersReducedMotion.matches
           ? 1
           : Math.max(Math.round(baseTotalDuration * liquidRevealEaseDurationScale), 1);
-        const travelDistance = Math.max(targetY - startY, 1);
-        const alignedProgress = (alignedY - startY) / travelDistance;
-        const alignedDuration = prefersReducedMotion.matches
+        const handoffDuration = prefersReducedMotion.matches
           ? 1
           : Math.max(
-            Math.round(getLiquidRevealEaseTimeForProgress(alignedProgress) * totalDuration),
+            totalDuration - Math.min(liquidRevealHandoffLead, Math.round(totalDuration * 0.24)),
             1,
           );
 
         return {
           startY,
           targetY,
-          alignedDuration,
+          handoffDuration,
           totalDuration,
         };
       }
@@ -1039,11 +1384,12 @@
         liquidReveal.style.visibility = 'hidden';
         liquidReveal.style.opacity = '0';
         liquidReveal.getBoundingClientRect();
+        liquidReveal.style.display = 'none';
         liquidReveal.style.transition = '';
       }
 
       function startLiquidRevealDescent() {
-        if (!liquidReveal) {
+        if (!liquidReveal || state.hasLoaderCompleted) {
           return {
             aligned: delay(getLiquidRevealDuration()),
             finished: delay(getLiquidRevealDuration()),
@@ -1053,6 +1399,8 @@
         const motion = getLiquidRevealMotion();
         const startTransform = createLiquidTranslateY(motion.startY);
         const targetTransform = createLiquidTranslateY(motion.targetY);
+        liquidReveal.style.display = '';
+        liquidReveal.style.visibility = 'visible';
         liquidReveal.style.transition = 'none';
         liquidReveal.style.transform = startTransform;
         liquidReveal.getBoundingClientRect();
@@ -1065,39 +1413,54 @@
           easing: liquidRevealEaseInOutExpo,
           fill: 'forwards',
         });
+        animation.finished.catch(() => undefined);
+
+        let resolveAligned;
+        const aligned = new Promise(resolve => {
+          resolveAligned = resolve;
+        });
+        const handoff = delay(motion.handoffDuration).then(() => {
+          const currentTransform = getComputedStyle(liquidReveal).transform;
+          liquidReveal.style.transform = currentTransform && currentTransform !== 'none'
+            ? currentTransform
+            : targetTransform;
+          liquidReveal.style.transition = '';
+          animation.cancel();
+          const clearing = clearSettledLiquidReveal();
+          resolveAligned();
+          return clearing;
+        });
 
         return {
-          aligned: delay(motion.alignedDuration),
-          finished: animation.finished
-            .catch(() => undefined)
-            .then(() => {
-              liquidReveal.style.transform = targetTransform;
-              liquidReveal.style.transition = '';
-              animation.cancel();
-            }),
+          aligned,
+          finished: handoff,
         };
       }
 
       function clearSettledLiquidReveal() {
-        if (!liquidReveal) {
+        if (!liquidReveal || state.hasLoaderCompleted) {
           return Promise.resolve();
         }
 
         const startY = getLiquidRevealTransformY();
         const targetY = getLiquidRevealHiddenY();
-        const startTransform = createLiquidTranslateY(startY);
         const targetTransform = createLiquidTranslateY(targetY);
+        const finishDistance = targetY - startY;
 
-        if (targetY <= startY + 1 || prefersReducedMotion.matches) {
+        if (finishDistance <= 1 || prefersReducedMotion.matches) {
           hideLiquidRevealImmediately(targetTransform);
           return Promise.resolve();
         }
 
-        const finishDistance = targetY - startY;
+        const carriedStartY = Math.min(
+          startY + Math.min(Math.max(finishDistance * 0.025, 5), 8),
+          targetY,
+        );
+        const startTransform = createLiquidTranslateY(carriedStartY);
         const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
         const waveHeight = wave?.getBoundingClientRect().height || 0;
         const mainDistance = Math.max(startY + waveHeight, 1);
-        const finishDuration = Math.min(
+        const baseFinishDuration = Math.min(
           Math.max(
             Math.round(
               (finishDistance / mainDistance)
@@ -1108,6 +1471,7 @@
           ),
           2940,
         );
+        const finishDuration = Math.round(baseFinishDuration * liquidRevealFinalDurationScale);
 
         liquidReveal.style.transition = 'none';
         liquidReveal.style.opacity = '1';
@@ -1120,16 +1484,65 @@
           { transform: targetTransform },
         ], {
           duration: finishDuration,
-          easing: 'cubic-bezier(0.33, 0, 0.67, 1)',
+          easing: 'cubic-bezier(0.24, 0.82, 0.42, 1)',
           fill: 'forwards',
         });
 
         return animation.finished
           .catch(() => undefined)
           .then(() => {
+            animation.cancel();
             hideLiquidRevealImmediately(targetTransform);
+          });
+      }
+
+      function cancelLoaderAnimations() {
+        if (!loaderContent?.getAnimations) {
+          return;
+        }
+
+        try {
+          loaderContent.getAnimations({ subtree: true }).forEach(animation => {
             animation.cancel();
           });
+        } catch (error) {
+          loaderContent.getAnimations().forEach(animation => {
+            animation.cancel();
+          });
+        }
+      }
+
+      function completeLoader() {
+        if (!loaderContent || state.hasLoaderCompleted) {
+          return;
+        }
+
+        state.hasLoaderCompleted = true;
+        window.portfolioLoaderParticleBackground?.stop();
+
+        if (liquidReveal) {
+          const hiddenTransform = createLiquidTranslateY(getLiquidRevealHiddenY());
+          liquidReveal.getAnimations?.().forEach(animation => {
+            animation.cancel();
+          });
+          hideLiquidRevealImmediately(hiddenTransform);
+        }
+
+        if (fullWhiteCover) {
+          fullWhiteCover.style.opacity = '0';
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+
+        if (whiteBlob) {
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+
+        cancelLoaderAnimations();
+        loaderContent.classList.add('is-liquid-settled', 'is-fading', 'is-hidden');
+        loaderContent.setAttribute('aria-hidden', 'true');
+        loaderContent.remove();
+        state.showLoader = false;
       }
 
       function getFarthestViewportDistanceFrom(centerX, centerY) {
@@ -1236,7 +1649,7 @@
       }
 
       async function lockFullWhiteCoverage() {
-        if (!loaderContent) {
+        if (!loaderContent || state.hasLoaderCompleted) {
           return;
         }
 
@@ -1245,6 +1658,7 @@
           fullWhiteCover.style.visibility = 'visible';
         }
         setLayerOpacityImmediately(fullWhiteCover, 1);
+        window.portfolioLoaderParticleBackground?.stop();
         await nextFrame();
         state.hasFullWhiteCoverage = true;
         loaderContent.classList.add('is-white-covering');
@@ -1253,11 +1667,16 @@
       }
 
       async function prepareStripeRevealLayer() {
-        if (!loaderContent || !state.hasFullWhiteCoverage) {
+        if (!loaderContent || !state.hasFullWhiteCoverage || state.hasLoaderCompleted) {
           return;
         }
 
         loaderContent.classList.add('is-stripe-ready');
+        window.portfolioLoaderParticleBackground?.stop();
+        if (liquidReveal) {
+          liquidReveal.style.display = '';
+          liquidReveal.style.visibility = 'visible';
+        }
         setLayerOpacityImmediately(liquidReveal, 1);
         await nextFrame();
 
@@ -1510,6 +1929,10 @@
       }
 
       async function runWhiteBlobTransition(startRotation) {
+        if (state.hasLoaderCompleted) {
+          return;
+        }
+
         if (!loaderContent || !yinYangGate || !yinYangSymbol || !whiteBlob || prefersReducedMotion.matches) {
           await lockFullWhiteCoverage();
           return;
@@ -1637,9 +2060,17 @@
       }
 
       async function revealHeroWithLiquidWave() {
-        if (!loaderContent || prefersReducedMotion.matches || !state.hasFullWhiteCoverage) {
+        if (
+          !loaderContent
+          || prefersReducedMotion.matches
+          || !state.hasFullWhiteCoverage
+          || state.hasLoaderCompleted
+          || state.hasLiquidRevealStarted
+        ) {
           return;
         }
+
+        state.hasLiquidRevealStarted = true;
 
         if (!state.hasStripeReady) {
           await prepareStripeRevealLayer();
@@ -1661,11 +2092,15 @@
         loaderContent.classList.add('is-liquid-clearing');
         await liquidDescent.finished;
         loaderContent.classList.add('is-liquid-settled');
-        await clearSettledLiquidReveal();
       }
 
       async function startLoaderExit() {
-        if (!loaderContent || state.isLoaderExiting || !state.showLoader) {
+        if (
+          !loaderContent
+          || state.isLoaderExiting
+          || !state.showLoader
+          || state.hasLoaderCompleted
+        ) {
           return;
         }
 
@@ -1691,10 +2126,7 @@
           await delay(640);
         }
 
-        loaderContent.classList.add('is-hidden');
-        loaderContent.setAttribute('aria-hidden', 'true');
-        loaderContent.remove();
-        state.showLoader = false;
+        completeLoader();
       }
 
       async function waitForReadyAndExit() {
@@ -1716,6 +2148,11 @@
     }
 
     window.portfolioLoader = null;
+    window.portfolioLoaderParticleBackground = null;
+
+    window.addEventListener('DOMContentLoaded', function() {
+      window.portfolioLoaderParticleBackground = createLoaderParticleBackground();
+    });
 
     window.addEventListener('load', function(ev) {
       window.portfolioLoader = createPortfolioLoader();
@@ -1740,6 +2177,7 @@
   </script>
   <div id="portfolio-app-root" aria-hidden="true"></div>
   <div class="portfolio-loader" id="loader-content" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <canvas class="loader-particle-background" aria-hidden="true"></canvas>
     <div class="loader-center" aria-hidden="true">
       <div class="yin-yang-gate">
         <div class="yin-yang-symbol">
