@@ -871,17 +871,21 @@
       const supportsParticleCanvasBlur = detectCanvasBlurSupport();
 
       function createParticleSprite(size, blur, color) {
+        const renderScale = particlePixelRatio;
         const radius = Math.max(size / 1.2, 1);
         const padding = Math.ceil((blur || 0) * 2) + 2;
         const spriteSize = Math.max(Math.ceil((radius + padding) * 2), 4);
-        const spriteCanvas = createCanvas(spriteSize, spriteSize);
+        const physicalSpriteSize = Math.max(Math.ceil(spriteSize * renderScale), 4);
+        const physicalRadius = radius * renderScale;
+        const physicalBlur = (blur || 0) * renderScale;
+        const spriteCanvas = createCanvas(physicalSpriteSize, physicalSpriteSize);
         const spriteContext = spriteCanvas.getContext('2d');
 
         if (!spriteContext) {
           return null;
         }
 
-        spriteContext.clearRect(0, 0, spriteSize, spriteSize);
+        spriteContext.clearRect(0, 0, physicalSpriteSize, physicalSpriteSize);
 
         if (blur && !supportsParticleCanvasBlur) {
           const center = spriteSize / 2;
@@ -904,10 +908,16 @@
           spriteContext.fillStyle = gradient;
           spriteContext.fillRect(0, 0, spriteSize, spriteSize);
         } else {
-          spriteContext.filter = blur ? `blur(${blur}px)` : 'none';
+          spriteContext.filter = physicalBlur ? `blur(${physicalBlur}px)` : 'none';
           spriteContext.fillStyle = color;
           spriteContext.beginPath();
-          spriteContext.arc(spriteSize / 2, spriteSize / 2, radius, 0, Math.PI * 2);
+          spriteContext.arc(
+            physicalSpriteSize / 2,
+            physicalSpriteSize / 2,
+            physicalRadius,
+            0,
+            Math.PI * 2,
+          );
           spriteContext.fill();
           spriteContext.filter = 'none';
         }
