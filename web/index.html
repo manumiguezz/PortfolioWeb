@@ -790,9 +790,10 @@
       }
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const particlePixelRatio = 1;
+      const particleMaxPixelRatio = 2;
       const particleFrameInterval = 1000 / 30;
       const particleSpriteSizeStep = 8;
+      let particlePixelRatio = 1;
       let seed = 17431;
       let width = 0;
       let height = 0;
@@ -820,6 +821,13 @@
         spriteCanvas.width = width;
         spriteCanvas.height = height;
         return spriteCanvas;
+      }
+
+      function getParticlePixelRatio() {
+        return Math.min(
+          Math.max(window.devicePixelRatio || 1, 1),
+          particleMaxPixelRatio,
+        );
       }
 
       function getColorWithAlpha(color, alpha) {
@@ -961,6 +969,7 @@
       function resizeCanvas() {
         width = Math.max(window.innerWidth, 1);
         height = Math.max(window.innerHeight, 1);
+        particlePixelRatio = getParticlePixelRatio();
         canvas.width = Math.ceil(width * particlePixelRatio);
         canvas.height = Math.ceil(height * particlePixelRatio);
         context.setTransform(particlePixelRatio, 0, 0, particlePixelRatio, 0, 0);
