@@ -888,14 +888,14 @@
         spriteContext.clearRect(0, 0, physicalSpriteSize, physicalSpriteSize);
 
         if (blur && !supportsParticleCanvasBlur) {
-          const center = spriteSize / 2;
-          const outerRadius = Math.min(center, radius + (blur * 1.35));
-          const coreStop = Math.min(Math.max(radius / (outerRadius * 3.2), 0.04), 0.16);
+          const center = physicalSpriteSize / 2;
+          const outerRadius = Math.min(center, physicalRadius + (physicalBlur * 1.35));
+          const coreStop = Math.min(Math.max(physicalRadius / (outerRadius * 3.2), 0.04), 0.16);
           const glowStop = Math.min(coreStop + 0.38, 0.72);
           const gradient = spriteContext.createRadialGradient(
             center,
             center,
-            Math.max(radius * 0.12, 1),
+            Math.max(physicalRadius * 0.12, 1),
             center,
             center,
             outerRadius,
@@ -906,7 +906,7 @@
           gradient.addColorStop(glowStop, getColorWithAlpha(color, 0.18));
           gradient.addColorStop(1, getColorWithAlpha(color, 0));
           spriteContext.fillStyle = gradient;
-          spriteContext.fillRect(0, 0, spriteSize, spriteSize);
+          spriteContext.fillRect(0, 0, physicalSpriteSize, physicalSpriteSize);
         } else {
           spriteContext.filter = physicalBlur ? `blur(${physicalBlur}px)` : 'none';
           spriteContext.fillStyle = color;
