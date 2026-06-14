@@ -842,34 +842,6 @@
         return `rgba(${channels[0]}, ${channels[1]}, ${channels[2]}, ${alpha})`;
       }
 
-      function detectCanvasBlurSupport() {
-        try {
-          const testCanvas = createCanvas(32, 32);
-          const testContext = testCanvas.getContext('2d');
-
-          if (!testContext || !('filter' in testContext)) {
-            return false;
-          }
-
-          testContext.clearRect(0, 0, 32, 32);
-          testContext.filter = 'blur(4px)';
-
-          if (testContext.filter !== 'blur(4px)') {
-            return false;
-          }
-
-          testContext.fillStyle = 'rgba(0, 0, 0, 1)';
-          testContext.fillRect(15, 15, 2, 2);
-          testContext.filter = 'none';
-
-          return testContext.getImageData(10, 15, 1, 1).data[3] > 0;
-        } catch (error) {
-          return false;
-        }
-      }
-
-      const supportsParticleCanvasBlur = detectCanvasBlurSupport();
-
       function createParticleSprite(size, blur, color) {
         const renderScale = particlePixelRatio;
         const radius = Math.max(size / 1.2, 1);
