@@ -12,3 +12,4 @@ export 'package:portfolio_web_version/widgets/url_launcher.dart';
 export 'package:portfolio_web_version/widgets/project_tech_labels.dart';
 export 'package:portfolio_web_version/widgets/project_preview.dart';
 export 'package:portfolio_web_version/widgets/project_title.dart';
+export 'package:portfolio_web_version/widgets/portfolio_page_reveal.dart';
