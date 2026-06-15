@@ -8,7 +8,9 @@ class ParticleBackgroundHandler extends ParticleHandler {
 
   @override
   void tick() {
-    particles.asMap().forEach((i, p) {
+    for (var i = 0; i < particles.length; i += 1) {
+      final p = particles[i];
+
       if (p.plusminus) {
         p.x += p.vx;
         p.y += p.vy;
@@ -27,7 +29,7 @@ class ParticleBackgroundHandler extends ParticleHandler {
         resetParticle(i);
         _activateParticle(p);
       }
-    });
+    }
 
     notifyListeners();
   }

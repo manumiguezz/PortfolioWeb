@@ -13,8 +13,12 @@ class Scene extends StatefulWidget {
 }
 
 class SceneState extends State<Scene> with SingleTickerProviderStateMixin {
+  static const Duration _targetFrameInterval = Duration(milliseconds: 16);
+
   ParticleHandler? _particleBackgroundHandler;
   late final Ticker _ticker;
+  bool _disableAnimations = false;
+  Duration? _lastTick;
 
   @override
   void initState() {
@@ -31,7 +35,14 @@ class SceneState extends State<Scene> with SingleTickerProviderStateMixin {
         oldWidget._configuration != widget._configuration) {
       _particleBackgroundHandler =
           ParticleBackgroundHandler(widget._size, widget._configuration);
+      _lastTick = null;
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _disableAnimations = MediaQuery.maybeOf(context)?.disableAnimations == true;
   }
 
   @override
@@ -54,10 +65,16 @@ class SceneState extends State<Scene> with SingleTickerProviderStateMixin {
   }
 
   void _tick(Duration duration) {
-    if (!mounted || MediaQuery.maybeOf(context)?.disableAnimations == true) {
+    if (!mounted || _disableAnimations) {
       return;
     }
 
+    final lastTick = _lastTick;
+    if (lastTick != null && duration - lastTick < _targetFrameInterval) {
+      return;
+    }
+
+    _lastTick = duration;
     _particleBackgroundHandler?.tick();
   }
 
