@@ -259,6 +259,16 @@
       opacity: 0;
     }
 
+    .portfolio-loader.is-interaction-released {
+      pointer-events: none;
+    }
+
+    .portfolio-loader.is-visual-handoff .loader-liquid-reveal {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+    }
+
     .portfolio-loader.is-fading,
     .portfolio-loader.is-hidden {
       opacity: 0;
@@ -791,7 +801,7 @@
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const particleMaxPixelRatio = 2;
-      const particleFrameInterval = 1000 / 30;
+      const particleFrameInterval = 1000 / 60;
       const particleSpriteSizeStep = 8;
       let particlePixelRatio = 1;
       let seed = 17431;
@@ -962,8 +972,12 @@
       function advanceParticles(delta) {
         const frameScale = Math.min(Math.max(delta / 16.67, 0.25), 2);
 
-        layers.forEach(layer => {
-          layer.particles = layer.particles.map(particle => {
+        for (let layerIndex = 0; layerIndex < layers.length; layerIndex += 1) {
+          const layer = layers[layerIndex];
+          const particles = layer.particles;
+
+          for (let particleIndex = 0; particleIndex < particles.length; particleIndex += 1) {
+            const particle = particles[particleIndex];
             particle.x += particle.vx * frameScale;
             particle.y += particle.vy * frameScale;
             particle.lifeLeft -= frameScale;
@@ -973,25 +987,28 @@
             }
 
             if (particle.lifeLeft <= 0 || particle.size <= 0.5) {
-              return activateParticle(layer);
+              particles[particleIndex] = activateParticle(layer);
+              continue;
             }
 
             if (!particle.sprite) {
               particle.sprite = getParticleSprite(layer, particle.size);
             }
-
-            return particle;
-          });
-        });
+          }
+        }
       }
 
       function drawParticles() {
         context.clearRect(0, 0, width, height);
 
-        layers.forEach(layer => {
-          layer.particles.forEach(particle => {
+        for (let layerIndex = 0; layerIndex < layers.length; layerIndex += 1) {
+          const particles = layers[layerIndex].particles;
+
+          for (let particleIndex = 0; particleIndex < particles.length; particleIndex += 1) {
+            const particle = particles[particleIndex];
+
             if (!particle.sprite) {
-              return;
+              continue;
             }
 
             const scale = Math.max(particle.size / Math.max(particle.baseSize, 1), 0.02);
@@ -1003,8 +1020,8 @@
               drawSize,
               drawSize,
             );
-          });
-        });
+          }
+        }
       }
 
       function render(now) {
@@ -1107,8 +1124,15 @@
       const liquidRevealEaseInOutExpo = 'cubic-bezier(0.87, 0, 0.13, 1)';
       const liquidRevealEaseInOutExpoPoints = [0.87, 0, 0.13, 1];
       const liquidRevealEaseDurationScale = 1.18;
-      const liquidRevealHandoffLead = 520;
-      const liquidRevealFinalDurationScale = 4.59;
+      const liquidRevealFinalContinuationEasing = 'cubic-bezier(0.33, 0.32, 0.67, 1)';
+      const liquidRevealFinalContinuationMsPerPx = 23.25;
+      const liquidRevealFinalContinuationMinDuration = 4200;
+      const liquidRevealFinalContinuationMaxDuration = 5400;
+      const liquidRevealMomentumBridgeRevealDistanceRatio = 0.1;
+      const liquidRevealMomentumBridgeMinDistance = 78;
+      const liquidRevealMomentumBridgeMaxDistance = 92;
+      const liquidRevealMomentumBridgeEasing = liquidRevealEaseInOutExpo;
+      const liquidRevealMainCurveSampleCount = 36;
       const whiteDropPathStart = [
         50, 0,
         78, 0, 100, 22, 100, 50,
@@ -1265,6 +1289,13 @@
 
       function getLiquidRevealEaseProgress(timeProgress) {
         const [x1, y1, x2, y2] = liquidRevealEaseInOutExpoPoints;
+        const progress = getLiquidRevealEaseParameterForTime(timeProgress);
+
+        return getBezierCoordinate(progress, y1, y2);
+      }
+
+      function getLiquidRevealEaseParameterForTime(timeProgress) {
+        const [x1, , x2] = liquidRevealEaseInOutExpoPoints;
         let low = 0;
         let high = 1;
         let progress = 0.5;
@@ -1280,7 +1311,7 @@
           }
         }
 
-        return getBezierCoordinate(progress, y1, y2);
+        return progress;
       }
 
       function getLiquidRevealEaseTimeForProgress(targetProgress) {
@@ -1337,18 +1368,39 @@
         const totalDuration = prefersReducedMotion.matches
           ? 1
           : Math.max(Math.round(baseTotalDuration * liquidRevealEaseDurationScale), 1);
-        const handoffDuration = prefersReducedMotion.matches
-          ? 1
-          : Math.max(
-            totalDuration - Math.min(liquidRevealHandoffLead, Math.round(totalDuration * 0.24)),
-            1,
-          );
+        const hiddenY = getLiquidRevealHiddenY();
+        const finalDuration = getLiquidRevealFinalContinuationDuration(targetY, hiddenY);
+        const combinedDuration = totalDuration + finalDuration;
+        const bridgeDistance = finalDuration > 0 && !prefersReducedMotion.matches
+          ? Math.min(
+            Math.max(
+              revealDistance * liquidRevealMomentumBridgeRevealDistanceRatio,
+              liquidRevealMomentumBridgeMinDistance,
+            ),
+            liquidRevealMomentumBridgeMaxDistance,
+            revealDistance,
+          )
+          : 0;
+        const bridgeProgress = bridgeDistance > 0 && revealDistance > 0
+          ? Math.max(1 - (bridgeDistance / revealDistance), 0)
+          : 1;
+        const bridgeTime = bridgeProgress < 1
+          ? getLiquidRevealEaseTimeForProgress(bridgeProgress) * totalDuration
+          : totalDuration;
+        const bridgeTimeProgress = totalDuration > 0 ? bridgeTime / totalDuration : 1;
+        const bridgeY = startY + ((targetY - startY) * bridgeProgress);
 
         return {
           startY,
+          bridgeY,
+          bridgeTimeProgress,
           targetY,
-          handoffDuration,
+          hiddenY,
           totalDuration,
+          finalDuration,
+          combinedDuration,
+          bridgeOffset: combinedDuration > 0 ? bridgeTime / combinedDuration : 1,
+          handoffOffset: combinedDuration > 0 ? totalDuration / combinedDuration : 1,
         };
       }
 
@@ -1361,6 +1413,21 @@
         const waveHeight = wave?.getBoundingClientRect().height || 0;
         const waveOvershoot = Math.max(waveHeight * 0.5, 24);
         return Math.ceil(window.innerHeight + waveOvershoot);
+      }
+
+      function getLiquidRevealFinalContinuationDuration(startY, targetY) {
+        const finishDistance = Math.max(targetY - startY, 0);
+        if (prefersReducedMotion.matches || finishDistance <= 1) {
+          return 0;
+        }
+
+        return Math.min(
+          Math.max(
+            Math.round(finishDistance * liquidRevealFinalContinuationMsPerPx),
+            liquidRevealFinalContinuationMinDuration,
+          ),
+          liquidRevealFinalContinuationMaxDuration,
+        );
       }
 
       function hideLiquidRevealImmediately(transform) {
@@ -1389,102 +1456,80 @@
 
         const motion = getLiquidRevealMotion();
         const startTransform = createLiquidTranslateY(motion.startY);
+        const bridgeTransform = createLiquidTranslateY(motion.bridgeY);
         const targetTransform = createLiquidTranslateY(motion.targetY);
+        const hiddenTransform = createLiquidTranslateY(motion.hiddenY);
         liquidReveal.style.display = '';
         liquidReveal.style.visibility = 'visible';
         liquidReveal.style.transition = 'none';
         liquidReveal.style.transform = startTransform;
         liquidReveal.getBoundingClientRect();
 
-        const animation = liquidReveal.animate([
-          { transform: startTransform },
-          { transform: targetTransform },
-        ], {
-          duration: motion.totalDuration,
-          easing: liquidRevealEaseInOutExpo,
-          fill: 'forwards',
-        });
-        animation.finished.catch(() => undefined);
+        const hasFinalContinuation = motion.finalDuration > 0 && motion.handoffOffset < 1;
+        const hasMomentumBridge = hasFinalContinuation
+          && motion.bridgeOffset > 0
+          && motion.bridgeOffset < motion.handoffOffset;
+        const animation = liquidReveal.animate(
+          hasFinalContinuation
+            ? [
+              ...(hasMomentumBridge
+                ? Array.from(
+                  { length: liquidRevealMainCurveSampleCount + 1 },
+                  (_, index) => {
+                    const sampleProgress = index / liquidRevealMainCurveSampleCount;
+                    const timeProgress = motion.bridgeTimeProgress * sampleProgress;
+                    const easedProgress = getLiquidRevealEaseProgress(timeProgress);
+                    const y = motion.startY + ((motion.targetY - motion.startY) * easedProgress);
 
-        let resolveAligned;
-        const aligned = new Promise(resolve => {
-          resolveAligned = resolve;
-        });
-        const handoff = delay(motion.handoffDuration).then(() => {
-          const currentTransform = getComputedStyle(liquidReveal).transform;
-          liquidReveal.style.transform = currentTransform && currentTransform !== 'none'
-            ? currentTransform
-            : targetTransform;
-          liquidReveal.style.transition = '';
-          animation.cancel();
-          const clearing = clearSettledLiquidReveal();
-          resolveAligned();
-          return clearing;
-        });
-
-        return {
-          aligned,
-          finished: handoff,
-        };
-      }
-
-      function clearSettledLiquidReveal() {
-        if (!liquidReveal || state.hasLoaderCompleted) {
-          return Promise.resolve();
-        }
-
-        const startY = getLiquidRevealTransformY();
-        const targetY = getLiquidRevealHiddenY();
-        const targetTransform = createLiquidTranslateY(targetY);
-        const finishDistance = targetY - startY;
-
-        if (finishDistance <= 1 || prefersReducedMotion.matches) {
-          hideLiquidRevealImmediately(targetTransform);
-          return Promise.resolve();
-        }
-
-        const carriedStartY = Math.min(
-          startY + Math.min(Math.max(finishDistance * 0.025, 5), 8),
-          targetY,
+                    return {
+                      transform: index === liquidRevealMainCurveSampleCount
+                        ? bridgeTransform
+                        : createLiquidTranslateY(y),
+                      offset: index === liquidRevealMainCurveSampleCount
+                        ? motion.bridgeOffset
+                        : (timeProgress * motion.totalDuration) / motion.combinedDuration,
+                      easing: index === liquidRevealMainCurveSampleCount
+                        ? liquidRevealMomentumBridgeEasing
+                        : 'linear',
+                    };
+                  },
+                )
+                : [{ transform: startTransform, offset: 0, easing: liquidRevealEaseInOutExpo }]),
+              {
+                transform: targetTransform,
+                offset: motion.handoffOffset,
+                easing: liquidRevealFinalContinuationEasing,
+              },
+              { transform: hiddenTransform, offset: 1 },
+            ]
+            : [
+              { transform: startTransform },
+              { transform: targetTransform },
+            ],
+          {
+            duration: hasFinalContinuation ? motion.combinedDuration : motion.totalDuration,
+            easing: hasFinalContinuation ? 'linear' : liquidRevealEaseInOutExpo,
+            fill: 'forwards',
+          },
         );
-        const startTransform = createLiquidTranslateY(carriedStartY);
-        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
-        const waveHeight = wave?.getBoundingClientRect().height || 0;
-        const mainDistance = Math.max(startY + waveHeight, 1);
-        const baseFinishDuration = Math.min(
-          Math.max(
-            Math.round(
-              (finishDistance / mainDistance)
-                * getLiquidRevealDuration()
-                * liquidRevealEaseDurationScale,
-            ),
-            2220,
-          ),
-          2940,
-        );
-        const finishDuration = Math.round(baseFinishDuration * liquidRevealFinalDurationScale);
 
-        liquidReveal.style.transition = 'none';
-        liquidReveal.style.opacity = '1';
-        liquidReveal.style.visibility = 'visible';
-        liquidReveal.style.transform = startTransform;
-        liquidReveal.getBoundingClientRect();
-
-        const animation = liquidReveal.animate([
-          { transform: startTransform },
-          { transform: targetTransform },
-        ], {
-          duration: finishDuration,
-          easing: 'cubic-bezier(0.24, 0.82, 0.42, 1)',
-          fill: 'forwards',
-        });
-
-        return animation.finished
+        const finished = animation.finished
           .catch(() => undefined)
           .then(() => {
+            if (!liquidReveal || state.hasLoaderCompleted) {
+              return;
+            }
+
+            liquidReveal.style.transform = hasFinalContinuation ? hiddenTransform : targetTransform;
+            liquidReveal.style.transition = '';
             animation.cancel();
-            hideLiquidRevealImmediately(targetTransform);
+            hideLiquidRevealImmediately(hasFinalContinuation ? hiddenTransform : targetTransform);
           });
+
+        return {
+          aligned: delay(motion.totalDuration),
+          finished,
+        };
       }
 
       function cancelLoaderAnimations() {
@@ -2080,9 +2125,9 @@
         const liquidDescent = startLiquidRevealDescent();
         loaderContent.classList.add('is-liquid-revealing');
         await liquidDescent.aligned;
-        loaderContent.classList.add('is-liquid-clearing');
+        loaderContent.classList.add('is-liquid-settled', 'is-visual-handoff', 'is-interaction-released');
+        hideLiquidRevealImmediately();
         await liquidDescent.finished;
-        loaderContent.classList.add('is-liquid-settled');
       }
 
       async function startLoaderExit() {
