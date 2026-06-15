@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web_version/screens/background.dart';
 import 'package:portfolio_web_version/screens/foreground.dart';
+import 'package:portfolio_web_version/widgets/portfolio_page_reveal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late ScrollController scrollController;
+  bool _isScrollEnabled = false;
 
   @override
   void initState() {
@@ -24,18 +26,34 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  void _handlePageRevealComplete() {
+    if (!mounted || _isScrollEnabled) {
+      return;
+    }
+
+    setState(() {
+      _isScrollEnabled = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(255, 18, 18, 18),
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 18, 18, 18),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Background(),
-            Foreground(),
-          ],
-        )
+        controller: scrollController,
+        physics: _isScrollEnabled
+            ? const ClampingScrollPhysics()
+            : const NeverScrollableScrollPhysics(),
+        child: PortfolioPageReveal(
+          onRevealComplete: _handlePageRevealComplete,
+          child: const Stack(
+            children: [
+              Background(),
+              Foreground(),
+            ],
+          ),
+        ),
       ),
     );
   }

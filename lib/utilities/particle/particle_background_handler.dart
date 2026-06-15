@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '../../exports/utils.dart';
 
 class ParticleBackgroundHandler extends ParticleHandler {
-  ParticleBackgroundHandler(Size size, Configuration configuration) : super(size: size, configuration: configuration);
+  ParticleBackgroundHandler(Size size, Configuration configuration)
+      : super(size: size, configuration: configuration);
 
   @override
   void tick() {
-    particles.asMap().forEach((i, p) {
+    for (var i = 0; i < particles.length; i += 1) {
+      final p = particles[i];
+
       if (p.plusminus) {
         p.x += p.vx;
         p.y += p.vy;
@@ -26,7 +29,9 @@ class ParticleBackgroundHandler extends ParticleHandler {
         resetParticle(i);
         _activateParticle(p);
       }
-    });
+    }
+
+    notifyListeners();
   }
 
   void _activateParticle(Particle p) {
@@ -36,7 +41,8 @@ class ParticleBackgroundHandler extends ParticleHandler {
       p.isFilled = Rnd.getBool();
     }
 
-    p.size = Rnd.getDouble(configuration.smallestSize.toDouble(), configuration.biggestSize.toDouble());
+    p.size = Rnd.getDouble(configuration.smallestSize.toDouble(),
+        configuration.biggestSize.toDouble());
 
     p.life = Rnd.getDouble(.5, .55);
 
@@ -45,7 +51,8 @@ class ParticleBackgroundHandler extends ParticleHandler {
 
     p.plusminus = (Rnd.getBool());
 
-    double v = Rnd.getDouble(configuration.slowestSpeed, configuration.highestSpeed);
+    double v =
+        Rnd.getDouble(configuration.slowestSpeed, configuration.highestSpeed);
     p.vx *= v;
     p.vy *= v;
   }

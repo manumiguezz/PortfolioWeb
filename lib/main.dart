@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_web_version/screens/home.dart';
-import 'package:portfolio_web_version/widgets/precache_assets.dart';
+import 'package:portfolio_web_version/widgets/app_readiness_gate.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
@@ -12,14 +12,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheAssets(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: const HomeScreen(),
-    ).animate().fadeIn();
+      home: const AppReadinessGate(
+        child: HomeScreen(),
+      ),
+    );
   }
 }
 

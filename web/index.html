@@ -17,6 +17,7 @@
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="portfolio" content="Manuel Miguez Lauria.">
 
@@ -31,6 +32,10 @@
 
   <title>Portfolio</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/yingyang.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/yingyangwithoutdots.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/black.png">
+  <link rel="preload" as="image" href="assets/assets/loader-yingyang/white.png">
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -145,41 +150,2057 @@
     };
   </script>
   <style>
-    body {
-      background-color: black;
-      font-family: "Poppins", sans-serif;
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-      transition: opacity .4s ease-out;
+    :root {
+      --loader-black: #121212;
+      --loader-spin-duration: 1120ms;
     }
 
-    .main-content {
+    html,
+    body {
+      background-color: #121212;
+      font-family: "Poppins", sans-serif;
       height: 100%;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      position: fixed;
+      inset: 0;
+    }
+
+    #portfolio-app-root {
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+      filter: blur(10px);
+      transition:
+        opacity 780ms ease 260ms,
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 260ms,
+        filter 900ms ease 260ms;
+      pointer-events: none;
+      will-change: opacity, transform, filter;
+    }
+
+    body.portfolio-reveal-active #portfolio-app-root {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+      transition: none;
+      pointer-events: auto;
+    }
+
+    body.portfolio-reduced-motion-reveal #portfolio-app-root {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+      pointer-events: auto;
+    }
+
+    .portfolio-loader {
+      --hero-flag-height: clamp(86px, 16vh, 150px);
+      --hero-white-peek: clamp(24px, 3.5vh, 36px);
+      --hero-stripe-overlap: 5px;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: transparent;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 620ms ease;
+    }
+
+    .portfolio-loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--loader-black);
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 940ms ease 180ms;
+      will-change: opacity;
+    }
+
+    .loader-particle-background {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.92;
+      pointer-events: none;
+      transition:
+        opacity 360ms ease,
+        visibility 360ms ease;
+      will-change: opacity;
+    }
+
+    .portfolio-loader.is-stripe-ready .loader-particle-background,
+    .portfolio-loader.is-liquid-revealing .loader-particle-background,
+    .portfolio-loader.is-liquid-clearing .loader-particle-background,
+    .portfolio-loader.is-liquid-settled .loader-particle-background,
+    .portfolio-loader.is-fading .loader-particle-background {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .portfolio-loader.is-full-white-covered::before,
+    .portfolio-loader.is-white-covering::before,
+    .portfolio-loader.is-liquid-revealing::before,
+    .portfolio-loader.is-liquid-clearing::before,
+    .portfolio-loader.is-fading::before {
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-interaction-released {
+      pointer-events: none;
+    }
+
+    .portfolio-loader.is-visual-handoff .loader-liquid-reveal {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-fading,
+    .portfolio-loader.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .portfolio-loader.is-hidden {
+      display: none;
+    }
+
+    .loader-center {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      transition:
+        opacity 620ms ease,
+        filter 720ms ease;
+      will-change: opacity, filter;
+    }
+
+    .yin-yang-gate {
+      --mark-size: clamp(92px, 12vmin, 136px);
+      position: relative;
+      width: var(--mark-size);
+      height: var(--mark-size);
+      opacity: 0;
+      filter: drop-shadow(0 18px 42px rgba(0, 0, 0, 0.45));
+      transform-origin: center;
+      isolation: isolate;
+      animation: loader-logo-enter 780ms cubic-bezier(0.22, 1, 0.36, 1) 90ms both;
+      will-change: opacity;
+    }
+
+    .yin-yang-symbol {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      animation: loader-spin var(--loader-spin-duration) linear infinite;
+      transform-origin: center;
+      transition: opacity 180ms ease;
+      will-change: transform, filter, opacity;
+    }
+
+    .yin-yang-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      transform: translate3d(0, 0, 0) scale(1);
+      transform-origin: center;
+      transition:
+        opacity 500ms ease,
+        transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .yin-yang-motion-ghost {
+      z-index: 1;
+      opacity: 0;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      transition: none;
+      will-change: opacity, transform, filter;
+    }
+
+    .yin-yang-complete {
+      opacity: 1;
+      z-index: 4;
+      filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 0.34))
+        drop-shadow(0 14px 30px rgba(0, 0, 0, 0.34));
+    }
+
+    .yin-yang-no-dots {
+      z-index: 3;
+      transform: translate3d(0, 0, 0) scale(1.006);
+    }
+
+    .yin-yang-part {
+      z-index: 2;
+      transition:
+        opacity 180ms ease,
+        transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .yin-yang-part-white {
+      z-index: 2;
+      filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.08));
+    }
+
+    .yin-yang-part-black {
+      z-index: 3;
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.24));
+    }
+
+    .yin-yang-dot-cover {
+      position: absolute;
+      z-index: 5;
+      left: 50.2%;
+      width: 12.5%;
+      height: 12.5%;
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1);
+      transition:
+        opacity 240ms ease,
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .yin-yang-dot-cover-dark {
+      top: 25%;
+      background: #ffffff;
+    }
+
+    .yin-yang-dot-cover-light {
+      top: 75%;
+      background: #000000;
+    }
+
+    .portfolio-loader.is-simplifying .yin-yang-complete {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.998);
+      transition-duration: 1080ms;
+    }
+
+    .portfolio-loader.is-simplifying .yin-yang-no-dots {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      transition-duration: 1080ms;
+    }
+
+    .portfolio-loader.is-replacing-parts .yin-yang-part {
+      opacity: 1;
+      transition-duration: 220ms;
+    }
+
+    .portfolio-loader.is-replacing-parts .yin-yang-part-white {
+      z-index: 6;
+    }
+
+    .portfolio-loader.is-replacing-parts .yin-yang-part-black {
+      z-index: 7;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-complete,
+    .portfolio-loader.is-separated .yin-yang-no-dots,
+    .portfolio-loader.is-separated .yin-yang-motion-ghost {
+      opacity: 0;
+      transition-duration: 1ms;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-part {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-part-white {
+      z-index: 6;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-part-black {
+      z-index: 7;
+    }
+
+    .portfolio-loader.is-separated .yin-yang-dot-cover {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.36);
+    }
+
+    .portfolio-loader.is-full-white-covered .yin-yang-symbol,
+    .portfolio-loader.is-white-covering .yin-yang-symbol,
+    .portfolio-loader.is-liquid-revealing .yin-yang-symbol,
+    .portfolio-loader.is-liquid-settled .yin-yang-symbol {
+      opacity: 0;
+      transition-delay: 160ms;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-center,
+    .portfolio-loader.is-liquid-settled .loader-center {
+      opacity: 0;
+    }
+
+    .portfolio-loader.is-full-white-covered .yin-yang-dot-cover,
+    .portfolio-loader.is-white-covering .yin-yang-dot-cover,
+    .portfolio-loader.is-liquid-revealing .yin-yang-dot-cover {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.36);
+      transition-duration: 220ms;
+    }
+
+    .loader-white-blob {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      width: 120px;
+      height: 120px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(0.001);
+      transform-origin: 50% 50%;
+      isolation: isolate;
+      backface-visibility: hidden;
+      will-change: opacity, transform;
+    }
+
+    .loader-white-blob-shape {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+      transform-origin: center;
+    }
+
+    .loader-white-drop-core,
+    .loader-white-drop-glow {
+      fill: #ffffff;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .loader-white-drop-glow {
+      opacity: 0.24;
+      transform: scale(1.04);
+    }
+
+    .portfolio-loader.is-blob-expanding .loader-white-drop-glow {
+      animation: loader-white-drop-glow 960ms ease-in-out infinite alternate;
+    }
+
+    .loader-full-white-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1ms linear;
+      will-change: opacity;
+    }
+
+    .portfolio-loader.is-full-white-covered .loader-full-white-cover {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-stripe-ready .loader-full-white-cover,
+    .portfolio-loader.is-liquid-revealing .loader-full-white-cover,
+    .portfolio-loader.is-liquid-clearing .loader-full-white-cover,
+    .portfolio-loader.is-liquid-settled .loader-full-white-cover {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-liquid-reveal {
+      position: absolute;
+      left: -12%;
+      right: auto;
+      top: 0;
+      z-index: 3;
+      width: 124%;
+      height: calc(100vh + var(--hero-flag-height) + var(--hero-white-peek));
+      color: #ffffff;
+      opacity: 0;
+      transform: translate3d(0, calc(-1 * var(--hero-flag-height)), 0);
+      transform-origin: 50% 0;
+      transition:
+        opacity 220ms ease,
+        transform 1840ms cubic-bezier(0.68, 0, 0.18, 1);
+      will-change: opacity, transform;
+    }
+
+    .loader-liquid-wave {
+      position: absolute;
+      top: 0;
+      left: -4%;
+      width: 108%;
+      height: var(--hero-flag-height);
+      display: block;
+      overflow: visible;
+      transform-origin: 50% 50%;
+      opacity: 1;
+      will-change: opacity, transform;
+    }
+
+    .loader-liquid-wave path {
+      fill: currentColor;
+    }
+
+    .loader-liquid-wave-front {
+      color: #ffffff;
+    }
+
+    .loader-liquid-fill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(var(--hero-flag-height) - var(--hero-stripe-overlap));
+      bottom: 0;
+      background: currentColor;
+    }
+
+    .portfolio-loader.is-white-covering .loader-liquid-reveal,
+    .portfolio-loader.is-stripe-ready .loader-liquid-reveal {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-stripe-ready .loader-white-blob,
+    .portfolio-loader.is-liquid-revealing .loader-white-blob,
+    .portfolio-loader.is-liquid-clearing .loader-white-blob,
+    .portfolio-loader.is-liquid-settled .loader-white-blob {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-reveal {
+      opacity: 1;
+      transform: translate3d(
+        0,
+        calc(100vh - var(--hero-flag-height) - var(--hero-white-peek) + var(--hero-stripe-overlap)),
+        0
+      );
+    }
+
+    .portfolio-loader.is-liquid-clearing .loader-liquid-reveal {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-liquid-settled .loader-liquid-reveal {
+      opacity: 1;
+    }
+
+    .portfolio-loader.is-liquid-revealing .loader-liquid-wave-front {
+      animation: loader-liquid-wave-front 1840ms cubic-bezier(0.68, 0, 0.18, 1) both;
+    }
+
+    .portfolio-loader.is-liquid-settled .loader-liquid-wave-front {
+      transform: translate3d(0, 0, 0) scaleX(1);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes loader-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loader-logo-enter {
+      from {
+        opacity: 0;
+      }
+
+      55% {
+        opacity: 0.78;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes loader-liquid-wave-front {
+      0% {
+        transform: translate3d(-1.8%, 0, 0) scaleX(1.04);
+      }
+
+      42% {
+        transform: translate3d(1.1%, -3px, 0) scaleX(1.055);
+      }
+
+      76% {
+        transform: translate3d(-0.6%, 1px, 0) scaleX(1.018);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) scaleX(1);
+      }
+    }
+
+    @keyframes loader-white-drop-glow {
+      0% {
+        opacity: 0.18;
+        transform: scale(1.025);
+      }
+
+      100% {
+        opacity: 0.34;
+        transform: scale(1.055);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #portfolio-app-root,
+      .portfolio-loader,
+      .loader-center,
+      .loader-liquid-reveal,
+      .loader-full-white-cover,
+      .loader-white-blob,
+      .yin-yang-layer,
+      .yin-yang-dot-cover {
+        transition-duration: 1ms !important;
+        transition-delay: 0ms !important;
+      }
+
+      #portfolio-app-root {
+        transform: none;
+      }
+
+      .yin-yang-symbol {
+        animation: none;
+      }
+
+      .yin-yang-motion-ghost {
+        display: none;
+      }
+
+      .loader-white-drop-glow {
+        animation: none !important;
+      }
+
+      .loader-liquid-wave {
+        animation: none !important;
+      }
+
+      .portfolio-loader.is-liquid-revealing .loader-liquid-reveal {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .loader-liquid-reveal {
+        --hero-flag-height: clamp(80px, 16vh, 130px);
+        --hero-white-peek: clamp(8px, 1.5vh, 14px);
+      }
+
+      .loader-stripe-desktop {
+        display: none;
+      }
+    }
+
+    @media (max-width: 300px) {
+      .loader-liquid-reveal {
+        --hero-flag-height: clamp(64px, 13vh, 100px);
+      }
+    }
+
+    @media (min-width: 701px) {
+      .loader-stripe-mobile {
+        display: none;
+      }
     }
   </style>
   <script>
     function delay(time) {
-      return new Promise(resolve => setTimeout(resolve, time))
+      return new Promise(resolve => setTimeout(resolve, time));
     }
 
+    function nextFrame() {
+      return new Promise(resolve => requestAnimationFrame(() => resolve()));
+    }
+
+    const loaderParticlesConfig = [
+      {
+        count: 90,
+        color: 'rgba(34, 34, 34, 0.95)',
+        minSize: 10,
+        maxSize: 80,
+        minSpeed: 0.01,
+        maxSpeed: 0.4,
+        blur: 90,
+      },
+      {
+        count: 30,
+        color: 'rgb(21, 21, 21)',
+        minSize: 1,
+        maxSize: 70,
+        minSpeed: 0.01,
+        maxSpeed: 1.5,
+        blur: 70,
+      },
+      {
+        count: 7,
+        color: 'rgba(34, 34, 34, 0.82)',
+        minSize: 1,
+        maxSize: 70,
+        minSpeed: 0.01,
+        maxSpeed: 2,
+        blur: 8,
+      },
+      {
+        count: 10,
+        color: 'rgb(50, 50, 50)',
+        minSize: 1,
+        maxSize: 30,
+        minSpeed: 0.01,
+        maxSpeed: 0.7,
+        blur: 0,
+      },
+    ];
+
+    function createLoaderParticleBackground() {
+      const canvas = document.querySelector('.loader-particle-background');
+      const context = canvas?.getContext('2d');
+
+      if (!canvas || !context) {
+        return null;
+      }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const particleMaxPixelRatio = 2;
+      const particleFrameInterval = 1000 / 60;
+      const particleSpriteSizeStep = 8;
+      let particlePixelRatio = 1;
+      let seed = 17431;
+      let width = 0;
+      let height = 0;
+      let animationFrame = 0;
+      let stopped = false;
+      let lastFrame = performance.now();
+      let lastDrawFrame = 0;
+      let layers = [];
+
+      function random() {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+      }
+
+      function randomBetween(min, max) {
+        return min + (random() * (max - min));
+      }
+
+      function createCanvas(width, height) {
+        if (typeof OffscreenCanvas !== 'undefined') {
+          return new OffscreenCanvas(width, height);
+        }
+
+        const spriteCanvas = document.createElement('canvas');
+        spriteCanvas.width = width;
+        spriteCanvas.height = height;
+        return spriteCanvas;
+      }
+
+      function getParticlePixelRatio() {
+        return Math.min(
+          Math.max(window.devicePixelRatio || 1, 1),
+          particleMaxPixelRatio,
+        );
+      }
+
+      function getColorWithAlpha(color, alpha) {
+        const channels = String(color).match(/rgba?\(([^)]+)\)/i)?.[1]
+          ?.split(',')
+          .map(value => value.trim());
+
+        if (!channels || channels.length < 3) {
+          return `rgba(255, 255, 255, ${alpha})`;
+        }
+
+        return `rgba(${channels[0]}, ${channels[1]}, ${channels[2]}, ${alpha})`;
+      }
+
+      function createParticleSprite(size, blur, color) {
+        const renderScale = particlePixelRatio;
+        const radius = Math.max(size / 1.2, 1);
+        const padding = Math.ceil((blur || 0) * 2) + 2;
+        const spriteSize = Math.max(Math.ceil((radius + padding) * 2), 4);
+        const physicalSpriteSize = Math.max(Math.ceil(spriteSize * renderScale), 4);
+        const physicalRadius = radius * renderScale;
+        const physicalBlur = (blur || 0) * renderScale;
+        const spriteCanvas = createCanvas(physicalSpriteSize, physicalSpriteSize);
+        const spriteContext = spriteCanvas.getContext('2d');
+
+        if (!spriteContext) {
+          return null;
+        }
+
+        spriteContext.clearRect(0, 0, physicalSpriteSize, physicalSpriteSize);
+
+        if (blur) {
+          const center = physicalSpriteSize / 2;
+          const outerRadius = Math.min(center, physicalRadius + (physicalBlur * 1.35));
+          const coreStop = Math.min(Math.max(physicalRadius / (outerRadius * 3.2), 0.04), 0.16);
+          const glowStop = Math.min(coreStop + 0.38, 0.72);
+          const gradient = spriteContext.createRadialGradient(
+            center,
+            center,
+            Math.max(physicalRadius * 0.12, 1),
+            center,
+            center,
+            outerRadius,
+          );
+
+          gradient.addColorStop(0, color);
+          gradient.addColorStop(coreStop, color);
+          gradient.addColorStop(glowStop, getColorWithAlpha(color, 0.18));
+          gradient.addColorStop(1, getColorWithAlpha(color, 0));
+          spriteContext.fillStyle = gradient;
+          spriteContext.fillRect(0, 0, physicalSpriteSize, physicalSpriteSize);
+        } else {
+          spriteContext.filter = physicalBlur ? `blur(${physicalBlur}px)` : 'none';
+          spriteContext.fillStyle = color;
+          spriteContext.beginPath();
+          spriteContext.arc(
+            physicalSpriteSize / 2,
+            physicalSpriteSize / 2,
+            physicalRadius,
+            0,
+            Math.PI * 2,
+          );
+          spriteContext.fill();
+          spriteContext.filter = 'none';
+        }
+
+        return {
+          image: spriteCanvas,
+          size: spriteSize,
+          particleSize: size,
+        };
+      }
+
+      function getParticleSprite(layer, size) {
+        const sizeBucket = Math.max(
+          particleSpriteSizeStep,
+          Math.round(size / particleSpriteSizeStep) * particleSpriteSizeStep,
+        );
+        const spriteKey = `${sizeBucket}`;
+
+        if (!layer.spriteCache.has(spriteKey)) {
+          layer.spriteCache.set(
+            spriteKey,
+            createParticleSprite(sizeBucket, layer.blur, layer.color),
+          );
+        }
+
+        return layer.spriteCache.get(spriteKey);
+      }
+
+      function activateParticle(config) {
+        const angleSeed = Math.floor(randomBetween(-200, 200));
+        const speed = randomBetween(config.minSpeed, config.maxSpeed);
+        const direction = random() < 0.5 ? -1 : 1;
+        const size = randomBetween(config.minSize, config.maxSize);
+
+        return {
+          x: randomBetween(0, width),
+          y: randomBetween(0, height),
+          size,
+          baseSize: size,
+          sprite: getParticleSprite(config, size),
+          vx: Math.sin(angleSeed) * speed * direction,
+          vy: Math.cos(angleSeed) * speed * direction,
+          lifeLeft: randomBetween(200, 500),
+        };
+      }
+
+      function createLayers() {
+        layers = loaderParticlesConfig.map(config => {
+          const layer = {
+            ...config,
+            spriteCache: new Map(),
+            particles: [],
+          };
+          layer.particles = Array.from({ length: config.count }, () => activateParticle(layer));
+          return layer;
+        });
+      }
+
+      function resizeCanvas() {
+        width = Math.max(window.innerWidth, 1);
+        height = Math.max(window.innerHeight, 1);
+        particlePixelRatio = getParticlePixelRatio();
+        canvas.width = Math.ceil(width * particlePixelRatio);
+        canvas.height = Math.ceil(height * particlePixelRatio);
+        context.setTransform(particlePixelRatio, 0, 0, particlePixelRatio, 0, 0);
+        createLayers();
+        drawParticles();
+      }
+
+      function advanceParticles(delta) {
+        const frameScale = Math.min(Math.max(delta / 16.67, 0.25), 2);
+
+        for (let layerIndex = 0; layerIndex < layers.length; layerIndex += 1) {
+          const layer = layers[layerIndex];
+          const particles = layer.particles;
+
+          for (let particleIndex = 0; particleIndex < particles.length; particleIndex += 1) {
+            const particle = particles[particleIndex];
+            particle.x += particle.vx * frameScale;
+            particle.y += particle.vy * frameScale;
+            particle.lifeLeft -= frameScale;
+
+            if (particle.lifeLeft < 400) {
+              particle.size -= particle.size * 0.0035 * frameScale;
+            }
+
+            if (particle.lifeLeft <= 0 || particle.size <= 0.5) {
+              particles[particleIndex] = activateParticle(layer);
+              continue;
+            }
+
+            if (!particle.sprite) {
+              particle.sprite = getParticleSprite(layer, particle.size);
+            }
+          }
+        }
+      }
+
+      function drawParticles() {
+        context.clearRect(0, 0, width, height);
+
+        for (let layerIndex = 0; layerIndex < layers.length; layerIndex += 1) {
+          const particles = layers[layerIndex].particles;
+
+          for (let particleIndex = 0; particleIndex < particles.length; particleIndex += 1) {
+            const particle = particles[particleIndex];
+
+            if (!particle.sprite) {
+              continue;
+            }
+
+            const scale = Math.max(particle.size / Math.max(particle.baseSize, 1), 0.02);
+            const drawSize = particle.sprite.size * scale;
+            context.drawImage(
+              particle.sprite.image,
+              particle.x - (drawSize / 2),
+              particle.y - (drawSize / 2),
+              drawSize,
+              drawSize,
+            );
+          }
+        }
+      }
+
+      function render(now) {
+        if (stopped || !canvas.isConnected) {
+          return;
+        }
+
+        if (!document.hidden) {
+          const elapsedSinceDraw = now - lastDrawFrame;
+
+          if (!reducedMotion.matches && elapsedSinceDraw >= particleFrameInterval) {
+            const delta = now - lastFrame;
+            lastFrame = now;
+            lastDrawFrame = now;
+            advanceParticles(delta);
+            drawParticles();
+          }
+        } else {
+          lastFrame = now;
+          lastDrawFrame = now;
+        }
+
+        animationFrame = requestAnimationFrame(render);
+      }
+
+      function stop() {
+        if (stopped) {
+          return;
+        }
+
+        stopped = true;
+        cancelAnimationFrame(animationFrame);
+        canvas.style.transition = 'none';
+        canvas.style.opacity = '0';
+        canvas.style.visibility = 'hidden';
+        canvas.getBoundingClientRect();
+        canvas.style.transition = '';
+        window.removeEventListener('resize', resizeCanvas);
+      }
+
+      resizeCanvas();
+      if (!reducedMotion.matches) {
+        animationFrame = requestAnimationFrame(render);
+      }
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      return {
+        stop,
+      };
+    }
+
+    function createPortfolioLoader() {
+      const loaderContent = document.querySelector('#loader-content');
+      const appRoot = document.querySelector('#portfolio-app-root');
+      const yinYangGate = loaderContent?.querySelector('.yin-yang-gate');
+      const yinYangSymbol = loaderContent?.querySelector('.yin-yang-symbol');
+      const whiteBlob = loaderContent?.querySelector('.loader-white-blob');
+      const whiteBlobPathNodes = Array.from(
+        whiteBlob?.querySelectorAll('.loader-white-drop-core, .loader-white-drop-glow') || [],
+      );
+      const fullWhiteCover = loaderContent?.querySelector('.loader-full-white-cover');
+      const liquidReveal = loaderContent?.querySelector('.loader-liquid-reveal');
+      const motionGhosts = Array.from(
+        loaderContent?.querySelectorAll('.yin-yang-motion-ghost') || [],
+      );
+      const state = {
+        isAppReady: false,
+        isLoaderExiting: false,
+        showLoader: Boolean(loaderContent),
+        hasHeroEntered: false,
+        hasShapeWhiteCoverage: false,
+        hasFullWhiteCoverage: false,
+        hasStripeReady: false,
+        hasLiquidRevealStarted: false,
+        hasLoaderCompleted: false,
+      };
+      const loaderAssetUrls = [
+        'assets/assets/loader-yingyang/yingyang.png',
+        'assets/assets/loader-yingyang/yingyangwithoutdots.png',
+        'assets/assets/loader-yingyang/black.png',
+        'assets/assets/loader-yingyang/white.png',
+      ];
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const minLoaderDuration = delay(940);
+      const windowLoaded = document.readyState === 'complete'
+        ? Promise.resolve()
+        : new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
+      const fontsReady = document.fonts?.ready
+        ? document.fonts.ready.catch(() => undefined)
+        : Promise.resolve();
+      const appReady = new Promise(resolve => {
+        window.addEventListener('portfolio-app-ready', function handleAppReady() {
+          state.isAppReady = true;
+          resolve();
+        }, { once: true });
+      });
+      const loaderAssetsReady = Promise.all(loaderAssetUrls.map(waitForImageAsset));
+      const implosionScale = 0.045;
+      const peakRotationDegreesPerMs = 2.05;
+      const liquidRevealEaseInOutExpo = 'cubic-bezier(0.87, 0, 0.13, 1)';
+      const liquidRevealEaseInOutExpoPoints = [0.87, 0, 0.13, 1];
+      const liquidRevealEaseDurationScale = 1.18;
+      const liquidRevealFinalContinuationEasing = 'cubic-bezier(0.33, 0.32, 0.67, 1)';
+      const liquidRevealFinalContinuationMsPerPx = 23.25;
+      const liquidRevealFinalContinuationMinDuration = 4200;
+      const liquidRevealFinalContinuationMaxDuration = 5400;
+      const liquidRevealMomentumBridgeRevealDistanceRatio = 0.1;
+      const liquidRevealMomentumBridgeMinDistance = 78;
+      const liquidRevealMomentumBridgeMaxDistance = 92;
+      const liquidRevealMomentumBridgeEasing = liquidRevealEaseInOutExpo;
+      const liquidRevealMainCurveSampleCount = 36;
+      const whiteDropPathStart = [
+        50, 0,
+        78, 0, 100, 22, 100, 50,
+        100, 78, 78, 100, 50, 100,
+        32, 100, 15, 87, 16, 69,
+        17, 56, 31, 50, 50, 50,
+        69, 50, 82, 40, 82, 25,
+        82, 10, 68, 0, 50, 0,
+      ];
+      const whiteDropPathMid = [
+        50, -5,
+        82, -4, 106, 21, 106, 51,
+        106, 83, 81, 107, 49, 106,
+        27, 105, 7, 91, 7, 69,
+        7, 52, 27, 45, 49, 47,
+        73, 49, 91, 37, 91, 20,
+        91, 6, 71, -5, 50, -5,
+      ];
+      const whiteDropPathCover = [
+        50, -20,
+        92, -20, 123, 9, 120, 50,
+        118, 90, 87, 122, 47, 119,
+        5, 116, -24, 84, -19, 45,
+        -14, 11, 13, -17, 50, -20,
+        70, -22, 93, -10, 98, 12,
+        88, -6, 68, -20, 50, -20,
+      ];
+
+      function waitForImageAsset(url) {
+        return new Promise(resolve => {
+          const image = new Image();
+          let settled = false;
+          const finish = () => {
+            if (settled) {
+              return;
+            }
+            settled = true;
+            if (image.decode) {
+              image.decode().catch(() => undefined).then(resolve);
+            } else {
+              resolve();
+            }
+          };
+
+          image.decoding = 'async';
+          image.onload = finish;
+          image.onerror = finish;
+          image.src = url;
+
+          if (image.complete) {
+            finish();
+          }
+        });
+      }
+
+      function revealHeroContent() {
+        if (state.hasHeroEntered) {
+          return;
+        }
+
+        appRoot?.removeAttribute('aria-hidden');
+        document.body.classList.add('portfolio-reveal-active');
+        window.dispatchEvent(new Event('portfolio-hero-reveal-start'));
+        state.hasHeroEntered = true;
+      }
+
+      function getCurrentRotationDegrees(element) {
+        const transform = window.getComputedStyle(element).transform;
+        if (!transform || transform === 'none') {
+          return 0;
+        }
+
+        const matrix = new DOMMatrixReadOnly(transform);
+        return Math.atan2(matrix.b, matrix.a) * (180 / Math.PI);
+      }
+
+      function parseCssTimeToMs(value, fallback) {
+        const cssTime = String(value || '').trim();
+        const numericValue = Number.parseFloat(cssTime);
+        if (!Number.isFinite(numericValue)) {
+          return fallback;
+        }
+
+        return cssTime.endsWith('ms') ? numericValue : numericValue * 1000;
+      }
+
+      function getLoadingSpinDuration() {
+        if (!yinYangSymbol) {
+          return 1120;
+        }
+
+        const duration = window
+          .getComputedStyle(yinYangSymbol)
+          .getPropertyValue('--loader-spin-duration');
+        return parseCssTimeToMs(duration, 1120);
+      }
+
+      function getLoadingSpinAnimation() {
+        if (!yinYangSymbol?.getAnimations) {
+          return null;
+        }
+
+        return yinYangSymbol
+          .getAnimations()
+          .find(animation => animation.animationName === 'loader-spin') || null;
+      }
+
+      async function waitForSpinHandoffPoint() {
+        if (!yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const spinAnimation = getLoadingSpinAnimation();
+        const spinDuration = getLoadingSpinDuration();
+        const currentTime = Number(spinAnimation?.currentTime);
+        if (!spinAnimation || !Number.isFinite(currentTime) || spinDuration <= 0) {
+          await nextFrame();
+          return;
+        }
+
+        const cycleProgress = ((currentTime % spinDuration) + spinDuration) % spinDuration;
+        let timeUntilBoundary = spinDuration - cycleProgress;
+        if (timeUntilBoundary < 90) {
+          timeUntilBoundary += spinDuration;
+        }
+
+        await delay(timeUntilBoundary);
+        await nextFrame();
+      }
+
+      async function prepareSpinExitHandoff() {
+        await waitForSpinHandoffPoint();
+
+        if (!yinYangSymbol) {
+          return 0;
+        }
+
+        const currentRotation = getCurrentRotationDegrees(yinYangSymbol);
+        yinYangSymbol.style.transform = `rotate(${currentRotation}deg) scale(1)`;
+        yinYangSymbol.style.animation = 'none';
+        return currentRotation;
+      }
+
+      function getLiquidRevealDuration() {
+        return prefersReducedMotion.matches ? 1 : 1840;
+      }
+
+      function getBezierCoordinate(progress, pointA, pointB) {
+        const inverse = 1 - progress;
+        return (3 * inverse * inverse * progress * pointA)
+          + (3 * inverse * progress * progress * pointB)
+          + (progress * progress * progress);
+      }
+
+      function getLiquidRevealEaseProgress(timeProgress) {
+        const [x1, y1, x2, y2] = liquidRevealEaseInOutExpoPoints;
+        const progress = getLiquidRevealEaseParameterForTime(timeProgress);
+
+        return getBezierCoordinate(progress, y1, y2);
+      }
+
+      function getLiquidRevealEaseParameterForTime(timeProgress) {
+        const [x1, , x2] = liquidRevealEaseInOutExpoPoints;
+        let low = 0;
+        let high = 1;
+        let progress = 0.5;
+
+        for (let index = 0; index < 24; index += 1) {
+          progress = (low + high) / 2;
+          const x = getBezierCoordinate(progress, x1, x2);
+
+          if (x < timeProgress) {
+            low = progress;
+          } else {
+            high = progress;
+          }
+        }
+
+        return progress;
+      }
+
+      function getLiquidRevealEaseTimeForProgress(targetProgress) {
+        const clampedProgress = Math.min(Math.max(targetProgress, 0), 1);
+        let low = 0;
+        let high = 1;
+        let timeProgress = 0.5;
+
+        for (let index = 0; index < 24; index += 1) {
+          timeProgress = (low + high) / 2;
+          const easedProgress = getLiquidRevealEaseProgress(timeProgress);
+
+          if (easedProgress < clampedProgress) {
+            low = timeProgress;
+          } else {
+            high = timeProgress;
+          }
+        }
+
+        return timeProgress;
+      }
+
+      function getLiquidRevealTransformY() {
+        if (!liquidReveal) {
+          return 0;
+        }
+
+        const transform = getComputedStyle(liquidReveal).transform;
+        if (!transform || transform === 'none') {
+          return 0;
+        }
+
+        return new DOMMatrixReadOnly(transform).m42 || 0;
+      }
+
+      function getLiquidRevealMotion() {
+        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
+        const waveHeight = wave?.getBoundingClientRect().height || 0;
+        const liquidHeight = liquidReveal?.getBoundingClientRect().height || 0;
+        const whitePeek = Math.max(liquidHeight - window.innerHeight - waveHeight, 0);
+        const stripeOverlap = parseFloat(
+          getComputedStyle(loaderContent).getPropertyValue('--hero-stripe-overlap'),
+        ) || 0;
+        const startY = getLiquidRevealTransformY();
+        const alignedY = window.innerHeight - waveHeight - whitePeek + stripeOverlap;
+        const targetY = alignedY;
+        const revealDuration = getLiquidRevealDuration();
+        const revealDistance = Math.max(alignedY - startY, 1);
+        const clearDistance = Math.max(targetY - alignedY, 0);
+        const clearDuration = prefersReducedMotion.matches
+          ? 1
+          : Math.max(Math.round((clearDistance / revealDistance) * revealDuration), 1);
+        const baseTotalDuration = revealDuration + clearDuration;
+        const totalDuration = prefersReducedMotion.matches
+          ? 1
+          : Math.max(Math.round(baseTotalDuration * liquidRevealEaseDurationScale), 1);
+        const hiddenY = getLiquidRevealHiddenY();
+        const finalDuration = getLiquidRevealFinalContinuationDuration(targetY, hiddenY);
+        const combinedDuration = totalDuration + finalDuration;
+        const bridgeDistance = finalDuration > 0 && !prefersReducedMotion.matches
+          ? Math.min(
+            Math.max(
+              revealDistance * liquidRevealMomentumBridgeRevealDistanceRatio,
+              liquidRevealMomentumBridgeMinDistance,
+            ),
+            liquidRevealMomentumBridgeMaxDistance,
+            revealDistance,
+          )
+          : 0;
+        const bridgeProgress = bridgeDistance > 0 && revealDistance > 0
+          ? Math.max(1 - (bridgeDistance / revealDistance), 0)
+          : 1;
+        const bridgeTime = bridgeProgress < 1
+          ? getLiquidRevealEaseTimeForProgress(bridgeProgress) * totalDuration
+          : totalDuration;
+        const bridgeTimeProgress = totalDuration > 0 ? bridgeTime / totalDuration : 1;
+        const bridgeY = startY + ((targetY - startY) * bridgeProgress);
+
+        return {
+          startY,
+          bridgeY,
+          bridgeTimeProgress,
+          targetY,
+          hiddenY,
+          totalDuration,
+          finalDuration,
+          combinedDuration,
+          bridgeOffset: combinedDuration > 0 ? bridgeTime / combinedDuration : 1,
+          handoffOffset: combinedDuration > 0 ? totalDuration / combinedDuration : 1,
+        };
+      }
+
+      function createLiquidTranslateY(value) {
+        return `translate3d(0, ${value}px, 0)`;
+      }
+
+      function getLiquidRevealHiddenY() {
+        const wave = liquidReveal?.querySelector('.loader-liquid-wave-front');
+        const waveHeight = wave?.getBoundingClientRect().height || 0;
+        const waveOvershoot = Math.max(waveHeight * 0.5, 24);
+        return Math.ceil(window.innerHeight + waveOvershoot);
+      }
+
+      function getLiquidRevealFinalContinuationDuration(startY, targetY) {
+        const finishDistance = Math.max(targetY - startY, 0);
+        if (prefersReducedMotion.matches || finishDistance <= 1) {
+          return 0;
+        }
+
+        return Math.min(
+          Math.max(
+            Math.round(finishDistance * liquidRevealFinalContinuationMsPerPx),
+            liquidRevealFinalContinuationMinDuration,
+          ),
+          liquidRevealFinalContinuationMaxDuration,
+        );
+      }
+
+      function hideLiquidRevealImmediately(transform) {
+        if (!liquidReveal) {
+          return;
+        }
+
+        liquidReveal.style.transition = 'none';
+        if (transform) {
+          liquidReveal.style.transform = transform;
+        }
+        liquidReveal.style.visibility = 'hidden';
+        liquidReveal.style.opacity = '0';
+        liquidReveal.getBoundingClientRect();
+        liquidReveal.style.display = 'none';
+        liquidReveal.style.transition = '';
+      }
+
+      function startLiquidRevealDescent() {
+        if (!liquidReveal || state.hasLoaderCompleted) {
+          return {
+            aligned: delay(getLiquidRevealDuration()),
+            finished: delay(getLiquidRevealDuration()),
+          };
+        }
+
+        const motion = getLiquidRevealMotion();
+        const startTransform = createLiquidTranslateY(motion.startY);
+        const bridgeTransform = createLiquidTranslateY(motion.bridgeY);
+        const targetTransform = createLiquidTranslateY(motion.targetY);
+        const hiddenTransform = createLiquidTranslateY(motion.hiddenY);
+        liquidReveal.style.display = '';
+        liquidReveal.style.visibility = 'visible';
+        liquidReveal.style.transition = 'none';
+        liquidReveal.style.transform = startTransform;
+        liquidReveal.getBoundingClientRect();
+
+        const hasFinalContinuation = motion.finalDuration > 0 && motion.handoffOffset < 1;
+        const hasMomentumBridge = hasFinalContinuation
+          && motion.bridgeOffset > 0
+          && motion.bridgeOffset < motion.handoffOffset;
+        const animation = liquidReveal.animate(
+          hasFinalContinuation
+            ? [
+              ...(hasMomentumBridge
+                ? Array.from(
+                  { length: liquidRevealMainCurveSampleCount + 1 },
+                  (_, index) => {
+                    const sampleProgress = index / liquidRevealMainCurveSampleCount;
+                    const timeProgress = motion.bridgeTimeProgress * sampleProgress;
+                    const easedProgress = getLiquidRevealEaseProgress(timeProgress);
+                    const y = motion.startY + ((motion.targetY - motion.startY) * easedProgress);
+
+                    return {
+                      transform: index === liquidRevealMainCurveSampleCount
+                        ? bridgeTransform
+                        : createLiquidTranslateY(y),
+                      offset: index === liquidRevealMainCurveSampleCount
+                        ? motion.bridgeOffset
+                        : (timeProgress * motion.totalDuration) / motion.combinedDuration,
+                      easing: index === liquidRevealMainCurveSampleCount
+                        ? liquidRevealMomentumBridgeEasing
+                        : 'linear',
+                    };
+                  },
+                )
+                : [{ transform: startTransform, offset: 0, easing: liquidRevealEaseInOutExpo }]),
+              {
+                transform: targetTransform,
+                offset: motion.handoffOffset,
+                easing: liquidRevealFinalContinuationEasing,
+              },
+              { transform: hiddenTransform, offset: 1 },
+            ]
+            : [
+              { transform: startTransform },
+              { transform: targetTransform },
+            ],
+          {
+            duration: hasFinalContinuation ? motion.combinedDuration : motion.totalDuration,
+            easing: hasFinalContinuation ? 'linear' : liquidRevealEaseInOutExpo,
+            fill: 'forwards',
+          },
+        );
+
+        const finished = animation.finished
+          .catch(() => undefined)
+          .then(() => {
+            if (!liquidReveal || state.hasLoaderCompleted) {
+              return;
+            }
+
+            liquidReveal.style.transform = hasFinalContinuation ? hiddenTransform : targetTransform;
+            liquidReveal.style.transition = '';
+            animation.cancel();
+            hideLiquidRevealImmediately(hasFinalContinuation ? hiddenTransform : targetTransform);
+          });
+
+        return {
+          aligned: delay(motion.totalDuration),
+          finished,
+        };
+      }
+
+      function cancelLoaderAnimations() {
+        if (!loaderContent?.getAnimations) {
+          return;
+        }
+
+        try {
+          loaderContent.getAnimations({ subtree: true }).forEach(animation => {
+            animation.cancel();
+          });
+        } catch (error) {
+          loaderContent.getAnimations().forEach(animation => {
+            animation.cancel();
+          });
+        }
+      }
+
+      function completeLoader() {
+        if (!loaderContent || state.hasLoaderCompleted) {
+          return;
+        }
+
+        state.hasLoaderCompleted = true;
+        window.portfolioLoaderParticleBackground?.stop();
+
+        if (liquidReveal) {
+          const hiddenTransform = createLiquidTranslateY(getLiquidRevealHiddenY());
+          liquidReveal.getAnimations?.().forEach(animation => {
+            animation.cancel();
+          });
+          hideLiquidRevealImmediately(hiddenTransform);
+        }
+
+        if (fullWhiteCover) {
+          fullWhiteCover.style.opacity = '0';
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+
+        if (whiteBlob) {
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+
+        cancelLoaderAnimations();
+        loaderContent.classList.add('is-liquid-settled', 'is-fading', 'is-hidden');
+        loaderContent.setAttribute('aria-hidden', 'true');
+        loaderContent.remove();
+        state.showLoader = false;
+      }
+
+      function getFarthestViewportDistanceFrom(centerX, centerY) {
+        const viewportWidth = Math.max(window.innerWidth, 1);
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const cornerDistances = [
+          Math.hypot(centerX, centerY),
+          Math.hypot(viewportWidth - centerX, centerY),
+          Math.hypot(centerX, viewportHeight - centerY),
+          Math.hypot(viewportWidth - centerX, viewportHeight - centerY),
+        ];
+
+        return Math.max(...cornerDistances);
+      }
+
+      function getBlobTransform(rotation, scale, offsetX = 0, offsetY = 0) {
+        return `translate3d(${offsetX}px, ${offsetY}px, 0) translate3d(-50%, -50%, 0) rotate(${rotation}deg) scale(${scale})`;
+      }
+
+      function createWhiteDropPath(values) {
+        return [
+          `M${values[0]} ${values[1]}`,
+          `C${values[2]} ${values[3]} ${values[4]} ${values[5]} ${values[6]} ${values[7]}`,
+          `C${values[8]} ${values[9]} ${values[10]} ${values[11]} ${values[12]} ${values[13]}`,
+          `C${values[14]} ${values[15]} ${values[16]} ${values[17]} ${values[18]} ${values[19]}`,
+          `C${values[20]} ${values[21]} ${values[22]} ${values[23]} ${values[24]} ${values[25]}`,
+          `C${values[26]} ${values[27]} ${values[28]} ${values[29]} ${values[30]} ${values[31]}`,
+          `C${values[32]} ${values[33]} ${values[34]} ${values[35]} ${values[36]} ${values[37]}`,
+          'Z',
+        ].join(' ');
+      }
+
+      function setWhiteBlobPath(values) {
+        const path = createWhiteDropPath(values);
+        whiteBlobPathNodes.forEach(node => {
+          node.setAttribute('d', path);
+        });
+      }
+
+      function mixPathValues(from, to, amount) {
+        return from.map((value, index) => value + ((to[index] - value) * amount));
+      }
+
+      function smoothstep(value) {
+        const clamped = Math.min(Math.max(value, 0), 1);
+        return clamped * clamped * (3 - (2 * clamped));
+      }
+
+      function getMorphPathValues(progress) {
+        if (progress < 0.34) {
+          return whiteDropPathStart;
+        }
+
+        if (progress < 0.74) {
+          return mixPathValues(
+            whiteDropPathStart,
+            whiteDropPathMid,
+            smoothstep((progress - 0.34) / 0.4),
+          );
+        }
+
+        return mixPathValues(
+          whiteDropPathMid,
+          whiteDropPathCover,
+          smoothstep((progress - 0.74) / 0.26),
+        );
+      }
+
+      function animateWhiteBlobPathMorph(duration) {
+        if (!whiteBlobPathNodes.length || prefersReducedMotion.matches) {
+          setWhiteBlobPath(whiteDropPathCover);
+          return Promise.resolve();
+        }
+
+        const startTime = performance.now();
+        setWhiteBlobPath(whiteDropPathStart);
+
+        return new Promise(resolve => {
+          function updatePath(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            setWhiteBlobPath(getMorphPathValues(progress));
+
+            if (progress < 1) {
+              requestAnimationFrame(updatePath);
+              return;
+            }
+
+            resolve();
+          }
+
+          requestAnimationFrame(updatePath);
+        });
+      }
+
+      function setLayerOpacityImmediately(element, opacity) {
+        if (!element) {
+          return;
+        }
+
+        element.style.transition = 'none';
+        element.style.opacity = `${opacity}`;
+        element.getBoundingClientRect();
+        element.style.transition = '';
+      }
+
+      async function lockFullWhiteCoverage() {
+        if (!loaderContent || state.hasLoaderCompleted) {
+          return;
+        }
+
+        loaderContent.classList.add('is-full-white-covered');
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'visible';
+        }
+        setLayerOpacityImmediately(fullWhiteCover, 1);
+        window.portfolioLoaderParticleBackground?.stop();
+        await nextFrame();
+        state.hasFullWhiteCoverage = true;
+        await nextFrame();
+      }
+
+      async function prepareStripeRevealLayer() {
+        if (!loaderContent || !state.hasFullWhiteCoverage || state.hasLoaderCompleted) {
+          return;
+        }
+
+        loaderContent.classList.add('is-stripe-ready');
+        window.portfolioLoaderParticleBackground?.stop();
+        if (liquidReveal) {
+          liquidReveal.style.display = '';
+          liquidReveal.style.visibility = 'visible';
+        }
+        setLayerOpacityImmediately(liquidReveal, 1);
+        await nextFrame();
+
+        if (whiteBlob) {
+          whiteBlob.getAnimations?.().forEach(animation => animation.cancel());
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+
+        setLayerOpacityImmediately(fullWhiteCover, 0);
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+
+        loaderContent.classList.remove('is-blob-expanding');
+        state.hasStripeReady = true;
+        await nextFrame();
+      }
+
+      function resetCompressionMotionBlur() {
+        motionGhosts.forEach(ghost => {
+          ghost.getAnimations?.().forEach(animation => animation.cancel());
+          ghost.style.opacity = '0';
+          ghost.style.filter = 'blur(0px)';
+          ghost.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+        });
+      }
+
+      function animateCompressionMotionBlur(duration, easing) {
+        if (!motionGhosts.length || prefersReducedMotion.matches) {
+          return [];
+        }
+
+        resetCompressionMotionBlur();
+
+        const ghostSettings = [
+          {
+            rotations: [-2, -8, -19, -32],
+            opacity: [0, 0.11, 0.26, 0.38, 0.42],
+            blur: [0.2, 1.15, 2.55, 3.65],
+          },
+          {
+            rotations: [2, 10, 25, 42],
+            opacity: [0, 0.09, 0.22, 0.32, 0.36],
+            blur: [0.25, 1.45, 3.1, 4.25],
+          },
+          {
+            rotations: [-4, -15, -36, -56],
+            opacity: [0, 0.055, 0.14, 0.23, 0.25],
+            blur: [0.35, 1.9, 4, 5.4],
+          },
+        ];
+
+        return motionGhosts.map((ghost, index) => {
+          const settings = ghostSettings[index] || ghostSettings[ghostSettings.length - 1];
+
+          return ghost.animate([
+            {
+              opacity: 0,
+              filter: 'blur(0px)',
+              transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)',
+            },
+            {
+              opacity: settings.opacity[1],
+              filter: `blur(${settings.blur[0]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[0]}deg) scale(1.004)`,
+              offset: 0.18,
+            },
+            {
+              opacity: settings.opacity[2],
+              filter: `blur(${settings.blur[1]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[1]}deg) scale(1.014)`,
+              offset: 0.42,
+            },
+            {
+              opacity: settings.opacity[3],
+              filter: `blur(${settings.blur[2]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[2]}deg) scale(1.024)`,
+              offset: 0.74,
+            },
+            {
+              opacity: settings.opacity[4],
+              filter: `blur(${settings.blur[3]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[3]}deg) scale(1.034)`,
+              offset: 0.88,
+            },
+            {
+              opacity: 0,
+              filter: `blur(${settings.blur[2]}px)`,
+              transform: `translate3d(0, 0, 0) rotate(${settings.rotations[3]}deg) scale(1.034)`,
+            },
+          ], {
+            duration,
+            easing,
+            fill: 'forwards',
+          });
+        });
+      }
+
+      async function accelerateAndCompressSymbol(handoffRotation) {
+        if (!loaderContent || !yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const currentRotation = Number.isFinite(handoffRotation)
+          ? handoffRotation
+          : getCurrentRotationDegrees(yinYangSymbol);
+        const targetRotation = currentRotation + 1980;
+        const compressionDuration = 1560;
+        const compressionEasing = 'linear';
+        yinYangSymbol.style.transform = `rotate(${currentRotation}deg) scale(1)`;
+        yinYangSymbol.style.animation = 'none';
+
+        const simplifyDots = delay(840).then(() => {
+          loaderContent.classList.add('is-simplifying');
+        });
+        const motionBlurAnimations = animateCompressionMotionBlur(
+          compressionDuration,
+          compressionEasing,
+        );
+        const animation = yinYangSymbol.animate([
+          {
+            filter: 'blur(0px) brightness(1)',
+            transform: `rotate(${currentRotation}deg) scale(1)`,
+          },
+          {
+            filter: 'blur(0.25px) brightness(1.02)',
+            transform: `rotate(${currentRotation + 130}deg) scale(0.82)`,
+            offset: 0.18,
+          },
+          {
+            filter: 'blur(0.55px) brightness(1.04)',
+            transform: `rotate(${currentRotation + 470}deg) scale(0.56)`,
+            offset: 0.42,
+          },
+          {
+            filter: 'blur(1.05px) brightness(1.06)',
+            transform: `rotate(${currentRotation + 1020}deg) scale(0.32)`,
+            offset: 0.68,
+          },
+          {
+            filter: 'blur(1.45px) brightness(1.08)',
+            transform: `rotate(${currentRotation + 1540}deg) scale(0.19)`,
+            offset: 0.86,
+          },
+          {
+            filter: 'blur(1.65px) brightness(1.08)',
+            transform: `rotate(${targetRotation}deg) scale(0.14)`,
+          },
+        ], {
+          duration: compressionDuration,
+          easing: compressionEasing,
+          fill: 'forwards',
+        });
+
+        simplifyDots.catch(() => undefined);
+        await Promise.all([
+          animation.finished.catch(() => undefined),
+          ...motionBlurAnimations.map(motionBlurAnimation =>
+            motionBlurAnimation.finished.catch(() => undefined),
+          ),
+        ]);
+        resetCompressionMotionBlur();
+        yinYangSymbol.style.filter = 'blur(1.65px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(0.14)`;
+        return targetRotation;
+      }
+
+      async function implodeSymbol(startRotation) {
+        if (!yinYangSymbol || prefersReducedMotion.matches) {
+          return;
+        }
+
+        const rotation = Number.isFinite(startRotation) ? startRotation : 0;
+        const implodeDuration = 520;
+        const targetRotation = rotation + (peakRotationDegreesPerMs * implodeDuration);
+        const animation = yinYangSymbol.animate([
+          {
+            filter: 'blur(1.65px) brightness(1.08)',
+            transform: `rotate(${rotation}deg) scale(0.14)`,
+          },
+          {
+            filter: 'blur(2.05px) brightness(1.14)',
+            transform: `rotate(${rotation + 430}deg) scale(0.085)`,
+            offset: 0.42,
+          },
+          {
+            filter: 'blur(2.35px) brightness(1.2)',
+            transform: `rotate(${rotation + 830}deg) scale(0.056)`,
+            offset: 0.78,
+          },
+          {
+            filter: 'blur(1.2px) brightness(1.08)',
+            transform: `rotate(${targetRotation}deg) scale(${implosionScale})`,
+          },
+        ], {
+          duration: implodeDuration,
+          easing: 'linear',
+          fill: 'forwards',
+        });
+
+        await animation.finished.catch(() => undefined);
+        yinYangSymbol.style.filter = 'blur(1.2px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${targetRotation}deg) scale(${implosionScale})`;
+        return targetRotation;
+      }
+
+      function resetWhiteBlob() {
+        if (!whiteBlob) {
+          return;
+        }
+
+        whiteBlob.getAnimations?.().forEach(animation => animation.cancel());
+        whiteBlob.style.left = '50%';
+        whiteBlob.style.top = '50%';
+        whiteBlob.style.width = '120px';
+        whiteBlob.style.height = '120px';
+        whiteBlob.style.opacity = '0';
+        whiteBlob.style.visibility = 'visible';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(0, 0.001);
+        setWhiteBlobPath(whiteDropPathStart);
+      }
+
+      function getWhiteBlobCoverageBaseSize(blobSize, centerX, centerY) {
+        const safeBlobSize = Math.max(blobSize, 1);
+        const viewportWidth = Math.max(window.innerWidth, 1);
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const viewportDiagonal = Math.hypot(viewportWidth, viewportHeight);
+        const farthestViewportCorner = getFarthestViewportDistanceFrom(centerX, centerY);
+        const coverageSize = Math.max(
+          safeBlobSize,
+          viewportDiagonal * 0.58,
+          farthestViewportCorner * 1.85,
+          window.innerWidth < 700 ? 760 : 980,
+        );
+
+        return Math.min(coverageSize, 1800);
+      }
+
+      function getWhiteBlobTargetScale(blobSize, centerX, centerY) {
+        const safeBlobSize = Math.max(blobSize, 1);
+        const conservativeBlobRadius = safeBlobSize * 0.38;
+        const farthestViewportCorner = getFarthestViewportDistanceFrom(centerX, centerY);
+
+        return Math.max(
+          (farthestViewportCorner / conservativeBlobRadius) * 1.18,
+          window.innerWidth < 700 ? 1.28 : 1.36,
+        );
+      }
+
+      async function runWhiteBlobTransition(startRotation) {
+        if (state.hasLoaderCompleted) {
+          return;
+        }
+
+        if (!loaderContent || !yinYangGate || !yinYangSymbol || !whiteBlob || prefersReducedMotion.matches) {
+          await lockFullWhiteCoverage();
+          return;
+        }
+
+        const rotation = Number.isFinite(startRotation) ? startRotation : 0;
+        const gateBounds = yinYangGate.getBoundingClientRect();
+        const centerX = gateBounds.left + (gateBounds.width / 2);
+        const centerY = gateBounds.top + (gateBounds.height / 2);
+        const viewportCenterX = Math.max(window.innerWidth, 1) / 2;
+        const viewportCenterY = Math.max(window.innerHeight, 1) / 2;
+        const recenterX = viewportCenterX - centerX;
+        const recenterY = viewportCenterY - centerY;
+        const blobSize = Math.max(gateBounds.width, gateBounds.height, 1);
+        const coverageBaseSize = getWhiteBlobCoverageBaseSize(
+          blobSize,
+          viewportCenterX,
+          viewportCenterY,
+        );
+        const baseScaleRatio = blobSize / coverageBaseSize;
+        const toCoverageScale = scale => scale * baseScaleRatio;
+        const startScale = toCoverageScale(Math.max(implosionScale * 0.72, 0.026));
+        const targetScale = getWhiteBlobTargetScale(
+          coverageBaseSize,
+          viewportCenterX,
+          viewportCenterY,
+        );
+        const growthDuration = 2860;
+        const finalRotation = rotation + 1460;
+
+        resetCompressionMotionBlur();
+        resetWhiteBlob();
+        loaderContent.classList.remove('is-replacing-parts', 'is-separated');
+        loaderContent.classList.add('is-blob-expanding');
+
+        whiteBlob.style.left = `${centerX}px`;
+        whiteBlob.style.top = `${centerY}px`;
+        whiteBlob.style.width = `${coverageBaseSize}px`;
+        whiteBlob.style.height = `${coverageBaseSize}px`;
+        whiteBlob.style.opacity = '0';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(rotation, startScale);
+        setWhiteBlobPath(whiteDropPathStart);
+
+        yinYangSymbol.style.opacity = '1';
+        yinYangSymbol.style.filter = 'blur(1.2px) brightness(1.08)';
+        yinYangSymbol.style.transform = `rotate(${rotation}deg) scale(${implosionScale})`;
+
+        const symbolTakeover = yinYangSymbol.animate([
+          {
+            opacity: 1,
+            filter: 'blur(1.2px) brightness(1.08)',
+            transform: `rotate(${rotation}deg) scale(${implosionScale})`,
+          },
+          {
+            opacity: 1,
+            filter: 'blur(2.4px) brightness(1.16)',
+            transform: `rotate(${rotation + 360}deg) scale(${implosionScale * 0.98})`,
+            offset: 0.58,
+          },
+          {
+            opacity: 0,
+            filter: 'blur(2.7px) brightness(1.1)',
+            transform: `rotate(${rotation + 650}deg) scale(${implosionScale * 0.9})`,
+          },
+        ], {
+          duration: 320,
+          easing: 'linear',
+          fill: 'forwards',
+        });
+
+        const blobExpansion = whiteBlob.animate([
+          {
+            opacity: 0,
+            transform: getBlobTransform(rotation, startScale),
+          },
+          {
+            opacity: 1,
+            transform: getBlobTransform(rotation + 460, toCoverageScale(0.13)),
+            offset: 0.08,
+          },
+          {
+            opacity: 1,
+            transform: getBlobTransform(rotation + 780, toCoverageScale(0.38)),
+            offset: 0.18,
+          },
+          {
+            opacity: 1,
+            transform: getBlobTransform(rotation + 1100, targetScale * 0.22, recenterX * 0.28, recenterY * 0.28),
+            offset: 0.36,
+          },
+          {
+            opacity: 1,
+            transform: getBlobTransform(rotation + 1320, targetScale * 0.56, recenterX * 0.72, recenterY * 0.72),
+            offset: 0.62,
+          },
+          {
+            opacity: 1,
+            transform: getBlobTransform(finalRotation, targetScale, recenterX, recenterY),
+          },
+        ], {
+          duration: growthDuration,
+          easing: 'linear',
+          fill: 'forwards',
+        });
+        const shapeMorph = animateWhiteBlobPathMorph(growthDuration);
+
+        await Promise.all([
+          symbolTakeover.finished.catch(() => undefined),
+          blobExpansion.finished.catch(() => undefined),
+          shapeMorph.catch(() => undefined),
+        ]);
+
+        whiteBlob.style.opacity = '1';
+        whiteBlob.style.filter = 'none';
+        whiteBlob.style.transform = getBlobTransform(finalRotation, targetScale, recenterX, recenterY);
+        setWhiteBlobPath(whiteDropPathCover);
+        yinYangSymbol.style.opacity = '0';
+        yinYangSymbol.style.filter = 'blur(0px)';
+        state.hasShapeWhiteCoverage = true;
+        await nextFrame();
+        await nextFrame();
+        await lockFullWhiteCoverage();
+      }
+
+      async function revealHeroWithLiquidWave() {
+        if (
+          !loaderContent
+          || prefersReducedMotion.matches
+          || !state.hasFullWhiteCoverage
+          || state.hasLoaderCompleted
+          || state.hasLiquidRevealStarted
+        ) {
+          return;
+        }
+
+        state.hasLiquidRevealStarted = true;
+
+        if (!state.hasStripeReady) {
+          await prepareStripeRevealLayer();
+        }
+
+        setLayerOpacityImmediately(fullWhiteCover, 0);
+        if (fullWhiteCover) {
+          fullWhiteCover.style.visibility = 'hidden';
+        }
+        if (whiteBlob) {
+          whiteBlob.style.opacity = '0';
+          whiteBlob.style.visibility = 'hidden';
+        }
+        await nextFrame();
+
+        const liquidDescent = startLiquidRevealDescent();
+        loaderContent.classList.add('is-liquid-revealing');
+        await liquidDescent.aligned;
+        loaderContent.classList.add('is-liquid-settled', 'is-visual-handoff', 'is-interaction-released');
+        hideLiquidRevealImmediately();
+        await liquidDescent.finished;
+      }
+
+      async function startLoaderExit() {
+        if (
+          !loaderContent
+          || state.isLoaderExiting
+          || !state.showLoader
+          || state.hasLoaderCompleted
+        ) {
+          return;
+        }
+
+        state.isLoaderExiting = true;
+
+        if (prefersReducedMotion.matches) {
+          loaderContent.classList.add('is-exiting');
+          document.body.classList.add('portfolio-reduced-motion-reveal');
+          revealHeroContent();
+          loaderContent.classList.add('is-fading');
+          await delay(120);
+        } else {
+          const handoffRotation = await prepareSpinExitHandoff();
+          loaderContent.classList.add('is-exiting');
+          const compressedRotation = await accelerateAndCompressSymbol(handoffRotation);
+          const implodedRotation = await implodeSymbol(compressedRotation);
+          await runWhiteBlobTransition(implodedRotation);
+          revealHeroContent();
+          loaderContent.classList.add('is-interaction-released');
+          await nextFrame();
+          await nextFrame();
+          loaderContent.classList.add('is-fading');
+          await delay(80);
+        }
+
+        completeLoader();
+      }
+
+      async function waitForReadyAndExit() {
+        await Promise.all([
+          minLoaderDuration,
+          windowLoaded,
+          fontsReady,
+          loaderAssetsReady,
+          appReady,
+        ]);
+        await startLoaderExit();
+      }
+
+      return {
+        appRoot,
+        state,
+        waitForReadyAndExit,
+      };
+    }
+
+    window.portfolioLoader = null;
+    window.portfolioLoaderParticleBackground = null;
+
+    window.addEventListener('DOMContentLoaded', function() {
+      window.portfolioLoaderParticleBackground = createLoaderParticleBackground();
+    });
+
     window.addEventListener('load', function(ev) {
-      var loaderContent = document.querySelector('#loader-content');
-      // Download main.dart.js
+      window.portfolioLoader = createPortfolioLoader();
+      window.portfolioLoader.waitForReadyAndExit();
+
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(async function(appRunner) {
-            loaderContent.style.opacity = "0";
-            await delay(400);
+          engineInitializer.initializeEngine({
+            hostElement: window.portfolioLoader.appRoot,
+          }).then(async function(appRunner) {
             await appRunner.runApp();
-            loaderContent.style.display = "none";
           });
         }
       });
@@ -188,14 +2209,47 @@
   <script type="text/javascript">
     window.flutterWebRenderer = "html";
   </script>
-  <div class="main-content" id="loader-content">
-    <img 
-    src="icons/yin-yang-loader.gif" 
-    alt="logo preview"
-    width="80"
-    height="80"
-    style="filter: invert(100%);"
-    >
+  <div id="portfolio-app-root" aria-hidden="true"></div>
+  <div class="portfolio-loader" id="loader-content" role="status" aria-live="polite" aria-label="Loading portfolio">
+    <canvas class="loader-particle-background" aria-hidden="true"></canvas>
+    <div class="loader-center" aria-hidden="true">
+      <div class="yin-yang-gate">
+        <div class="yin-yang-symbol">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-a" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-b" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-motion-ghost yin-yang-motion-ghost-c" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-complete" src="assets/assets/loader-yingyang/yingyang.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-no-dots" src="assets/assets/loader-yingyang/yingyangwithoutdots.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-part yin-yang-part-black" src="assets/assets/loader-yingyang/black.png" alt="" decoding="async">
+          <img class="yin-yang-layer yin-yang-part yin-yang-part-white" src="assets/assets/loader-yingyang/white.png" alt="" decoding="async">
+          <span class="yin-yang-dot-cover yin-yang-dot-cover-dark"></span>
+          <span class="yin-yang-dot-cover yin-yang-dot-cover-light"></span>
+        </div>
+      </div>
+    </div>
+    <div class="loader-white-blob" aria-hidden="true">
+      <svg class="loader-white-blob-shape" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" focusable="false">
+        <g transform="rotate(180 50 50)">
+          <path
+            class="loader-white-drop-glow"
+            d="M50 0 C78 0 100 22 100 50 C100 78 78 100 50 100 C32 100 15 87 16 69 C17 56 31 50 50 50 C69 50 82 40 82 25 C82 10 68 0 50 0 Z"
+          ></path>
+          <path
+            class="loader-white-drop-core"
+            d="M50 0 C78 0 100 22 100 50 C100 78 78 100 50 100 C32 100 15 87 16 69 C17 56 31 50 50 50 C69 50 82 40 82 25 C82 10 68 0 50 0 Z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-full-white-cover" aria-hidden="true"></div>
+    <div class="loader-liquid-reveal" aria-hidden="true">
+      <svg class="loader-liquid-wave loader-liquid-wave-front" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+        <path class="loader-stripe-desktop" d="M0 20 Q24 82 55 10 Q75 -35 100 40 L100 100 L0 100 Z"></path>
+        <path class="loader-stripe-mobile" d="M0 60 Q24 82 49 55 Q75 25 100 55 L100 100 L0 100 Z"></path>
+      </svg>
+      <div class="loader-liquid-fill"></div>
+    </div>
+    <span class="sr-only">Loading portfolio</span>
   </div>
 </body>
 </html>
