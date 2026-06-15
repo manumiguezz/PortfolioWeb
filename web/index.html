@@ -1698,8 +1698,6 @@
         window.portfolioLoaderParticleBackground?.stop();
         await nextFrame();
         state.hasFullWhiteCoverage = true;
-        loaderContent.classList.add('is-white-covering');
-        setLayerOpacityImmediately(liquidReveal, 1);
         await nextFrame();
       }
 
@@ -2093,7 +2091,6 @@
         await nextFrame();
         await nextFrame();
         await lockFullWhiteCoverage();
-        await prepareStripeRevealLayer();
       }
 
       async function revealHeroWithLiquidWave() {
@@ -2156,11 +2153,11 @@
           const implodedRotation = await implodeSymbol(compressedRotation);
           await runWhiteBlobTransition(implodedRotation);
           revealHeroContent();
-          await delay(180);
-          await revealHeroWithLiquidWave();
-          await delay(360);
+          loaderContent.classList.add('is-interaction-released');
+          await nextFrame();
+          await nextFrame();
           loaderContent.classList.add('is-fading');
-          await delay(640);
+          await delay(80);
         }
 
         completeLoader();
