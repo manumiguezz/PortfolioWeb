@@ -119,40 +119,37 @@ class _PortfolioPageRevealState extends State<PortfolioPageReveal>
 
   @override
   Widget build(BuildContext context) {
-    if (_isRevealComplete) {
-      return widget.child;
-    }
+    final children = <Widget>[widget.child];
 
-    final mediaQuery = MediaQuery.of(context);
-    final viewportWidth = mediaQuery.size.width;
-    final viewportHeight = mediaQuery.size.height;
-    final mobileVersion = isMobileWidth(viewportWidth);
-    final sectionGap = clampSize(viewportHeight * 0.07, 40, 72);
-    final flagHeight = mobileVersion
-        ? clampSize(viewportHeight * 0.16, 80, 130)
-        : clampSize(viewportHeight * 0.16, 86, 150);
-    final whitePeek = mobileVersion
-        ? clampSize(viewportHeight * 0.015, 8, 14)
-        : clampSize(viewportHeight * 0.035, 24, 36);
-    final arrowHeight = clampSize(viewportWidth * 0.18, 64, 110);
-    final heroHeight = clampSize(
-      viewportHeight -
-          sectionGap -
-          flagHeight -
-          whitePeek -
-          (mobileVersion ? arrowHeight : 0),
-      0,
-      viewportHeight,
-    );
-    final startTop = -flagHeight;
-    final mobileArrowOffset = mobileVersion ? arrowHeight : 0;
-    final endTop = heroHeight + sectionGap + mobileArrowOffset + _stripeOverlap;
-    final overlayHeight = viewportHeight + flagHeight + whitePeek;
+    if (!_isRevealComplete) {
+      final mediaQuery = MediaQuery.of(context);
+      final viewportWidth = mediaQuery.size.width;
+      final viewportHeight = mediaQuery.size.height;
+      final mobileVersion = isMobileWidth(viewportWidth);
+      final sectionGap = clampSize(viewportHeight * 0.07, 40, 72);
+      final flagHeight = mobileVersion
+          ? clampSize(viewportHeight * 0.16, 80, 130)
+          : clampSize(viewportHeight * 0.16, 86, 150);
+      final whitePeek = mobileVersion
+          ? clampSize(viewportHeight * 0.015, 8, 14)
+          : clampSize(viewportHeight * 0.035, 24, 36);
+      final arrowHeight = clampSize(viewportWidth * 0.18, 64, 110);
+      final heroHeight = clampSize(
+        viewportHeight -
+            sectionGap -
+            flagHeight -
+            whitePeek -
+            (mobileVersion ? arrowHeight : 0),
+        0,
+        viewportHeight,
+      );
+      final startTop = -flagHeight;
+      final mobileArrowOffset = mobileVersion ? arrowHeight : 0;
+      final endTop =
+          heroHeight + sectionGap + mobileArrowOffset + _stripeOverlap;
+      final overlayHeight = viewportHeight + flagHeight + whitePeek;
 
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        widget.child,
+      children.add(
         AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {
@@ -174,7 +171,12 @@ class _PortfolioPageRevealState extends State<PortfolioPageReveal>
             ),
           ),
         ),
-      ],
+      );
+    }
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: children,
     );
   }
 }
