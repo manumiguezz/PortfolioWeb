@@ -145,7 +145,8 @@ class _PortfolioPageRevealState extends State<PortfolioPageReveal>
       viewportHeight,
     );
     final startTop = -flagHeight;
-    final endTop = heroHeight + sectionGap + _stripeOverlap;
+    final mobileArrowOffset = mobileVersion ? arrowHeight : 0;
+    final endTop = heroHeight + sectionGap + mobileArrowOffset + _stripeOverlap;
     final overlayHeight = viewportHeight + flagHeight + whitePeek;
 
     return Stack(
